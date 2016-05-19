@@ -1,5 +1,5 @@
 var pg            = require('pg');
-var dbConnection  = 'postgres://localhost:5432/North_Nile';
+var dbConnection  = 'postgres://localhost:5432/north_nile';
 
 function createAudio() {
   pg.connect(dbConnection, function(err, client, done) {
@@ -9,7 +9,7 @@ function createAudio() {
     } else {
       var query = client.query('CREATE TABLE IF NOT EXISTS "Audio" (' +
         ' "id" serial PRIMARY KEY,' +
-        ' "audioReference" varchar(75) NOT NULL,)');
+        ' "audioReference" varchar(75) NOT NULL)');
 
       query.on('end', function() {
         console.log('Successfully created Audio schema.');
@@ -32,7 +32,7 @@ function createImage() {
     } else {
       var query = client.query('CREATE TABLE IF NOT EXISTS "Image" (' +
         ' "id" serial PRIMARY KEY,' +
-        ' "imageReference" varchar(75) NOT NULL,)');
+        ' "imageReference" varchar(75) NOT NULL)');
 
       query.on('end', function() {
         console.log('Successfully created Image schema.');
@@ -55,7 +55,7 @@ function createVideo() {
     } else {
       var query = client.query('CREATE TABLE IF NOT EXISTS "Video" (' +
         ' "id" serial PRIMARY KEY,' +
-        ' "videoReference" varchar(75) NOT NULL,)');
+        ' "videoReference" varchar(75) NOT NULL)');
 
       query.on('end', function() {
         console.log('Successfully created Video schema.');
