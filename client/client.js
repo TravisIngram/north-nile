@@ -1,4 +1,4 @@
-var app = angular.module('northApp', ['ngRoute']);
+var app = angular.module('northApp', ['ngRoute', 'leaflet-directive']);
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
   $routeProvider
