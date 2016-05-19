@@ -32,7 +32,8 @@ module.exports = function(grunt) {
                    "angular-route/angular-route.min.js.map",
                    "bootstrap/dist/fonts/glyphicons-halflings-regular.ttf",
                    "bootstrap/dist/fonts/glyphicons-halflings-regular.woff",
-                   "bootstrap/dist/fonts/glyphicons-halflings-regular.woff2"
+                   "bootstrap/dist/fonts/glyphicons-halflings-regular.woff2",
+                   "leaflet/dist/leaflet.js"
                ],
                "dest": "server/public/vendor/"
            }
