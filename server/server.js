@@ -6,6 +6,9 @@ var indexRouter = require('./routes/indexRouter.js');
 
 var app = express();
 
+// config
+app.use(express.static('server/public'));
+
 // routes
 app.use('/', indexRouter);
 

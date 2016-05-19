@@ -1,16 +1,28 @@
 <!DOCTYPE html>
-<html ng-app="nortApp">
+<html ng-app="northApp">
   <head>
     <meta charset="utf-8">
     <title>Nile of the North Food Resources Map</title>
-    <script src="vendors/angular/angular.min.js"></script>
+    <!-- Libraries -->
+    <script src="vendor/angular/angular.min.js"></script>
+    <script src="vendor/angular-route/angular-route.min.js"></script>
+    <script src="vendor/leaflet/dist/leaflet.js"></script>
+    <script src="vendor/angular-leaflet-directive/dist/angular-leaflet-directive.min.js"></script>
+
+    <!-- Custom -->
     <script src="assets/scripts/client.min.js"></script>
+
+    <base href="/" />
   </head>
   <body>
 
   </body>
 
   <h1>This is the index.html wrapper. There will be no content from this.</h1>
+
+  <!-- These links for testing purposes -->
+  <a href="/map">Map</a>
+  <a href="/home">Splash</a>
 
   <div ng-view><div>
 </html>
