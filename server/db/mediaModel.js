@@ -47,5 +47,29 @@ function createImage() {
   });
 }
 
+function createVideo() {
+  pg.connect(dbConnection, function(err, client, done) {
+    if(err) {
+      console.log('Error connecting to DB.');
+      process.exit(1);
+    } else {
+      var query = client.query('CREATE TABLE IF NOT EXISTS "Video" (' +
+        ' "id" serial PRIMARY KEY,' +
+        ' "videoReference" varchar(75) NOT NULL,)');
+
+      query.on('end', function() {
+        console.log('Successfully created Video schema.');
+        done();
+      });
+
+      query.on('error', function(error) {
+        console.log('Error creating Video schema.' + err);
+        process.exit(1);
+      });
+    }
+  });
+}
+
 module.exports.createImage = createAudio;
 module.exports.createImage = createImage;
+module.exports.createVideo = createVideo;
