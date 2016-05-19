@@ -1,6 +1,62 @@
-<!-- this is the HomeController-->
+<!-- this page is the HomeController as hc-->
 <div>
   <h2>This is the Splash Page</h2>
   <button ng-click="hc.getMap()">MAP</button></br>
   <button ng-click="hc.loginShow()">Login/Register</button>
 </div>
+
+<!-- Every time one of the following sections is used, -->
+<!-- we need to make sure the other sections are closed (false) -->
+
+<!-- /login -->
+
+<div ng-show="hc.loginForm">
+  <form action="/login" method="POST">
+    <h2>Login</h2>
+    <div>
+      <label for="username">Username:</label>
+      <input type="text" name="username" id="username"/>
+    <div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="text" name="password" id="password"/>
+    </div>
+    <div>
+      <input type="submit" value="LogIn"/></br>
+      <h3>Need to create a new account?</h3>
+      <button ng-click="hc.registerShow()">Register</button>
+
+  </form>
+</div> <!-- end /login  -->
+
+<!-- /register -->
+
+<div ng-show="hc.registerForm">
+  <form action="/register" method="POST">
+    <h2>Register</h2>
+    <div>
+      <label for="username">Username:</label>
+      <input type="text" name="username" id="username"/>
+    <div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="text" name="password" id="password"/>
+    </div>
+    <div>
+      <input type="submit" value="Register"/></br>
+  </form>
+</div> <!-- end /register  -->
+
+<!-- Admin Dashboard -->
+
+<div ng-show="hc.adminDashboard">
+  <!-- The function that shows this section will come from passport authentication of an Admin -->
+  <h2>This will be the Admin Dashboard.</h2>
+</div> <!-- end /adminDashboard  -->
+
+<!-- User Dashboard -->
+
+<div ng-show="hc.userDashboard">
+  <!-- The function that shows this section will come from passport authentication of a User -->
+  <h2>This will be the User Dashboard.</h2>
+</div> <!-- end /userDashboard  -->
