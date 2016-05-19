@@ -20,7 +20,7 @@ function createAccount() {
       });
 
       query.on('error', function(error) {
-        console.log('Error creating Account schema.');
+        console.log('Error creating Account schema.' + err);
         process.exit(1);
       });
     }
