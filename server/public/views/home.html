@@ -4,3 +4,23 @@
   <button ng-click="hc.getMap()">MAP</button></br>
   <button ng-click="hc.loginShow()">Login/Register</button>
 </div>
+
+<!-- /login -->
+
+<div ng-show="hc.loginForm">
+  <form action="/login" method="POST">
+    <h2>Login</h2>
+    <div>
+      <label for="username">Username:</label>
+      <input type="text" name="username" id="username"/>
+    <div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="text" name="password" id="password"/>
+    </div>
+    <div>
+      <input type="submit" value="LogIn"/></br>
+      <h3>Need to create a new account?</h3>
+      <button ng-click="hc.registerShow()">Register</button>
+  </form>
+</div> <!-- end /login  -->
