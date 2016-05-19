@@ -19,6 +19,23 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 app.controller('MapController', ['$http', function($http){ // $http loaded just so the syntax is there
   var mc = this;
 
+  angular.extend(mc, {
+        defaults: {
+            scrollWheelZoom: false,
+            touchZoom: false,
+            dragging: true
+        },
+        center: {
+          lat: 44.996121,
+          lng: -93.295845,
+          zoom: 15
+        },
+        tiles: {
+            url: "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        }
+    });
+
+
   console.log('Map controller loaded.');
 }]);
 
