@@ -4,7 +4,7 @@ var dbConnection  = 'postgres://localhost:5432/North_Nile';
 function createAudio() {
   pg.connect(dbConnection, function(err, client, done) {
     if(err) {
-      console.log('Error connecting to DB.');
+      console.log('Error connecting to DB.' + err);
       process.exit(1);
     } else {
       var query = client.query('CREATE TABLE IF NOT EXISTS "Audio" (' +
@@ -27,7 +27,7 @@ function createAudio() {
 function createImage() {
   pg.connect(dbConnection, function(err, client, done) {
     if(err) {
-      console.log('Error connecting to DB.');
+      console.log('Error connecting to DB.' + err);
       process.exit(1);
     } else {
       var query = client.query('CREATE TABLE IF NOT EXISTS "Image" (' +
@@ -50,7 +50,7 @@ function createImage() {
 function createVideo() {
   pg.connect(dbConnection, function(err, client, done) {
     if(err) {
-      console.log('Error connecting to DB.');
+      console.log('Error connecting to DB.' + err);
       process.exit(1);
     } else {
       var query = client.query('CREATE TABLE IF NOT EXISTS "Video" (' +
