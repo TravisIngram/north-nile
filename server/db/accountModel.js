@@ -12,7 +12,8 @@ function createAccount() {
         ' "userName" varchar(25) NOT NULL,' +
         ' "password" varchar(75) NOT NULL,' +
         ' "emailAddress" varchar(50) NOT NULL,' +
-        ' "contactName" varchar(50) NOT NULL)');
+        ' "contactName" varchar(50) NOT NULL,'+
+        ' "isAdmin" boolean NOT NULL);');
 
       query.on('end', function() {
         console.log('Successfully created Account schema.');
