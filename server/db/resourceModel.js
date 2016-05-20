@@ -19,7 +19,7 @@ function createResource() {
         ' "privateEmail" varchar(50) NOT NULL,' +
         ' "hours" text NOT NULL,' +
         ' "coordinates" numeric NOT NULL,' +
-        ' "account_id" int REFERENCES "Account(id)",' +
+        ' "account_id" int REFERENCES "Account"(id),' +
         ' "resourceType_id" int REFERENCES "resourceType"(id),' +
         ' "audio_id" int REFERENCES "Audio"(id),' +
         ' "image_id" int REFERENCES "Image"(id),' +
