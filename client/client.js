@@ -61,9 +61,6 @@ app.controller('HomeController', ['$http', function($http){ // $http loaded just
 
   // ng-show functions:
 
-  hc.loginForm = false;
-  hc.registerForm = false;
-
   // loginShow():
   hc.loginShow = function() {
     hc.loginForm = true;
