@@ -1,7 +1,7 @@
-var accountModel      = require('accountModel.js');
-var mediaModel        = require('mediaModel.js');
-var resourceTypeModel = require('resourceTypeModel.js');
-var resourceModel     = require('resourceModel.js');
+var accountModel      = require('./accountModel.js');
+var mediaModel        = require('./mediaModel.js');
+var resourceTypeModel = require('./resourceTypeModel.js');
+var resourceModel     = require('./resourceModel.js');
 
 var dbConnection      = 'postgres://localhost:5432/north_nile';
 
