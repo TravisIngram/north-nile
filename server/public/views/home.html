@@ -1,17 +1,17 @@
 <!-- this page is the HomeController as hc-->
 
-  <div>
-    <h2>This is the Splash Page</h2>
-    <a href="/map"><md-button>MAP</md-button></a>
-    <!-- this ^^ should maybe be an href styled as a button? -->
-    <md-button ng-click="hc.loginShow()">Login/Register</md-button>
-  </div>
+<div>
+  <h2>This is the Splash Page</h2>
+  <a href="/map"><md-button>MAP</md-button></a>
+  <!-- this ^^ should maybe be an href styled as a button? -->
+  <md-button ng-click="hc.loginShow()">Login/Register</md-button>
+</div>
 
-  <!-- Every time one of the following sections is used, -->
-  <!-- we need to make sure the other sections are closed (false) -->
+<!-- Every time one of the following sections is used, -->
+<!-- we need to make sure the other sections are closed (false) -->
 
-  <div ng-show="hc.loginForm">
-    <section layout="column">
+<div ng-show="hc.loginForm">
+  <section layout="column">
     <h2>Login</h2>
     <md-input-container>
       <label for="login-username">Username</label>
@@ -27,46 +27,47 @@
       <p>Need to create a new account?</p>
       <md-button class="md-raised md-primary" ng-click="hc.registerShow()">Register</md-button>
     </md-input-container>
-    </section>
-  </div> <!-- end /login  -->
+  </section>
+</div> <!-- end /login  -->
 
-  <!-- /register -->
+<!-- /register -->
 
-  <div ng-show="hc.registerForm">
-    <section layout="column">
-      <!-- action="/register" method="POST"> -->
-      <h2>Register</h2>
-      <md-input-container>
-        <label for="username">Username</label>
-        <input type="text" ng-model="hc.registerInfo.username" name="username"/>
-      </md-input-container>
-      <md-input-container>
-        <label for="password">Password</label>
-        <input type="text" ng-model="hc.registerInfo.password" name="password"/>
-      </md-input-container>
-      <md-input-container>
-        <label for="contactName">Contact Name</label>
-        <input type="text" ng-model="hc.registerInfo.contactName" name="contactName" id="contactName"/>
-      </md-input-container>
-      <md-input-container>
-        <label for="emailAddress">Email address</label>
-        <input type="text" ng-model="hc.registerInfo.emailAddress" name="password" id="emailAddress"/>
-      </md-input-container>
-        <md-button ng-click="hc.registerUser()" class="md-raised md-primary">Register</md-button>
-    </section>
-  </div> <!-- end /register  -->
+<div ng-show="hc.registerForm">
+  <section layout="column">
+    <!-- action="/register" method="POST"> -->
+    <h2>Register</h2>
+    <md-input-container>
+      <label for="username">Username</label>
+      <input type="text" ng-model="hc.registerInfo.username" name="username"/>
+    </md-input-container>
+    <md-input-container>
+      <label for="password">Password</label>
+      <input type="password" ng-model="hc.registerInfo.password" name="password"/>
+    </md-input-container>
+    <md-input-container>
+      <label for="contactName">Contact Name</label>
+      <input type="text" ng-model="hc.registerInfo.contactName" name="contactName" id="contactName"/>
+    </md-input-container>
+    <md-input-container>
+      <label for="emailAddress">Email address</label>
+      <input type="text" ng-model="hc.registerInfo.emailAddress" name="password" id="emailAddress"/>
+    </md-input-container>
+    <md-input-container>
+      <md-button ng-click="hc.registerUser()" class="md-raised md-primary">Register</md-button>
+    </md-input-container>
+  </section>
+</div> <!-- end /register  -->
 
+<!-- ::::::::: Admin Dashboard ::::::::: -->
 
-  <!-- ::::::::: Admin Dashboard ::::::::: -->
+<div ng-show="hc.adminDashboard">
+  <!-- The function that shows this section will come from passport authentication of an Admin -->
+  <h2>This will be the Admin Dashboard.</h2>
+</div> <!-- ::::::::: end /adminDashboard :::::::::  -->
 
-  <div ng-show="hc.adminDashboard">
-    <!-- The function that shows this section will come from passport authentication of an Admin -->
-    <h2>This will be the Admin Dashboard.</h2>
-  </div> <!-- ::::::::: end /adminDashboard :::::::::  -->
+<!-- ::::::::: User Dashboard ::::::::: -->
 
-  <!-- ::::::::: User Dashboard ::::::::: -->
-
-  <div ng-show="hc.userDashboard">
-    <!-- The function that shows this section will come from passport authentication of a User -->
-    <h2>This will be the User Dashboard.</h2>
-  </div> <!-- ::::::::: end /userDashboard ::::::::: -->
+<div ng-show="hc.userDashboard">
+  <!-- The function that shows this section will come from passport authentication of a User -->
+  <h2>This will be the User Dashboard.</h2>
+</div> <!-- ::::::::: end /userDashboard ::::::::: -->
