@@ -9,9 +9,7 @@ var pg=require('pg');
 router.get('/', function(request, response){
   response.sendFile(path.join(__dirname, '../public/views/home.html'));
 });
-router.post('/', passport.authenticate('local',
-{ successRedirect: '/adminRouter',
-failureRedirect: '/'
-})
-);
+router.post('/', passport.authenticate('local'), function(request, response){
+  response.send(request.user);
+});
 module.exports=router;
