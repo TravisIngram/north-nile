@@ -81,12 +81,12 @@ hc.loginUser = function() {
   $http.post('/login', hc.loginInfo).then(function(response){
     if (response.status == 200) {
       console.log('successful login', response);
-      
+
     }
   }, function(response){
     console.log('unsuccessful login');
-  })
-}
+  });
+};
 
 
 
