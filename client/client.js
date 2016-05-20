@@ -53,7 +53,6 @@ app.controller('MapController', ['$scope', function($scope){ // $http loaded jus
       mc.markerTitle = args.model.title;
     });
 
-
   console.log('Map controller loaded.');
 }]);
 
