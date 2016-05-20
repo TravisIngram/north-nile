@@ -81,8 +81,20 @@ app.controller('HomeController', ['$http', function($http){ // $http loaded just
 hc.loginUser = function() {
   $http.post('/login', hc.loginInfo).then(function(response){
     if (response.status == 200) {
-      console.log('successful login', response);
-
+      console.log('successful login', response.data.isAdmin);
+    if (response.data.isAdmin == true) {
+      console.log('admin is true');
+      hc.adminDashboard=true;
+      hc.userDashboard=false;
+      hc.registerForm = false;
+      hc.loginForm = false;
+    }else{
+      console.log('admin is not true');
+      hc.userDashboard=true;
+      hc.adminDashboard=false;
+      hc.registerForm=false;
+      hc.loginForm=false;
+    }
     }
   }, function(response){
     console.log('unsuccessful login');
