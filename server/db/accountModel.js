@@ -9,7 +9,7 @@ function createAccount() {
     } else {
       var query = client.query('CREATE TABLE IF NOT EXISTS "Account" (' +
         ' "id" serial PRIMARY KEY,' +
-        ' "userName" varchar(25) NOT NULL,' +
+        ' "userName" varchar(25) NOT NULL UNIQUE,' +
         ' "password" varchar(75) NOT NULL,' +
         ' "emailAddress" varchar(50) NOT NULL,' +
         ' "contactName" varchar(50) NOT NULL,'+
