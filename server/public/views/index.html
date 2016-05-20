@@ -2,27 +2,31 @@
 <html ng-app="northApp">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
     <title>Nile of the North Food Resources Map</title>
+
     <!-- Libraries -->
     <script src="vendor/angular/angular.min.js"></script>
     <script src="vendor/angular-route/angular-route.min.js"></script>
     <script src="vendor/leaflet/dist/leaflet.js"></script>
     <script src="vendor/angular-leaflet-directive/dist/angular-leaflet-directive.min.js"></script>
+    <link rel="stylesheet" href="vendor/leaflet/dist/leaflet.css" />
 
     <!-- Custom -->
     <script src="assets/scripts/client.min.js"></script>
+    <link rel="stylesheet" href="assets/styles/style.css" />
 
     <base href="/" />
   </head>
   <body>
 
-  </body>
-
-  <h1>This is the index.html wrapper. There will be no content from this.</h1>
 
   <!-- These links for testing purposes -->
   <a href="/map">Map</a>
-  <a href="/home">Splash</a>
+  <a href="/">Splash</a>
 
   <div ng-view><div>
+
+  </body>
 </html>

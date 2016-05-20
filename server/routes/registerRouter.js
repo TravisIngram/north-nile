@@ -3,7 +3,7 @@ var router=express.Router();
 var passport=require('node-bourbon');
 var path=require('path');
 var pg=require('pg');
-var connectionString='postgres://localhost:5432/North_Nile':
+var dbConnection='postgres://localhost:5432/North_Nile':
 var encryption=require("../../modules/encryption");
 
 router.get('/', function(request, response, next){
@@ -12,7 +12,7 @@ router.get('/', function(request, response, next){
 
 router.post('/', function(request, response, next){
   console.log(request.body);
-  pg.connect(connectionString, function(err, client){
+  pg.connect(dbConnection, function(err, client){
 
     var user={
       userName: request.body.userName,

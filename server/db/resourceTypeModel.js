@@ -1,5 +1,5 @@
 var pg            = require('pg');
-var dbConnection  = 'postgres://localhost:5432/North_Nile';
+var dbConnection  = 'postgres://localhost:5432/north_nile';
 
 function createResourceType() {
   pg.connect(dbConnection, function(err, client, done) {
@@ -12,7 +12,7 @@ function createResourceType() {
         ' "urbanGarden" varchar(50) NOT NULL,' +
         ' "culinaryArts" varchar(50) NOT NULL,' +
         ' "horticulture" varchar(50) NOT NULL,' +
-        ' "distribution" varchar(50) NOT NULL,)');
+        ' "distribution" varchar(50) NOT NULL)');
 
       query.on('end', function() {
         console.log('Successfully created resourceType schema.');
