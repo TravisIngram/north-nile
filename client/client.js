@@ -1,4 +1,5 @@
-var app = angular.module('northApp', ['ngRoute', 'leaflet-directive']);
+var app = angular.module('northApp', ['ngRoute', 'leaflet-directive', 'ngMaterial', 'ngMessages', 'ngAnimate']);
+
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
   $routeProvider
@@ -68,14 +69,14 @@ app.controller('HomeController', ['$http', function($http){ // $http loaded just
   hc.loginShow = function() {
     hc.loginForm = true;
     hc.registerForm = false;
-  }
+  };
 
 // registerShow():
   hc.registerShow = function() {
     console.log('hit registerShow');
     hc.registerForm = true;
     hc.loginForm = false;
-  }
+  };
 
 
 
