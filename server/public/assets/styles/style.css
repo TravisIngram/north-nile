@@ -1,0 +1,12 @@
+.key{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 10vh;
+  background-color: chartreuse;
+}
+
+.infoDrawer{
+  position: absolute;
+  bottom: 10vh;
+}
