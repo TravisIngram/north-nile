@@ -7,11 +7,12 @@ var pg=require('pg');
 var localStrategy=require('passport-local').Strategy;
 
 //local//
-// var encryption=require('./encryption');
+
 
 // custom modules
 var indexRouter= require('./routes/indexRouter.js');
 var loginRouter = require('./routes/loginRouter.js');
+var encryption=require('../modules/encryption');
 
 var app = express();
 
@@ -19,10 +20,7 @@ var app = express();
 var dbConnection  = require('./db/dbConnection.js');
 
 dbConnection.dbInit();
-
 // config
-app.use(express.static('server/public'));
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static('server/public'));
@@ -43,7 +41,7 @@ passport.use('local', new localStrategy({
 },
 function(request, username, password, done){
   console.log('CHECKING PASSWORD');
-  pg.connect(dbConnection, function(err, client){
+  pg.connect(dbConnection.dbConnectionString, function(err, client){
     var user={};
     var query=client.query("SELECT * FROM Account where userName = $1", [userName]);
     if(err){
@@ -79,7 +77,7 @@ passport.serializeUser(function(user, done){
 passport.deserializeUser(function(id, passportDone){
   console.log('hit deserializeUser');
 
-  pg.connect(accountModel.dbConnection, function(err, client, done){
+  pg.connect(dbConnection.dbConnectionString, function(err, client, done){
     if(err){
       console.log(err);
     }
