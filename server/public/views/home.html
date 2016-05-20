@@ -45,14 +45,22 @@
     <h2>Register</h2>
     <div>
       <label for="username">Username:</label>
-      <input type="text" name="username" id="username"/>
+      <input type="text" ng-model="hc.registerInfo.username" name="username" id="username"/>
     </div>
     <div>
       <label for="password">Password:</label>
-      <input type="text" name="password" id="password"/>
+      <input type="text" ng-model="hc.registerInfo.password" name="password" id="password"/>
+    </div>
+    <div>
+      <label for="contactName">Contact Name:</label>
+      <input type="text" ng-model="hc.registerInfo.contactName" name="contactName" id="contactName"/>
+    </div>
+    <div>
+      <label for="emailAddress">Email address:</label>
+      <input type="text" ng-model="hc.registerInfo.emailAddress" name="password" id="emailAddress"/>
     </div>
   <div>
-      <input type="submit" value="Register"/></br>
+      <input type="submit" ng-click="hc.registerUser()"value="Register"/></br>
   </div>
   </form>
 </div> <!-- end /register  -->

@@ -12,6 +12,7 @@ var localStrategy=require('passport-local').Strategy;
 // custom modules
 var indexRouter= require('./routes/indexRouter.js');
 var loginRouter = require('./routes/loginRouter.js');
+var registerRouter = require('./routes/registerRouter.js');
 var encryption=require('../modules/encryption');
 
 var app = express();
@@ -43,7 +44,7 @@ function(request, username, password, done){
   console.log('CHECKING PASSWORD');
   pg.connect(dbConnection.dbConnectionString, function(err, client){
     var user={};
-    var query=client.query("SELECT * FROM Account where userName = $1", [userName]);
+    var query=client.query("SELECT * FROM \"Account\" where \"userName\" = $1", [userName]);
     if(err){
       console.log(err);
     }
@@ -82,7 +83,7 @@ passport.deserializeUser(function(id, passportDone){
       console.log(err);
     }
     var user={};
-    var query=client.query('SELECT * FROM Account where id=$1', [id]);
+    var query=client.query('SELECT * FROM \"Account\" where id=$1', [id]);
 
     query.on('row', function(row){
       user=row;
@@ -99,10 +100,9 @@ passport.deserializeUser(function(id, passportDone){
 // routes
 // app.use('/accountsRouter', accountsRouter);
 app.use('/login', loginRouter);
+app.use('/register', registerRouter);
 app.use('/', indexRouter);
-// app.use('/logoutRouter', logoutRouter);
-// app.use('/registerRouter', registerRouter);
-// app.use('/resourceRouter', resourceRouter);
+// DO NOT PUT ANY OTHER ROUTES UNDER indexRouter!!!
 
 // server
 var server = app.listen(3000, function() {
