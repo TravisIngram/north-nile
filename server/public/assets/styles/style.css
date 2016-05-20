@@ -1,4 +1,4 @@
-.key{
+.key {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -6,7 +6,7 @@
   background-color: chartreuse;
 }
 
-.infoDrawer{
+.infoDrawer {
   position: absolute;
   bottom: 10vh;
 }
