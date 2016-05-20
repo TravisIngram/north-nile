@@ -44,7 +44,7 @@ function(request, username, password, done){
   console.log('CHECKING PASSWORD');
   pg.connect(dbConnection.dbConnectionString, function(err, client){
     var user={};
-    var query=client.query("SELECT * FROM \"Account\" where \"userName\" = $1", [userName]);
+    var query=client.query("SELECT * FROM \"Account\" where \"userName\" = $1", [username]);
     if(err){
       console.log(err);
     }
