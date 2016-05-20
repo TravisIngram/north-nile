@@ -3,9 +3,9 @@ var mediaModel        = require('./mediaModel.js');
 var resourceTypeModel = require('./resourceTypeModel.js');
 var resourceModel     = require('./resourceModel.js');
 
-var dbConnection      = 'postgres://localhost:5432/north_nile';
+var dbConnectionString = 'postgres://localhost:5432/north_nile';
 
-module.exports.dbConnection = dbConnection;
+module.exports.dbConnectionString = dbConnectionString;
 module.exports.dbInit = function() {
   accountModel.createAccount();
   mediaModel.createAudio();
