@@ -1,7 +1,8 @@
 <!-- this page is the HomeController as hc-->
 <div>
   <h2>This is the Splash Page</h2>
-  <button ng-click="hc.getMap()">MAP</button></br>
+  <a href="/map"><button ng-click="hc.getMap()">MAP</button></a></br>
+  <!-- this ^^ should maybe be an href styled as a button? -->
   <button ng-click="hc.loginShow()">Login/Register</button>
 </div>
 
@@ -11,12 +12,13 @@
 <!-- /login -->
 
 <div ng-show="hc.loginForm">
-  <form action="/login" method="POST">
+  <form>
+     <!-- action="/login" method="POST"> -->
     <h2>Login</h2>
     <div>
       <label for="username">Username:</label>
       <input type="text" name="username" id="username"/>
-    <div>
+    </div>
     <div>
       <label for="password">Password:</label>
       <input type="text" name="password" id="password"/>
@@ -25,25 +27,27 @@
       <input type="submit" value="LogIn"/></br>
       <h3>Need to create a new account?</h3>
       <button ng-click="hc.registerShow()">Register</button>
-
+    </div>
   </form>
 </div> <!-- end /login  -->
 
 <!-- /register -->
 
 <div ng-show="hc.registerForm">
-  <form action="/register" method="POST">
+  <form >
+  <!-- action="/register" method="POST"> -->
     <h2>Register</h2>
     <div>
       <label for="username">Username:</label>
       <input type="text" name="username" id="username"/>
-    <div>
+    </div>
     <div>
       <label for="password">Password:</label>
       <input type="text" name="password" id="password"/>
     </div>
-    <div>
+  <div>
       <input type="submit" value="Register"/></br>
+  </div>
   </form>
 </div> <!-- end /register  -->
 

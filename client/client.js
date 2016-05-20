@@ -53,12 +53,33 @@ app.controller('MapController', ['$scope', function($scope){ // $http loaded jus
       mc.markerTitle = args.model.title;
     });
 
-
   console.log('Map controller loaded.');
 }]);
 
 app.controller('HomeController', ['$http', function($http){ // $http loaded just so the syntax is there
   var hc = this;
+
+  // ng-show functions:
+
+  hc.loginForm = false;
+  hc.registerForm = false;
+
+  // loginShow():
+  hc.loginShow = function() {
+    hc.loginForm = true;
+    hc.registerForm = false;
+  }
+
+// registerShow():
+  hc.registerShow = function() {
+    console.log('hit registerShow');
+    hc.registerForm = true;
+    hc.loginForm = false;
+  }
+
+
+
+
 
   console.log('Home controller loaded.');
 }]);
