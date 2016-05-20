@@ -59,6 +59,7 @@ app.controller('MapController', ['$scope', function($scope){ // $http loaded jus
 app.controller('HomeController', ['$http', function($http){ // $http loaded just so the syntax is there
   var hc = this;
   hc.loginInfo = {};
+  hc.registerInfo = {};
   // ng-show functions:
 
   // loginShow():
@@ -80,10 +81,21 @@ hc.loginUser = function() {
   $http.post('/login', hc.loginInfo).then(function(response){
     if (response.status == 200) {
       console.log('successful login', response);
-      
+
     }
   }, function(response){
     console.log('unsuccessful login');
+  })
+}
+
+// register a user:
+hc.registerUser = function() {
+  $http.post('/register', hc.registerInfo).then(function(response){
+    if (response.status == 200){
+      console.log('successful registration');
+    }
+  }, function(response){
+    console.log('unsuccessful registration');
   })
 }
 
