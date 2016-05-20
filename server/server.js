@@ -15,5 +15,5 @@ app.use('/', indexRouter);
 // server
 var server = app.listen(3000, function(){
   var port = server.address().port;
-  console.log('Server listening on port ' + port + '...\nPress Ctrl + c');
+  console.log('Server listening on port ' + port + '...\nPress Ctrl + c to close connection');
 });

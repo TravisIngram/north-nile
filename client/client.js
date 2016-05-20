@@ -25,5 +25,27 @@ app.controller('MapController', ['$http', function($http){ // $http loaded just 
 app.controller('HomeController', ['$http', function($http){ // $http loaded just so the syntax is there
   var hc = this;
 
+  // ng-show functions:
+
+  hc.loginForm = false;
+  hc.registerForm = false;
+
+  // loginShow():
+  hc.loginShow = function() {
+    hc.loginForm = true;
+    hc.registerForm = false;
+  }
+
+// registerShow():
+  hc.registerShow = function() {
+    console.log('hit registerShow');
+    hc.registerForm = true;
+    hc.loginForm = false;
+  }
+
+
+
+
+
   console.log('Home controller loaded.');
 }]);
