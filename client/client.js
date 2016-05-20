@@ -97,8 +97,8 @@ hc.registerUser = function() {
     }
   }, function(response){
     console.log('unsuccessful registration');
-  })
-}
+  });
+};
 
 
 
