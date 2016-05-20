@@ -10,6 +10,11 @@ router.get('/', function(request, response){
   response.sendFile(path.join(__dirname, '../public/views/home.html'));
 });
 router.post('/', passport.authenticate('local'), function(request, response){
-  response.send(request.user);
+  var authenticatedUser = {
+    username: request.user.userName,
+    isAdmin: request.user.isAdmin
+  };
+
+  response.send(authenticatedUser);
 });
 module.exports=router;

@@ -19,6 +19,32 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 
 app.controller('MapController', ['$scope', function($scope){ // $http loaded just so the syntax is there
   var mc = this;
+  mc.storedMarkers = [
+      m1= {
+          lat: 44.996121,
+          lng: -93.295845,
+          title: 'Mr. Books Bruschetta Machine',
+          type: 1
+      },
+      m2={
+        lat: 44.998995,
+        lng: -93.291068,
+        title: 'Ms. Kitchens Oblique Reference Parlor',
+        type: 2
+      }
+  ];
+  mc.visibleMarkers = [];
+
+  mc.filterMarkers = function(type){
+    mc.visibleMarkers = mc.storedMarkers.filter(function(marker){
+      if (marker.type === type){
+        return true;
+      }
+    });
+    angular.extend(mc, {
+      markers: mc.visibleMarkers
+    });
+  };
 
   angular.extend(mc, {
         defaults: {
@@ -34,18 +60,7 @@ app.controller('MapController', ['$scope', function($scope){ // $http loaded jus
         tiles: {
             url: "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         },
-        markers: {
-            m1: {
-                lat: 44.996121,
-                lng: -93.295845,
-                title: 'Mr. Books Bruschetta Machine'
-            },
-            m2:{
-              lat: 44.998995,
-              lng: -93.291068,
-              title: 'Ms. Kitchens Oblique Reference Parlor'
-            }
-        }
+        markers: mc.visibleMarkers
     });
 
     $scope.$on('leafletDirectiveMarker.click', function(event, args){
@@ -81,8 +96,20 @@ app.controller('HomeController', ['$http', function($http){ // $http loaded just
 hc.loginUser = function() {
   $http.post('/login', hc.loginInfo).then(function(response){
     if (response.status == 200) {
-      console.log('successful login', response);
-
+      console.log('successful login', response.data.isAdmin);
+    if (response.data.isAdmin == true) {
+      console.log('admin is true');
+      hc.adminDashboard=true;
+      hc.userDashboard=false;
+      hc.registerForm = false;
+      hc.loginForm = false;
+    }else{
+      console.log('admin is not true');
+      hc.userDashboard=true;
+      hc.adminDashboard=false;
+      hc.registerForm=false;
+      hc.loginForm=false;
+    }
     }
   }, function(response){
     console.log('unsuccessful login');
