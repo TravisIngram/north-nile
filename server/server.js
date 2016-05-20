@@ -11,6 +11,7 @@ var localStrategy=require('passport-local').Strategy;
 
 // custom modules
 var indexRouter= require('./routes/indexRouter.js');
+var loginRouter = require('./routes/loginRouter.js');
 
 var app = express();
 
@@ -99,7 +100,7 @@ passport.deserializeUser(function(id, passportDone){
 })
 // routes
 // app.use('/accountsRouter', accountsRouter);
-// app.use('/loginRouter', loginRouter);
+app.use('/login', loginRouter);
 app.use('/', indexRouter);
 // app.use('/logoutRouter', logoutRouter);
 // app.use('/registerRouter', registerRouter);

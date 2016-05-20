@@ -13,18 +13,17 @@
 
 <div ng-show="hc.loginForm">
   <form>
-     <!-- action="/login" method="POST"> -->
     <h2>Login</h2>
     <div>
       <label for="username">Username:</label>
-      <input type="text" name="username" id="username"/>
+      <input type="text" ng-model="hc.loginInfo.username" name="username" id="username"/>
     </div>
     <div>
       <label for="password">Password:</label>
-      <input type="text" name="password" id="password"/>
+      <input type="text" ng-model="hc.loginInfo.password" name="password" id="password"/>
     </div>
     <div>
-      <input type="submit" value="LogIn"/></br>
+      <input type="submit" ng-click="hc.loginUser()" value="LogIn"/></br>
       <h3>Need to create a new account?</h3>
       <button ng-click="hc.registerShow()">Register</button>
     </div>

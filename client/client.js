@@ -58,7 +58,7 @@ app.controller('MapController', ['$scope', function($scope){ // $http loaded jus
 
 app.controller('HomeController', ['$http', function($http){ // $http loaded just so the syntax is there
   var hc = this;
-
+  hc.loginInfo = {};
   // ng-show functions:
 
   // loginShow():
@@ -74,7 +74,18 @@ app.controller('HomeController', ['$http', function($http){ // $http loaded just
     hc.loginForm = false;
   }
 
+// attempt to login a user, redirect based on success/failure:
 
+hc.loginUser = function() {
+  $http.post('/login', hc.loginInfo).then(function(response){
+    if (response.status == 200) {
+      console.log('successful login', response);
+      
+    }
+  }, function(response){
+    console.log('unsuccessful login');
+  })
+}
 
 
 
