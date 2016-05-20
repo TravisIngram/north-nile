@@ -70,6 +70,6 @@ function createVideo() {
   });
 }
 
-module.exports.createImage = createAudio;
+module.exports.createAudio = createAudio;
 module.exports.createImage = createImage;
 module.exports.createVideo = createVideo;
