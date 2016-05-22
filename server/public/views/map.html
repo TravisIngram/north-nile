@@ -2,7 +2,14 @@
 </leaflet>
 
 <div class="key">
-  <a href="/"><button>Home</button></a><button ng-click="mc.filterMarkers('one')">1</button><button ng-click="mc.filterMarkers('two')">2</button><button ng-click="mc.fillMarkers()">3</button><button ng-click="mc.emptyMarkers()">4</button><button>Add</button>
+  <a href="/"><button>Home</button></a>
+  <button ng-click="mc.filterMarkers('one')">1</button>
+  <button ng-click="mc.filterMarkers('two')">2</button>
+  <!-- currently filtering to all for testing -->
+  <button ng-click="mc.filterMarkers('all')">3</button>
+  <!-- currently filtering to none for testing -->
+  <button ng-click="mc.filterMarkers('none')">4</button>
+  <button>Add</button>
 </div>
 
 <div class="infoDrawer" ng-show="mc.showInfoDrawer">
