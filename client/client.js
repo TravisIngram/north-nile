@@ -17,34 +17,74 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
   $locationProvider.html5Mode(true);
 }]);
 
-app.controller('MapController', ['$scope', function($scope){ // $http loaded just so the syntax is there
+app.controller('MapController', ['$scope', 'leafletData', function($scope, leafletData){ // $http loaded just so the syntax is there
   var mc = this;
   mc.storedMarkers = [
       m1= {
           lat: 44.996121,
           lng: -93.295845,
           title: 'Mr. Books Bruschetta Machine',
-          type: 1
+          type: 'one'
       },
       m2={
         lat: 44.998995,
         lng: -93.291068,
         title: 'Ms. Kitchens Oblique Reference Parlor',
-        type: 2
+        type: 'two'
+      },
+      m3= {
+          lat: 44.999143,
+          lng: -93.297133,
+          title: 'Mr. Bones Bruschetta Machine',
+          type: 'one'
+      },
+      m4={
+        lat: 45.002572,
+        lng: -93.289515,
+        title: 'Ms. Burbakers Oblique Reference Parlor',
+        type: 'two'
       }
   ];
   mc.visibleMarkers = [];
 
   mc.filterMarkers = function(type){
+    console.log('filtering by:', leafletData);
+    // leafletData.getDirectiveControls().then(function(controls){
+    //
+    //   console.log('visible control:', controls);
+    //
+    //   // controls.markers.create(mc.visibleMarkers);
+    //
+    //
+    // });
     mc.visibleMarkers = mc.storedMarkers.filter(function(marker){
       if (marker.type === type){
         return true;
       }
     });
+    angular.copy(mc.visibleMarkers); // didn't work -> should move away from array model to an object/dictionary
+    leafletData.setMarkers(mc.visibleMarkers); // didn't work
     angular.extend(mc, {
       markers: mc.visibleMarkers
     });
+    // mc.layers.overlays[type].visible = !mc.layers.overlays[type].visible;
+    // console.log('filtered markers:', mc.layers.overlays);
   };
+
+  // layers: {
+  //   overlays: {
+  //     one: {
+  //       type:'group',
+  //       name: 'one',
+  //       visible: false
+  //     },
+  //     two: {
+  //       type: 'group',
+  //       name: 'two',
+  //       visible: false
+  //     }
+  //   }
+  // }
 
   angular.extend(mc, {
         defaults: {
@@ -64,7 +104,8 @@ app.controller('MapController', ['$scope', function($scope){ // $http loaded jus
     });
 
     $scope.$on('leafletDirectiveMarker.click', function(event, args){
-      console.log('clicked a marker:', args);
+      console.log('clicked a marker:', args, '|event:', event);
+
       mc.showInfoDrawer = true;
       mc.markerTitle = args.model.title;
     });
