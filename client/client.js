@@ -19,72 +19,64 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 
 app.controller('MapController', ['$scope', 'leafletData', function($scope, leafletData){ // $http loaded just so the syntax is there
   var mc = this;
-  mc.storedMarkers = [
-      m1= {
+  mc.count = 0;
+  mc.storedMarkers = {
+      m1: {
           lat: 44.996121,
           lng: -93.295845,
           title: 'Mr. Books Bruschetta Machine',
           type: 'one'
       },
-      m2={
+      m2:{
         lat: 44.998995,
         lng: -93.291068,
         title: 'Ms. Kitchens Oblique Reference Parlor',
         type: 'two'
       },
-      m3= {
+      m3: {
           lat: 44.999143,
           lng: -93.297133,
           title: 'Mr. Bones Bruschetta Machine',
           type: 'one'
       },
-      m4={
+      m4:{
         lat: 45.002572,
         lng: -93.289515,
         title: 'Ms. Burbakers Oblique Reference Parlor',
         type: 'two'
       }
-  ];
-  mc.visibleMarkers = [];
+  };
+  mc.visibleMarkers = {};
 
   mc.filterMarkers = function(type){
-    console.log('filtering by:', leafletData);
-    // leafletData.getDirectiveControls().then(function(controls){
-    //
-    //   console.log('visible control:', controls);
-    //
-    //   // controls.markers.create(mc.visibleMarkers);
-    //
-    //
-    // });
-    mc.visibleMarkers = mc.storedMarkers.filter(function(marker){
-      if (marker.type === type){
-        return true;
+    console.log('filtering by:', leafletData.getMarkers());
+    // mc.storedMarkers = mc.visibleMarkers;
+
+    if(type === 'all'){
+      mc.visibleMarkers = mc.storedMarkers;
+    } else {
+      // mc.visibleMarkers = mc.storedMarkers.filter(function(marker){
+      //   if (marker.type === type){
+      //     return false;
+      //   } else {
+      //     return true;
+      //   }
+      // });
+      mc.visibleMarkers = {};
+      for (marker in mc.storedMarkers){
+        console.log('marker.type type', mc.storedMarkers[marker].type, type);
+        if(mc.storedMarkers[marker].type === type){
+          mc.visibleMarkers['m' + mc.count] = mc.storedMarkers[marker];
+          mc.count++;
+        }
       }
-    });
-    angular.copy(mc.visibleMarkers); // didn't work -> should move away from array model to an object/dictionary
-    leafletData.setMarkers(mc.visibleMarkers); // didn't work
+
+      console.log('visible markers:', mc.visibleMarkers);
+    }
     angular.extend(mc, {
       markers: mc.visibleMarkers
     });
-    // mc.layers.overlays[type].visible = !mc.layers.overlays[type].visible;
-    // console.log('filtered markers:', mc.layers.overlays);
   };
-
-  // layers: {
-  //   overlays: {
-  //     one: {
-  //       type:'group',
-  //       name: 'one',
-  //       visible: false
-  //     },
-  //     two: {
-  //       type: 'group',
-  //       name: 'two',
-  //       visible: false
-  //     }
-  //   }
-  // }
 
   angular.extend(mc, {
         defaults: {
@@ -103,13 +95,48 @@ app.controller('MapController', ['$scope', 'leafletData', function($scope, leafl
         markers: mc.visibleMarkers
     });
 
-    $scope.$on('leafletDirectiveMarker.click', function(event, args){
+    $scope.$on('leafletDirectiveMarker.map.click', function(event, args){
       console.log('clicked a marker:', args, '|event:', event);
 
       mc.showInfoDrawer = true;
       mc.markerTitle = args.model.title;
     });
 
+    mc.emptyMarkers = function(){
+      mc.visibleMarkers = {};
+      $scope.$apply();
+    };
+
+    mc.fillMarkers = function(){
+      mc.visibleMarkers = [
+          m1= {
+              lat: 44.996121,
+              lng: -93.295845,
+              title: 'Mr. Books Bruschetta Machine',
+              type: 'one'
+          },
+          m2={
+            lat: 44.998995,
+            lng: -93.291068,
+            title: 'Ms. Kitchens Oblique Reference Parlor',
+            type: 'two'
+          },
+          m3= {
+              lat: 44.999143,
+              lng: -93.297133,
+              title: 'Mr. Bones Bruschetta Machine',
+              type: 'one'
+          },
+          m4={
+            lat: 45.002572,
+            lng: -93.289515,
+            title: 'Ms. Burbakers Oblique Reference Parlor',
+            type: 'two'
+          }
+      ];
+    }
+
+  mc.filterMarkers('all');
   console.log('Map controller loaded.');
 }]);
 
