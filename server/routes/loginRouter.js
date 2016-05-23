@@ -11,8 +11,8 @@ router.get('/', function(request, response){
 });
 router.post('/', passport.authenticate('local'), function(request, response){
   var authenticatedUser = {
-    username: request.user.user_name,
-    isAdmin: request.user.isAdmin
+    username: request.user.username,
+    is_admin: request.user.is_admin
   };
 
   response.send(authenticatedUser);
