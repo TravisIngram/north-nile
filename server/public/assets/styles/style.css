@@ -9,4 +9,7 @@
 .infoDrawer {
   position: absolute;
   bottom: 10vh;
+  height: 70vh;
+  width: 100vw;
+  background-color: aliceblue;
 }

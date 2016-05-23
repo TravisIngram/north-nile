@@ -17,33 +17,79 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
   $locationProvider.html5Mode(true);
 }]);
 
-app.controller('MapController', ['$scope', function($scope){ // $http loaded just so the syntax is there
+app.controller('MapController', ['$scope', 'leafletData', function($scope, leafletData){
   var mc = this;
-  mc.storedMarkers = [
-      m1= {
+
+  mc.lastClicked = {};
+
+  // eventually will be pulled from server/database
+  mc.storedMarkers = {
+      m1: {
           lat: 44.996121,
           lng: -93.295845,
           title: 'Mr. Books Bruschetta Machine',
-          type: 1
+          type: 'one',
+          visible: false
       },
-      m2={
+      m2:{
         lat: 44.998995,
         lng: -93.291068,
         title: 'Ms. Kitchens Oblique Reference Parlor',
-        type: 2
+        type: 'two',
+        visible: false
+      },
+      m3: {
+          lat: 44.999143,
+          lng: -93.297133,
+          title: 'Mr. Bones Bruschetta Machine',
+          type: 'one',
+          visible: false
+      },
+      m4:{
+        lat: 45.002572,
+        lng: -93.289515,
+        title: 'Ms. Burbakers Oblique Reference Parlor',
+        type: 'two',
+        visible: false
       }
-  ];
-  mc.visibleMarkers = [];
+  };
+
+  mc.markerSize = Object.keys(mc.storedMarkers).length;
+  mc.count = mc.markerSize + 1;
+  mc.visibleMarkers = {};
 
   mc.filterMarkers = function(type){
-    mc.visibleMarkers = mc.storedMarkers.filter(function(marker){
-      if (marker.type === type){
-        return true;
+    mc.visibleMarkers = {};
+    if(type === 'all'){
+      //mc.visibleMarkers = mc.storedMarkers;
+      for (marker in mc.storedMarkers){
+        mc.storedMarkers[marker].visibility = true;
       }
-    });
+    } else if (type === 'none'){
+      //mc.visibleMarkers = {};
+      for (marker in mc.storedMarkers){
+        mc.storedMarkers[marker].visibility = false;
+      }
+    } else {
+      //mc.visibleMarkers = {};
+      for (marker in mc.storedMarkers){
+        if(mc.storedMarkers[marker].type === type){
+          mc.storedMarkers[marker].visibility = !mc.storedMarkers[marker].visibility; // toggle visibility
+        }
+      }
+    }
+    // loop through storedMarkers and add visible ones to visibleMarkers
+    for (marker in mc.storedMarkers){
+      if(mc.storedMarkers[marker].visibility){
+        mc.visibleMarkers['m' + mc.count] = mc.storedMarkers[marker];
+        mc.count++;
+      }
+    }
+
     angular.extend(mc, {
       markers: mc.visibleMarkers
     });
+    console.log('visiibleMarkers:', mc.visibleMarkers);
   };
 
   angular.extend(mc, {
@@ -63,20 +109,65 @@ app.controller('MapController', ['$scope', function($scope){ // $http loaded jus
         markers: mc.visibleMarkers
     });
 
-    $scope.$on('leafletDirectiveMarker.click', function(event, args){
-      console.log('clicked a marker:', args);
+    $scope.$on('leafletDirectiveMarker.map.click', function(event, args){
+      // console.log('clicked a marker:', args, '|event:', event);
+      console.log('visibleMarkers on click:', mc.visibleMarkers);
       mc.showInfoDrawer = true;
-      mc.markerTitle = args.model.title;
+      mc.lastClicked = args.model;
+      mc.markerTitle = mc.lastClicked.title;
+      mc.mapStyle = {height:'20vh'};
+
+      // update map size
+      leafletData.getMap().then(function(map) {
+        setTimeout(function(){
+          map.invalidateSize();
+          console.log('called');
+        }, 200);
+      });
+
+      angular.extend(mc, {
+        center:{
+          lat: mc.lastClicked.lat,
+          lng: mc.lastClicked.lng,
+          zoom: 15
+        }
+      });
     });
 
+    $scope.$on('leafletDirectiveMap.map.click', function(event, args){
+      mc.showInfoDrawer = false;
+      mc.mapStyle = {height:'100vh'};
+      leafletData.getMap().then(function(map) {
+        setTimeout(function(){
+          map.invalidateSize();
+          console.log('called');
+        }, 100);
+      });
+      angular.extend(mc, {
+        center:{
+          lat: mc.lastClicked.lat,
+          lng: mc.lastClicked.lng,
+          zoom: 15
+        }
+      });
+    });
+
+    $scope.$on('leafletDirectiveMap.map.resize', function(event, args){
+      console.log('resized map');
+    });
+
+  mc.filterMarkers('all');
   console.log('Map controller loaded.');
 }]);
 
-app.controller('HomeController', ['$http', function($http){ // $http loaded just so the syntax is there
+app.controller('HomeController', ['$http', '$mdDialog', function($http, $mdDialog){
+
   var hc = this;
+  var alert;
   hc.loginInfo = {};
   hc.registerInfo = {};
-  // ng-show functions:
+
+  // :::: ng-show Functions ::::
 
   // loginShow():
   hc.loginShow = function() {
@@ -91,7 +182,7 @@ app.controller('HomeController', ['$http', function($http){ // $http loaded just
     hc.loginForm = false;
   };
 
-// attempt to login a user, redirect based on success/failure:
+// :::: Login User, redirect based on success/failure ::::
 
 hc.loginUser = function() {
   $http.post('/login', hc.loginInfo).then(function(response){
@@ -99,31 +190,82 @@ hc.loginUser = function() {
       console.log('successful login', response.data.isAdmin);
     if (response.data.isAdmin == true) {
       console.log('admin is true');
+      hc.loginInfo = {};
       hc.adminDashboard=true;
       hc.userDashboard=false;
       hc.registerForm = false;
       hc.loginForm = false;
-    }else{
+    } else {
       console.log('admin is not true');
+      hc.loginInfo = {};
       hc.userDashboard=true;
       hc.adminDashboard=false;
       hc.registerForm=false;
       hc.loginForm=false;
     }
-    }
+   }
   }, function(response){
     console.log('unsuccessful login');
+    // Alert user to incorrect username/password ::::
+    function showAlert() {
+      alert = $mdDialog.alert({
+        title: 'Attention',
+        textContent: 'Incorrect username and/or password. Please enter information again.',
+        ok: 'Close'
+      });
+      $mdDialog
+        .show( alert )
+        .finally(function() {
+          alert = undefined;
+        });
+    };
+    showAlert();
+    hc.loginInfo = {};
+
   });
 };
 
-// register a user:
+// :::: Register User ::::
+
 hc.registerUser = function() {
   $http.post('/register', hc.registerInfo).then(function(response){
     if (response.status == 200){
       console.log('successful registration');
+      // Function below will prompt login. Would be nice to automatically login user?
+      function showAlert() {
+        alert = $mdDialog.alert({
+          title: 'Congratulations!',
+          textContent: 'Registration successful, please log in.',
+          ok: 'Close'
+        });
+        $mdDialog
+          .show( alert )
+          .finally(function() {
+            alert = undefined;
+          });
+      };
+      showAlert();
+      hc.registerInfo={};
+      hc.registerForm=false;
+      hc.loginForm=true;
+
     }
   }, function(response){
     console.log('unsuccessful registration');
+    function showAlert() {
+      alert = $mdDialog.alert({
+        title: 'Attention',
+        textContent: 'Username already exists, please choose another.',
+        ok: 'Close'
+      });
+      $mdDialog
+        .show( alert )
+        .finally(function() {
+          alert = undefined;
+        });
+    };
+    showAlert();
+    hc.registerInfo.username = undefined;
   });
 };
 //logout a user or admin:

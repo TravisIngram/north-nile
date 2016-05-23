@@ -1,8 +1,15 @@
-<leaflet center="mc.center" defaults="mc.defaults" tiles="mc.tiles" height="98vh" width="99vw" markers="mc.markers">
+<leaflet id="map" center="mc.center" defaults="mc.defaults" tiles="mc.tiles" height="98vh" width="99vw" markers="mc.markers" ng-style="mc.mapStyle">
 </leaflet>
 
 <div class="key">
-  <a href="/"><button>Home</button></a><button ng-click="mc.filterMarkers(1)">1</button><button ng-click="mc.filterMarkers(2)">2</button><button>3</button><button>4</button><button>Add</button>
+  <a href="/"><button>Home</button></a>
+  <button ng-click="mc.filterMarkers('one')">1</button>
+  <button ng-click="mc.filterMarkers('two')">2</button>
+  <!-- currently filtering to all for testing -->
+  <button ng-click="mc.filterMarkers('all')">3</button>
+  <!-- currently filtering to none for testing -->
+  <button ng-click="mc.filterMarkers('none')">4</button>
+  <button>Add</button>
 </div>
 
 <div class="infoDrawer" ng-show="mc.showInfoDrawer">
