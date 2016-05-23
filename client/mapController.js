@@ -1,23 +1,4 @@
-var app = angular.module('northApp', ['ngRoute', 'leaflet-directive', 'ngMaterial', 'ngMessages', 'ngAnimate']);
-
-
-app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
-  $routeProvider
-  .when('/', {
-    templateUrl: '/views/home.html',
-    controller: 'HomeController',
-    controllerAs: 'hc'
-  })
-  .when('/map', {
-    templateUrl: '/views/map.html',
-    controller: 'MapController',
-    controllerAs: 'mc'
-  });
-
-  $locationProvider.html5Mode(true);
-}]);
-
-app.controller('MapController', ['$scope', 'leafletData', function($scope, leafletData){
+angular.module('northApp').controller('MapController', ['$scope', 'leafletData', function($scope, leafletData){
   var mc = this;
 
   mc.lastClicked = {};

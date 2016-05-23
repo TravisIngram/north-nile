@@ -12,13 +12,14 @@ module.exports = function(grunt) {
          }
        },
        uglify: {
-           options: {
-               banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-           },
-           build: {
-               src: 'client/client.js',
-               dest: 'server/public/assets/scripts/client.min.js'
-           }
+          my_target:{
+            files:[{
+              expand: true,
+              cwd: 'client',
+              src: '*.js',
+              dest: 'server/public/assets/scripts'
+            }]
+          }
        },
        copy: {
            main: {

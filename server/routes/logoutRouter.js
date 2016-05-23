@@ -6,7 +6,8 @@ var passport=require('passport');
 var bodyParser=require('body-parser');
 var pg=require('pg');
 
-router.get('/logout', function(request, response){
+router.get('/', function(request, response){
+  console.log('made it to logout router');
   request.logout();
   response.redirect('/');
 })
