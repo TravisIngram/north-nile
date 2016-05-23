@@ -108,6 +108,5 @@ hc.registerUser = function() {
 };
 
 
-
   console.log('Home controller loaded.');
 }]);
