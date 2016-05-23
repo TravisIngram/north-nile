@@ -1,4 +1,4 @@
-angular.module('northApp').controller('MapController', ['$scope', 'leafletData', 'leafletMarkerEvents', function($scope, leafletData, leafletMarkerEvents){
+angular.module('northApp').controller('MapController', ['$scope', 'leafletData', 'leafletMarkerEvents', '$mdBottomSheet', function($scope, leafletData, leafletMarkerEvents, $mdBottomSheet){
   var mc = this;
 
   mc.lastClicked = {};
@@ -95,10 +95,18 @@ angular.module('northApp').controller('MapController', ['$scope', 'leafletData',
     $scope.$on('leafletDirectiveMarker.map.click', function(event, args){
       // console.log('clicked a marker:', args, '|event:', event);
       // console.log('visibleMarkers on click:', mc.visibleMarkers);
-      mc.showInfoDrawer = true;
+
+      // mc.showInfoDrawer = true;
+      mc.dummyText1 = 'Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.';
+      mc.dummyText2 = 'Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.';
+      mc.dummyText3 = 'Capitalise on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.';
+
       mc.lastClicked = args.model;
       mc.markerTitle = mc.lastClicked.title;
-      mc.mapStyle = {height:'20vh'};
+      // mc.mapStyle = {height:'20vh'};
+      $mdBottomSheet.show({
+        template: '<md-bottom-sheet><h2>' + mc.markerTitle + '</h2><p>' + mc.dummyText1 + '</p><p>' + mc.dummyText2 + '</p><p>' + mc.dummyText3 + '</p></md-bottom-sheet>'
+      });
 
       // update map size
       leafletData.getMap().then(function(map) {
@@ -119,6 +127,7 @@ angular.module('northApp').controller('MapController', ['$scope', 'leafletData',
 
     $scope.$on('leafletDirectiveMap.map.click', function(event, args){
       mc.showInfoDrawer = false;
+
       mc.mapStyle = {height:'100vh'};
       leafletData.getMap().then(function(map) {
         setTimeout(function(){
