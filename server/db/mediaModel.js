@@ -7,9 +7,9 @@ function createAudio() {
       console.log('Error connecting to DB.' + err);
       process.exit(1);
     } else {
-      var query = client.query('CREATE TABLE IF NOT EXISTS "Audio" (' +
+      var query = client.query('CREATE TABLE IF NOT EXISTS "audio" (' +
         ' "id" serial PRIMARY KEY,' +
-        ' "audioReference" varchar(75) NOT NULL)');
+        ' "audio_reference" varchar(150) NOT NULL)');
 
       query.on('end', function() {
         console.log('Successfully created Audio schema.');
@@ -30,9 +30,9 @@ function createImage() {
       console.log('Error connecting to DB.' + err);
       process.exit(1);
     } else {
-      var query = client.query('CREATE TABLE IF NOT EXISTS "Image" (' +
+      var query = client.query('CREATE TABLE IF NOT EXISTS "image" (' +
         ' "id" serial PRIMARY KEY,' +
-        ' "imageReference" varchar(75) NOT NULL)');
+        ' "image_reference" varchar(150) NOT NULL)');
 
       query.on('end', function() {
         console.log('Successfully created Image schema.');
@@ -53,9 +53,9 @@ function createVideo() {
       console.log('Error connecting to DB.' + err);
       process.exit(1);
     } else {
-      var query = client.query('CREATE TABLE IF NOT EXISTS "Video" (' +
+      var query = client.query('CREATE TABLE IF NOT EXISTS "video" (' +
         ' "id" serial PRIMARY KEY,' +
-        ' "videoReference" varchar(75) NOT NULL)');
+        ' "video_reference" varchar(150) NOT NULL)');
 
       query.on('end', function() {
         console.log('Successfully created Video schema.');

@@ -7,12 +7,12 @@ function createResourceType() {
       console.log('Error connecting to DB.' + err);
       process.exit(1);
     } else {
-      var query = client.query('CREATE TABLE IF NOT EXISTS "resourceType" (' +
+      var query = client.query('CREATE TABLE IF NOT EXISTS "resource_type" (' +
         ' "id" serial PRIMARY KEY,' +
-        ' "urbanGarden" varchar(50) NOT NULL,' +
-        ' "culinaryArts" varchar(50) NOT NULL,' +
-        ' "horticulture" varchar(50) NOT NULL,' +
-        ' "distribution" varchar(50) NOT NULL)');
+        ' "urban_garden" varchar(150) NOT NULL,' +
+        ' "culinary_arts" varchar(150) NOT NULL,' +
+        ' "horticulture" varchar(150) NOT NULL,' +
+        ' "distribution" varchar(150) NOT NULL)');
 
       query.on('end', function() {
         console.log('Successfully created resourceType schema.');
