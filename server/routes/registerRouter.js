@@ -27,11 +27,10 @@ router.post('/', function(request, response, next){
     var query=client.query('INSERT INTO "Account" ("userName", "password", "emailAddress", "contactName") VALUES ($1, $2, $3, $4)', [user.userName, user.password, user.emailAddress, user.contactName]);
       query.on('error', function(err){
         console.log(err);
-        // direct the user to register with a different username 'username already exists, please enter another'
+        response.sendStatus(401);
       })
       query.on('end', function(){
         response.redirect('/');
-        // it would be nice to automatically log this new user in, or give them a confirm window (modal?) letting them know they've been created as a new user
         client.end();
       })
   })
