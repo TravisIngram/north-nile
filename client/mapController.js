@@ -151,14 +151,3 @@ angular.module('northApp').controller('MapController', ['$scope', 'leafletData',
   mc.filterMarkers('all');
   console.log('Map controller loaded.');
 }]);
-
-angular.module('northApp').directive('stopTouchEvent', function () {
-    return {
-        restrict: 'A',
-        link: function (scope, element) {
-            element.on('touchmove', function (evt) {
-                evt.stopPropagation();
-            });
-        }
-    };
-})
