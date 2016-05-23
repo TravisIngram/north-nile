@@ -38,19 +38,19 @@
     <h2>Register</h2>
     <md-input-container>
       <label for="username">Username</label>
-      <input type="text" ng-model="hc.registerInfo.username" name="username"/>
+      <input type="text" ng-model="hc.registerInfo.username" name="username" required/>
     </md-input-container>
     <md-input-container>
       <label for="password">Password</label>
-      <input type="password" ng-model="hc.registerInfo.password" name="password"/>
+      <input type="password" ng-model="hc.registerInfo.password" name="password" required/>
     </md-input-container>
     <md-input-container>
       <label for="contactName">Contact Name</label>
-      <input type="text" ng-model="hc.registerInfo.contactName" name="contactName" id="contactName"/>
+      <input type="text" ng-model="hc.registerInfo.contactName" name="contactName" id="contactName" required/>
     </md-input-container>
     <md-input-container>
       <label for="emailAddress">Email address</label>
-      <input type="text" ng-model="hc.registerInfo.emailAddress" name="password" id="emailAddress"/>
+      <input type="text" ng-model="hc.registerInfo.emailAddress" name="password" id="emailAddress" required/>
     </md-input-container>
     <md-input-container>
       <md-button ng-click="hc.registerUser()" class="md-raised md-primary">Register</md-button>
