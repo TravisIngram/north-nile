@@ -5,11 +5,13 @@
   <a href="/map"><md-button>MAP</md-button></a>
   <!-- this ^^ should maybe be an href styled as a button? -->
   <md-button ng-click="hc.loginShow()">Login/Register</md-button>
+  <md-input-container>
+    <md-button value="LogOut" class="md-raised md-primary"><a href="/logout" target="_self">Log Out</a></md-button>
+  </md-input-container>
 </div>
 
 <!-- Every time one of the following sections is used, -->
 <!-- we need to make sure the other sections are closed (false) -->
-
 <div ng-show="hc.loginForm">
   <section layout="column">
     <h2>Login</h2>
@@ -22,16 +24,18 @@
       <label for="login-password">Password</label>
       <input type="password" ng-model="hc.loginInfo.password" name="login-password" required/>
     </md-input-container>
+
     <md-input-container>
       <md-button ng-click="hc.loginUser()" value="LogIn" class="md-raised md-primary">Log In</md-button>
+    </md-input-container>
+
+
       <p>Need to create a new account?</p>
       <md-button class="md-raised md-primary" ng-click="hc.registerShow()">Register</md-button>
     </md-input-container>
   </section>
 </div> <!-- end /login  -->
-
 <!-- /register -->
-
 <div ng-show="hc.registerForm">
   <section layout="column">
     <!-- action="/register" method="POST"> -->
@@ -63,6 +67,9 @@
 <div ng-show="hc.adminDashboard">
   <!-- The function that shows this section will come from passport authentication of an Admin -->
   <h2>This will be the Admin Dashboard.</h2>
+  <md-input-container>
+    <md-button value="LogOut" class="md-raised md-primary"><a href="/logout" target="_self">Log Out</a></md-button>
+  </md-input-container>
 </div> <!-- ::::::::: end /adminDashboard :::::::::  -->
 
 <!-- ::::::::: User Dashboard ::::::::: -->
@@ -70,4 +77,8 @@
 <div ng-show="hc.userDashboard">
   <!-- The function that shows this section will come from passport authentication of a User -->
   <h2>This will be the User Dashboard.</h2>
+  <!-- logout button -->
+    <md-input-container>
+      <md-button value="LogOut" class="md-raised md-primary"><a href="/logout" target="_self">Log Out</a></md-button>
+    </md-input-container>
 </div> <!-- ::::::::: end /userDashboard ::::::::: -->

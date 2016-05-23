@@ -1,23 +1,4 @@
-var app = angular.module('northApp', ['ngRoute', 'leaflet-directive', 'ngMaterial', 'ngMessages', 'ngAnimate']);
-
-
-app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
-  $routeProvider
-  .when('/', {
-    templateUrl: '/views/home.html',
-    controller: 'HomeController',
-    controllerAs: 'hc'
-  })
-  .when('/map', {
-    templateUrl: '/views/map.html',
-    controller: 'MapController',
-    controllerAs: 'mc'
-  });
-
-  $locationProvider.html5Mode(true);
-}]);
-
-app.controller('MapController', ['$scope', 'leafletData', function($scope, leafletData){
+angular.module('northApp').controller('MapController', ['$scope', 'leafletData', 'leafletMarkerEvents', function($scope, leafletData, leafletMarkerEvents){
   var mc = this;
 
   mc.lastClicked = {};
@@ -96,7 +77,9 @@ app.controller('MapController', ['$scope', 'leafletData', function($scope, leafl
         defaults: {
             scrollWheelZoom: false,
             touchZoom: true,
-            dragging: true
+            dragging: true,
+            tap: true,
+            tapTolerance: 100
         },
         center: {
           lat: 44.996121,
@@ -111,7 +94,7 @@ app.controller('MapController', ['$scope', 'leafletData', function($scope, leafl
 
     $scope.$on('leafletDirectiveMarker.map.click', function(event, args){
       // console.log('clicked a marker:', args, '|event:', event);
-      console.log('visibleMarkers on click:', mc.visibleMarkers);
+      // console.log('visibleMarkers on click:', mc.visibleMarkers);
       mc.showInfoDrawer = true;
       mc.lastClicked = args.model;
       mc.markerTitle = mc.lastClicked.title;
@@ -155,6 +138,9 @@ app.controller('MapController', ['$scope', 'leafletData', function($scope, leafl
     $scope.$on('leafletDirectiveMap.map.resize', function(event, args){
       console.log('resized map');
     });
+
+    // testing
+
 
   mc.filterMarkers('all');
   console.log('Map controller loaded.');
@@ -268,8 +254,9 @@ hc.registerUser = function() {
     hc.registerInfo.username = undefined;
   });
 };
+//logout a user or admin:
 
 
 
-  console.log('Home controller loaded.');
+console.log('Home controller loaded.');
 }]);
