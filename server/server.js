@@ -44,8 +44,9 @@ function(request, username, password, done){
   console.log('CHECKING PASSWORD');
   pg.connect(dbConnection.dbConnectionString, function(err, client){
     var user={};
-    var query=client.query("SELECT * FROM \"Account\" where \"userName\" = $1", [username]);
+    var query=client.query('SELECT * FROM "account" WHERE "user_name" = $1', [username]);
     if(err){
+      done(err);
       console.log(err);
     }
 
@@ -55,7 +56,7 @@ function(request, username, password, done){
       console.log(password, user.password, 'password');
       if(encryption.comparePassword(password, user.password)){
         console.log('a user has been found');
-        done(err, user);
+        done(null, user);
       }else{
         console.log('no matches found');
         done(null, false);
@@ -70,8 +71,7 @@ function(request, username, password, done){
 
     query.on('error', function(err){
       console.log('Error retrieving account:', err);
-
-    })
+    });
     if(err){
       console.log(err);
     }
@@ -90,20 +90,20 @@ passport.deserializeUser(function(id, passportDone){
       console.log(err);
     }
     var user={};
-    var query=client.query('SELECT * FROM \"Account\" where id=$1', [id]);
+    var query=client.query('SELECT * FROM "account" WHERE id=$1', [id]);
 
     query.on('row', function(row){
       user=row;
       passportDone(null, user);
-    })
+    });
     query.on('end', function(){
       client.end();
     });
     if(err){
       console.log(err);
     }
-  })
-})
+  });
+});
 // routes
 // app.use('/accountsRouter', accountsRouter);
 app.use('/login', loginRouter);
