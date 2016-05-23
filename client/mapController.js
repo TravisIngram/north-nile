@@ -1,4 +1,4 @@
-angular.module('northApp').controller('MapController', ['$scope', 'leafletData', 'leafletMarkerEvents', function($scope, leafletData, leafletMarkerEvents){
+angular.module('northApp').controller('MapController', ['$scope', 'leafletData', 'leafletMarkerEvents', '$mdBottomSheet', function($scope, leafletData, leafletMarkerEvents, $mdBottomSheet){
   var mc = this;
 
   mc.lastClicked = {};
@@ -92,13 +92,23 @@ angular.module('northApp').controller('MapController', ['$scope', 'leafletData',
         markers: mc.visibleMarkers
     });
 
+    // open infoDrawer on marker Click
     $scope.$on('leafletDirectiveMarker.map.click', function(event, args){
       // console.log('clicked a marker:', args, '|event:', event);
       // console.log('visibleMarkers on click:', mc.visibleMarkers);
+
       mc.showInfoDrawer = true;
       mc.lastClicked = args.model;
       mc.markerTitle = mc.lastClicked.title;
-      mc.mapStyle = {height:'20vh'};
+      // mc.mapStyle = {height:'20vh'};
+
+      // Angular material bottom sheet testing
+      mc.dummyText1 = 'Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.';
+      mc.dummyText2 = 'Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.';
+      mc.dummyText3 = 'Capitalise on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.';
+      // $mdBottomSheet.show({
+      //   template: '<md-bottom-sheet><md-content stopTouchEvent><h2>' + mc.markerTitle + '</h2><p>' + mc.dummyText1 + '</p><p>' + mc.dummyText2 + '</p><p>' + mc.dummyText3 + '</p></md-content></md-bottom-sheet>'
+      // });
 
       // update map size
       leafletData.getMap().then(function(map) {
@@ -117,8 +127,10 @@ angular.module('northApp').controller('MapController', ['$scope', 'leafletData',
       });
     });
 
-    $scope.$on('leafletDirectiveMap.map.click', function(event, args){
+    // close infoDrawer on map click
+    mc.closeInfoDrawer = function(event, args){
       mc.showInfoDrawer = false;
+
       mc.mapStyle = {height:'100vh'};
       leafletData.getMap().then(function(map) {
         setTimeout(function(){
@@ -133,130 +145,9 @@ angular.module('northApp').controller('MapController', ['$scope', 'leafletData',
           zoom: 15
         }
       });
-    });
-
-    $scope.$on('leafletDirectiveMap.map.resize', function(event, args){
-      console.log('resized map');
-    });
-
-    // testing
-
+    }
+    $scope.$on('leafletDirectiveMap.map.click', mc.closeInfoDrawer());
 
   mc.filterMarkers('all');
   console.log('Map controller loaded.');
-}]);
-
-app.controller('HomeController', ['$http', '$mdDialog', function($http, $mdDialog){
-
-  var hc = this;
-  var alert;
-  hc.loginInfo = {};
-  hc.registerInfo = {};
-
-  // :::: ng-show Functions ::::
-
-  // loginShow():
-  hc.loginShow = function() {
-    hc.loginForm = true;
-    hc.registerForm = false;
-  };
-
-// registerShow():
-  hc.registerShow = function() {
-    console.log('hit registerShow');
-    hc.registerForm = true;
-    hc.loginForm = false;
-  };
-
-// :::: Login User, redirect based on success/failure ::::
-
-hc.loginUser = function() {
-  $http.post('/login', hc.loginInfo).then(function(response){
-    if (response.status == 200) {
-      console.log('successful login', response.data.isAdmin);
-    if (response.data.isAdmin === true) {
-      console.log('admin is true');
-      hc.loginInfo = {};
-      hc.adminDashboard=true;
-      hc.userDashboard=false;
-      hc.registerForm = false;
-      hc.loginForm = false;
-    } else {
-      console.log('admin is not true');
-      hc.loginInfo = {};
-      hc.userDashboard=true;
-      hc.adminDashboard=false;
-      hc.registerForm=false;
-      hc.loginForm=false;
-    }
-   }
-  }, function(response){
-    console.log('unsuccessful login');
-    // Alert user to incorrect username/password ::::
-    function showAlert() {
-      alert = $mdDialog.alert({
-        title: 'Attention',
-        textContent: 'Incorrect username and/or password. Please enter information again.',
-        ok: 'Close'
-      });
-      $mdDialog
-        .show( alert )
-        .finally(function() {
-          alert = undefined;
-        });
-    }
-    showAlert();
-    hc.loginInfo = {};
-
-  });
-};
-
-// :::: Register User ::::
-
-hc.registerUser = function() {
-  $http.post('/register', hc.registerInfo).then(function(response){
-    if (response.status == 200){
-      console.log('successful registration');
-      // Function below will prompt login. Would be nice to automatically login user?
-      function showAlert() {
-        alert = $mdDialog.alert({
-          title: 'Congratulations!',
-          textContent: 'Registration successful, please log in.',
-          ok: 'Close'
-        });
-        $mdDialog
-          .show( alert )
-          .finally(function() {
-            alert = undefined;
-          });
-      }
-      showAlert();
-      hc.registerInfo={};
-      hc.registerForm=false;
-      hc.loginForm=true;
-
-    }
-  }, function(response){
-    console.log('unsuccessful registration');
-    function showAlert() {
-      alert = $mdDialog.alert({
-        title: 'Attention',
-        textContent: 'Username already exists, please choose another.',
-        ok: 'Close'
-      });
-      $mdDialog
-        .show( alert )
-        .finally(function() {
-          alert = undefined;
-        });
-    }
-    showAlert();
-    hc.registerInfo.username = undefined;
-  });
-};
-//logout a user or admin:
-
-
-
-console.log('Home controller loaded.');
 }]);

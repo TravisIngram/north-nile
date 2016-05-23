@@ -1,20 +1,26 @@
 <leaflet id="map" center="mc.center"  defaults="mc.defaults" tiles="mc.tiles" height="100vh" width="100vw" markers="mc.markers" ng-style="mc.mapStyle">
 </leaflet>
 
-<div class="key">
-  <a href="/"><button>Home</button></a>
-  <button ng-click="mc.filterMarkers('one')">1</button>
-  <button ng-click="mc.filterMarkers('two')">2</button>
+<div class="key" layout="row" layout-align="center">
+  <md-button class="md-fab md-mini keyButton" href="/">Home</md-button>
+  <md-button class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('one')">1</md-button>
+  <md-button class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('two')">2</md-button>
   <!-- currently filtering to all for testing -->
-  <button ng-click="mc.filterMarkers('all')">3</button>
+  <md-button class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('all')">3</md-button>
   <!-- currently filtering to none for testing -->
-  <button ng-click="mc.filterMarkers('none')">4</button>
-  <button>Add</button>
+  <md-button class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('none')">4</md-button>
+  <md-button class="md-fab md-mini keyButton">Add</md-button>
 </div>
 
-<div class="infoDrawer" ng-show="mc.showInfoDrawer">
+<div class="infoDrawer" ng-show="mc.showInfoDrawer" md-swipe-down="mc.closeInfoDrawer()">
   <h2>{{mc.markerTitle}}</h2>
   <p>
-    Food resource information.
+    {{mc.dummyText1}}
+  </p>
+  <p>
+    {{mc.dummyText2}}
+  </p>
+  <p>
+    {{mc.dummyText3}}
   </p>
 </div>

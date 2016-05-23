@@ -9,7 +9,26 @@
 .infoDrawer {
   position: absolute;
   bottom: 10vh;
-  height: 70vh;
+  height: 60vh;
+  max-height: 60vh;
   width: 100vw;
   background-color: aliceblue;
+  overflow-y: scroll;
+  transition-property: all;
+	transition-duration: .5s;
+	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
+.infoDrawer.ng-hide{
+  max-height: 0;
+}
+
+.keyButton{
+  margin: 1vw;
+}
+
+md-bottom-sheet{
+  max-height: 60vh;
+  overflow: scroll;
+  padding-bottom: 5px;
 }
