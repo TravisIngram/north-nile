@@ -174,7 +174,7 @@ hc.loginUser = function() {
   $http.post('/login', hc.loginInfo).then(function(response){
     if (response.status == 200) {
       console.log('successful login', response.data.isAdmin);
-    if (response.data.isAdmin == true) {
+    if (response.data.isAdmin === true) {
       console.log('admin is true');
       hc.loginInfo = {};
       hc.adminDashboard=true;
@@ -204,7 +204,7 @@ hc.loginUser = function() {
         .finally(function() {
           alert = undefined;
         });
-    };
+    }
     showAlert();
     hc.loginInfo = {};
 
@@ -229,7 +229,7 @@ hc.registerUser = function() {
           .finally(function() {
             alert = undefined;
           });
-      };
+      }
       showAlert();
       hc.registerInfo={};
       hc.registerForm=false;
@@ -249,7 +249,7 @@ hc.registerUser = function() {
         .finally(function() {
           alert = undefined;
         });
-    };
+    }
     showAlert();
     hc.registerInfo.username = undefined;
   });

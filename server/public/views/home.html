@@ -1,5 +1,7 @@
 <!-- this page is the HomeController as hc-->
 
+<!-- ::::::::: START SPLASH PAGE ::::::::: -->
+
 <div>
   <h2>This is the Splash Page</h2>
   <a href="/map"><md-button>MAP</md-button></a>
@@ -12,6 +14,8 @@
 
 <!-- Every time one of the following sections is used, -->
 <!-- we need to make sure the other sections are closed (false) -->
+
+<!-- ::::::::: LOGIN ::::::::: -->
 <div ng-show="hc.loginForm">
   <section layout="column">
     <h2>Login</h2>
@@ -32,48 +36,50 @@
 
       <p>Need to create a new account?</p>
       <md-button class="md-raised md-primary" ng-click="hc.registerShow()">Register</md-button>
-    </md-input-container>
   </section>
-</div> <!-- end /login  -->
-<!-- /register -->
+</div> <!-- ::::::::: END LOGIN ::::::::: -->
+
+<!-- ::::::::: REGISTRATION ::::::::: -->
 <div ng-show="hc.registerForm">
   <section layout="column">
     <!-- action="/register" method="POST"> -->
     <h2>Register</h2>
+
     <md-input-container>
       <label for="username">Username</label>
       <input type="text" ng-model="hc.registerInfo.username" name="username" required/>
     </md-input-container>
+
     <md-input-container>
       <label for="password">Password</label>
       <input type="password" ng-model="hc.registerInfo.password" name="password" required/>
     </md-input-container>
+
     <md-input-container>
       <label for="contactName">Contact Name</label>
       <input type="text" ng-model="hc.registerInfo.contactName" name="contactName" id="contactName" required/>
     </md-input-container>
+
     <md-input-container>
       <label for="emailAddress">Email address</label>
       <input type="text" ng-model="hc.registerInfo.emailAddress" name="password" id="emailAddress" required/>
     </md-input-container>
-    <md-input-container>
-      <md-button ng-click="hc.registerUser()" class="md-raised md-primary">Register</md-button>
-    </md-input-container>
+
+    <md-button ng-click="hc.registerUser()" class="md-raised md-primary">Register</md-button>
+
   </section>
-</div> <!-- end /register  -->
+</div> <!-- ::::::::: END REGISTRATION ::::::::: -->
 
-<!-- ::::::::: Admin Dashboard ::::::::: -->
-
+<!-- ::::::::: ADMIN DASHBOARD ::::::::: -->
 <div ng-show="hc.adminDashboard">
   <!-- The function that shows this section will come from passport authentication of an Admin -->
   <h2>This will be the Admin Dashboard.</h2>
   <md-input-container>
     <md-button value="LogOut" class="md-raised md-primary"><a href="/logout" target="_self">Log Out</a></md-button>
   </md-input-container>
-</div> <!-- ::::::::: end /adminDashboard :::::::::  -->
+</div> <!-- ::::::::: END ADMIN DASHBOARD ::::::::: -->
 
-<!-- ::::::::: User Dashboard ::::::::: -->
-
+<!-- ::::::::: USER DASHBOARD ::::::::: -->
 <div ng-show="hc.userDashboard">
   <!-- The function that shows this section will come from passport authentication of a User -->
   <h2>This will be the User Dashboard.</h2>
@@ -81,4 +87,4 @@
     <md-input-container>
       <md-button value="LogOut" class="md-raised md-primary"><a href="/logout" target="_self">Log Out</a></md-button>
     </md-input-container>
-</div> <!-- ::::::::: end /userDashboard ::::::::: -->
+</div> <!-- ::::::::: END USER DASHBOARD ::::::::: -->
