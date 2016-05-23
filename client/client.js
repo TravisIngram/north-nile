@@ -17,8 +17,10 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
   $locationProvider.html5Mode(true);
 }]);
 
-app.controller('MapController', ['$scope', function($scope){
+app.controller('MapController', ['$scope', 'leafletData', function($scope, leafletData){
   var mc = this;
+
+  mc.lastClicked = {};
 
   // eventually will be pulled from server/database
   mc.storedMarkers = {
@@ -111,11 +113,47 @@ app.controller('MapController', ['$scope', function($scope){
       // console.log('clicked a marker:', args, '|event:', event);
       console.log('visibleMarkers on click:', mc.visibleMarkers);
       mc.showInfoDrawer = true;
-      mc.markerTitle = args.model.title;
+      mc.lastClicked = args.model;
+      mc.markerTitle = mc.lastClicked.title;
+      mc.mapStyle = {height:'20vh'};
+
+      // update map size
+      leafletData.getMap().then(function(map) {
+        setTimeout(function(){
+          map.invalidateSize();
+          console.log('called');
+        }, 200);
+      });
+
+      angular.extend(mc, {
+        center:{
+          lat: mc.lastClicked.lat,
+          lng: mc.lastClicked.lng,
+          zoom: 15
+        }
+      });
     });
 
     $scope.$on('leafletDirectiveMap.map.click', function(event, args){
       mc.showInfoDrawer = false;
+      mc.mapStyle = {height:'100vh'};
+      leafletData.getMap().then(function(map) {
+        setTimeout(function(){
+          map.invalidateSize();
+          console.log('called');
+        }, 100);
+      });
+      angular.extend(mc, {
+        center:{
+          lat: mc.lastClicked.lat,
+          lng: mc.lastClicked.lng,
+          zoom: 15
+        }
+      });
+    });
+
+    $scope.$on('leafletDirectiveMap.map.resize', function(event, args){
+      console.log('resized map');
     });
 
   mc.filterMarkers('all');
