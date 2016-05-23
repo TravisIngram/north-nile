@@ -106,28 +106,6 @@ hc.registerUser = function() {
     hc.registerInfo.username = undefined;
   });
 };
-// hc.logOutUser=function(){
-// $http.post('/logout', hc.loginInfo).then(function(response){
-// if(response.status==200){
-//   console.log('successfully logged out', response.data.isAdmin);
-// if(response.data.isAdmin==true){
-// console.log('admin is true');
-// hc.adminDashboard=true;
-// hc.userDashboard=false;
-// hc.registerForm = false;
-// hc.loginForm = false;
-// }else{
-// console.log('admin is not true here in logout');
-// hc.userDashboard=true;
-// hc.adminDashboard=false;
-// hc.registerForm=false;
-// hc.loginForm=false;
-// }
-// }
-// }, function(response){
-// console.log('unsuccessful logout');
-// });
-// };
 
 
   console.log('Home controller loaded.');
