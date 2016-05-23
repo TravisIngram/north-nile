@@ -63,9 +63,16 @@ function(request, username, password, done){
       }
     });
     query.on('end', function(){
+      console.log('Account not found.');
+
       client.end();
-      //response.send(results);
+      done(null);
     });
+
+    query.on('error', function(err){
+      console.log('Error retrieving account:', err);
+
+    })
     if(err){
       console.log(err);
     }
