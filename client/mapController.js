@@ -1,4 +1,4 @@
-angular.module('northApp').controller('MapController', ['$scope', 'leafletData', function($scope, leafletData){
+angular.module('northApp').controller('MapController', ['$scope', 'leafletData', 'leafletMarkerEvents', function($scope, leafletData, leafletMarkerEvents){
   var mc = this;
 
   mc.lastClicked = {};
@@ -77,7 +77,9 @@ angular.module('northApp').controller('MapController', ['$scope', 'leafletData',
         defaults: {
             scrollWheelZoom: false,
             touchZoom: true,
-            dragging: true
+            dragging: true,
+            tap: true,
+            tapTolerance: 100
         },
         center: {
           lat: 44.996121,
@@ -92,7 +94,7 @@ angular.module('northApp').controller('MapController', ['$scope', 'leafletData',
 
     $scope.$on('leafletDirectiveMarker.map.click', function(event, args){
       // console.log('clicked a marker:', args, '|event:', event);
-      console.log('visibleMarkers on click:', mc.visibleMarkers);
+      // console.log('visibleMarkers on click:', mc.visibleMarkers);
       mc.showInfoDrawer = true;
       mc.lastClicked = args.model;
       mc.markerTitle = mc.lastClicked.title;
@@ -136,6 +138,9 @@ angular.module('northApp').controller('MapController', ['$scope', 'leafletData',
     $scope.$on('leafletDirectiveMap.map.resize', function(event, args){
       console.log('resized map');
     });
+
+    // testing
+
 
   mc.filterMarkers('all');
   console.log('Map controller loaded.');
