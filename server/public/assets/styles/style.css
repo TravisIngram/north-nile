@@ -13,7 +13,7 @@
   height: 60vh;
   max-height: 60vh;
   width: 100vw;
-  background-color: aliceblue;
+  background: rgba(240, 248, 255, 0.7);
   overflow-y: scroll;
   transition-property: all;
 	transition-duration: .5s;

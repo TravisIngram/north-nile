@@ -145,8 +145,9 @@ angular.module('northApp').controller('MapController', ['$scope', 'leafletData',
           zoom: 15
         }
       });
-    }
-    $scope.$on('leafletDirectiveMap.map.click', mc.closeInfoDrawer());
+    };
+
+    $scope.$on('leafletDirectiveMap.map.click', mc.closeInfoDrawer);
 
   mc.filterMarkers('all');
   console.log('Map controller loaded.');
