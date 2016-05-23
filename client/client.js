@@ -114,6 +114,10 @@ app.controller('MapController', ['$scope', function($scope){
       mc.markerTitle = args.model.title;
     });
 
+    $scope.$on('leafletDirectiveMap.map.click', function(event, args){
+      mc.showInfoDrawer = false;
+    });
+
   mc.filterMarkers('all');
   console.log('Map controller loaded.');
 }]);
