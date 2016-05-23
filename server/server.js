@@ -12,6 +12,7 @@ var localStrategy=require('passport-local').Strategy;
 // custom modules
 var indexRouter= require('./routes/indexRouter.js');
 var loginRouter = require('./routes/loginRouter.js');
+var logoutRouter=require('./routes/logoutRouter.js');
 var registerRouter = require('./routes/registerRouter.js');
 var encryption=require('../modules/encryption');
 
@@ -42,6 +43,7 @@ passport.use('local', new localStrategy({
 },
 function(request, username, password, done){
   console.log('CHECKING PASSWORD');
+  // This is where it gets stuck after non-existant user tries to login.
   pg.connect(dbConnection.dbConnectionString, function(err, client){
     var user={};
     var query=client.query('SELECT * FROM "account" WHERE "username" = $1', [username]);
@@ -63,7 +65,7 @@ function(request, username, password, done){
       }
     });
     query.on('end', function(){
-      console.log('Account not found.');
+      console.log('someone logged in');
 
       client.end();
       done(null);
@@ -107,6 +109,7 @@ passport.deserializeUser(function(id, passportDone){
 // routes
 // app.use('/accountsRouter', accountsRouter);
 app.use('/login', loginRouter);
+app.use('/logout', logoutRouter);
 app.use('/register', registerRouter);
 app.use('/', indexRouter);
 // DO NOT PUT ANY OTHER ROUTES UNDER indexRouter!!!

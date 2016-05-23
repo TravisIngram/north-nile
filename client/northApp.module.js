@@ -1,7 +1,7 @@
 angular.module('northApp', ['ngRoute', 'leaflet-directive', 'ngMaterial', 'ngMessages', 'ngAnimate']);
 
 
-angular.module('northApp').config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
+angular.module('northApp').config(['$routeProvider', '$locationProvider', '$mdGestureProvider', function($routeProvider, $locationProvider, $mdGestureProvider){
   $routeProvider
   .when('/', {
     templateUrl: '/views/home.html',
@@ -14,5 +14,6 @@ angular.module('northApp').config(['$routeProvider', '$locationProvider', functi
     controllerAs: 'mc'
   });
 
+  $mdGestureProvider.skipClickHijack();
   $locationProvider.html5Mode(true);
 }]);
