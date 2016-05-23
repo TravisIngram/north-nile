@@ -17,7 +17,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
   $locationProvider.html5Mode(true);
 }]);
 
-app.controller('MapController', ['$scope', function($scope){ 
+app.controller('MapController', ['$scope', function($scope){
   var mc = this;
 
   // eventually will be pulled from server/database
@@ -26,25 +26,29 @@ app.controller('MapController', ['$scope', function($scope){
           lat: 44.996121,
           lng: -93.295845,
           title: 'Mr. Books Bruschetta Machine',
-          type: 'one'
+          type: 'one',
+          visible: false
       },
       m2:{
         lat: 44.998995,
         lng: -93.291068,
         title: 'Ms. Kitchens Oblique Reference Parlor',
-        type: 'two'
+        type: 'two',
+        visible: false
       },
       m3: {
           lat: 44.999143,
           lng: -93.297133,
           title: 'Mr. Bones Bruschetta Machine',
-          type: 'one'
+          type: 'one',
+          visible: false
       },
       m4:{
         lat: 45.002572,
         lng: -93.289515,
         title: 'Ms. Burbakers Oblique Reference Parlor',
-        type: 'two'
+        type: 'two',
+        visible: false
       }
   };
 
@@ -53,19 +57,33 @@ app.controller('MapController', ['$scope', function($scope){
   mc.visibleMarkers = {};
 
   mc.filterMarkers = function(type){
+    mc.visibleMarkers = {};
     if(type === 'all'){
-      mc.visibleMarkers = mc.storedMarkers;
+      //mc.visibleMarkers = mc.storedMarkers;
+      for (marker in mc.storedMarkers){
+        mc.storedMarkers[marker].visibility = true;
+      }
     } else if (type === 'none'){
-      mc.visibleMarkers = {};
+      //mc.visibleMarkers = {};
+      for (marker in mc.storedMarkers){
+        mc.storedMarkers[marker].visibility = false;
+      }
     } else {
-      mc.visibleMarkers = {};
+      //mc.visibleMarkers = {};
       for (marker in mc.storedMarkers){
         if(mc.storedMarkers[marker].type === type){
-          mc.visibleMarkers['m' + mc.count] = mc.storedMarkers[marker];
-          mc.count++;
+          mc.storedMarkers[marker].visibility = !mc.storedMarkers[marker].visibility; // toggle visibility
         }
       }
     }
+    // loop through storedMarkers and add visible ones to visibleMarkers
+    for (marker in mc.storedMarkers){
+      if(mc.storedMarkers[marker].visibility){
+        mc.visibleMarkers['m' + mc.count] = mc.storedMarkers[marker];
+        mc.count++;
+      }
+    }
+
     angular.extend(mc, {
       markers: mc.visibleMarkers
     });
@@ -91,7 +109,7 @@ app.controller('MapController', ['$scope', function($scope){
 
     $scope.$on('leafletDirectiveMarker.map.click', function(event, args){
       // console.log('clicked a marker:', args, '|event:', event);
-      console.log('visiibleMarkers on click:', mc.visibleMarkers);
+      console.log('visibleMarkers on click:', mc.visibleMarkers);
       mc.showInfoDrawer = true;
       mc.markerTitle = args.model.title;
     });
