@@ -42,6 +42,7 @@ passport.use('local', new localStrategy({
 },
 function(request, username, password, done){
   console.log('CHECKING PASSWORD');
+  // This is where it gets stuck after non-existant user tries to login.
   pg.connect(dbConnection.dbConnectionString, function(err, client){
     var user={};
     var query=client.query("SELECT * FROM \"Account\" where \"userName\" = $1", [username]);
