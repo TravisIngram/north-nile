@@ -1,10 +1,53 @@
+
+/*
+font-family: 'Lobster Two', cursive;
+font-family: 'Comfortaa', cursive;
+font-family: 'Shadows Into Light', cursive;
+https://fonts.googleapis.com/css?family=Lobster+Two|Comfortaa|Shadows+Into+Light
+*/
+
+/*::: GENERAL STYLES :::*/
+html,body {
+  background-image: url('../bark.jpg');
+  background-repeat: repeat;
+  margin: 0;
+  padding: 0;
+}
+
+.md-button.md-raised {
+  background-color: lightgreen;
+  color: seagreen;
+  font-family: 'Comfortaa', cursive;
+  font-size: 14px;
+  font-weight: bolder;
+  text-transform: lowercase;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+
+}
+
+h1,h2,h3{
+  font-family: 'Lobster Two', 'georgia', cursive;
+  color: palegreen;
+  text-shadow: 1px 3px 1px darkgreen;
+}
+
+p{
+  font-family: 'Comfortaa', 'futura', cursive;
+  color: white;
+}
+
+
+/*::: MAP STYLES :::*/
 .key {
   position: absolute;
   bottom: 0;
   width: 100%;
   height: 10vh;
-  background-color: chartreuse;
-  z-index: 9999;
+  background-color: seagreen;
 }
 
 .infoDrawer {
@@ -13,7 +56,7 @@
   height: 60vh;
   max-height: 60vh;
   width: 100vw;
-  background: rgba(240, 248, 255, 0.7);
+  background-color: mediumseagreen;
   overflow-y: scroll;
   transition-property: all;
 	transition-duration: .5s;
@@ -30,4 +73,26 @@
 
 .errorMessage{
   color: #dd2c00;
+}
+
+
+/*::: SPLASH PAGE :::*/
+/*::: ADMIN/USER DASHBOARDS :::*/
+
+.splash {
+  border: 3px solid seagreen;
+  border-radius: 10px;
+  background-color: mediumseagreen;
+  margin: 10%;
+  padding: 20px;
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.50);
+}
+
+.home-header {
+  text-align: center;
+  text-shadow: 5px;
+}
+
+.home-nav {
+
 }

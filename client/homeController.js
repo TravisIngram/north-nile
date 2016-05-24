@@ -95,7 +95,7 @@ hc.registerUser = function() {
           .finally(function() {
             alert = undefined;
           });
-      };
+      }
       showAlert();
       hc.registerInfo={};
       hc.registerForm=false;
@@ -121,7 +121,7 @@ hc.registerUser = function() {
         .finally(function() {
           alert = undefined;
         });
-    };
+    }
     showAlert();
     hc.registerInfo.username = undefined;
   });
