@@ -7,23 +7,23 @@ function createResource() {
       console.log('Error connecting to DB.' + err);
       process.exit(1);
     } else {
-      var query = client.query('CREATE TABLE IF NOT EXISTS "Resource" (' +
+      var query = client.query('CREATE TABLE IF NOT EXISTS "resource" (' +
         ' "id" serial PRIMARY KEY,' +
-        ' "name" varchar(50) NOT NULL,' +
-        ' "location" varchar(50) NOT NULL,' +
-        ' "description" text NOT NULL,' +
-        ' "website" varchar(50) NOT NULL,' +
-        ' "socialMedia" varchar(50) NOT NULL,' +
-        ' "leadership" varchar(50) NOT NULL,' +
-        ' "privatePhone" varchar(50) NOT NULL,' +
-        ' "privateEmail" varchar(50) NOT NULL,' +
-        ' "hours" text NOT NULL,' +
-        ' "coordinates" numeric NOT NULL,' +
-        ' "account_id" int REFERENCES "Account"(id),' +
-        ' "resourceType_id" int REFERENCES "resourceType"(id),' +
-        ' "audio_id" int REFERENCES "Audio"(id),' +
-        ' "image_id" int REFERENCES "Image"(id),' +
-        ' "video_id" int REFERENCES "Video"(id))');
+        ' "name" varchar(150) NOT NULL,' +
+        ' "location" varchar(150) NOT NULL,' +
+        ' "description" text,' +
+        ' "website" varchar(150),' +
+        ' "social_media" varchar(150),' +
+        ' "leadership" varchar(150),' +
+        ' "private_phone" varchar(50),' +
+        ' "private_email" varchar(150),' +
+        ' "hours" text,' +
+        ' "coordinates" numeric,' +
+        ' "account_id" int REFERENCES "account"(id),' +
+        ' "resource_type_id" int REFERENCES "resource_type"(id),' +
+        ' "audio_id" int REFERENCES "audio"(id),' +
+        ' "image_id" int REFERENCES "image"(id),' +
+        ' "video_id" int REFERENCES "video"(id))');
 
       query.on('end', function() {
         console.log('Successfully created Resource schema.');

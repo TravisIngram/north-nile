@@ -18,21 +18,22 @@ router.post('/', function(request, response, next){
     }
 
     var user={
-      userName: request.body.username,
+      username: request.body.username,
       password: encryption.encryptPassword(request.body.password),
-      emailAddress: request.body.emailAddress,
-      contactName:request.body.contactName
-    }
+      email_address: request.body.email_address,
+      contact_name: request.body.contact_name
+    };
     console.log('Creating user with these values:', user);
-    var query=client.query('INSERT INTO "Account" ("userName", "password", "emailAddress", "contactName") VALUES ($1, $2, $3, $4)', [user.userName, user.password, user.emailAddress, user.contactName]);
+    var query=client.query('INSERT INTO "account" ("username", "password", "email_address", "contact_name") VALUES ($1, $2, $3, $4)', [user.username, user.password, user.email_address, user.contact_name]);
       query.on('error', function(err){
         console.log(err);
         response.sendStatus(401);
-      })
+      });
       query.on('end', function(){
         response.redirect('/');
         client.end();
-      })
-  })
-})
+      });
+  });
+});
+
 module.exports=router;

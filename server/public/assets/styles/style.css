@@ -4,12 +4,32 @@
   width: 100%;
   height: 10vh;
   background-color: chartreuse;
+  z-index: 9999;
 }
 
 .infoDrawer {
   position: absolute;
   bottom: 10vh;
-  height: 70vh;
+  height: 60vh;
+  max-height: 60vh;
   width: 100vw;
-  background-color: aliceblue;
+  background: rgba(240, 248, 255, 0.7);
+  overflow-y: scroll;
+  transition-property: all;
+	transition-duration: .5s;
+	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
+.infoDrawer.ng-hide{
+  max-height: 0;
+}
+
+.keyButton{
+  margin: 1vw;
+}
+
+md-bottom-sheet{
+  max-height: 60vh;
+  overflow: scroll;
+  padding-bottom: 5px;
 }

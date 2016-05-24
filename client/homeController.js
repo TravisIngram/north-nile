@@ -25,8 +25,8 @@ angular.module('northApp').controller('HomeController', ['$http', '$mdDialog', f
 hc.loginUser = function() {
   $http.post('/login', hc.loginInfo).then(function(response){
     if (response.status == 200) {
-      console.log('successful login', response.data.isAdmin);
-    if (response.data.isAdmin == true) {
+      console.log('successful login', response.data.is_admin);
+    if (response.data.is_admin === true) {
       console.log('admin is true');
       hc.loginInfo = {};
       hc.adminDashboard=true;
@@ -56,7 +56,7 @@ hc.loginUser = function() {
         .finally(function() {
           alert = undefined;
         });
-    };
+    }
     showAlert();
     hc.loginInfo = {};
 
