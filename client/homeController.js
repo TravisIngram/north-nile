@@ -4,6 +4,7 @@ angular.module('northApp').controller('HomeController', ['$http', '$mdDialog', f
   var alert;
   hc.loginInfo = {};
   hc.registerInfo = {};
+  hc.alertMessage = '';
 
   // registration form password confirmation checking
   hc.passwordMismatch = function(){
@@ -104,9 +105,15 @@ hc.registerUser = function() {
   }, function(response){
     console.log('unsuccessful registration');
     function showAlert() {
+      if(hc.registerInfo.username === undefined){
+        hc.alertMessage = 'Username field cannot be blank';
+      } else {
+        hc.alertMessage = 'Username already exists, please choose another.'
+      }
+
       alert = $mdDialog.alert({
         title: 'Attention',
-        textContent: 'Username already exists, please choose another.',
+        textContent: hc.alertMessage,
         ok: 'Close'
       });
       $mdDialog
