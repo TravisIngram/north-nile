@@ -145,7 +145,7 @@ angular.module('northApp').controller('MapController', ['$scope', 'leafletData',
           zoom: 15
         }
       });
-    }
+    };
     $scope.$on('leafletDirectiveMap.map.click', mc.closeInfoDrawer());
 
   mc.filterMarkers('all');
