@@ -1,7 +1,7 @@
 var pg            = require('pg');
 var dbConnection  = 'postgres://localhost:5432/north_nile';
 
-function createAudio() {
+function createAudio(callback) {
   pg.connect(dbConnection, function(err, client, done) {
     if(err) {
       console.log('Error connecting to DB.' + err);
@@ -14,17 +14,19 @@ function createAudio() {
       query.on('end', function() {
         console.log('Successfully created Audio schema.');
         done();
+        callback(null);
       });
 
-      query.on('error', function(error) {
+      query.on('error', function(err) {
         console.log('Error creating Audio schema.' + err);
+        callback(err);
         process.exit(1);
       });
     }
   });
 }
 
-function createImage() {
+function createImage(callback) {
   pg.connect(dbConnection, function(err, client, done) {
     if(err) {
       console.log('Error connecting to DB.' + err);
@@ -36,18 +38,20 @@ function createImage() {
 
       query.on('end', function() {
         console.log('Successfully created Image schema.');
+        callback(null);
         done();
       });
 
-      query.on('error', function(error) {
+      query.on('error', function(err) {
         console.log('Error creating Image schema.' + err);
+        callback(err);
         process.exit(1);
       });
     }
   });
 }
 
-function createVideo() {
+function createVideo(callback) {
   pg.connect(dbConnection, function(err, client, done) {
     if(err) {
       console.log('Error connecting to DB.' + err);
@@ -60,10 +64,12 @@ function createVideo() {
       query.on('end', function() {
         console.log('Successfully created Video schema.');
         done();
+        callback(null);
       });
 
-      query.on('error', function(error) {
+      query.on('error', function(err) {
         console.log('Error creating Video schema.' + err);
+        callback(err);
         process.exit(1);
       });
     }
