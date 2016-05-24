@@ -7,6 +7,13 @@ https://fonts.googleapis.com/css?family=Lobster+Two|Comfortaa|Shadows+Into+Light
 */
 
 /*::: GENERAL STYLES :::*/
+html,body {
+  background-image: url('../bark.jpg');
+  background-repeat: repeat;
+  margin: 0;
+  padding: 0;
+}
+
 .md-button.md-raised {
   background-color: lightgreen;
   color: seagreen;
@@ -16,10 +23,16 @@ https://fonts.googleapis.com/css?family=Lobster+Two|Comfortaa|Shadows+Into+Light
   text-transform: lowercase;
 }
 
+a{
+  text-decoration: none;
+  color: inherit;
+
+}
+
 h1,h2,h3{
   font-family: 'Lobster Two', 'georgia', cursive;
-  color: white;
-  text-shadow: 3px 3px 1px rgba(0,0,0,0.25);
+  color: palegreen;
+  text-shadow: 1px 3px 1px darkgreen;
 }
 
 p{
@@ -74,7 +87,7 @@ p{
   background-color: mediumseagreen;
   margin: 10%;
   padding: 20px;
-  box-shadow:3px 3px 2px rgba(0,0,0,0.25);
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.50);
 }
 
 .home-header {
