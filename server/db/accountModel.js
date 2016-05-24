@@ -1,7 +1,7 @@
 var pg            = require('pg');
 var dbConnection  = 'postgres://localhost:5432/north_nile';
 
-function createAccount() {
+function createAccount(callback) {
   pg.connect(dbConnection, function(err, client, done) {
     if(err) {
       console.log('Error connecting to DB.' + err);
@@ -18,10 +18,12 @@ function createAccount() {
       query.on('end', function() {
         console.log('Successfully created Account schema.');
         done();
+        callback(null);
       });
 
-      query.on('error', function(error) {
+      query.on('error', function(err) {
         console.log('Error creating Account schema.' + err);
+        callback(err);
         process.exit(1);
       });
     }
