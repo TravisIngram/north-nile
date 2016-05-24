@@ -5,6 +5,19 @@ angular.module('northApp').controller('HomeController', ['$http', '$mdDialog', f
   hc.loginInfo = {};
   hc.registerInfo = {};
 
+  // registration form password confirmation checking
+  hc.passwordMismatch = function(){
+    if(hc.registerInfo.password !== hc.registerInfo.confirm_password){
+      return true;
+    }
+  }
+
+  hc.passwordMismatchError = function(){
+    if (hc.passwordMismatch() && hc.registerFormInputs.confirm_password.$dirty){
+      return true;
+    }
+  }
+
   // :::: ng-show Functions ::::
 
   // loginShow():
@@ -107,6 +120,6 @@ hc.registerUser = function() {
   });
 };
 
-
+  console.log('hc.registerFormInputs:', hc.registerFormInputs);
   console.log('Home controller loaded.');
 }]);

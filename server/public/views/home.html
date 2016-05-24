@@ -36,7 +36,7 @@
   </section>
 </div> <!-- end /login  -->
 <!-- /register -->
-<div ng-show="hc.registerForm">
+<form name="hc.registerFormInputs" ng-show="hc.registerForm">
   <section layout="column">
     <!-- action="/register" method="POST"> -->
     <h2>Register</h2>
@@ -50,10 +50,11 @@
       <input type="password" ng-model="hc.registerInfo.password" name="password" required/>
     </md-input-container>
 
-    <md-input-container md-is-error="hc.registerInfo.password !== hc.registerInfo.confirm_password">
-      <label for="confirm-password">Confirm Password</label>
-      <input type="password" ng-model="hc.registerInfo.confirm_password" name="confirm-password" required/>
+    <md-input-container md-is-error="hc.passwordMismatch()">
+      <label for="confirm_password">Confirm Password</label>
+      <input type="password" ng-model="hc.registerInfo.confirm_password" name="confirm_password" required/>
       <!-- Should add message here to inform user their passwords don't match -->
+      <div class="errorMessage md-caption" ng-show="hc.passwordMismatchError()">Please make sure your passwords match.</div>
     </md-input-container>
 
     <md-input-container>
@@ -70,7 +71,7 @@
       <md-button ng-disabled="hc.registerInfo.password !== hc.registerInfo.confirm_password" ng-click="hc.registerUser()" class="md-raised md-primary">Register</md-button>
     </md-input-container>
   </section>
-</div> <!-- end /register  -->
+</form> <!-- end /register  -->
 
 <!-- ::::::::: Admin Dashboard ::::::::: -->
 

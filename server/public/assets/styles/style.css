@@ -28,8 +28,6 @@
   margin: 1vw;
 }
 
-md-bottom-sheet{
-  max-height: 60vh;
-  overflow: scroll;
-  padding-bottom: 5px;
+.errorMessage{
+  color: #dd2c00;
 }
