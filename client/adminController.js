@@ -126,6 +126,9 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
 
   epc.saveEditPending = function(){
     // add save logic here -> probably need to post to server/database
+
+    epc.selectedResource.pending = !epc.selectedResource.approved; // make pending value false based on approve value
+    console.log('ac.selectedResource:', epc.selectedResource);
     $mdDialog.hide();
   };
 

@@ -78,6 +78,8 @@
         <input type="text" name="pending_video" ng-model="epc.selectedResource.video" />
       </md-input-container>
 
+      <md-checkbox name="pending_approval" ng-model="epc.selectedResource.approved" aria-label="pending_approval">Approved</md-checkbox>
+
       <md-button ng-click="epc.saveEditPending()">Save</md-button>
       <md-button ng-click="epc.cancelEditPending()">Cancel</md-button>
     </section>
