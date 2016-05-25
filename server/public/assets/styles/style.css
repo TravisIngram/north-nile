@@ -27,7 +27,7 @@ body {
 .md-button.md-raised {
   background-color: #f3cb00;
   color: #70543e;
-  font-family: 'Comfortaa', cursive;
+  font-family: 'Comfortaa', 'futura', cursive;
   font-size: 14px;
   font-weight: bolder;
   text-transform: lowercase;
@@ -84,8 +84,8 @@ p{
   background-color: mediumseagreen;
   overflow-y: scroll;
   transition-property: all;
-	transition-duration: .5s;
-	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 }
 
 .infoDrawer.ng-hide{
