@@ -66,6 +66,16 @@ angular.module('northApp').controller('AdminController', ['$http', '$mdDialog', 
   ac.selectedModerationResource = {};
   ac.approvedResources = [];
   ac.moderationQueue = [];
+  ac.selectedResource = {
+    lat: 44.998995,
+    lng: -93.291068,
+    title: 'Ms. Kitchens Oblique Reference Parlor',
+    type: 'two',
+    visible: false,
+    username: 'kitchen86',
+    dateCreated: 'Dec 4th, 2016',
+    pending: true
+  };
 
   // approve resources en masse
   ac.approveResources = function(){
@@ -83,30 +93,41 @@ angular.module('northApp').controller('AdminController', ['$http', '$mdDialog', 
   // needs to be updated for modal
   ac.editResource = function(resource){
     // event.stopPropagation();
-    ac.selectedResource = resource;
+    // ac.selectedResource = resource;
     console.log('ac.selectedResource:', ac.selectedResource);
     ac.editPendingOptions = {
       templateUrl: '/views/edit-pending.html',
       clickOutsideToClose: true,
-      controller: 'AdminController',
-      controllerAs:'ac',
-      scope: ac
-    };
-    ac.editPending = $mdDialog.show(ac.editPendingOptions);
+      controller: 'EditPendingController',
+      controllerAs:'epc',
+      resolve:{
+        selectedResource: function(){
+          return resource;
+        }
+      }
+    }
+     $mdDialog.show(ac.editPendingOptions);
   };
-
-  ac.cancelEditPending = function(){
-    console.log('ac.selectedResource:', ac.selectedResource);
-    $mdDialog.hide(ac.editPending);
-  };
-
-  ac.saveEditPending = function(){
-    // add save logic here -> probably need to post to server/database
-    $mdDialog.hide(ac.editPending);
-  };
-
 
   ac.filterApprovedResources();
   ac.filterPendingResources();
   console.log('admin controller loaded!');
+}]);
+
+angular.module('northApp').controller('EditPendingController', ['selectedResource', '$mdDialog', function(selectedResource,  $mdDialog){
+  var epc = this;
+
+  epc.selectedResource = selectedResource;
+
+  epc.cancelEditPending = function(){
+    console.log('ac.selectedResource:', selectedResource);
+    $mdDialog.hide();
+  };
+
+  epc.saveEditPending = function(){
+    // add save logic here -> probably need to post to server/database
+    $mdDialog.hide();
+  };
+
+  console.log('Edit Pending Controller loaded.');
 }]);

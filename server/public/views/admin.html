@@ -31,7 +31,7 @@
           </tr>
           </thead>
           <tbody md-body>
-            <tr md-row ng-repeat="resource in ac.moderationQueue" md-select="resource" md-selectid="name" md-auto-select>
+            <tr md-row ng-repeat="resource in ac.moderationQueue" md-select="resource" md-selectid="name">
               <td md-cell>{{resource.username}}</td>
               <td md-cell>{{resource.title}}</td>
               <td md-cell ng-click="ac.editResource($event, resource)">{{resource.type}}</td>
