@@ -64,7 +64,7 @@
 
 
   <!-- ::::::::: REGISTRATION FORM::::::::: -->
-  <div class="home form" ng-show="hc.registerForm">
+  <form class="home form" name="hc.registerFormInputs" ng-show="hc.registerForm">
     <section layout="column">
       <!-- action="/register" method="POST"> -->
       <h3>Registration</h3>
@@ -87,7 +87,7 @@
       </md-input-container>
 
       <md-input-container>
-        <label for="contactName">Contact Name</label>
+        <label for="contact_name">Contact Name</label>
         <input type="text" ng-model="hc.registerInfo.contact_name" name="contact_name" id="contact_name" required/>
       </md-input-container>
 
@@ -100,7 +100,7 @@
         <md-button ng-click="hc.registerUser()" class="md-raised">Register</md-button>
       </md-input-container>
     </section>
-  </div> <!-- ::::::::: END REGISTRATION ::::::::: -->
+  </form> <!-- ::::::::: END REGISTRATION ::::::::: -->
 
 
 
