@@ -11,13 +11,13 @@ angular.module('northApp').controller('HomeController', ['$http', '$mdDialog', '
     if(hc.registerInfo.password !== hc.registerInfo.confirm_password){
       return true;
     }
-  }
+  };
 
   hc.passwordMismatchError = function(){
     if (hc.passwordMismatch() && hc.registerFormInputs.confirm_password.$dirty){
       return true;
     }
-  }
+  };
 
   // :::: ng-show Functions ::::
 
@@ -108,7 +108,7 @@ hc.registerUser = function() {
       if(hc.registerInfo.username === undefined){
         hc.alertMessage = 'Username field cannot be blank';
       } else {
-        hc.alertMessage = 'Username already exists, please choose another.'
+        hc.alertMessage = 'Username already exists, please choose another.';
       }
 
       alert = $mdDialog.alert({
