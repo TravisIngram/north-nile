@@ -108,6 +108,7 @@ passport.deserializeUser(function(id, passportDone){
 });
 // routes
 // app.use('/accountsRouter', accountsRouter);
+app.use('/auth', loginRouter);
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
 app.use('/register', registerRouter);

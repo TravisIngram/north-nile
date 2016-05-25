@@ -1,10 +1,14 @@
-angular.module('northApp').controller('HomeController', ['$http', '$mdDialog', '$location', function($http, $mdDialog, $location){
+angular.module('northApp').controller('HomeController', ['UserTrackFactory', '$http', '$mdDialog', '$location', function(UserTrackFactory, $http, $mdDialog, $location){
 
   var hc = this;
   var alert;
   hc.loginInfo = {};
   hc.registerInfo = {};
   hc.alertMessage = '';
+
+  UserTrackFactory.getUserData();
+  hc.user = UserTrackFactory.user;
+
 
   // registration form password confirmation checking
   hc.passwordMismatch = function(){
@@ -128,6 +132,22 @@ hc.registerUser = function() {
     hc.registerInfo.username = undefined;
   });
 };
+//user factory//
+angular.module('northApp').factory('UserTrackFactory', ['$http', function($http){
+  var user={};
+
+  var getUserData=function(){
+    $http.get('/auth').then(function(response){
+      console.log('response from getUserData', response);
+      // user.info=response.data;
+    })
+  }
+  return {
+    user: user,
+    getUserData: getUserData
+  };
+
+}]);
 
   console.log('hc.registerFormInputs:', hc.registerFormInputs);
   console.log('Home controller loaded.');
