@@ -18,10 +18,6 @@ router.post('/', passport.authenticate('local'), function(request, response){
   response.send(authenticatedUser);
 });
 
-//route below will only be accessible once a user is logged in; ie tells users they are logged in
-router.get('/auth', function(request, response){
-  console.log('requested sesion information for:', request.user);
-  response.send(request.user);
-});
+
 
 module.exports=router;

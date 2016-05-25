@@ -6,8 +6,7 @@ angular.module('northApp').controller('HomeController', ['UserTrackFactory', '$h
   hc.registerInfo = {};
   hc.alertMessage = '';
 
-  UserTrackFactory.getUserData();
-  hc.user = UserTrackFactory.user;
+
 
 
   // registration form password confirmation checking
@@ -44,23 +43,21 @@ hc.loginUser = function() {
   $http.post('/login', hc.loginInfo).then(function(response){
     if (response.status == 200) {
       console.log('successful login', response.data.is_admin);
-      if (response.data.is_admin === true) {
-        console.log('admin is true');
-        hc.loginInfo = {};
-        // hc.adminDashboard=true;
-        // hc.userDashboard=false;
-        $location.url('/admin');
-        hc.registerForm = false;
-        hc.loginForm = false;
-      } else {
-        console.log('admin is not true');
-        hc.loginInfo = {};
-        // hc.userDashboard=true;
-        // hc.adminDashboard=false;
-        $location.url('/user');
-        hc.registerForm=false;
-        hc.loginForm=false;
-      }
+    if (response.data.is_admin === true) {
+      console.log('admin is true');
+      hc.loginInfo = {};
+      hc.adminDashboard=true;
+      hc.userDashboard=false;
+      hc.registerForm = false;
+      hc.loginForm = false;
+    } else {
+      console.log('admin is not true');
+      hc.loginInfo = {};
+      hc.userDashboard=true;
+      hc.adminDashboard=false;
+      hc.registerForm=false;
+      hc.loginForm=false;
+    }
    }
   }, function(response){
     console.log('unsuccessful login');
@@ -132,22 +129,7 @@ hc.registerUser = function() {
     hc.registerInfo.username = undefined;
   });
 };
-//user factory//
-angular.module('northApp').factory('UserTrackFactory', ['$http', function($http){
-  var user={};
 
-  var getUserData=function(){
-    $http.get('/auth').then(function(response){
-      console.log('response from getUserData', response);
-      // user.info=response.data;
-    })
-  }
-  return {
-    user: user,
-    getUserData: getUserData
-  };
-
-}]);
 
   console.log('hc.registerFormInputs:', hc.registerFormInputs);
   console.log('Home controller loaded.');

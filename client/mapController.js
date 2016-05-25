@@ -1,5 +1,11 @@
-angular.module('northApp').controller('MapController', ['$scope', 'leafletData', 'leafletMarkerEvents', '$mdBottomSheet', function($scope, leafletData, leafletMarkerEvents, $mdBottomSheet){
+angular.module('northApp').controller('MapController', ['UserTrackFactory', '$scope', 'leafletData', 'leafletMarkerEvents', '$mdBottomSheet', function(UserTrackFactory, $scope, leafletData, leafletMarkerEvents, $mdBottomSheet){
   var mc = this;
+
+  UserTrackFactory.getUserData();
+
+  mc.user = UserTrackFactory.user;
+
+
 
   // test data - eventually will be pulled from server/database
   mc.storedMarkers = {
@@ -155,7 +161,29 @@ angular.module('northApp').controller('MapController', ['$scope', 'leafletData',
   $scope.$on('leafletDirectiveMarker.map.click', mc.openInfoDrawer);
   $scope.$on('leafletDirectiveMap.map.click', mc.closeInfoDrawer);
 
+
   // set all markers to visible on page load
   mc.filterMarkers('all');
   console.log('Map controller loaded.');
+
+
+
+}]);
+
+//user factory//
+angular.module('northApp').factory('UserTrackFactory', ['$http', function($http){
+
+  var user={};
+
+  var getUserData=function(){
+    console.log('Called service');
+    $http.get('/auth').then(function(response){
+      console.log('response from getUserData', response);
+      // user.info=response.data;
+    })
+  }
+  return {
+    user: user,
+    getUserData: getUserData
+  };
 }]);
