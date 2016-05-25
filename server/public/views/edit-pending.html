@@ -1,0 +1,89 @@
+<!-- Edit Modals -->
+<md-dialog>
+  <md-dialog-content class="md-dialog-content">
+    <section layout="column">
+      test:{{ac.selectedResource}}
+      <md-input-container>
+        <label for="pending_title">Title</label>
+        <input type="text" name="pending_title" ng-model="epc.selectedResource.title" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="pending_location">Location</label>
+        <input type="text" name="pending_location" ng-model="epc.selectedResource.location" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="pending_description">Description</label>
+        <input type="text" name="pending_description" ng-model="epc.selectedResource.description" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="pending_website">Website</label>
+        <input type="text" name="pending_website" ng-model="epc.selectedResource.website" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="pending_social_media">Social Media</label>
+        <input type="text" name="pending_social_media" ng-model="epc.selectedResource.social_media" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="pending_leadership">Leadership</label>
+        <input type="text" name="pending_leadership" ng-model="epc.selectedResource.leadership" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="pending_phone">Phone</label>
+        <input type="text" name="pending_phone" ng-model="epc.selectedResource.private_phone" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="pending_email">Email</label>
+        <input type="text" name="pending_email" ng-model="epc.selectedResource.private_email" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="pending_hours">Hours</label>
+        <input type="text" name="pending_hours" ng-model="epc.selectedResource.hours" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="pending_lat">Coordinates - Latitude</label>
+        <input type="text" name="pending_lat" ng-model="epc.selectedResource.lat" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="pending_lng">Coordinates - Longitude</label>
+        <input type="text" name="pending_lng" ng-model="epc.selectedResource.lng" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="pending_type">Type</label>
+        <input type="text" name="pending_type" ng-model="epc.selectedResource.type" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="pending_audio">Audio</label>
+        <input type="text" name="pending_audio" ng-model="epc.selectedResource.audio" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="pending_images">Images</label>
+        <input type="text" name="pending_images" ng-model="epc.selectedResource.images" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="pending_video">Video</label>
+        <input type="text" name="pending_video" ng-model="epc.selectedResource.video" />
+      </md-input-container>
+
+      <md-checkbox name="pending_approval" ng-model="epc.selectedResource.approved" aria-label="pending_approval">Approved</md-checkbox>
+
+      <md-button ng-click="epc.saveEditPending()">Save</md-button>
+      <md-button ng-click="epc.cancelEditPending()">Cancel</md-button>
+    </section>
+
+
+  </md-dialog-content>
+</md-dialog>

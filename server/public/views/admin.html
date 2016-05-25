@@ -1,8 +1,95 @@
 <!-- ::::::::: ADMIN DASHBOARD ::::::::: -->
-<div class="home dashboard" ng-show="hc.adminDashboard">
+<div class="home dashboard backdrop">
   <!-- The function that shows this section will come from passport authentication of an Admin -->
   <h2>This will be the Admin Dashboard.</h2>
   <md-input-container>
     <a href="/logout"><md-button class="md-raised">Log Out</md-button></a>
   </md-input-container>
+
+  <!-- Moderation Queue -->
+  <md-card>
+    <h2>Moderation Queue</h2>
+    <md-table-container>
+      <table md-table md-row-select multiple ng-model="ac.selectedModerationResources">
+        <thead md-head>
+          <tr md-row class="md-row">
+            <th md-column>
+              Account Name
+            </th>
+            <th md-column>
+              Resource Name
+            </th>
+            <th md-column>
+              Resource Type
+            </th>
+            <th md-column>
+              Date Created
+            </th>
+            <th md-column>
+              Edit
+            </th>
+          </tr>
+          </thead>
+          <tbody md-body>
+            <tr md-row ng-repeat="resource in ac.moderationQueue" md-select="resource" md-selectid="name">
+              <td md-cell>{{resource.username}}</td>
+              <td md-cell>{{resource.title}}</td>
+              <td md-cell ng-click="ac.editResource($event, resource)">{{resource.type}}</td>
+              <td md-cell>{{resource.dateCreated}}</td>
+              <td md-cell><md-button ng-click="ac.editResource(resource)">Edit</md-button></td>
+            </tr>
+            <tr md-row ng-show="ac.moderationQueue.length == 0">
+                <td md-cell>
+                  No resources needing approval.
+                </td>
+                <td md-cell></td>
+                <td md-cell></td>
+                <td md-cell></td>
+                <td md-cell></td>
+            </tr>
+          </tbody>
+      </table>
+    </md-data-table>
+    <md-button ng-click="ac.approveResources()">Approve</md-button>
+  </md-card>
+
+  <!-- Approved Resources -->
+  <md-card>
+    <h2>Resources</h2>
+    <md-table-container>
+      <table md-table>
+        <thead md-head>
+          <tr md-row class="md-row">
+            <th md-column>
+              Account Name
+            </th>
+            <th md-column>
+              Resource Name
+            </th>
+            <th md-column>
+              Resource Type
+            </th>
+            <th md-column>
+              Date Created
+            </th>
+            <th md-column>
+              Edit
+            </th>
+          </tr>
+          </thead>
+          <tbody md-body>
+            <tr md-row ng-repeat="resource in ac.approvedResources" md-select="resource" md-selectid="name" md-auto-select>
+              <td md-cell>{{resource.username}}</td>
+              <td md-cell>{{resource.title}}</td>
+              <td md-cell>{{resource.type}}</td>
+              <td md-cell>{{resource.dateCreated}}</td>
+              <td md-cell><md-button>Edit</md-button></td>
+            </tr>
+          </tbody>
+      </table>
+    </md-table-container>
+  </md-card>
+
+
+
 </div> <!-- ::::::::: END ADMIN DASHBOARD ::::::::: -->
