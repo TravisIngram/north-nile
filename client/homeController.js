@@ -1,4 +1,4 @@
-angular.module('northApp').controller('HomeController', ['$http', '$mdDialog', function($http, $mdDialog){
+angular.module('northApp').controller('HomeController', ['$http', '$mdDialog', '$location', function($http, $mdDialog, $location){
 
   var hc = this;
   var alert;
@@ -11,13 +11,13 @@ angular.module('northApp').controller('HomeController', ['$http', '$mdDialog', f
     if(hc.registerInfo.password !== hc.registerInfo.confirm_password){
       return true;
     }
-  }
+  };
 
   hc.passwordMismatchError = function(){
     if (hc.passwordMismatch() && hc.registerFormInputs.confirm_password.$dirty){
       return true;
     }
-  }
+  };
 
   // :::: ng-show Functions ::::
 
@@ -40,21 +40,23 @@ hc.loginUser = function() {
   $http.post('/login', hc.loginInfo).then(function(response){
     if (response.status == 200) {
       console.log('successful login', response.data.is_admin);
-    if (response.data.is_admin === true) {
-      console.log('admin is true');
-      hc.loginInfo = {};
-      hc.adminDashboard=true;
-      hc.userDashboard=false;
-      hc.registerForm = false;
-      hc.loginForm = false;
-    } else {
-      console.log('admin is not true');
-      hc.loginInfo = {};
-      hc.userDashboard=true;
-      hc.adminDashboard=false;
-      hc.registerForm=false;
-      hc.loginForm=false;
-    }
+      if (response.data.is_admin === true) {
+        console.log('admin is true');
+        hc.loginInfo = {};
+        // hc.adminDashboard=true;
+        // hc.userDashboard=false;
+        $location.url('/admin');
+        hc.registerForm = false;
+        hc.loginForm = false;
+      } else {
+        console.log('admin is not true');
+        hc.loginInfo = {};
+        // hc.userDashboard=true;
+        // hc.adminDashboard=false;
+        $location.url('/user');
+        hc.registerForm=false;
+        hc.loginForm=false;
+      }
    }
   }, function(response){
     console.log('unsuccessful login');
@@ -108,7 +110,7 @@ hc.registerUser = function() {
       if(hc.registerInfo.username === undefined){
         hc.alertMessage = 'Username field cannot be blank';
       } else {
-        hc.alertMessage = 'Username already exists, please choose another.'
+        hc.alertMessage = 'Username already exists, please choose another.';
       }
 
       alert = $mdDialog.alert({

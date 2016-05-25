@@ -12,6 +12,16 @@ angular.module('northApp').config(['$routeProvider', '$locationProvider', '$mdGe
     templateUrl: '/views/map.html',
     controller: 'MapController',
     controllerAs: 'mc'
+  })
+  .when('/admin', {
+    templateUrl: '/views/admin.html',
+    controller: 'AdminController',
+    controllerAs: 'ac'
+  })
+  .when('/user', {
+    templateUrl: '/views/user.html',
+    controller: 'UserController',
+    controllerAs: 'uc'
   });
 
   $mdGestureProvider.skipClickHijack();
