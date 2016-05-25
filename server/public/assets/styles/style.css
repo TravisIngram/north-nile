@@ -4,7 +4,7 @@ colors: final rgba # is % opaque
 #ec4500	rgba(236,69,0,0.5)
 #9bb85c	rgba(155,184,92,0.5)
 #9eceb8	rgba(158,206,184,0.5)
-
+#70543e
 ===================================
 Header options:
 font-family: 'Special Elite', 'courier new', monospace;
@@ -12,7 +12,7 @@ font-family: 'Oswald', sans-serif;
 font-family: 'Comfortaa', 'futura', cursive;
 
 Body options:
-font-family: 'Open Sans', sans-serif;
+font-family: 'Open Sans', 'arial', sans-serif;
 font-family: 'Comfortaa', 'futura', cursive;
 =================================== */
 
@@ -33,6 +33,11 @@ body {
   text-transform: lowercase;
 }
 
+.md-button.md-raised:hover{
+  background-color: rgba(243,203,0,0.5);
+  color: #70543e;
+}
+
 a{
   text-decoration: none;
   color: inherit;
@@ -40,8 +45,8 @@ a{
 }
 
 h1,h2,h3{
-  font-family: 'Oswald', sans-serif;
-  color: white;
+  font-family: 'Special Elite', 'courier new', monospace;
+  color: #9eceb8;
   text-shadow: 1px 3px 1px #433225;
 }
 
@@ -57,6 +62,7 @@ h2{
 p{
   font-family: 'Comfortaa', 'futura', cursive;
   color: white;
+  text-shadow: 1px 3px 1px #433225;
 }
 
 
@@ -99,7 +105,7 @@ p{
 /* ::: ADMIN/USER DASHBOARDS ::: */
 
 .home.backdrop{
-  background-color: rgba(112, 84, 62, 0.7);
+  background-color: rgba(112, 84, 62, 0.8);
   position: absolute;
   top: 0;
   right: 0;
@@ -109,11 +115,14 @@ p{
 
 .home {
   padding: 10px;
+
 }
 
 .home.header-expanded {
   text-align: center;
   text-shadow: 5px;
+  padding: 90px;
+  margin: 100px;
 }
 
 .home.header-condensed {
