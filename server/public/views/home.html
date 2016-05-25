@@ -1,31 +1,43 @@
 <!-- this page is the HomeController as hc-->
 
-<!-- ::::::::: START SPLASH PAGE ::::::::: -->
-<div class="splash">
+<!-- ::::::::: START HOME PAGE ::::::::: -->
+<div class="home backdrop">
 
-
-
-  <div class="home-header">
+  <!-- ::::::::: full home header + nav ::::::::: -->
+  <div class="home header-expanded">
     <h1>Nile of the North</h1>
 
+    <div class="home nav">
+      <md-button class="md-raised"><a href="/map">Enter Map</a></md-button>
+      <md-button ng-click="hc.loginShow()" class="md-raised">Log In</md-button>
+      <md-input-container>
+        <md-button value="LogOut" class="md-raised"><a href="/logout" target="_self">Log Out</a></md-button>
+      </md-input-container>
+    </div>
   </div>
 
-  <div class="home-nav">
-    <a href="/map"><md-button class="md-raised">Enter Map</md-button></a>
+
+
+  <!-- ::::::::: condensed header + nav ::::::::: -->
+
+  <div class="home header-condensed" ng-hide="true">
+    <h2>Nile of the North</h2>
+    <md-button href="/map" class="md-raised">Enter Map</md-button>
     <md-button ng-click="hc.loginShow()" class="md-raised">Log In</md-button>
     <md-input-container>
       <md-button value="LogOut" class="md-raised"><a href="/logout" target="_self">Log Out</a></md-button>
     </md-input-container>
+
   </div>
 
   <!-- Every time one of the following sections is used, -->
   <!-- we need to make sure the other sections are closed (false) -->
 
 
-  <!-- ::::::::: LOGIN ::::::::: -->
-  <div ng-show="hc.loginForm">
+  <!-- ::::::::: LOGIN FORM ::::::::: -->
+  <div class="home form" ng-show="hc.loginForm">
     <section layout="column">
-      <h2>Log In</h2>
+      <h3>Log In</h3>
       <md-input-container>
         <label for="login-username">Username</label>
         <input type="text" ng-model="hc.loginInfo.username" name="login-username" required/>
@@ -49,11 +61,11 @@
 
 
 
-  <!-- ::::::::: REGISTRATION ::::::::: -->
-  <div ng-show="hc.registerForm">
+  <!-- ::::::::: REGISTRATION FORM::::::::: -->
+  <div class="home form" ng-show="hc.registerForm">
     <section layout="column">
       <!-- action="/register" method="POST"> -->
-      <h2>Registration</h2>
+      <h3>Registration</h3>
 
       <md-input-container>
         <label for="username">Username</label>
@@ -91,7 +103,7 @@
 
 
   <!-- ::::::::: ADMIN DASHBOARD ::::::::: -->
-  <div ng-show="hc.adminDashboard">
+  <div class="home dashboard" ng-show="hc.adminDashboard">
     <!-- The function that shows this section will come from passport authentication of an Admin -->
     <h2>This will be the Admin Dashboard.</h2>
     <md-input-container>
@@ -102,7 +114,7 @@
 
 
   <!-- ::::::::: USER DASHBOARD ::::::::: -->
-  <div ng-show="hc.userDashboard">
+  <div class="home dashboard" ng-show="hc.userDashboard">
     <!-- The function that shows this section will come from passport authentication of a User -->
     <h2>This will be the User Dashboard.</h2>
     <!-- logout button -->
@@ -111,4 +123,4 @@
     </md-input-container>
   </div> <!-- ::::::::: END USER DASHBOARD ::::::::: -->
 
-</div> <!-- ::::::::: END SPLASH PAGE ::::::::: -->
+</div> <!-- ::::::::: END HOME PAGE ::::::::: -->

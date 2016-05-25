@@ -1,22 +1,32 @@
+/* ================================
+colors: final rgba # is % opaque
+#f3cb00	rgba(243,203,0,0.5)
+#ec4500	rgba(236,69,0,0.5)
+#9bb85c	rgba(155,184,92,0.5)
+#9eceb8	rgba(158,206,184,0.5)
 
-/*
-font-family: 'Lobster Two', cursive;
-font-family: 'Comfortaa', cursive;
-font-family: 'Shadows Into Light', cursive;
-https://fonts.googleapis.com/css?family=Lobster+Two|Comfortaa|Shadows+Into+Light
-*/
+===================================
+Header options:
+font-family: 'Special Elite', 'courier new', monospace;
+font-family: 'Oswald', sans-serif;
+font-family: 'Comfortaa', 'futura', cursive;
 
-/*::: GENERAL STYLES :::*/
-html,body {
-  background-image: url('../bark.jpg');
-  background-repeat: repeat;
+Body options:
+font-family: 'Open Sans', sans-serif;
+font-family: 'Comfortaa', 'futura', cursive;
+=================================== */
+
+/* ::: GENERAL STYLES ::: */
+body {
+  background-image: url('../tomatoes.jpg');
+  background-size: cover;
   margin: 0;
   padding: 0;
 }
 
 .md-button.md-raised {
-  background-color: lightgreen;
-  color: seagreen;
+  background-color: #f3cb00;
+  color: #70543e;
   font-family: 'Comfortaa', cursive;
   font-size: 14px;
   font-weight: bolder;
@@ -30,9 +40,18 @@ a{
 }
 
 h1,h2,h3{
-  font-family: 'Lobster Two', 'georgia', cursive;
-  color: palegreen;
-  text-shadow: 1px 3px 1px darkgreen;
+  font-family: 'Oswald', sans-serif;
+  color: white;
+  text-shadow: 1px 3px 1px #433225;
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: bolder;
+}
+
+h2{
+  font-size: 28px;
 }
 
 p{
@@ -41,7 +60,7 @@ p{
 }
 
 
-/*::: MAP STYLES :::*/
+/* ::: MAP STYLES ::: */
 .key {
   position: absolute;
   bottom: 0;
@@ -76,23 +95,39 @@ p{
 }
 
 
-/*::: SPLASH PAGE :::*/
-/*::: ADMIN/USER DASHBOARDS :::*/
+/* ::: HOME PAGE (formerly known as splash page) ::: */
+/* ::: ADMIN/USER DASHBOARDS ::: */
 
-.splash {
-  border: 3px solid seagreen;
-  border-radius: 10px;
-  background-color: mediumseagreen;
-  margin: 10%;
-  padding: 20px;
-  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.50);
+.home.backdrop{
+  background-color: rgba(112, 84, 62, 0.7);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
-.home-header {
+.home {
+  padding: 10px;
+}
+
+.home.header-expanded {
   text-align: center;
   text-shadow: 5px;
 }
 
-.home-nav {
+.home.header-condensed {
+
+}
+
+.home.nav {
+
+}
+
+.home.form {
+
+}
+
+.home.dashboard {
 
 }
