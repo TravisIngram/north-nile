@@ -1,7 +1,7 @@
 var pg            = require('pg');
 var dbConnection  = 'postgres://localhost:5432/north_nile';
 
-function createResourceType() {
+function createResourceType(callback) {
   pg.connect(dbConnection, function(err, client, done) {
     if(err) {
       console.log('Error connecting to DB.' + err);
@@ -17,10 +17,12 @@ function createResourceType() {
       query.on('end', function() {
         console.log('Successfully created resourceType schema.');
         done();
+        callback(null);
       });
 
-      query.on('error', function(error) {
+      query.on('error', function(err) {
         console.log('Error creating resourceType schema.' + err);
+        callback(err);
         process.exit(1);
       });
     }

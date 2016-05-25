@@ -4,6 +4,20 @@ angular.module('northApp').controller('HomeController', ['$http', '$mdDialog', f
   var alert;
   hc.loginInfo = {};
   hc.registerInfo = {};
+  hc.alertMessage = '';
+
+  // registration form password confirmation checking
+  hc.passwordMismatch = function(){
+    if(hc.registerInfo.password !== hc.registerInfo.confirm_password){
+      return true;
+    }
+  }
+
+  hc.passwordMismatchError = function(){
+    if (hc.passwordMismatch() && hc.registerFormInputs.confirm_password.$dirty){
+      return true;
+    }
+  }
 
   // :::: ng-show Functions ::::
 
@@ -81,7 +95,7 @@ hc.registerUser = function() {
           .finally(function() {
             alert = undefined;
           });
-      };
+      }
       showAlert();
       hc.registerInfo={};
       hc.registerForm=false;
@@ -91,9 +105,15 @@ hc.registerUser = function() {
   }, function(response){
     console.log('unsuccessful registration');
     function showAlert() {
+      if(hc.registerInfo.username === undefined){
+        hc.alertMessage = 'Username field cannot be blank';
+      } else {
+        hc.alertMessage = 'Username already exists, please choose another.'
+      }
+
       alert = $mdDialog.alert({
         title: 'Attention',
-        textContent: 'Username already exists, please choose another.',
+        textContent: hc.alertMessage,
         ok: 'Close'
       });
       $mdDialog
@@ -101,22 +121,12 @@ hc.registerUser = function() {
         .finally(function() {
           alert = undefined;
         });
-    };
+    }
     showAlert();
     hc.registerInfo.username = undefined;
   });
 };
 
-//make a factory for the user and admin pages//
-//when the users are logged in, we want them to be able to add or delete locations.
-// angular.module('northApp').controller('UserController', ['UserService', '$http', function(UserService, $http){
-//   var vm=this;
-//be able to add resources //
-
-//be able to delete resource//
-// }])
-
-
-
+  console.log('hc.registerFormInputs:', hc.registerFormInputs);
   console.log('Home controller loaded.');
 }]);
