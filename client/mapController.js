@@ -1,11 +1,7 @@
 angular.module('northApp').controller('MapController', ['UserTrackFactory', '$scope', 'leafletData', 'leafletMarkerEvents', '$mdBottomSheet', function(UserTrackFactory, $scope, leafletData, leafletMarkerEvents, $mdBottomSheet){
   var mc = this;
-
   UserTrackFactory.getUserData();
-
   mc.user = UserTrackFactory.user;
-
-
 
   // test data - eventually will be pulled from server/database
   mc.storedMarkers = {
