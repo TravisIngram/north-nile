@@ -6,9 +6,6 @@ angular.module('northApp').controller('HomeController', ['UserTrackFactory', '$h
   hc.registerInfo = {};
   hc.alertMessage = '';
 
-
-
-
   // registration form password confirmation checking
   hc.passwordMismatch = function(){
     if(hc.registerInfo.password !== hc.registerInfo.confirm_password){
