@@ -6,7 +6,7 @@ angular.module('northApp').controller('HomeController', ['$http', '$mdDialog', f
   hc.registerInfo = {};
   hc.alertMessage = '';
 
-  // registration form password confirmation checking
+  // registration form validation
   hc.passwordMismatch = function(){
     if(hc.registerInfo.password !== hc.registerInfo.confirm_password){
       return true;
@@ -19,7 +19,7 @@ angular.module('northApp').controller('HomeController', ['$http', '$mdDialog', f
     }
   };
 
-  // :::: ng-show Functions ::::
+  // :::: ng-show Functions :::: //
 
   // loginShow():
   hc.loginShow = function() {

@@ -18,10 +18,17 @@ font-family: 'Comfortaa', 'futura', cursive;
 
 /* ::: GENERAL STYLES ::: */
 body {
+
+}
+.background-pic {
   background-image: url('../tomatoes.jpg');
   background-size: cover;
   margin: 0;
   padding: 0;
+}
+
+.backdrop{
+  background-color: rgba(112, 84, 62, 0.8);
 }
 
 .md-button.md-raised {
@@ -109,15 +116,6 @@ p{
 
 /* ::: HOME PAGE (formerly known as splash page) ::: */
 /* ::: ADMIN/USER DASHBOARDS ::: */
-
-.home.backdrop{
-  background-color: rgba(112, 84, 62, 0.8);
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
 
 .home {
   padding: 10px;
