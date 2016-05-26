@@ -48,62 +48,26 @@ angular.module('northApp').controller('AdminController', ['UserTrackFactory', '$
   // }];
 
   ac.savedResources = ResourceFactory.savedResources;
-
-  // generate arrays for tables -> functions moved to ResourceFactory
-  // ac.filterApprovedResources = function(){
-  //   ac.approvedResources = ac.savedResources.filter(function(resource){
-  //     if(!resource.pending){
-  //       return true;
-  //     }
-  //   });
-  // };
-  //
-  // ac.filterPendingResources = function(){
-  //   console.log('ac.savedResources:', ac.savedResources);
-  //   ac.moderationQueue = ac.savedResources.filter(function(resource){
-  //     if(resource.pending){
-  //       return true;
-  //     }
-  //   });
-  // };
-
-
   ac.getSavedResources = ResourceFactory.getSavedResources;
   ac.pendingResources = ResourceFactory.pendingResources;
   ac.approvedResources = ResourceFactory.approvedResources;
 
   ac.selectedModerationResources = [];
   ac.selectedModerationResource = {};
-  // ac.approvedResources = [];
-  // ac.moderationQueue = [];
-  // ac.selectedResource = {
-  //   lat: 44.998995,
-  //   lng: -93.291068,
-  //   title: 'Ms. Kitchens Oblique Reference Parlor',
-  //   type: 'two',
-  //   visible: false,
-  //   username: 'kitchen86',
-  //   dateCreated: 'Dec 4th, 2016',
-  //   pending: true
-  // };
 
   // approve resources en masse
   ac.approveResources = function(){
     console.log('approving resources.');
     ac.selectedModerationResources.map(function(resource){
       resource.is_pending = false;
+      ResourceFactory.updateResource(resource);
     });
     // post to database here -> updateResource
   };
 
 
   // edit dialogs
-
-  // needs to be updated for modal
   ac.editResource = function(resource){
-    // event.stopPropagation();
-    // ac.selectedResource = resource;
-    console.log('ac.selectedResource:', ac.selectedResource);
     ac.editPendingOptions = {
       templateUrl: '/views/edit-pending.html',
       clickOutsideToClose: true,
@@ -118,6 +82,9 @@ angular.module('northApp').controller('AdminController', ['UserTrackFactory', '$
      $mdDialog.show(ac.editPendingOptions);
   };
 
+
+
+  // load tables on page load
   ac.getSavedResources();
   console.log('admin controller loaded!');
 }]);
