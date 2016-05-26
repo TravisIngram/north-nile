@@ -30,7 +30,7 @@ router.post('/new', function(request, response){
 });
 
 router.get('/all', function(request, response){
-  pg.connect(dbConnectionString, function(err, client){
+  pg.connect(dbConnectionString, function(err, client, done){
     if (err){
       console.log('Error connecting to database to get saved resources:', err);
       response.sendStatus(500);

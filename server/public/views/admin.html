@@ -6,6 +6,10 @@
     <a href="/logout"><md-button class="md-raised">Log Out</md-button></a>
   </md-input-container>
 
+  <!-- Testing -->
+
+
+
   <!-- Moderation Queue -->
   <md-card>
     <h2>Moderation Queue</h2>
@@ -31,14 +35,14 @@
           </tr>
           </thead>
           <tbody md-body>
-            <tr md-row ng-repeat="resource in ac.moderationQueue" md-select="resource" md-selectid="name">
+            <tr md-row ng-repeat="resource in ac.pendingResources" md-select="resource" md-selectid="name">
               <td md-cell>{{resource.username}}</td>
-              <td md-cell>{{resource.title}}</td>
+              <td md-cell>{{resource.name}}</td>
               <td md-cell>{{resource.type}}</td>
               <td md-cell>{{resource.dateCreated}}</td>
               <td md-cell><md-button ng-click="ac.editResource(resource)">Edit</md-button></td>
             </tr>
-            <tr md-row ng-show="ac.moderationQueue.length == 0">
+            <tr md-row ng-show="ac.pendingResources.length == 0">
                 <td md-cell>
                   No resources needing approval.
                 </td>
@@ -54,7 +58,7 @@
   </md-card>
 
   <!-- Approved Resources -->
-  
+
   <md-card>
     <h2>Resources</h2>
     <md-button>Add A Resource</md-button>
