@@ -1,4 +1,4 @@
-angular.module('northApp').controller('AdminController', ['UserTrackFactory', '$http', '$mdDialog', function(UserTrackFactory, $http,$mdDialog){
+angular.module('northApp').controller('AdminController', ['UserTrackFactory', '$http', '$mdDialog', 'ResourceFactory', function(UserTrackFactory, $http,$mdDialog, ResourceFactory){
   var ac = this;
 
   UserTrackFactory.getUserData();

@@ -1,4 +1,4 @@
-angular.module('northApp').controller('HomeController', ['$http', '$mdDialog', '$location', function($http, $mdDialog, $location){
+angular.module('northApp').controller('HomeController', ['UserTrackFactory','$http', '$mdDialog', '$location', function(UserTrackFactory, $http, $mdDialog, $location){
 
   var hc = this;
   var alert;
