@@ -16,6 +16,7 @@ var authRouter = require('./routes/authRouter.js');
 var logoutRouter=require('./routes/logoutRouter.js');
 var registerRouter = require('./routes/registerRouter.js');
 var encryption=require('../modules/encryption');
+var resourceRouter = require('./routes/resourceRouter.js');
 
 var app = express();
 
@@ -109,6 +110,7 @@ passport.deserializeUser(function(id, passportDone){
 });
 // routes
 // app.use('/accountsRouter', accountsRouter);
+app.use('/resources', resourceRouter);
 app.use('/auth', authRouter);
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);

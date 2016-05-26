@@ -15,10 +15,11 @@ function createResource(callback) {
         ' "website" varchar(150),' +
         ' "social_media" varchar(150),' +
         ' "leadership" varchar(150),' +
-        ' "private_phone" varchar(50),' +
-        ' "private_email" varchar(150),' +
+        ' "public_phone" varchar(50),' +
+        ' "public_email" varchar(150),' +
         ' "hours" text,' +
-        ' "coordinates" numeric,' +
+        ' "latitude" numeric,' +
+        ' "longitude" numeric,' +
         ' "is_active" boolean,' +
         ' "is_pending" boolean,' +
         ' "date_created" timestamp,' +
