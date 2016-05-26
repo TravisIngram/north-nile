@@ -78,6 +78,7 @@ router.put('/update', function(request, response){
       query.on('end', function(){
         console.log('Updated resource successfully.');
         done();
+        response.sendStatus(200);
       });
     }
   });
