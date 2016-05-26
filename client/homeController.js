@@ -1,10 +1,13 @@
-angular.module('northApp').controller('HomeController', ['$http', '$mdDialog', function($http, $mdDialog){
+angular.module('northApp').controller('HomeController', ['UserTrackFactory', '$http', '$mdDialog', '$location', function(UserTrackFactory, $http, $mdDialog, $location){
 
   var hc = this;
   var alert;
   hc.loginInfo = {};
   hc.registerInfo = {};
   hc.alertMessage = '';
+
+
+
 
   // registration form password confirmation checking
   hc.passwordMismatch = function(){
@@ -126,6 +129,7 @@ hc.registerUser = function() {
     hc.registerInfo.username = undefined;
   });
 };
+
 
   console.log('hc.registerFormInputs:', hc.registerFormInputs);
   console.log('Home controller loaded.');

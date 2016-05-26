@@ -19,6 +19,9 @@ function createResource(callback) {
         ' "private_email" varchar(150),' +
         ' "hours" text,' +
         ' "coordinates" numeric,' +
+        ' "is_active" boolean,' +
+        ' "is_pending" boolean,' +
+        ' "date_created" timestamp,' +
         ' "account_id" int REFERENCES "account"(id),' +
         ' "resource_type_id" int REFERENCES "resource_type"(id),' +
         ' "audio_id" int REFERENCES "audio"(id),' +
