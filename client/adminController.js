@@ -1,8 +1,6 @@
 angular.module('northApp').controller('AdminController', ['UserTrackFactory', '$http', '$mdDialog', 'ResourceFactory', function(UserTrackFactory, $http,$mdDialog, ResourceFactory){
   var ac = this;
-
   UserTrackFactory.getUserData();
-
   ac.user = UserTrackFactory.user;
 
   // dummy data
