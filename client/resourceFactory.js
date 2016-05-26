@@ -13,14 +13,15 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
   var getSavedResources = function(){
     $http.get('/resources/all').then(function(response){
       console.log('Got all saved resources:', response.data);
-      //savedResources = response.data;
       angular.copy(response.data, savedResources);
+
       var tempPendingResources = savedResources.filter(function(resource){
         if (resource.is_pending === true){
           console.log('resource is pending',resource);
           return true;
         }
       });
+
       var tempApprovedResources = savedResources.filter(function(resource){
         if (resource.is_active === true){
           console.log('resource is active',resource);
@@ -34,8 +35,10 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
   };
 
   var updateResource = function(resource){
-    $http.put('/resources/update/' + resource.id).then(function(response){
+    // needs to be like a post route
+    $http.put('/resources/update', resource).then(function(response){
       console.log('Updated resource:', response);
+      getSavedResources();
     });
   };
 
@@ -44,6 +47,7 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
     getSavedResources: getSavedResources,
     savedResources: savedResources,
     pendingResources: pendingResources,
-    approvedResources: approvedResources
+    approvedResources: approvedResources,
+    updateResource: updateResource
   }
 }]);
