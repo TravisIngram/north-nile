@@ -6,9 +6,6 @@ angular.module('northApp').controller('HomeController', ['UserTrackFactory', '$h
   hc.registerInfo = {};
   hc.alertMessage = '';
 
-
-
-
   // registration form password confirmation checking
   hc.passwordMismatch = function(){
     if(hc.registerInfo.password !== hc.registerInfo.confirm_password){
@@ -46,15 +43,17 @@ hc.loginUser = function() {
     if (response.data.is_admin === true) {
       console.log('admin is true');
       hc.loginInfo = {};
-      hc.adminDashboard=true;
-      hc.userDashboard=false;
+      // hc.adminDashboard=true;
+      // hc.userDashboard=false;
+      $location.url('/admin');
       hc.registerForm = false;
       hc.loginForm = false;
     } else {
       console.log('admin is not true');
       hc.loginInfo = {};
-      hc.userDashboard=true;
-      hc.adminDashboard=false;
+      // hc.userDashboard=true;
+      // hc.adminDashboard=false;
+      $location.url('/user');
       hc.registerForm=false;
       hc.loginForm=false;
     }
