@@ -18,19 +18,17 @@ font-family: 'Comfortaa', 'futura', cursive;
 =================================== */
 
 /* ::: GENERAL STYLES ::: */
+
 body {
-  background: none;
-  color: inherit;
-  background-image: url('../tomatoes.jpg');
+  size: auto;
+  background:
+    /* :: from C. Coyier @csstricks ::*/
+    linear-gradient(
+      rgba(112, 84, 62, 0.8),
+      rgba(112, 84, 62, 0.8)
+    ),
+    url('../kale.jpg');
   background-size: cover;
-  margin: 0;
-  padding: 0;
-
-}
-
-.backdrop{
-  background-color: rgba(112, 84, 62, 0.8);
-  z-index: -1;
 }
 
 .md-button.md-raised {
@@ -121,6 +119,7 @@ p{
 /* ::: ADMIN/USER DASHBOARDS ::: */
 
 .home {
+  background-color: transparent;
   padding: 10px;
 
 }
