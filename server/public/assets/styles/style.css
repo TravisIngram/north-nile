@@ -116,7 +116,6 @@ p{
 
 
 /* ::: HOME PAGE (formerly known as splash page) ::: */
-/* ::: ADMIN/USER DASHBOARDS ::: */
 
 .home {
   background-color: transparent;
@@ -132,7 +131,7 @@ p{
 }
 
 .home.header-condensed {
-
+ background-color: hsla(69, 33%, 71%, 0.78);
 }
 
 .home.nav {
@@ -146,6 +145,10 @@ p{
 .home.dashboard {
 
 }
+
+/* ::: ADMIN/USER DASHBOARDS ::: */
+
+
 
 /*edit and add new resource modals on admin*/
 md-dialog{

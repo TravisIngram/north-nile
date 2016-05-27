@@ -124,9 +124,9 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
 
 
 // add new resource modal controller
-angular.module('northApp').controller('NewResourceController', ['$http', '$mdDialog', 'ResourceFactory', function($http, $mdDialog, ResourceFactory){
+angular.module('northApp').controller('NewResourceController', ['$http',  '$mdDialog', 'ResourceFactory', function($http, $mdDialog, ResourceFactory){
+  // console.log('isAdmin working', isAdmin);
   var nrc = this;
-
   nrc.newResource = {is_active:true};
 
   nrc.cancelNewResource = function(){

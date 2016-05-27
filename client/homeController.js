@@ -5,6 +5,7 @@ angular.module('northApp').controller('HomeController', ['UserTrackFactory','$ht
   hc.loginInfo = {};
   hc.registerInfo = {};
   hc.alertMessage = '';
+  hc.headerExpanded = true;
 
   // registration form validation
   hc.passwordMismatch = function(){
@@ -25,6 +26,8 @@ angular.module('northApp').controller('HomeController', ['UserTrackFactory','$ht
   hc.loginShow = function() {
     hc.loginForm = true;
     hc.registerForm = false;
+    hc.headerExpanded = false;
+    hc.headerCondensed = true;
   };
 
 // registerShow():
@@ -33,6 +36,14 @@ angular.module('northApp').controller('HomeController', ['UserTrackFactory','$ht
     hc.registerForm = true;
     hc.loginForm = false;
   };
+
+// headerExpandedShow();
+  hc.headerExpandedShow = function() {
+    hc.headerExpanded = true;
+    hc.headerCondensed = false;
+    hc.loginForm = false;
+    hc.registerForm = false;
+  }
 
 // :::: Login User, redirect based on success/failure ::::
 
