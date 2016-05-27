@@ -37,7 +37,10 @@ router.get('/all', function(request, response){
     } else {
       var resources = [];
 
-      var queryString = 'SELECT * FROM "resource"';
+      // var queryString = 'SELECT * FROM "resource"';
+
+
+      var queryString = 'SELECT "resource".id, "name", "location", "type", "date_created", "account_id", "is_active", "is_pending", "username" FROM "resource" INNER JOIN "account" ON account.id = resource.account_id';
 
       var query = client.query(queryString);
 
