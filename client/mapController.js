@@ -118,7 +118,7 @@ angular.module('northApp').controller('MapController', ['ResourceFactory', 'User
   mc.closeInfoDrawer = function(event, args){
     mc.filterMarkers('all');
     console.log('visibleMarkers, storedMarkers, approvedResources:', mc.visibleMarkers, mc.storedMarkers, mc.mapResources);
-    console.log('leafletData:', leafletData.getMarkers());
+    console.log('leafletData:', leafletData);
     mc.showInfoDrawer = false;
 
     // update map size - needed if we are shrinking the map to recenter the icon/marker in the top middle

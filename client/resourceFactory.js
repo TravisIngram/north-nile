@@ -3,12 +3,19 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
   var pendingResources = [];
   var approvedResources = [];
   var mapResources = {};
-
+  var geocodeKey = 'd757d21efc7d5efeb1195e398d031a5e';
 
   var saveNewResource = function(resource){
-    $http.post('/resources/new', resource).then(function(response){
-      console.log('Save new resource response:', response);
-      getSavedResources();
+    $http.get('https://api.opencagedata.com/geocode/v1/json?q=' + resource.location + '&key=' + geocodeKey).then(function(response){
+      console.log('Geocode response:', response);
+      resource.latitude = response.data.results[0].geometry.lat;
+      resource.longitude = response.data.results[0].geometry.lng;
+      $http.post('/resources/new', resource).then(function(response){
+        console.log('Save new resource response:', response);
+        getSavedResources();
+      });
+    }, function(response){
+      console.log('Geocode failed:', response);
     });
   };
 
@@ -42,7 +49,9 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
 
       angular.copy(tempPendingResources, pendingResources);
       angular.copy(tempApprovedResources, approvedResources);
-      callback('all'); // run filterMarkers callback
+      if(callback){
+        callback('all'); // run filterMarkers callback if present
+      }
     });
   };
 
@@ -53,6 +62,7 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
       getSavedResources();
     });
   };
+
 
   return {
     saveNewResource: saveNewResource,
