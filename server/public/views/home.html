@@ -4,7 +4,7 @@
 <div class="home backdrop">
 
   <!-- ::::::::: full home header + nav ::::::::: -->
-  <div class="home header-expanded">
+  <div class="home header-expanded" ng-show="hc.headerExpanded">
     <h1>Nile of the North</h1>
 
     <p>Deadlights jack lad schooner scallywag dance the hempen jig carouser broadside cable strike colors. Bring a spring upon her cable holystone blow the man down spanker Shiver me timbers to go on account lookout wherry doubloon chase. Belay yo-ho-ho keelhaul squiffy black spot yardarm spyglass sheet transom heave to.</p>
@@ -14,28 +14,37 @@
       <md-button ng-click="hc.loginShow()" class="md-raised">Log In</md-button>
       <md-input-container>
         <md-button value="LogOut" class="md-raised"><a href="/logout" target="_self">Log Out</a></md-button>
+        <!-- This logout button should only show if you're logged in. hmmm.  -->
       </md-input-container>
     </div>
   </div>
 
   <!-- ::::::::: condensed header + nav ::::::::: -->
+  <!-- Will only show when you click login or register -->
 
-  <div class="home header-condensed" ng-hide="true">
-    <h2>Nile of the North</h2>
-    <md-button href="/map" class="md-raised">Enter Map</md-button>
-    <md-button ng-click="hc.loginShow()" class="md-raised">Log In</md-button>
-    <md-input-container>
-      <md-button value="LogOut" class="md-raised"><a href="/logout" target="_self">Log Out</a></md-button>
-    </md-input-container>
+  <md-toolbar class="home header-condensed" ng-show="hc.headerCondensed">
+    <div class="md-toolbar-tools">
+      <h2>
+        <span>Nile of the North</span>
+      </h2>
+      <span flex></span>
+      <md-button class="md-icon-button" href="/map" aria-label="map" >
+        <md-icon md-svg-src="assets/img/ic_map_black_24px.svg"></md-icon>
+      </md-button>
+      <md-button class="md-icon-button" ng-click="hc.headerExpandedShow()" aria-label="home">
+        <md-icon md-svg-src="assets/img/ic_home_black_24px.svg"></md-icon>
+      </md-button>
 
+      <!-- *** Logout should only show if someone is logged in ***
+      <md-button value="LogOut" class="md-raised"><a href="/logout" target="_self">Log Out</a></md-button> -->
 
-  </div>
+    </div>
+  </md-toolbar>
 
   <!-- Every time one of the following sections is used, -->
   <!-- we need to make sure the other sections are closed (false) -->
 
-
-  <!-- ::::::::: LOGIN FORM ::::::::: -->
+<!-- ::::::::: LOGIN FORM ::::::::: -->
   <div class="home form" ng-show="hc.loginForm">
     <section layout="column">
       <h3>Log In</h3>
