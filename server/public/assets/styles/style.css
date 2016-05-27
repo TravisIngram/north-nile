@@ -18,8 +18,8 @@ font-family: 'Comfortaa', 'futura', cursive;
 
 /* ::: GENERAL STYLES ::: */
 body {
-
 }
+
 .background-pic {
   background-image: url('../tomatoes.jpg');
   background-size: cover;
@@ -54,7 +54,6 @@ body {
 a{
   text-decoration: none;
   color: inherit;
-
 }
 
 h1,h2,h3{
@@ -111,6 +110,8 @@ p{
 
 .errorMessage{
   color: #dd2c00;
+  font-family: 'Comfortaa', 'futura', cursive;
+
 }
 
 
@@ -130,7 +131,7 @@ p{
 }
 
 .home.header-condensed {
-
+  
 }
 
 .home.nav {
