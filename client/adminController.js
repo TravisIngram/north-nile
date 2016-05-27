@@ -60,6 +60,7 @@ angular.module('northApp').controller('AdminController', ['UserTrackFactory', '$
     console.log('approving resources.');
     ac.selectedModerationResources.map(function(resource){
       resource.is_pending = false;
+      resource.is_active = true;
       ResourceFactory.updateResource(resource);
     });
     // post to database here -> updateResource
@@ -98,6 +99,8 @@ angular.module('northApp').controller('AdminController', ['UserTrackFactory', '$
   console.log('admin controller loaded!');
 }]);
 
+
+// edit pending modal controller
 angular.module('northApp').controller('EditPendingController', ['selectedResource', '$mdDialog', 'ResourceFactory', function(selectedResource,  $mdDialog, ResourceFactory){
   var epc = this;
 
@@ -119,16 +122,20 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
   console.log('Edit Pending Controller loaded.');
 }]);
 
+
+// add new resource modal controller
 angular.module('northApp').controller('NewResourceController', ['$http', '$mdDialog', 'ResourceFactory', function($http, $mdDialog, ResourceFactory){
   var nrc = this;
 
-  nrc.newResource = {is_active:true, is_pending: false};
+  nrc.newResource = {is_active:true};
 
   nrc.cancelNewResource = function(){
     $mdDialog.hide();
   };
 
   nrc.saveNewResource = function(resource){
+    resource.is_pending = false;
+    resource.date_created = new Date();
     ResourceFactory.saveNewResource(resource);
     $mdDialog.hide();
   };
