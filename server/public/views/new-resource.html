@@ -1,0 +1,89 @@
+<!-- Edit Modals -->
+<md-dialog>
+  <md-dialog-content class="md-dialog-content">
+    <section layout="column">
+      test:{{nrc.newResource}}
+      <md-input-container>
+        <label for="new_title">Title</label>
+        <input type="text" name="new_title" ng-model="nrc.newResource.name" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_location">Location</label>
+        <input type="text" name="new_location" ng-model="nrc.newResource.location" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_description">Description</label>
+        <input type="text" name="new_description" ng-model="nrc.newResource.description" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_website">Website</label>
+        <input type="text" name="new_website" ng-model="nrc.newResource.website" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_social_media">Social Media</label>
+        <input type="text" name="new_social_media" ng-model="nrc.newResource.social_media" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_leadership">Leadership</label>
+        <input type="text" name="new_leadership" ng-model="nrc.newResource.leadership" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_phone">Public Phone</label>
+        <input type="text" name="new_phone" ng-model="nrc.newResource.public_phone" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_email">Public Email</label>
+        <input type="text" name="new_email" ng-model="nrc.newResource.public_email" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_hours">Hours</label>
+        <input type="text" name="new_hours" ng-model="nrc.newResource.hours" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_lat">Coordinates - Latitude</label>
+        <input type="text" name="new_lat" ng-model="nrc.newResource.latitude" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_lng">Coordinates - Longitude</label>
+        <input type="text" name="new_lng" ng-model="nrc.newResource.longitude" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_type">Type</label>
+        <input type="text" name="new_type" ng-model="nrc.newResource.type" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_audio">Audio</label>
+        <input type="text" name="new_audio" ng-model="nrc.newResource.audio" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_images">Images</label>
+        <input type="text" name="new_images" ng-model="nrc.newResource.images" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_video">Video</label>
+        <input type="text" name="new_video" ng-model="nrc.newResource.video" />
+      </md-input-container>
+
+      <md-checkbox name="new_approval" ng-model="nrc.newResource.is_active" aria-label="new_approval">Approved</md-checkbox>
+
+      <md-button ng-click="nrc.saveNewResource(nrc.newResource)">Save</md-button>
+      <md-button ng-click="nrc.cancelNewResource()">Cancel</md-button>
+    </section>
+
+
+  </md-dialog-content>
+</md-dialog>

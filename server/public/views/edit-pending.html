@@ -5,7 +5,7 @@
       test:{{ac.selectedResource}}
       <md-input-container>
         <label for="pending_title">Title</label>
-        <input type="text" name="pending_title" ng-model="epc.selectedResource.title" />
+        <input type="text" name="pending_title" ng-model="epc.selectedResource.name" />
       </md-input-container>
 
       <md-input-container>
@@ -34,13 +34,13 @@
       </md-input-container>
 
       <md-input-container>
-        <label for="pending_phone">Phone</label>
-        <input type="text" name="pending_phone" ng-model="epc.selectedResource.private_phone" />
+        <label for="pending_phone">Public Phone</label>
+        <input type="text" name="pending_phone" ng-model="epc.selectedResource.public_phone" />
       </md-input-container>
 
       <md-input-container>
-        <label for="pending_email">Email</label>
-        <input type="text" name="pending_email" ng-model="epc.selectedResource.private_email" />
+        <label for="pending_email">Public Email</label>
+        <input type="text" name="pending_email" ng-model="epc.selectedResource.public_email" />
       </md-input-container>
 
       <md-input-container>
@@ -50,12 +50,12 @@
 
       <md-input-container>
         <label for="pending_lat">Coordinates - Latitude</label>
-        <input type="text" name="pending_lat" ng-model="epc.selectedResource.lat" />
+        <input type="text" name="pending_lat" ng-model="epc.selectedResource.latitude" />
       </md-input-container>
 
       <md-input-container>
         <label for="pending_lng">Coordinates - Longitude</label>
-        <input type="text" name="pending_lng" ng-model="epc.selectedResource.lng" />
+        <input type="text" name="pending_lng" ng-model="epc.selectedResource.longitude" />
       </md-input-container>
 
       <md-input-container>
@@ -78,7 +78,7 @@
         <input type="text" name="pending_video" ng-model="epc.selectedResource.video" />
       </md-input-container>
 
-      <md-checkbox name="pending_approval" ng-model="epc.selectedResource.approved" aria-label="pending_approval">Approved</md-checkbox>
+      <md-checkbox name="pending_approval" ng-model="epc.selectedResource.is_active" aria-label="pending_approval">Approved</md-checkbox>
 
       <md-button ng-click="epc.saveEditPending()">Save</md-button>
       <md-button ng-click="epc.cancelEditPending()">Cancel</md-button>

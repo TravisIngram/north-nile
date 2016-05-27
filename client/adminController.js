@@ -1,8 +1,6 @@
-angular.module('northApp').controller('AdminController', ['UserTrackFactory', '$http', '$mdDialog', function(UserTrackFactory, $http,$mdDialog){
+angular.module('northApp').controller('AdminController', ['UserTrackFactory', '$http', '$mdDialog', 'ResourceFactory', function(UserTrackFactory, $http,$mdDialog, ResourceFactory){
   var ac = this;
-
   UserTrackFactory.getUserData();
-
   ac.user = UserTrackFactory.user;
 
   // dummy data
@@ -50,57 +48,27 @@ angular.module('northApp').controller('AdminController', ['UserTrackFactory', '$
   // }];
 
   ac.savedResources = ResourceFactory.savedResources;
-
-  // generate arrays for tables
-  ac.filterApprovedResources = function(){
-    ac.approvedResources = ac.savedResources.filter(function(resource){
-      if(!resource.pending){
-        return true;
-      }
-    });
-  };
-
-  ac.filterPendingResources = function(){
-    ac.moderationQueue = ac.savedResources.filter(function(resource){
-      if(resource.pending){
-        return true;
-      }
-    });
-  };
+  ac.getSavedResources = ResourceFactory.getSavedResources;
+  ac.pendingResources = ResourceFactory.pendingResources;
+  ac.approvedResources = ResourceFactory.approvedResources;
 
   ac.selectedModerationResources = [];
   ac.selectedModerationResource = {};
-  ac.approvedResources = [];
-  ac.moderationQueue = [];
-  ac.selectedResource = {
-    lat: 44.998995,
-    lng: -93.291068,
-    title: 'Ms. Kitchens Oblique Reference Parlor',
-    type: 'two',
-    visible: false,
-    username: 'kitchen86',
-    dateCreated: 'Dec 4th, 2016',
-    pending: true
-  };
 
   // approve resources en masse
   ac.approveResources = function(){
     console.log('approving resources.');
     ac.selectedModerationResources.map(function(resource){
-      resource.pending = false;
+      resource.is_pending = false;
+      resource.is_active = true;
+      ResourceFactory.updateResource(resource);
     });
-    ac.filterApprovedResources();
-    ac.filterPendingResources();
+    // post to database here -> updateResource
   };
 
 
   // edit dialogs
-
-  // needs to be updated for modal
   ac.editResource = function(resource){
-    // event.stopPropagation();
-    // ac.selectedResource = resource;
-    console.log('ac.selectedResource:', ac.selectedResource);
     ac.editPendingOptions = {
       templateUrl: '/views/edit-pending.html',
       clickOutsideToClose: true,
@@ -115,14 +83,24 @@ angular.module('northApp').controller('AdminController', ['UserTrackFactory', '$
      $mdDialog.show(ac.editPendingOptions);
   };
 
-  ac.getSavedResources = ResourceFactory.getSavedResources;
+  // add new resource
+  ac.addNewResource = function(){
+    ac.newResourceOptions = {
+      templateUrl: '/views/new-resource.html',
+      clickOutsideToClose: true,
+      controller: 'NewResourceController',
+      controllerAs: 'nrc'
+    }
+    $mdDialog.show(ac.newResourceOptions);
+  };
 
+  // load tables on page load
   ac.getSavedResources();
-  ac.filterApprovedResources();
-  ac.filterPendingResources();
   console.log('admin controller loaded!');
 }]);
 
+
+// edit pending modal controller
 angular.module('northApp').controller('EditPendingController', ['selectedResource', '$mdDialog', 'ResourceFactory', function(selectedResource,  $mdDialog, ResourceFactory){
   var epc = this;
 
@@ -135,11 +113,32 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
 
   epc.saveEditPending = function(){
     // add save logic here -> probably need to post to server/database
-    epc.selectedResource.pending = !epc.selectedResource.approved; // make pending value false based on approve value
-    console.log('ac.selectedResource:', epc.selectedResource);
-    // ResourceFactory.updateResource(epc.selectedResource);
+    epc.selectedResource.is_pending = !epc.selectedResource.is_active; // make pending value false based on approve value
+    console.log('epc.selectedResource:', epc.selectedResource);
+    ResourceFactory.updateResource(epc.selectedResource);
     $mdDialog.hide();
   };
 
   console.log('Edit Pending Controller loaded.');
+}]);
+
+
+// add new resource modal controller
+angular.module('northApp').controller('NewResourceController', ['$http', '$mdDialog', 'ResourceFactory', function($http, $mdDialog, ResourceFactory){
+  var nrc = this;
+
+  nrc.newResource = {is_active:true};
+
+  nrc.cancelNewResource = function(){
+    $mdDialog.hide();
+  };
+
+  nrc.saveNewResource = function(resource){
+    resource.is_pending = false;
+    resource.date_created = new Date();
+    ResourceFactory.saveNewResource(resource);
+    $mdDialog.hide();
+  };
+
+  console.log('New Resource Controller loaded.');
 }]);
