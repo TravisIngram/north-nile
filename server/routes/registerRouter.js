@@ -1,6 +1,7 @@
 var express=require('express');
 var router=express.Router();
 // var passport=require('node-bourbon');
+var passport=require('passport');
 var path=require('path');
 var pg=require('pg');
 var encryption=require("../../modules/encryption");
@@ -29,8 +30,12 @@ router.post('/', function(request, response, next){
         console.log(err);
         response.sendStatus(401);
       });
-      query.on('end', function(){
-        response.redirect('/');
+      query.on('end', function() {
+        var authenticationFunction = passport.authenticate('local');
+        authenticationFunction(request, response, function() {
+          response.sendStatus(200);
+        });
+        // response.redirect('/');
         client.end();
       });
   });
