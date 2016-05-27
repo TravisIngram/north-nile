@@ -1,3 +1,4 @@
+
 /* ================================
 colors: final rgba # is % opaque
 #f3cb00	rgba(243,203,0,0.6)
@@ -18,17 +19,18 @@ font-family: 'Comfortaa', 'futura', cursive;
 
 /* ::: GENERAL STYLES ::: */
 body {
-}
-
-.background-pic {
+  background: none;
+  color: inherit;
   background-image: url('../tomatoes.jpg');
   background-size: cover;
   margin: 0;
   padding: 0;
+
 }
 
 .backdrop{
   background-color: rgba(112, 84, 62, 0.8);
+  z-index: -1;
 }
 
 .md-button.md-raised {
@@ -131,7 +133,7 @@ p{
 }
 
 .home.header-condensed {
-  
+
 }
 
 .home.nav {
