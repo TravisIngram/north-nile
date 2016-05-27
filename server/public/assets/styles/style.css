@@ -145,3 +145,8 @@ p{
 .home.dashboard {
 
 }
+
+/*edit and add new resource modals on admin*/
+md-dialog{
+  width:90vw;
+}

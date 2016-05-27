@@ -1,9 +1,11 @@
 <!-- ::::::::: USER DASHBOARD ::::::::: -->
 <div class="home dashboard" ng-show="hc.userDashboard">
+  <p> Hello, {{uc.user.info.username}}</p>
   <!-- The function that shows this section will come from passport authentication of a User -->
   <h2>This will be the User Dashboard.</h2>
   <!-- logout button -->
   <md-input-container>
+
     <md-button value="LogOut" class="md-raised"><a href="/logout" target="_self">Log Out</a></md-button>
   </md-input-container>
 </div> <!-- ::::::::: END USER DASHBOARD ::::::::: -->
