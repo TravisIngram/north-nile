@@ -16,6 +16,11 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
       });
     }, function(response){
       console.log('Geocode failed:', response);
+      // save marker even on fail?
+      $http.post('/resources/new', resource).then(function(response){
+        console.log('Save new resource response:', response);
+        getSavedResources();
+      });
     });
   };
 
