@@ -7,6 +7,7 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
   var saveNewResource = function(resource){
     $http.post('/resources/new', resource).then(function(response){
       console.log('Save new resource response:', response);
+      getSavedResources();
     });
   };
 

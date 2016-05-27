@@ -82,7 +82,16 @@ angular.module('northApp').controller('AdminController', ['UserTrackFactory', '$
      $mdDialog.show(ac.editPendingOptions);
   };
 
-
+  // add new resource
+  ac.addNewResource = function(){
+    ac.newResourceOptions = {
+      templateUrl: '/views/new-resource.html',
+      clickOutsideToClose: true,
+      controller: 'NewResourceController',
+      controllerAs: 'nrc'
+    }
+    $mdDialog.show(ac.newResourceOptions);
+  };
 
   // load tables on page load
   ac.getSavedResources();
@@ -108,4 +117,21 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
   };
 
   console.log('Edit Pending Controller loaded.');
+}]);
+
+angular.module('northApp').controller('NewResourceController', ['$http', '$mdDialog', 'ResourceFactory', function($http, $mdDialog, ResourceFactory){
+  var nrc = this;
+
+  nrc.newResource = {is_active:true, is_pending: false};
+
+  nrc.cancelNewResource = function(){
+    $mdDialog.hide();
+  };
+
+  nrc.saveNewResource = function(resource){
+    ResourceFactory.saveNewResource(resource);
+    $mdDialog.hide();
+  };
+
+  console.log('New Resource Controller loaded.');
 }]);
