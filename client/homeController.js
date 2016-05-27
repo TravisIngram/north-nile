@@ -83,7 +83,8 @@ hc.loginUser = function() {
 
 hc.registerUser = function() {
   $http.post('/register', hc.registerInfo).then(function(response){
-    if (response.status == 200){
+    if (response.status == 200) {
+      $location.path('/user');
       console.log('successful registration');
       // Function below will prompt login. Would be nice to automatically login user?
       function showAlert() {

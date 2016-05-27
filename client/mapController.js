@@ -1,39 +1,43 @@
-angular.module('northApp').controller('MapController', ['UserTrackFactory', '$scope', 'leafletData', 'leafletMarkerEvents', '$mdBottomSheet', function(UserTrackFactory, $scope, leafletData, leafletMarkerEvents, $mdBottomSheet){
+angular.module('northApp').controller('MapController', ['ResourceFactory', 'UserTrackFactory', '$scope', 'leafletData', 'leafletMarkerEvents', '$mdBottomSheet', function(ResourceFactory, UserTrackFactory, $scope, leafletData, leafletMarkerEvents, $mdBottomSheet){
   var mc = this;
   UserTrackFactory.getUserData();
   mc.user = UserTrackFactory.user;
 
   // test data - eventually will be pulled from server/database
-  mc.storedMarkers = {
-      m1: {
-          lat: 44.996121,
-          lng: -93.295845,
-          title: 'Mr. Books Bruschetta Machine',
-          type: 'one',
-          visible: false
-      },
-      m2:{
-        lat: 44.998995,
-        lng: -93.291068,
-        title: 'Ms. Kitchens Oblique Reference Parlor',
-        type: 'two',
-        visible: false
-      },
-      m3: {
-          lat: 44.999143,
-          lng: -93.297133,
-          title: 'Mr. Bones Bruschetta Machine',
-          type: 'one',
-          visible: false
-      },
-      m4:{
-        lat: 45.002572,
-        lng: -93.289515,
-        title: 'Ms. Burbakers Oblique Reference Parlor',
-        type: 'two',
-        visible: false
-      }
-  };
+  // mc.storedMarkers = {
+  //     m1: {
+  //         lat: 44.996121,
+  //         lng: -93.295845,
+  //         title: 'Mr. Books Bruschetta Machine',
+  //         type: 'one',
+  //         visible: false
+  //     },
+  //     m2:{
+  //       lat: 44.998995,
+  //       lng: -93.291068,
+  //       title: 'Ms. Kitchens Oblique Reference Parlor',
+  //       type: 'two',
+  //       visible: false
+  //     },
+  //     m3: {
+  //         lat: 44.999143,
+  //         lng: -93.297133,
+  //         title: 'Mr. Bones Bruschetta Machine',
+  //         type: 'one',
+  //         visible: false
+  //     },
+  //     m4:{
+  //       lat: 45.002572,
+  //       lng: -93.289515,
+  //       title: 'Ms. Burbakers Oblique Reference Parlor',
+  //       type: 'two',
+  //       visible: false
+  //     }
+  // };
+
+
+  mc.storedMarkers = ResourceFactory.mapResources;
+
 
   // start count at a number higher than any keys present in the object - this ensures no duplicates
   mc.markerSize = Object.keys(mc.storedMarkers).length;
@@ -75,26 +79,6 @@ angular.module('northApp').controller('MapController', ['UserTrackFactory', '$sc
     });
   };
 
-  // configure map defaults
-  angular.extend(mc, {
-        defaults: {
-            scrollWheelZoom: false,
-            touchZoom: true,
-            dragging: true,
-            tap: true,
-            tapTolerance: 100 // may not be necessary after angular material skipClickHijack() fix
-        },
-        center: {
-          lat: 44.996121,
-          lng: -93.295845,
-          zoom: 15
-        },
-        tiles: {
-            url: "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        },
-        markers: mc.visibleMarkers
-  });
-
   mc.lastClicked = {};
 
   // open infoDrawer on marker Click
@@ -132,6 +116,9 @@ angular.module('northApp').controller('MapController', ['UserTrackFactory', '$sc
 
   // close infoDrawer on map click
   mc.closeInfoDrawer = function(event, args){
+    mc.filterMarkers('all');
+    console.log('visibleMarkers, storedMarkers, approvedResources:', mc.visibleMarkers, mc.storedMarkers, mc.mapResources);
+    console.log('leafletData:', leafletData);
     mc.showInfoDrawer = false;
 
     // update map size - needed if we are shrinking the map to recenter the icon/marker in the top middle
@@ -153,15 +140,36 @@ angular.module('northApp').controller('MapController', ['UserTrackFactory', '$sc
     });
   };
 
+  // get markers from database
+  ResourceFactory.getSavedResources(mc.filterMarkers);
+
   // bind event handlers
   $scope.$on('leafletDirectiveMarker.map.click', mc.openInfoDrawer);
   $scope.$on('leafletDirectiveMap.map.click', mc.closeInfoDrawer);
 
 
   // set all markers to visible on page load
-  mc.filterMarkers('all');
+  //mc.filterMarkers('all');
+
+  // configure map defaults
+  angular.extend(mc, {
+        defaults: {
+            scrollWheelZoom: false,
+            touchZoom: true,
+            dragging: true,
+            tap: true,
+            tapTolerance: 100 // may not be necessary after angular material skipClickHijack() fix
+        },
+        center: {
+          lat: 44.996121,
+          lng: -93.295845,
+          zoom: 15
+        },
+        tiles: {
+            url: "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        },
+        markers: mc.visibleMarkers
+  });
+
   console.log('Map controller loaded.');
-
-
-
 }]);
