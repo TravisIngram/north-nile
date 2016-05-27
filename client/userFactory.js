@@ -35,12 +35,19 @@ angular.module('northApp').run(['$rootScope', '$location', 'UserTrackFactory', f
     var promise = UserTrackFactory.getUserData();
 
     promise.then(function(response){
-      console.log('routeChangeResponse:', response);
+      console.log('$location.url()', $location.url());
       user.info = response.data;
       // if route requires auth and user is not logged in
       if (!routeClean($location.url()) && user.info == ''){
         console.log('user not logged in');
         $location.path('/');
+      } else if (($location.url() === '/admin') && !user.info.is_admin) {
+        console.log('user trying to access admin');
+        if (user.info === ''){
+          $location.path('/');
+        } else {
+          $location.path('/user');
+        }        
       } else {
         console.log('user logged in');
       }
