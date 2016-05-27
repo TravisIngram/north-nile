@@ -59,6 +59,36 @@ router.get('/all', function(request, response){
   });
 });
 
+router.get('/user/:id', function(request, response){
+  var userId=request.params.id;
+  pg.connect(dbConnectionString, function(err, client, done){
+    if(err){
+      console.log('error connecting to database to get user resources', err);
+      response.sendStatus(500);
+    }else{
+      var resources = [];
+      var queryString = "SELECT * FROM resource WHERE account_id = $1";
+
+      var query = client.query(queryString, [userId]);
+
+      query.on('row', function(row){
+        resources.push(row);
+      });
+
+      query.on('error', function(err){
+        console.log('Error getting saved resources:', err);
+        client.end();
+      });
+
+      query.on('end', function(){
+        console.log('Got saved resources:', resources);
+        response.send(resources);
+        done();
+      });
+    }
+  })
+});
+
 router.put('/update', function(request, response){
   var resource = request.body;
   pg.connect(dbConnectionString, function(err, client, done){

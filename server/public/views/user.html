@@ -30,6 +30,14 @@
         <th md-column>
           Edit
         </th>
+      </thead>
+      <tbody md-body>
+        <tr md-row ng-repeat = "parent in uc.userResources">
+          <td md-cell>{{parent.name}}</td>
+          <td md-cell>{{parent.location}}</td>
+        </tr>
+      </tbody>
+    </table> 
 
           <!-- add a new resource -->
   <md-button ng-click="uc.addNewResource()">Add A Resource</md-button>

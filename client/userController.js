@@ -1,14 +1,20 @@
 angular.module('northApp').controller('UserController', ['UserTrackFactory', '$http', '$mdDialog','ResourceFactory', function(UserTrackFactory, $http, $mdDialog, ResourceFactory){
   console.log('user controller loaded.');
   var uc = this;
-  UserTrackFactory.getUserData();
-  uc.user = UserTrackFactory.user;
+  uc.user = {};
+  var promise = UserTrackFactory.getUserData();
+  promise.then(function(response){
+    console.log(response.data);
+    uc.user.info = response.data;
+    uc.getUserResources(uc.user);
+  });
+  // uc.user = UserTrackFactory.user;
 //ability to add new resource //
-uc.savedResources=ResourceFactory.savedResources;
-uc.getSavedResources=ResourceFactory.getSavedResources;
+uc.userResources=ResourceFactory.userResources;
+uc.getUserResources = ResourceFactory.getUserResources;
 
-uc.getSavedResources();
-console.log('user controller called getSavedResources');
+
+console.log('user controller called getUserResources');
 
 uc.addNewResource = function(){
   console.log('uc.user:', uc.user);
