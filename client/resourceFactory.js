@@ -2,6 +2,7 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
   var savedResources = [];
   var pendingResources = [];
   var approvedResources = [];
+  var mapResources = {};
 
 
   var saveNewResource = function(resource){
@@ -11,27 +12,37 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
     });
   };
 
-  var getSavedResources = function(){
+  var getSavedResources = function(callback){
     $http.get('/resources/all').then(function(response){
       console.log('Got all saved resources:', response.data);
       angular.copy(response.data, savedResources);
 
       var tempPendingResources = savedResources.filter(function(resource){
         if (resource.is_pending === true){
-          console.log('resource is pending',resource);
+          // console.log('resource is pending',resource);
           return true;
         }
       });
 
       var tempApprovedResources = savedResources.filter(function(resource){
         if (resource.is_active === true){
-          console.log('resource is active',resource);
+          // console.log('resource is active',resource);
           return true;
         }
       });
 
+      var count = 0;
+      tempApprovedResources.map(function(resource){
+        resource.lat = Number(resource.latitude); // convert to number and format for Leaflet
+        resource.lng = Number(resource.longitude); // convert to number and format for Leaflet
+
+        mapResources['m'+count] = resource;
+        count++
+      });
+
       angular.copy(tempPendingResources, pendingResources);
       angular.copy(tempApprovedResources, approvedResources);
+      callback('all'); // run filterMarkers callback
     });
   };
 
@@ -49,6 +60,7 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
     savedResources: savedResources,
     pendingResources: pendingResources,
     approvedResources: approvedResources,
-    updateResource: updateResource
+    updateResource: updateResource,
+    mapResources: mapResources
   }
 }]);
