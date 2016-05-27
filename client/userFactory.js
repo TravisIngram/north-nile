@@ -16,14 +16,24 @@ angular.module('northApp').factory('UserTrackFactory', ['$http', '$rootScope', '
 
 angular.module('northApp').run(['$rootScope', '$location', 'UserTrackFactory', function($rootScope, $location, UserTrackFactory){
   // enumerate routes that don't need authentication
-  var routesThatDontRequireAuth = ['/', '/map'];
+  var routesThatDontRequireAuth = ['/'];
 
   // check if current location matches route
   var routeClean = function (route) {
     return _.find(routesThatDontRequireAuth,
       function (noAuthRoute) {
-        console.log('startsWith:', route, noAuthRoute);
-        if(route.startsWith(noAuthRoute)){
+        // console.log('startsWith:', route, noAuthRoute);
+        // console.log('startsWith true:', route.startsWith(noAuthRoute));
+        // if(route.startsWith(noAuthRoute)){
+        //   return false;
+        // }
+        if(route === '/map'){
+          return true;
+        } else if (route === '/'){
+          return true;
+        } else if (route === '/user'){
+          return false;
+        } else if (route === '/admin'){
           return false;
         }
       });
@@ -47,7 +57,7 @@ angular.module('northApp').run(['$rootScope', '$location', 'UserTrackFactory', f
           $location.path('/');
         } else {
           $location.path('/user');
-        }        
+        }
       } else {
         console.log('user logged in');
       }
