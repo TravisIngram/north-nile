@@ -3,8 +3,17 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
   var pendingResources = [];
   var approvedResources = [];
   var mapResources = {};
+  var userResources = [];
   var geocodeKey = 'd757d21efc7d5efeb1195e398d031a5e';
 
+  var getUserResources = function(user){
+    console.log('trying to log user', user);
+    $http.get('/resources/user/' + user.info.id).then(function(response){
+      console.log(response);
+      angular.copy(response.data, userResources);
+    });
+
+  }
   var saveNewResource = function(resource){
     $http.get('https://api.opencagedata.com/geocode/v1/json?q=' + resource.location + '&key=' + geocodeKey).then(function(response){
       console.log('Geocode response:', response);
@@ -76,6 +85,8 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
     pendingResources: pendingResources,
     approvedResources: approvedResources,
     updateResource: updateResource,
-    mapResources: mapResources
+    mapResources: mapResources,
+    getUserResources: getUserResources,
+    userResources: userResources
   }
 }]);

@@ -9,4 +9,37 @@
 
     <md-button value="LogOut" class="md-raised"><a href="/logout" target="_self">Log Out</a></md-button>
   </md-input-container>
+
+<!-- user resources -->
+
+  <h2> {{uc.user.info.username}}, here are your Northside Food Resources </h2>
+
+    <table md-table>
+      <thead md-head>
+
+        <th md-column>
+          Resource Name
+          {{uc.savedResources.name}}
+        </th>
+        <th md-column>
+          Resource type
+        </th>
+        <th md-column>
+          Date Created
+        </th>
+        <th md-column>
+          Edit
+        </th>
+      </thead>
+      <tbody md-body>
+        <tr md-row ng-repeat = "parent in uc.userResources">
+          <td md-cell>{{parent.name}}</td>
+          <td md-cell>{{parent.location}}</td>
+        </tr>
+      </tbody>
+    </table> 
+
+          <!-- add a new resource -->
+  <md-button ng-click="uc.addNewResource()">Add A Resource</md-button>
+
 </div> <!-- ::::::::: END USER DASHBOARD ::::::::: -->
