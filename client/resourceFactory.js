@@ -17,8 +17,10 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
   var saveNewResource = function(resource){
     $http.get('https://api.opencagedata.com/geocode/v1/json?q=' + resource.location + '&key=' + geocodeKey).then(function(response){
       console.log('Geocode response:', response);
-      resource.latitude = response.data.results[0].geometry.lat;
-      resource.longitude = response.data.results[0].geometry.lng;
+      if(response.data.results[0]){
+        resource.latitude = response.data.results[0].geometry.lat;
+        resource.longitude = response.data.results[0].geometry.lng;
+      }      
       $http.post('/resources/new', resource).then(function(response){
         console.log('Save new resource response:', response);
         getSavedResources();
