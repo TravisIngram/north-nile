@@ -139,8 +139,8 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
 // add new resource modal controller
 angular.module('northApp').controller('NewResourceController', ['$http',  '$mdDialog', 'ResourceFactory', 'UserTrackFactory', function($http, $mdDialog, ResourceFactory, UserTrackFactory){
   var nrc = this;
-  nrc.newResource = {is_active:true};
 
+  nrc.newResource = {is_active:true};
   nrc.user = {};
   var promise = UserTrackFactory.getUserData();
   promise.then(function(response){

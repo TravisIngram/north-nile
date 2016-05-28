@@ -2,7 +2,7 @@
 <md-dialog>
   <md-dialog-content class="md-dialog-content">
     <section layout="column">
-      test:{{ac.selectedResource}}
+      test:{{epc.selectedResource}}
       <md-input-container>
         <label for="pending_name">Name</label>
         <input type="text" name="pending_name" ng-model="epc.selectedResource.name" />
@@ -62,10 +62,10 @@
         <label for="pending_type">Type</label>
         <!-- <input type="text" name="pending_type" ng-model="epc.selectedResource.type" /> -->
         <md-select name="pending_type" ng-model="epc.selectedResource.resource_type">
-          <md-option>Community Garden</md-option>
-          <md-option>Culinary Arts</md-option>
-          <md-option>Food Hub</md-option>
-          <md-option>Food Distribution</md-option>
+          <md-option value="Community Garden">Community Garden</md-option>
+          <md-option value="Culinary Arts">Culinary Arts</md-option>
+          <md-option value="Food Hub">Food Hub</md-option>
+          <md-option value="Food Distribution">Food Distribution</md-option>
         </md-select>
       </md-input-container>
 
