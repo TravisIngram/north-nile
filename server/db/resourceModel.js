@@ -12,6 +12,7 @@ function createResource(callback) {
         ' "name" varchar(150) NOT NULL,' +
         ' "location" varchar(150) NOT NULL,' +
         ' "description" text,' +
+        ' "resource_type" varchar(50),' +
         ' "website" varchar(150),' +
         ' "social_media" varchar(150),' +
         ' "leadership" varchar(150),' +
@@ -24,7 +25,6 @@ function createResource(callback) {
         ' "is_pending" boolean,' +
         ' "date_created" timestamp,' +
         ' "account_id" int REFERENCES "account"(id),' +
-        ' "resource_type_id" int REFERENCES "resource_type"(id),' +
         ' "audio_id" int REFERENCES "audio"(id),' +
         ' "image_id" int REFERENCES "image"(id),' +
         ' "video_id" int REFERENCES "video"(id))');
