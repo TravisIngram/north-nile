@@ -119,6 +119,38 @@
     </md-table-container>
   </md-card>
 
+  <md-button ng-click="ac.showAccounts()">Manage Accounts</md-button>
+  <md-button ng-click="ac.addAccount()" ng-show="ac.showAccountTable">Add Account</md-button>
+  <md-card ng-show="ac.showAccountTable">
+    <md-table-container>
+      <table md-table>
+        <thead md-head>
+          <tr md-row>
+            <th md-column>
+              Account Name
+            </th>
+            <th md-column>
+              Contact Email
+            </th>
+            <th md-column>
+              Contact Name
+            </th>
+            <th md-column>
+              Edit
+            </th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row ng-repeat="account in ac.savedAccounts">
+            <td md-cell>{{account.username}}</td>
+            <td md-cell>{{account.email_address}}</td>
+            <td md-cell>{{account.contact_name}}</td>
+            <td md-cell><md-button ng-click="ac.editAccount(account)">Edit</md-button></td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+  </md-card>
 
 
 </div> <!-- ::::::::: END ADMIN DASHBOARD ::::::::: -->
