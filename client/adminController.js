@@ -137,15 +137,22 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
 
 
 // add new resource modal controller
-angular.module('northApp').controller('NewResourceController', ['$http',  '$mdDialog', 'ResourceFactory', function($http, $mdDialog, ResourceFactory){
+angular.module('northApp').controller('NewResourceController', ['$http',  '$mdDialog', 'ResourceFactory', 'UserTrackFactory', function($http, $mdDialog, ResourceFactory, UserTrackFactory){
   var nrc = this;
   nrc.newResource = {is_active:true};
+
+  nrc.user = {};
+  var promise = UserTrackFactory.getUserData();
+  promise.then(function(response){
+    nrc.user = response.data;
+  });
 
   nrc.cancelNewResource = function(){
     $mdDialog.hide();
   };
 
   nrc.saveNewResource = function(resource){
+    resource.account_id = nrc.user.id;
     resource.is_pending = !resource.is_active;
     resource.date_created = new Date();
     ResourceFactory.saveNewResource(resource);
