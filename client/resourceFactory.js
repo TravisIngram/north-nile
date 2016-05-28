@@ -12,8 +12,8 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
       console.log(response);
       angular.copy(response.data, userResources);
     });
+  };
 
-  }
   var saveNewResource = function(resource){
     $http.get('https://api.opencagedata.com/geocode/v1/json?q=' + resource.location + '&key=' + geocodeKey).then(function(response){
       console.log('Geocode response:', response);
@@ -77,6 +77,14 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
     });
   };
 
+  var removeResource = function(resource){
+    var id = resource.id;
+    $http.delete('/resources/remove/' + id).then(function(response){
+      console.log('Removed resources:', response);
+      getSavedResources();
+    });
+  };
+
 
   return {
     saveNewResource: saveNewResource,
@@ -87,6 +95,7 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
     updateResource: updateResource,
     mapResources: mapResources,
     getUserResources: getUserResources,
-    userResources: userResources
+    userResources: userResources,
+    removeResource: removeResource
   }
 }]);

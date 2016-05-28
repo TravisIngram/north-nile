@@ -4,8 +4,8 @@
     <section layout="column">
       test:{{nrc.newResource}}
       <md-input-container>
-        <label for="new_title">Title</label>
-        <input type="text" name="new_title" ng-model="nrc.newResource.name" />
+        <label for="new_name">Name</label>
+        <input type="text" name="new_name" ng-model="nrc.newResource.name" />
       </md-input-container>
 
       <md-input-container>
@@ -60,7 +60,13 @@
 
       <md-input-container>
         <label for="new_type">Type</label>
-        <input type="text" name="new_type" ng-model="nrc.newResource.type" />
+        <!-- <input type="text" name="pending_type" ng-model="epc.selectedResource.type" /> -->
+        <md-select name="new_type" ng-model="nrc.selectedResource.resource_type">
+          <md-option>Community Garden</md-option>
+          <md-option>Culinary Arts</md-option>
+          <md-option>Food Hub</md-option>
+          <md-option>Food Distribution</md-option>
+        </md-select>
       </md-input-container>
 
       <md-input-container>
@@ -78,7 +84,7 @@
         <input type="text" name="new_video" ng-model="nrc.newResource.video" />
       </md-input-container>
 
-      <md-checkbox ng-if="unrc.isAdmin !== null" name="new_approval" ng-model="nrc.newResource.is_active" aria-label="new_approval">Approved</md-checkbox>
+      <md-checkbox name="new_approval" ng-model="nrc.newResource.is_active" aria-label="new_approval">Approved</md-checkbox>
 
       <md-button ng-click="nrc.saveNewResource(nrc.newResource)">Save</md-button>
       <md-button ng-click="nrc.cancelNewResource()">Cancel</md-button>

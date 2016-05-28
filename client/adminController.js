@@ -112,10 +112,23 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
   };
 
   epc.saveEditPending = function(){
-    // add save logic here -> probably need to post to server/database
     epc.selectedResource.is_pending = !epc.selectedResource.is_active; // make pending value false based on approve value
     console.log('epc.selectedResource:', epc.selectedResource);
     ResourceFactory.updateResource(epc.selectedResource);
+    $mdDialog.hide();
+  };
+
+  epc.confirmRemoveResource = function(){
+    epc.showConfirmRemove = true;
+  };
+
+  epc.cancelRemoveResource = function(){
+    epc.showConfirmRemove = false;
+  };
+
+  epc.removeResource = function(resource){
+    ResourceFactory.removeResource(resource);
+    epc.showConfirmRemove = false;
     $mdDialog.hide();
   };
 
@@ -125,7 +138,6 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
 
 // add new resource modal controller
 angular.module('northApp').controller('NewResourceController', ['$http',  '$mdDialog', 'ResourceFactory', function($http, $mdDialog, ResourceFactory){
-  // console.log('isAdmin working', isAdmin);
   var nrc = this;
   nrc.newResource = {is_active:true};
 
@@ -134,7 +146,7 @@ angular.module('northApp').controller('NewResourceController', ['$http',  '$mdDi
   };
 
   nrc.saveNewResource = function(resource){
-    resource.is_pending = false;
+    resource.is_pending = !resource.is_active;
     resource.date_created = new Date();
     ResourceFactory.saveNewResource(resource);
     $mdDialog.hide();

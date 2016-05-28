@@ -9,7 +9,7 @@ router.post('/new', function(request, response){
       console.log('Error saving new resource', err);
       response.sendStatus(500);
     } else {
-      var queryString = 'INSERT INTO "resource" (name, location, description, website, social_media, leadership, public_phone, public_email, hours, latitude, longitude, is_active, is_pending, date_created, account_id, resource_type_id, audio_id, image_id, video_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19)';
+      var queryString = 'INSERT INTO "resource" (name, location, description, website, social_media, leadership, public_phone, public_email, hours, latitude, longitude, is_active, is_pending, date_created, account_id, resource_type, audio_id, image_id, video_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19)';
       var resource = request.body;
 
 
@@ -110,6 +110,31 @@ router.put('/update', function(request, response){
 
       query.on('end', function(){
         console.log('Updated resource successfully.');
+        done();
+        response.sendStatus(200);
+      });
+    }
+  });
+});
+
+router.delete('/remove/:id', function(request, response){
+  var resourceId = request.params.id;
+  pg.connect(dbConnectionString, function(err, client, done){
+    if (err){
+      console.log('Error connecting to database to remove resources:', err);
+      response.sendStatus(500);
+    } else {
+      var queryString = 'DELETE FROM resource WHERE id = ' + resourceId;
+
+      var query = client.query(queryString);
+
+      query.on('error', function(err){
+        console.log('Error removing resource:', err);
+        client.end();
+      });
+
+      query.on('end', function(){
+        console.log('Removed resource successfully.');
         done();
         response.sendStatus(200);
       });
