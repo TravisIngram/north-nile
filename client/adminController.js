@@ -1,56 +1,17 @@
-angular.module('northApp').controller('AdminController', ['UserTrackFactory', '$http', '$mdDialog', 'ResourceFactory', function(UserTrackFactory, $http,$mdDialog, ResourceFactory){
+angular.module('northApp').controller('AdminController', ['AccountFactory', 'UserTrackFactory', '$http', '$mdDialog', 'ResourceFactory', function(AccountFactory, UserTrackFactory, $http,$mdDialog, ResourceFactory){
   var ac = this;
-  UserTrackFactory.getUserData();
-  ac.user = UserTrackFactory.user;
-
-  // dummy data
-  ac.dummyText1 = 'Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.';
-  // ac.storedResources = [
-  //   {
-  //     lat: 44.996121,
-  //     lng: -93.295845,
-  //     title: 'Mr. Books Bruschetta Machine',
-  //     type: 'one',
-  //     visible: false,
-  //     username: 'Bruschetta4Lyfe',
-  //     dateCreated: 'Jan 26th, 2016',
-  //     pending: true
-  //   },
-  //   {
-  //     lat: 44.998995,
-  //     lng: -93.291068,
-  //     title: 'Ms. Kitchens Oblique Reference Parlor',
-  //     type: 'two',
-  //     visible: false,
-  //     username: 'kitchen86',
-  //     dateCreated: 'Dec 4th, 2016',
-  //     pending: true
-  //   },
-  //    {
-  //       lat: 44.999143,
-  //       lng: -93.297133,
-  //       title: 'Mr. Bones Bruschetta Machine',
-  //       type: 'one',
-  //       visible: false,
-  //       username: 'Bruschetta4Lyfe',
-  //       dateCreated: 'May 3rd, 2016',
-  //       pending: false
-  //   },
-  //   {
-  //     lat: 45.002572,
-  //     lng: -93.289515,
-  //     title: 'Ms. Burbakers Oblique Reference Parlor',
-  //     type: 'two',
-  //     visible: false,
-  //     username: 'brubaker_conglomerate',
-  //     dateCreated: 'Apr 6th, 2016',
-  //     pending: true
-  // }];
+  var promise = UserTrackFactory.getUserData();
+  promise.then(function(response){
+    ac.user = response.data;
+  });
 
   ac.savedResources = ResourceFactory.savedResources;
   ac.getSavedResources = ResourceFactory.getSavedResources;
   ac.pendingResources = ResourceFactory.pendingResources;
   ac.approvedResources = ResourceFactory.approvedResources;
+
+  ac.savedAccounts = AccountFactory.savedAccounts;
+  ac.getSavedAccounts = AccountFactory.getSavedAccounts;
 
   ac.selectedModerationResources = [];
   ac.selectedModerationResource = {};
@@ -63,12 +24,11 @@ angular.module('northApp').controller('AdminController', ['UserTrackFactory', '$
       resource.is_active = true;
       ResourceFactory.updateResource(resource);
     });
-    // post to database here -> updateResource
   };
-
 
   // edit dialogs
   ac.editResource = function(resource){
+    console.log('editresource:', resource);
     ac.editPendingOptions = {
       templateUrl: '/views/edit-pending.html',
       clickOutsideToClose: true,
@@ -94,9 +54,50 @@ angular.module('northApp').controller('AdminController', ['UserTrackFactory', '$
     $mdDialog.show(ac.newResourceOptions);
   };
 
+  // manage accounts
+  ac.showAccounts = function(){
+    ac.showAccountTable = true;
+  };
+
+  ac.editAccount = function(account){
+    ac.editAccountOptions = {
+      templateUrl: '/views/edit-account.html',
+      clickOutsideToClose: true,
+      controller: 'EditAccountController',
+      controllerAs: 'eac',
+      resolve:{
+        selectedAccount: function(){
+          return account;
+        }
+      }
+    };
+    $mdDialog.show(ac.editAccountOptions);
+  };
+
   // load tables on page load
   ac.getSavedResources();
+  ac.getSavedAccounts();
   console.log('admin controller loaded!');
+}]);
+
+// edit accounts controller
+angular.module('northApp').controller('EditAccountController', ['selectedAccount', '$mdDialog', 'AccountFactory', function(selectedAccount, $mdDialog, AccountFactory){
+  var eac = this;
+
+  eac.selectedAccount = selectedAccount;
+
+  eac.cancelEditAccount = function(){
+    $mdDialog.hide();
+    eac.selectedAccount = {};
+  };
+
+  eac.saveEditAccount = function(){
+    AccountFactory.updateAccount(eac.selectedAccount);
+    $mdDialog.hide();
+  };
+
+
+  console.log('edit account controller loaded');
 }]);
 
 
@@ -109,12 +110,14 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
   epc.cancelEditPending = function(){
     console.log('ac.selectedResource:', selectedResource);
     $mdDialog.hide();
+    epc.selectedResource = {};
   };
 
   epc.saveEditPending = function(){
     epc.selectedResource.is_pending = !epc.selectedResource.is_active; // make pending value false based on approve value
     console.log('epc.selectedResource:', epc.selectedResource);
     ResourceFactory.updateResource(epc.selectedResource);
+    epc.selectedResource = {};
     $mdDialog.hide();
   };
 
@@ -132,7 +135,7 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
     $mdDialog.hide();
   };
 
-  console.log('Edit Pending Controller loaded.');
+  console.log('Edit Pending Controller loaded.', selectedResource);
 }]);
 
 
