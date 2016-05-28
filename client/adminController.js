@@ -1,60 +1,9 @@
 angular.module('northApp').controller('AdminController', ['AccountFactory', 'UserTrackFactory', '$http', '$mdDialog', 'ResourceFactory', function(AccountFactory, UserTrackFactory, $http,$mdDialog, ResourceFactory){
   var ac = this;
-<<<<<<< HEAD
-
-=======
->>>>>>> 2341762db8f9256bc21548ac9f8a0a202bf15fb2
   var promise = UserTrackFactory.getUserData();
   promise.then(function(response){
     ac.user = response.data;
   });
-<<<<<<< HEAD
-
-  // dummy data
-  ac.dummyText1 = 'Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.';
-  // ac.storedResources = [
-  //   {
-  //     lat: 44.996121,
-  //     lng: -93.295845,
-  //     title: 'Mr. Books Bruschetta Machine',
-  //     type: 'one',
-  //     visible: false,
-  //     username: 'Bruschetta4Lyfe',
-  //     dateCreated: 'Jan 26th, 2016',
-  //     pending: true
-  //   },
-  //   {
-  //     lat: 44.998995,
-  //     lng: -93.291068,
-  //     title: 'Ms. Kitchens Oblique Reference Parlor',
-  //     type: 'two',
-  //     visible: false,
-  //     username: 'kitchen86',
-  //     dateCreated: 'Dec 4th, 2016',
-  //     pending: true
-  //   },
-  //    {
-  //       lat: 44.999143,
-  //       lng: -93.297133,
-  //       title: 'Mr. Bones Bruschetta Machine',
-  //       type: 'one',
-  //       visible: false,
-  //       username: 'Bruschetta4Lyfe',
-  //       dateCreated: 'May 3rd, 2016',
-  //       pending: false
-  //   },
-  //   {
-  //     lat: 45.002572,
-  //     lng: -93.289515,
-  //     title: 'Ms. Burbakers Oblique Reference Parlor',
-  //     type: 'two',
-  //     visible: false,
-  //     username: 'brubaker_conglomerate',
-  //     dateCreated: 'Apr 6th, 2016',
-  //     pending: true
-  // }];
-=======
->>>>>>> 2341762db8f9256bc21548ac9f8a0a202bf15fb2
 
   ac.savedResources = ResourceFactory.savedResources;
   ac.getSavedResources = ResourceFactory.getSavedResources;
