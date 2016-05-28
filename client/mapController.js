@@ -122,17 +122,23 @@ angular.module('northApp').controller('MapController', ['ResourceFactory', 'User
 
   // open drawer for new resource form
   mc.addNewResource = function(){
-    mc.showNewResourceDrawer = true;
-    if(mc.user){
-      // if logged in
-      mc.showNewResourceForm = true;
-      mc.showNewResourceLogin = false;
-      mc.showNewResourceRegister = false;
+    if(!mc.showNewResourceDrawer){
+      mc.showNewResourceDrawer = true;
+      if(mc.user){
+        // if logged in
+        mc.showNewResourceForm = true;
+        mc.showNewResourceLogin = false;
+        mc.showNewResourceRegister = false;
+      } else {
+        // if not logged in
+        mc.showNewResourceLogin = true;
+        mc.showNewResourceRegister = false;
+        mc.showNewResourceForm = false;
+      }
     } else {
-      // if not logged in
-      mc.showNewResourceLogin = true;
-      mc.showNewResourceRegister = false;
-      mc.showNewResourceForm = false;
+      mc.newResource.account_id = mc.user.id;
+      ResourceFactory.saveNewResource(mc.newResource);
+      mc.showNewResourceDrawer = false;
     }
   };
 
