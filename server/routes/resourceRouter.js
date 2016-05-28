@@ -9,7 +9,7 @@ router.post('/new', function(request, response){
       console.log('Error saving new resource', err);
       response.sendStatus(500);
     } else {
-      var queryString = 'INSERT INTO "resource" (name, location, description, website, social_media, leadership, public_phone, public_email, hours, latitude, longitude, is_active, is_pending, date_created, account_id, resource_type_id, audio_id, image_id, video_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19)';
+      var queryString = 'INSERT INTO "resource" (name, location, description, website, social_media, leadership, public_phone, public_email, hours, latitude, longitude, is_active, is_pending, date_created, account_id, resource_type, audio_id, image_id, video_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19)';
       var resource = request.body;
 
 
@@ -37,7 +37,10 @@ router.get('/all', function(request, response){
     } else {
       var resources = [];
 
-      var queryString = 'SELECT * FROM "resource"';
+      // var queryString = 'SELECT * FROM "resource" INNER JOIN "account" ON resource.account_id = account.id';
+
+
+      var queryString = 'SELECT "resource".id, "name", "location", "resource_type", "date_created", "account_id", "is_active", "is_pending", "username", "latitude", "longitude", "description", "public_phone", "public_email", "hours" FROM "resource" INNER JOIN "account" ON account.id = resource.account_id';
 
       var query = client.query(queryString);
 
@@ -96,7 +99,7 @@ router.put('/update', function(request, response){
       console.log('Error connecting to database to update resource:', err);
       response.sendStatus(500);
     } else {
-      var queryString = 'UPDATE resource SET (name, location, description, website, social_media, leadership, public_phone, public_email, hours, latitude, longitude, is_active, is_pending, date_created, account_id, resource_type_id, audio_id, image_id, video_id) = ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19) WHERE id = ' + resource.id;
+      var queryString = 'UPDATE resource SET (name, location, description, website, social_media, leadership, public_phone, public_email, hours, latitude, longitude, is_active, is_pending, date_created, account_id, resource_type, audio_id, image_id, video_id) = ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19) WHERE id = ' + resource.id;
 
       var query = client.query(queryString, [resource.name, resource.location, resource.description, resource.website, resource.social_media, resource.leadership, resource.public_phone, resource.public_email, resource.hours, resource.latitude, resource.longitude, resource.is_active, resource.is_pending, resource.date_created, resource.account_id, resource.resource_type, resource.audio_id, resource.image_id, resource.video_id]);
 
@@ -107,6 +110,31 @@ router.put('/update', function(request, response){
 
       query.on('end', function(){
         console.log('Updated resource successfully.');
+        done();
+        response.sendStatus(200);
+      });
+    }
+  });
+});
+
+router.delete('/remove/:id', function(request, response){
+  var resourceId = request.params.id;
+  pg.connect(dbConnectionString, function(err, client, done){
+    if (err){
+      console.log('Error connecting to database to remove resources:', err);
+      response.sendStatus(500);
+    } else {
+      var queryString = 'DELETE FROM resource WHERE id = ' + resourceId;
+
+      var query = client.query(queryString);
+
+      query.on('error', function(err){
+        console.log('Error removing resource:', err);
+        client.end();
+      });
+
+      query.on('end', function(){
+        console.log('Removed resource successfully.');
         done();
         response.sendStatus(200);
       });

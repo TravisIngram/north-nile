@@ -102,6 +102,10 @@ p{
   margin: 1vw;
 }
 
+.disabledKeyButton{
+  background-color: #444;
+}
+
 .errorMessage{
   color: #dd2c00;
 }

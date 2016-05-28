@@ -39,7 +39,7 @@
             <tr md-row ng-repeat="resource in ac.pendingResources" md-select="resource" md-selectid="name">
               <td md-cell>{{resource.username}}</td>
               <td md-cell>{{resource.name}}</td>
-              <td md-cell>{{resource.type}}</td>
+              <td md-cell>{{resource.resource_type}}</td>
               <td md-cell>{{resource.dateCreated}}</td>
               <td md-cell><md-button ng-click="ac.editResource(resource)">Edit</md-button></td>
             </tr>
@@ -88,7 +88,7 @@
             <tr md-row ng-repeat="resource in ac.approvedResources" md-select="resource" md-selectid="name" md-auto-select>
               <td md-cell>{{resource.username}}</td>
               <td md-cell>{{resource.name}}</td>
-              <td md-cell>{{resource.type}}</td>
+              <td md-cell>{{resource.resource_type}}</td>
               <td md-cell>{{resource.date_created}}</td>
               <td md-cell><md-button ng-click="ac.editResource(resource)">Edit</md-button></td>
             </tr>
