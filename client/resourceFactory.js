@@ -15,24 +15,31 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
   };
 
   var saveNewResource = function(resource){
-    $http.get('https://api.opencagedata.com/geocode/v1/json?q=' + resource.location + '&key=' + geocodeKey).then(function(response){
-      console.log('Geocode response:', response);
-      if(response.data.results[0]){
-        resource.latitude = response.data.results[0].geometry.lat;
-        resource.longitude = response.data.results[0].geometry.lng;
-      }      
+    if(resource.latitude){
       $http.post('/resources/new', resource).then(function(response){
         console.log('Save new resource response:', response);
         getSavedResources();
       });
-    }, function(response){
-      console.log('Geocode failed:', response);
-      // save marker even on fail?
-      $http.post('/resources/new', resource).then(function(response){
-        console.log('Save new resource response:', response);
-        getSavedResources();
+    } else {
+      $http.get('https://api.opencagedata.com/geocode/v1/json?q=' + resource.location + '&key=' + geocodeKey).then(function(response){
+        console.log('Geocode response:', response);
+        if(response.data.results[0]){
+          resource.latitude = response.data.results[0].geometry.lat;
+          resource.longitude = response.data.results[0].geometry.lng;
+        }
+        $http.post('/resources/new', resource).then(function(response){
+          console.log('Save new resource response:', response);
+          getSavedResources();
+        });
+      }, function(response){
+        console.log('Geocode failed:', response);
+        // save marker even on fail?
+        $http.post('/resources/new', resource).then(function(response){
+          console.log('Save new resource response:', response);
+          getSavedResources();
+        });
       });
-    });
+    }
   };
 
   var getSavedResources = function(callback){
