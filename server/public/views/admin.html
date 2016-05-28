@@ -1,14 +1,36 @@
 <!-- ::::::::: ADMIN DASHBOARD ::::::::: -->
+
+
 <div class="home dashboard backdrop">
   <!-- The function that shows this section will come from passport authentication of an Admin -->
-  <h2>This will be the Admin Dashboard.</h2>
-  <div class="userClass"> <p> Hello, {{ac.user.info.username}}</p></div>
-  <md-input-container>
-    <a href="/logout"><md-button class="md-raised">Log Out</md-button></a>
-  </md-input-container>
 
-  <!-- Testing -->
+  <!-- ::::::::: Nav Bar ::::::::: -->
+  <md-toolbar class="home header-condensed">
+    <div class="md-toolbar-tools">
 
+        <div class="userClass">
+            <h2>Hello, {{ac.user.username}}</h2>
+        </div>
+<!-- Might be better to add class to h2, not sure what this class is doing, will ask on Slack -->
+
+      <span flex></span>
+
+      <md-button class="md-icon-button" href="/map" aria-label="map" >
+        <md-icon md-svg-src="assets/img/ic_map_black_24px.svg"></md-icon>
+      </md-button>
+
+      <md-button class="md-icon-button" href="/" aria-label="home">
+        <md-icon md-svg-src="assets/img/ic_home_black_24px.svg"></md-icon>
+      </md-button>
+
+      <md-button value="LogOut" class="md-raised">
+        <a href="/logout" target="_self">Log Out</a>
+      </md-button>
+
+    </div>
+  </md-toolbar>
+
+  <h2 class="pageTitle">Administrator Dashboard</h2>
 
 
   <!-- Moderation Queue -->

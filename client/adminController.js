@@ -1,7 +1,10 @@
 angular.module('northApp').controller('AdminController', ['UserTrackFactory', '$http', '$mdDialog', 'ResourceFactory', function(UserTrackFactory, $http,$mdDialog, ResourceFactory){
   var ac = this;
-  UserTrackFactory.getUserData();
-  ac.user = UserTrackFactory.user;
+
+  var promise = UserTrackFactory.getUserData();
+  promise.then(function(response){
+    ac.user = response.data;
+  });
 
   // dummy data
   ac.dummyText1 = 'Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.';

@@ -152,6 +152,9 @@ p{
 
 /* ::: ADMIN/USER DASHBOARDS ::: */
 
+.pageTitle {
+  text-align: center;
+}
 
 
 /*edit and add new resource modals on admin*/
