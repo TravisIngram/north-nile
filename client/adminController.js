@@ -74,10 +74,91 @@ angular.module('northApp').controller('AdminController', ['AccountFactory', 'Use
     $mdDialog.show(ac.editAccountOptions);
   };
 
+  ac.addAccount = function(){
+    console.log('adding account');
+    ac.addAccountOptions = {
+      templateUrl: '/views/add-account.html',
+      clickOutsideToClose: true,
+      controller: 'NewAccountController',
+      controllerAs: 'nac'
+    };
+    $mdDialog.show(ac.addAccountOptions);
+  };
+
   // load tables on page load
   ac.getSavedResources();
   ac.getSavedAccounts();
   console.log('admin controller loaded!');
+}]);
+
+// new account controller
+angular.module('northApp').controller('NewAccountController', ['$mdDialog', 'AccountFactory', '$http', function($mdDialog, AccountFactory, $http){
+  var nac = this;
+  nac.registerInfo = {};
+
+  // registration form password confirmation checking
+  nac.passwordMismatch = function(){
+    if(nac.registerInfo.password !== nac.registerInfo.confirm_password){
+      return true;
+    }
+  };
+
+  nac.passwordMismatchError = function(){
+    if (nac.passwordMismatch() && nac.registerFormInputs.confirm_password.$dirty){
+      return true;
+    }
+  };
+
+  nac.cancelNewAccount = function(){
+    $mdDialog.hide();
+  };
+
+  nac.registerUser = function() {
+    $http.post('/register', nac.registerInfo).then(function(response){
+      if (response.status == 200) {
+        console.log('successful registration');
+        // Function below will prompt login. Would be nice to automatically login user?
+        function showAlert() {
+          alert = $mdDialog.alert({
+            title: 'Congratulations!',
+            textContent: 'Registration successful.',
+            ok: 'Close'
+          });
+          $mdDialog
+            .show( alert )
+            .finally(function() {
+              alert = undefined;
+            });
+        }
+        showAlert();
+        AccountFactory.getSavedAccounts();
+      }
+    }, function(response){
+      console.log('unsuccessful registration');
+      function showAlert() {
+        if(nac.registerInfo.username === undefined){
+          nac.alertMessage = 'Username field cannot be blank';
+        } else {
+          nac.alertMessage = 'Username already exists, please choose another.';
+        }
+
+        alert = $mdDialog.alert({
+          title: 'Attention',
+          textContent: nac.alertMessage,
+          ok: 'Close'
+        });
+        $mdDialog
+          .show( alert )
+          .finally(function() {
+            alert = undefined;
+          });
+      }
+      showAlert();
+      nac.registerInfo.username = undefined;
+    });
+  };
+
+  console.log('New Account Controller loaded.');
 }]);
 
 // edit accounts controller

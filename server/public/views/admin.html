@@ -2,7 +2,7 @@
 <div class="home dashboard backdrop">
   <!-- The function that shows this section will come from passport authentication of an Admin -->
   <h2>This will be the Admin Dashboard.</h2>
-  <div class="userClass"> <p> Hello, {{ac.user.info.username}}</p></div>
+  <div class="userClass"> <p> Hello, {{ac.user.username}}</p></div>
   <md-input-container>
     <a href="/logout"><md-button class="md-raised">Log Out</md-button></a>
   </md-input-container>
@@ -98,6 +98,7 @@
   </md-card>
 
   <md-button ng-click="ac.showAccounts()">Manage Accounts</md-button>
+  <md-button ng-click="ac.addAccount()" ng-show="ac.showAccountTable">Add Account</md-button>
   <md-card ng-show="ac.showAccountTable">
     <md-table-container>
       <table md-table>
