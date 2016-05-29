@@ -34,7 +34,11 @@ function createImage(callback) {
     } else {
       var query = client.query('CREATE TABLE IF NOT EXISTS "image" (' +
         ' "id" serial PRIMARY KEY,' +
-        ' "image_reference" varchar(150) NOT NULL)');
+        ' "path1" varchar(150) NOT NULL,' +
+        ' "path2" varchar(150),' +
+        ' "path3" varchar(150),' +
+        ' "path4" varchar(150),' +
+        ' "path5" varchar(150))');
 
       query.on('end', function() {
         console.log('Successfully created Image schema.');
