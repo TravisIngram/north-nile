@@ -11,11 +11,13 @@
 
     <div class="home nav">
       <md-button class="md-raised"><a href="/map">Enter Map</a></md-button>
-      <md-button ng-click="hc.loginShow()" class="md-raised">Log In</md-button>
-      <md-input-container>
-        <md-button value="LogOut" class="md-raised"><a href="/logout" target="_self">Log Out</a></md-button>
-        <!-- This logout button should only show if you're logged in. hmmm.  -->
-      </md-input-container>
+
+      <md-button ng-hide="hc.user" ng-click="hc.loginShow()" class="md-raised">Log In</md-button>
+
+      <md-button ng-show="hc.user" value="account" class="md-raised"  ng-click="hc.routeUser()">Account</md-button>
+
+      <md-button ng-show="hc.user" value="LogOut" class="md-raised"><a href="/logout" target="_self">Log Out</a></md-button>
+
     </div>
   </div>
 

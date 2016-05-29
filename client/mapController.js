@@ -4,7 +4,6 @@ angular.module('northApp').controller('MapController', ['ResourceFactory', 'User
   var promise = UserTrackFactory.getUserData();
   promise.then(function(response){
     mc.user = response.data;
-    console.log('mc.user is:', mc.user);
   });
 
   mc.routeUser = function() {
