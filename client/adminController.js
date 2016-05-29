@@ -221,7 +221,7 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
 
 
 // add new resource modal controller
-angular.module('northApp').controller('NewResourceController', ['$http',  '$mdDialog', 'ResourceFactory', 'UserTrackFactory', function($http, $mdDialog, ResourceFactory, UserTrackFactory){
+angular.module('northApp').controller('NewResourceController', ['Upload','$http',  '$mdDialog', 'ResourceFactory', 'UserTrackFactory', function(Upload, $http, $mdDialog, ResourceFactory, UserTrackFactory){
   var nrc = this;
 
   nrc.newResource = {is_active:true};
@@ -236,6 +236,20 @@ angular.module('northApp').controller('NewResourceController', ['$http',  '$mdDi
   };
 
   nrc.saveNewResource = function(resource){
+    // image upload
+    console.log('nrc.newImage', nrc.newImage);
+    Upload.upload({
+      url: '/upload/image',
+      arrayKey: '',
+      data: {file: nrc.newImage.file}
+    }).then(function(response){
+      console.log('Success response?', response);
+    }, function(response){
+      console.log('Error response?', response);
+    }, function(evt){
+      console.log('Event response?', evt);
+    });
+    // end image upload
     resource.account_id = nrc.user.id;
     resource.is_pending = !resource.is_active;
     resource.date_created = new Date();

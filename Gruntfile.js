@@ -38,7 +38,10 @@ module.exports = function(grunt) {
                    "leaflet/dist/leaflet.css",
                    "angular-leaflet-directive/dist/angular-leaflet-directive.min.js",
                    "angular-material-data-table/dist/md-data-table.min.js",
-                   "angular-material-data-table/dist/md-data-table.css"
+                   "angular-material-data-table/dist/md-data-table.css",
+                   "ng-file-upload/dist/ng-file-upload-shim.min.js",
+                   "ng-file-upload/dist/ng-file-upload.min.js"
+
                ],
                "dest": "server/public/vendor/"
            }
