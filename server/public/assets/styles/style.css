@@ -7,14 +7,11 @@ colors: final rgba # is % opaque
 #9eceb8	rgba(158,206,184,0.6)
 #70543e rgba(112,84,62,0.6)
 ===================================
-Header options:
-font-family: 'Special Elite', 'courier new', monospace;
-font-family: 'Oswald', sans-serif;
-font-family: 'Comfortaa', 'futura', cursive;
+Header font:
+font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
 
-Body options:
-font-family: 'Open Sans', 'arial', sans-serif;
-font-family: 'Comfortaa', 'futura', cursive;
+Body font:
+font-family: 'Playfair Display', 'Georgia', serif;
 =================================== */
 
 /* ::: GENERAL STYLES ::: */
@@ -31,10 +28,17 @@ body {
   background-size: cover;
 }
 
+@font-face {
+	font-family: 'Soria';
+	src: url('./soria.ttf');
+	src:
+		local('Soria'),
+}
+
 .md-button.md-raised {
   background-color: #f3cb00;
   color: #70543e;
-  font-family: 'Comfortaa', 'futura', cursive;
+  font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
   font-size: 14px;
   font-weight: bolder;
   text-transform: lowercase;
@@ -57,7 +61,7 @@ a{
 }
 
 h1,h2,h3{
-  font-family: 'Special Elite', 'courier new', monospace;
+  font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
   color: white;
   font-weight: bolder;
 }
@@ -73,7 +77,7 @@ h2{
 }
 
 p{
-font-family: 'Open Sans', 'arial', sans-serif;  color: white;
+font-family: 'Playfair Display', 'Georgia', serif;
 text-shadow: 1px 3px 1px #433225;
 }
 
@@ -114,7 +118,7 @@ text-shadow: 1px 3px 1px #433225;
 
 .errorMessage{
   color: #dd2c00;
-  font-family: 'Comfortaa', 'futura', cursive;
+  font-family: 'Playfair Display', 'Georgia', serif;
 
 }
 

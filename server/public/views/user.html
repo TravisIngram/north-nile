@@ -6,10 +6,10 @@
   <md-toolbar class="home header-condensed">
     <div class="md-toolbar-tools">
 
-        <div class="userClass">
-            <h2>Hello, {{uc.user.info.username}}</h2>
-        </div>
-<!-- Might be better to add class to h2, not sure what this class is doing, will ask on Slack -->
+      <div class="userClass">
+        <h2>Hello, {{uc.user.info.username}}</h2>
+      </div>
+      <!-- Might be better to add class to h2, not sure what this class is doing, will ask on Slack -->
 
       <span flex></span>
 
@@ -29,35 +29,35 @@
   </md-toolbar>
 
 
-<!-- user resources -->
+  <!-- user resources -->
   <h2 class="pageTitle"> {{uc.user.info.username}}, here are your Northside Food Resources </h2>
 
-    <table md-table>
-      <thead md-head>
+  <table md-table>
+    <thead md-head>
 
-        <th md-column>
-          Resource Name
-          {{uc.savedResources.name}}
-        </th>
-        <th md-column>
-          Resource type
-        </th>
-        <th md-column>
-          Date Created
-        </th>
-        <th md-column>
-          Edit
-        </th>
-      </thead>
-      <tbody md-body>
-        <tr md-row ng-repeat = "parent in uc.userResources">
-          <td md-cell>{{parent.name}}</td>
-          <td md-cell>{{parent.location}}</td>
-        </tr>
-      </tbody>
-    </table>
+      <th md-column>
+        Resource Name
+        {{uc.savedResources.name}}
+      </th>
+      <th md-column>
+        Resource type
+      </th>
+      <th md-column>
+        Date Created
+      </th>
+      <th md-column>
+        Edit
+      </th>
+    </thead>
+    <tbody md-body>
+      <tr md-row ng-repeat = "parent in uc.userResources">
+        <td md-cell>{{parent.name}}</td>
+        <td md-cell>{{parent.location}}</td>
+      </tr>
+    </tbody>
+  </table>
 
-          <!-- add a new resource -->
+  <!-- add a new resource -->
 
   <md-button class="md-icon-button" ng-click="uc.addNewResource()" aria-label="resource">
     <md-icon md-svg-src="assets/img/ic_add_circle_outline_black_24px.svg"></md-icon>
