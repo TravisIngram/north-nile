@@ -10,21 +10,17 @@
     <p>Deadlights jack lad schooner scallywag dance the hempen jig carouser broadside cable strike colors. Bring a spring upon her cable holystone blow the man down spanker Shiver me timbers to go on account lookout wherry doubloon chase. Belay yo-ho-ho keelhaul squiffy black spot yardarm spyglass sheet transom heave to.</p>
 
     <div class="home nav">
-      <md-input-container>
-        <md-button class="md-raised"><a href="/map"><i class="fa fa-map-o" aria-hidden="true"></i>
-          Enter Map</a></md-button>
 
-          <md-button ng-click="hc.loginShow()" class="md-raised"><i class="fa fa-sign-in" aria-hidden="true"></i>
-            Log In</md-button>
+      <md-button class="md-raised"><a href="/map">Enter Map</a></md-button>
 
-            <md-button class="md-raised" ng-click="hc.registerShow()"><i class="fa fa-user" aria-hidden="true"></i>
-              Register</md-button>
+      <md-button ng-hide="hc.user" ng-click="hc.loginShow()" class="md-raised">Log In</md-button>
 
-              <md-button value="LogOut" class="md-raised"><a href="/logout" target="_self">Log Out</a></md-button>
-              <!-- This logout button should only show if you're logged in. hmmm.  -->
-            </md-input-container>
-          </div>
-        </div>
+      <md-button ng-show="hc.user" value="account" class="md-raised"  ng-click="hc.routeUser()">Account</md-button>
+
+      <md-button ng-show="hc.user" value="LogOut" class="md-raised"><a href="/logout" target="_self">Log Out</a></md-button>
+
+    </div>
+  </div>
 
         <!-- ::::::::: condensed header + nav ::::::::: -->
         <!-- Will only show when you click login or register -->
@@ -41,7 +37,7 @@
             <md-button class="md-icon-button" ng-click="hc.headerExpandedShow()" aria-label="home">
               <md-icon md-svg-src="assets/img/ic_home_black_24px.svg"></md-icon>
             </md-button>
-            <i class="fa fa-user" aria-hidden="true"></i>
+            <!-- <i class="fa fa-user" aria-hidden="true"></i> -->
 
             <!-- *** Logout should only show if someone is logged in ***
             <md-button value="LogOut" class="md-raised"><a href="/logout" target="_self">Log Out</a></md-button> -->

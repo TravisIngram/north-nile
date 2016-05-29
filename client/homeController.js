@@ -1,6 +1,20 @@
 angular.module('northApp').controller('HomeController', ['UserTrackFactory','$http', '$mdDialog', '$location', function(UserTrackFactory, $http, $mdDialog, $location){
 
   var hc = this;
+
+  var promise = UserTrackFactory.getUserData();
+  promise.then(function(response){
+    hc.user = response.data;
+  });
+
+  hc.routeUser = function() {
+    if (hc.user.is_admin == true) {
+      $location.path('/admin');
+    } else {
+      $location.path('/user');
+    }
+  }
+
   var alert;
   hc.loginInfo = {};
   hc.registerInfo = {};
