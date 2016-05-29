@@ -58,13 +58,14 @@ a{
 
 h1,h2,h3{
   font-family: 'Special Elite', 'courier new', monospace;
-  color: #9eceb8;
-  text-shadow: 1px 3px 1px #433225;
+  color: white;
+  font-weight: bolder;
 }
 
 h1 {
   font-size: 40px;
   font-weight: bolder;
+  text-shadow: 1px 3px 1px #433225;
 }
 
 h2{
@@ -72,9 +73,8 @@ h2{
 }
 
 p{
-  font-family: 'Comfortaa', 'futura', cursive;
-  color: white;
-  text-shadow: 1px 3px 1px #433225;
+font-family: 'Open Sans', 'arial', sans-serif;  color: white;
+text-shadow: 1px 3px 1px #433225;
 }
 
 
@@ -131,7 +131,8 @@ p{
 }
 
 .home.header-condensed {
- background-color: hsla(69, 33%, 71%, 0.78);
+ background-color: rgba(243,203,0,0.2);
+ border-radius: 10px;
 }
 
 .home.nav {
