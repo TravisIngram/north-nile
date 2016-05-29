@@ -45,11 +45,11 @@ angular.module('northApp').run(['$rootScope', '$location', 'UserTrackFactory', f
     var promise = UserTrackFactory.getUserData();
 
     promise.then(function(response){
-      console.log('$location.url()', $location.url());
+      // console.log('$location.url()', $location.url());
       user.info = response.data;
       // if route requires auth and user is not logged in
       if (!routeClean($location.url()) && user.info == ''){
-        console.log('user not logged in');
+        // console.log('user not logged in');
         $location.path('/');
       } else if (($location.url() === '/admin') && !user.info.is_admin) {
         console.log('user trying to access admin');
@@ -59,7 +59,7 @@ angular.module('northApp').run(['$rootScope', '$location', 'UserTrackFactory', f
           $location.path('/user');
         }
       } else {
-        console.log('user logged in');
+        // console.log('user logged in');
       }
     });
   });
