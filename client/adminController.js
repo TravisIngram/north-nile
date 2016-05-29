@@ -244,17 +244,22 @@ angular.module('northApp').controller('NewResourceController', ['Upload','$http'
       data: {file: nrc.newImage.file}
     }).then(function(response){
       console.log('Success response?', response);
+      // save rest of resource
+      resource.image_id = response.data.image_id;
+      resource.account_id = nrc.user.id;
+      resource.is_pending = !resource.is_active;
+      resource.date_created = new Date();
+      ResourceFactory.saveNewResource(resource);
+      $mdDialog.hide();
+
     }, function(response){
       console.log('Error response?', response);
     }, function(evt){
+      // use for progress bar
       console.log('Event response?', evt);
     });
     // end image upload
-    resource.account_id = nrc.user.id;
-    resource.is_pending = !resource.is_active;
-    resource.date_created = new Date();
-    ResourceFactory.saveNewResource(resource);
-    $mdDialog.hide();
+
   };
 
   console.log('New Resource Controller loaded.');

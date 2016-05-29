@@ -77,7 +77,7 @@
       <md-input-container>
         <!-- <label for="new_images">Images</label>
         <input type="text" name="new_images" ng-model="nrc.newResource.images" /> -->
-        <input type="file" ngf-select ngf-multiple="true" ng-model="nrc.newImage.file" name="new_images" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" />
+        <input type="file" ngf-select ngf-multiple="true" ng-model="nrc.newImage.file" name="new_images" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" ngf-max-files="5" aria-label="upload_images"/>
       </md-input-container>
 
       <md-input-container>
