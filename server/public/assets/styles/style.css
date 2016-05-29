@@ -108,6 +108,10 @@ text-shadow: 1px 3px 1px #433225;
   margin: 1vw;
 }
 
+.disabledKeyButton{
+  background-color: #444;
+}
+
 .errorMessage{
   color: #dd2c00;
   font-family: 'Comfortaa', 'futura', cursive;
@@ -149,7 +153,9 @@ text-shadow: 1px 3px 1px #433225;
 
 /* ::: ADMIN/USER DASHBOARDS ::: */
 
-
+.pageTitle {
+  text-align: center;
+}
 
 /*edit and add new resource modals on admin*/
 md-dialog{

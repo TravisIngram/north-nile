@@ -4,8 +4,8 @@
     <section layout="column">
       test:{{unrc.newResource}}
       <md-input-container>
-        <label for="new_title">Title</label>
-        <input type="text" name="new_title" ng-model="unrc.newResource.name" />
+        <label for="new_name">Name</label>
+        <input type="text" name="new_name" ng-model="unrc.newResource.name" />
       </md-input-container>
 
       <md-input-container>
@@ -60,7 +60,13 @@
 
       <md-input-container>
         <label for="new_type">Type</label>
-        <input type="text" name="new_type" ng-model="unrc.newResource.type" />
+        <!-- <input type="text" name="pending_type" ng-model="epc.selectedResource.type" /> -->
+        <md-select name="new_type" ng-model="unrc.newResource.resource_type">
+          <md-option value="Community Garden">Community Garden</md-option>
+          <md-option value="Culinary Arts">Culinary Arts</md-option>
+          <md-option value="Food Hub">Food Hub</md-option>
+          <md-option value="Food Distribution">Food Distribution</md-option>
+        </md-select>
       </md-input-container>
 
       <md-input-container>

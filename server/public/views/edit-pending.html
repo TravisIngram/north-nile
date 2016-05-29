@@ -2,10 +2,10 @@
 <md-dialog>
   <md-dialog-content class="md-dialog-content">
     <section layout="column">
-      test:{{ac.selectedResource}}
+      test:{{epc.selectedResource}}
       <md-input-container>
-        <label for="pending_title">Title</label>
-        <input type="text" name="pending_title" ng-model="epc.selectedResource.name" />
+        <label for="pending_name">Name</label>
+        <input type="text" name="pending_name" ng-model="epc.selectedResource.name" />
       </md-input-container>
 
       <md-input-container>
@@ -60,7 +60,13 @@
 
       <md-input-container>
         <label for="pending_type">Type</label>
-        <input type="text" name="pending_type" ng-model="epc.selectedResource.type" />
+        <!-- <input type="text" name="pending_type" ng-model="epc.selectedResource.type" /> -->
+        <md-select name="pending_type" ng-model="epc.selectedResource.resource_type">
+          <md-option value="Community Garden">Community Garden</md-option>
+          <md-option value="Culinary Arts">Culinary Arts</md-option>
+          <md-option value="Food Hub">Food Hub</md-option>
+          <md-option value="Food Distribution">Food Distribution</md-option>
+        </md-select>
       </md-input-container>
 
       <md-input-container>
@@ -80,8 +86,16 @@
 
       <md-checkbox name="pending_approval" ng-model="epc.selectedResource.is_active" aria-label="pending_approval">Approved</md-checkbox>
 
-      <md-button ng-click="epc.saveEditPending()">Save</md-button>
-      <md-button ng-click="epc.cancelEditPending()">Cancel</md-button>
+      <md-button ng-show="!epc.showConfirmRemove" ng-click="epc.saveEditPending()">Save</md-button>
+      <md-button ng-show="!epc.showConfirmRemove" ng-click="epc.cancelEditPending()">Cancel</md-button>
+      <md-button ng-show="!epc.showConfirmRemove" ng-click="epc.confirmRemoveResource()">Remove</md-button>
+
+      <!-- <section md-layout="row" class="two"> -->
+        <p ng-show="epc.showConfirmRemove">Are you sure you want to remove this resource? This action cannot be undone.</p>
+        <md-button flex ng-show="epc.showConfirmRemove" ng-click="epc.removeResource(epc.selectedResource)">Yes</md-button>
+        <md-button flex ng-show="epc.showConfirmRemove" ng-click="epc.cancelRemoveResource()">No</md-button>
+      <!-- </section> -->
+
     </section>
 
 

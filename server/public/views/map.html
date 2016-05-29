@@ -2,26 +2,222 @@
 </leaflet>
 
 <div class="key" layout="row" layout-align="center">
-  <p> Hello, {{mc.user.info.username}}</p>
-  <md-button class="md-fab md-mini keyButton" href="/">Home</md-button>
-  <md-button class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('one')">1</md-button>
-  <md-button class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('two')">2</md-button>
-  <!-- currently filtering to all for testing -->
-  <md-button class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('all')">3</md-button>
-  <!-- currently filtering to none for testing -->
-  <md-button class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('none')">4</md-button>
-  <md-button class="md-fab md-mini keyButton">Add</md-button>
+  <p ng-show="mc.user"> Hello, {{mc.user.username}}</p>
+  <md-button class="md-fab md-mini keyButton" href="/" aria-label="home">
+    <md-icon md-svg-src="assets/img/ic_home_black_24px.svg"></md-icon>
+  </md-button>
+  <md-button ng-show="mc.user" class="md-fab md-mini keyButton" aria-label="map" ng-click="mc.routeUser()">
+    <md-icon md-svg-src="assets/img/ic_person_black_24px.svg"></md-icon>
+  </md-button>
+  <md-button id="filter1" class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('Community Garden', $event)">1</md-button>
+  <md-button id="filter2" class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('Culinary Arts', $event)">2</md-button>
+  <md-button id="filter3" class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('Food Hub', $event)">3</md-button>
+  <md-button id="filter4" class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('Food Distribution', $event)">4</md-button>
+  <md-button class="md-fab md-mini keyButton" ng-click="mc.addNewResource()" aria-label="home">
+    <md-icon md-svg-src="assets/img/ic_add_circle_outline_black_24px.svg"></md-icon>
+  </md-button>
 </div>
 
 <div class="infoDrawer" ng-show="mc.showInfoDrawer" md-swipe-down="mc.closeInfoDrawer()">
-  <h2>{{mc.markerTitle}}</h2>
+  <h2>{{mc.lastClicked.name}}</h2>
   <p>
-    {{mc.dummyText1}}
+    <u>Type</u>
+    {{mc.lastClicked.resource_type}}
   </p>
   <p>
-    {{mc.dummyText2}}
+    <u>Address</u>
+    {{mc.lastClicked.location}}
   </p>
   <p>
-    {{mc.dummyText3}}
+    <u>Description</u>
+    {{mc.lastClicked.description}}
   </p>
+  <p ng-show="mc.lastClicked.website">
+    <u>Website</u>
+    {{mc.lastClicked.website}}
+  </p>
+  <p ng-show="mc.lastClicked.leadership">
+    <u>Leadership</u>
+    {{mc.lastClicked.leadership}}
+  </p>
+  <p ng-show="mc.lastClicked.public_phone">
+    <u>Phone Number</u>
+    {{mc.lastClicked.public_phone}}
+  </p>
+  <p ng-show="mc.lastClicked.public_email">
+    <u>Email Address</u>
+    {{mc.lastClicked.public_email}}
+  </p>
+  <p ng-show="mc.lastClicked.hours">
+    <u>Hours</u>
+    {{mc.lastClicked.hours}}
+  </p>
+  <p ng-show="mc.lastClicked.audio_id">
+    <u>Audio</u>
+    {{mc.lastClicked.audio_id}}
+  </p>
+  <p ng-show="mc.lastClicked.image_id">
+    <u>Pictures</u>
+    {{mc.lastClicked.image_id}}
+  </p>
+  <p ng-show="mc.lastClicked.video_id">
+    <u>Video</u>
+    {{mc.lastClicked.video_id}}
+  </p>
+</div>
+
+<div class="infoDrawer" ng-show="mc.showNewResourceDrawer">
+
+  <form ng-show="mc.showNewResourceLogin">
+    <section layout="column">
+      <h3>Log In</h3>
+      <md-input-container>
+        <label for="login-username">Username</label>
+        <input type="text" ng-model="mc.loginInfo.username" name="login-username" required/>
+      </md-input-container>
+
+      <md-input-container>
+        <label for="login-password">Password</label>
+        <input type="password" ng-model="mc.loginInfo.password" name="login-password" required/>
+      </md-input-container>
+
+      <md-input-container>
+        <md-button ng-click="mc.loginUser()" value="LogIn" class="md-raised">Log In</md-button>
+      </md-input-container>
+
+      <md-input-container>
+        <p>Need to create a new account?</p>
+        <md-button class="md-raised" ng-click="mc.registerShow()">Register</md-button>
+      </md-input-container>
+    </section>
+  </form>
+
+  <form class="home form" name="mc.registerFormInputs" ng-show="mc.showNewResourceRegister">
+    <section layout="column">
+      <h3>Registration</h3>
+
+      <md-input-container>
+        <label for="username">Username</label>
+        <input type="text" ng-model="mc.registerInfo.username" name="username" required/>
+      </md-input-container>
+
+      <md-input-container>
+        <label for="password">Password</label>
+        <input type="password" ng-model="mc.registerInfo.password" name="password" required/>
+      </md-input-container>
+
+      <md-input-container md-is-error="mc.passwordMismatch()">
+        <label for="confirm_password">Confirm Password</label>
+        <input type="password" ng-model="mc.registerInfo.confirm_password" name="confirm_password" required/>
+        <!-- Should add message here to inform user their passwords don't match -->
+        <div class="errorMessage md-caption" ng-show="mc.passwordMismatchError()">Please make sure your passwords match.</div>
+      </md-input-container>
+
+      <md-input-container>
+        <label for="contact_name">Contact Name</label>
+        <input type="text" ng-model="mc.registerInfo.contact_name" name="contact_name" id="contact_name" required/>
+      </md-input-container>
+
+      <md-input-container>
+        <label for="email_address">Email address</label>
+        <input type="email" ng-model="mc.registerInfo.email_address" name="email_address" id="email_address" required/>
+      </md-input-container>
+
+      <md-input-container>
+        <md-button ng-click="mc.registerUser()" class="md-raised">Register</md-button>
+      </md-input-container>
+    </section>
+  </form>
+
+  <form ng-show="mc.showNewResourceForm">
+    <section layout="column">
+      Press and hold (right-click on desktop) on the map where you like the new resource to be located{{mc.newResource}}
+      <md-input-container>
+        <label for="new_name">Name</label>
+        <input type="text" name="new_name" ng-model="mc.newResource.name" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_location">Location</label>
+        <input type="text" name="new_location" ng-model="mc.newResource.location" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_description">Description</label>
+        <input type="text" name="new_description" ng-model="mc.newResource.description" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_website">Website</label>
+        <input type="text" name="new_website" ng-model="mc.newResource.website" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_social_media">Social Media</label>
+        <input type="text" name="new_social_media" ng-model="mc.newResource.social_media" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_leadership">Leadership</label>
+        <input type="text" name="new_leadership" ng-model="mc.newResource.leadership" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_phone">Public Phone</label>
+        <input type="text" name="new_phone" ng-model="mc.newResource.public_phone" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_email">Public Email</label>
+        <input type="text" name="new_email" ng-model="mc.newResource.public_email" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_hours">Hours</label>
+        <input type="text" name="new_hours" ng-model="mc.newResource.hours" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_lat">Coordinates - Latitude</label>
+        <input type="text" name="new_lat" ng-model="mc.newResource.latitude" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_lng">Coordinates - Longitude</label>
+        <input type="text" name="new_lng" ng-model="mc.newResource.longitude" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_type">Type</label>
+        <!-- <input type="text" name="pending_type" ng-model="epc.selectedResource.type" /> -->
+        <md-select name="new_type" ng-model="mc.newResource.resource_type">
+          <md-option value="Community Garden">Community Garden</md-option>
+          <md-option value="Culinary Arts">Culinary Arts</md-option>
+          <md-option value="Food Hub">Food Hub</md-option>
+          <md-option value="Food Distribution">Food Distribution</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_audio">Audio</label>
+        <input type="text" name="new_audio" ng-model="mc.newResource.audio" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_images">Images</label>
+        <input type="text" name="new_images" ng-model="mc.newResource.images" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_video">Video</label>
+        <input type="text" name="new_video" ng-model="mc.newResource.video" />
+      </md-input-container>
+
+      <md-checkbox ng-if="mc.user.is_admin == 1" name="new_approval" ng-model="mc.newResource.is_active" aria-label="new_approval">Approved</md-checkbox>
+
+      <md-button ng-click="mc.saveNewResource(mc.newResource)">Save</md-button>
+      <md-button ng-click="mc.cancelNewResource()">Cancel</md-button>
+    </section>
+  </form>
+
 </div>

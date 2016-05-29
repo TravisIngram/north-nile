@@ -3,25 +3,43 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
   var pendingResources = [];
   var approvedResources = [];
   var mapResources = {};
+  var userResources = [];
   var geocodeKey = 'd757d21efc7d5efeb1195e398d031a5e';
 
-  var saveNewResource = function(resource){
-    $http.get('https://api.opencagedata.com/geocode/v1/json?q=' + resource.location + '&key=' + geocodeKey).then(function(response){
-      console.log('Geocode response:', response);
-      resource.latitude = response.data.results[0].geometry.lat;
-      resource.longitude = response.data.results[0].geometry.lng;
-      $http.post('/resources/new', resource).then(function(response){
-        console.log('Save new resource response:', response);
-        getSavedResources();
-      });
-    }, function(response){
-      console.log('Geocode failed:', response);
-      // save marker even on fail?
-      $http.post('/resources/new', resource).then(function(response){
-        console.log('Save new resource response:', response);
-        getSavedResources();
-      });
+  var getUserResources = function(user){
+    console.log('trying to log user', user);
+    $http.get('/resources/user/' + user.info.id).then(function(response){
+      console.log(response);
+      angular.copy(response.data, userResources);
     });
+  };
+
+  var saveNewResource = function(resource){
+    if(resource.latitude){
+      $http.post('/resources/new', resource).then(function(response){
+        console.log('Save new resource response:', response);
+        getSavedResources();
+      });
+    } else {
+      $http.get('https://api.opencagedata.com/geocode/v1/json?q=' + resource.location + '&key=' + geocodeKey).then(function(response){
+        console.log('Geocode response:', response);
+        if(response.data.results[0]){
+          resource.latitude = response.data.results[0].geometry.lat;
+          resource.longitude = response.data.results[0].geometry.lng;
+        }
+        $http.post('/resources/new', resource).then(function(response){
+          console.log('Save new resource response:', response);
+          getSavedResources();
+        });
+      }, function(response){
+        console.log('Geocode failed:', response);
+        // save marker even on fail?
+        $http.post('/resources/new', resource).then(function(response){
+          console.log('Save new resource response:', response);
+          getSavedResources();
+        });
+      });
+    }
   };
 
   var getSavedResources = function(callback){
@@ -68,6 +86,14 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
     });
   };
 
+  var removeResource = function(resource){
+    var id = resource.id;
+    $http.delete('/resources/remove/' + id).then(function(response){
+      console.log('Removed resources:', response);
+      getSavedResources();
+    });
+  };
+
 
   return {
     saveNewResource: saveNewResource,
@@ -76,6 +102,9 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
     pendingResources: pendingResources,
     approvedResources: approvedResources,
     updateResource: updateResource,
-    mapResources: mapResources
+    mapResources: mapResources,
+    getUserResources: getUserResources,
+    userResources: userResources,
+    removeResource: removeResource
   }
 }]);
