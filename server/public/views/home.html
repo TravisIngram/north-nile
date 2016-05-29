@@ -1,7 +1,7 @@
 <!-- this page is the HomeController as hc-->
 
 <!-- ::::::::: START HOME PAGE ::::::::: -->
-<div class="home backdrop">
+<div class="home">
 
   <!-- ::::::::: full home header + nav ::::::::: -->
   <div class="home header-expanded" ng-show="hc.headerExpanded">
@@ -10,6 +10,7 @@
     <p>Deadlights jack lad schooner scallywag dance the hempen jig carouser broadside cable strike colors. Bring a spring upon her cable holystone blow the man down spanker Shiver me timbers to go on account lookout wherry doubloon chase. Belay yo-ho-ho keelhaul squiffy black spot yardarm spyglass sheet transom heave to.</p>
 
     <div class="home nav">
+
       <md-button class="md-raised"><a href="/map">Enter Map</a></md-button>
 
       <md-button ng-hide="hc.user" ng-click="hc.loginShow()" class="md-raised">Log In</md-button>
@@ -21,103 +22,109 @@
     </div>
   </div>
 
-  <!-- ::::::::: condensed header + nav ::::::::: -->
-  <!-- Will only show when you click login or register -->
+        <!-- ::::::::: condensed header + nav ::::::::: -->
+        <!-- Will only show when you click login or register -->
 
-  <md-toolbar class="home header-condensed" ng-show="hc.headerCondensed">
-    <div class="md-toolbar-tools">
-      <h2>
-        <span>Nile of the North</span>
-      </h2>
-      <span flex></span>
-      <md-button class="md-icon-button" href="/map" aria-label="map" >
-        <md-icon md-svg-src="assets/img/ic_map_black_24px.svg"></md-icon>
-      </md-button>
-      <md-button class="md-icon-button" ng-click="hc.headerExpandedShow()" aria-label="home">
-        <md-icon md-svg-src="assets/img/ic_home_black_24px.svg"></md-icon>
-      </md-button>
+        <md-toolbar class="home header-condensed" ng-show="hc.headerCondensed">
+          <div class="md-toolbar-tools">
+            <h2>
+              <span>Nile of the North</span>
+            </h2>
+            <span flex></span>
+            <md-button class="md-icon-button" href="/map" aria-label="map" >
+              <md-icon md-svg-src="assets/img/ic_map_black_24px.svg"></md-icon>
+            </md-button>
+            <md-button class="md-icon-button" ng-click="hc.headerExpandedShow()" aria-label="home">
+              <md-icon md-svg-src="assets/img/ic_home_black_24px.svg"></md-icon>
+            </md-button>
+            <!-- <i class="fa fa-user" aria-hidden="true"></i> -->
 
-      <!-- *** Logout should only show if someone is logged in ***
-      <md-button value="LogOut" class="md-raised"><a href="/logout" target="_self">Log Out</a></md-button> -->
+            <!-- *** Logout should only show if someone is logged in ***
+            <md-button value="LogOut" class="md-raised"><a href="/logout" target="_self">Log Out</a></md-button> -->
+          </div>
+        </md-toolbar>
 
-    </div>
-  </md-toolbar>
+        <!-- Every time one of the following sections is used, -->
+        <!-- we need to make sure the other sections are closed (false) -->
 
-  <!-- Every time one of the following sections is used, -->
-  <!-- we need to make sure the other sections are closed (false) -->
+        <!-- ::::::::: LOGIN FORM ::::::::: -->
+        <div class="home form" ng-show="hc.loginForm">
+          <section layout="column">
+            <h3>Log In</h3>
 
-<!-- ::::::::: LOGIN FORM ::::::::: -->
-  <div class="home form" ng-show="hc.loginForm">
-    <section layout="column">
-      <h3>Log In</h3>
-      <md-input-container>
-        <label for="login-username">Username</label>
-        <input type="text" ng-model="hc.loginInfo.username" name="login-username" required/>
-      </md-input-container>
+            <form name="login-form">
+              <md-input-container>
+                <label for="login-username">Username</label>
+                <input type="text" ng-model="hc.loginInfo.username" name="login-username" required/>
+              </md-input-container>
 
-      <md-input-container>
-        <label for="login-password">Password</label>
-        <input type="password" ng-model="hc.loginInfo.password" name="login-password" required/>
-      </md-input-container>
+              <md-input-container>
+                <label for="login-password">Password</label>
+                <input type="password" ng-model="hc.loginInfo.password" name="login-password" required/>
+              </md-input-container>
 
-      <md-input-container>
-        <md-button ng-click="hc.loginUser()" value="LogIn" class="md-raised">Log In</md-button>
-      </md-input-container>
+              <div class="">
+                //password errors will go here
+              </div>
 
-      <md-input-container>
-        <p>Need to create a new account?</p>
-        <md-button class="md-raised" ng-click="hc.registerShow()">Register</md-button>
-      </md-input-container>
-    </section>
-  </div> <!-- ::::::::: END LOGIN ::::::::: -->
+              <md-input-container>
+                <md-button ng-click="hc.loginUser()" value="LogIn" class="md-raised">Log In</md-button>
+              </md-input-container>
+            </form>
+          </section>
 
+          <md-input-container>
+            <p>Need to create a new account?</p>
+            <md-button class="md-raised" ng-click="hc.registerShow()">Register</md-button>
+          </md-input-container>
 
-
-  <!-- ::::::::: REGISTRATION FORM::::::::: -->
-  <form class="home form" name="hc.registerFormInputs" ng-show="hc.registerForm">
-    <section layout="column">
-      <!-- action="/register" method="POST"> -->
-      <h3>Registration</h3>
-
-      <md-input-container>
-        <label for="username">Username</label>
-        <input type="text" ng-model="hc.registerInfo.username" name="username" required/>
-      </md-input-container>
-
-      <md-input-container>
-        <label for="password">Password</label>
-        <input type="password" ng-model="hc.registerInfo.password" name="password" required/>
-      </md-input-container>
-
-      <md-input-container md-is-error="hc.passwordMismatch()">
-        <label for="confirm_password">Confirm Password</label>
-        <input type="password" ng-model="hc.registerInfo.confirm_password" name="confirm_password" required/>
-        <!-- Should add message here to inform user their passwords don't match -->
-        <div class="errorMessage md-caption" ng-show="hc.passwordMismatchError()">Please make sure your passwords match.</div>
-      </md-input-container>
-
-      <md-input-container>
-        <label for="contact_name">Contact Name</label>
-        <input type="text" ng-model="hc.registerInfo.contact_name" name="contact_name" id="contact_name" required/>
-      </md-input-container>
-
-      <md-input-container>
-        <label for="email_address">Email address</label>
-        <input type="email" ng-model="hc.registerInfo.email_address" name="email_address" id="email_address" required/>
-      </md-input-container>
-
-      <md-input-container>
-        <md-button ng-click="hc.registerUser()" class="md-raised">Register</md-button>
-      </md-input-container>
-    </section>
-  </form> <!-- ::::::::: END REGISTRATION ::::::::: -->
+        </div> <!-- ::::::::: END LOGIN ::::::::: -->
 
 
 
+        <!-- ::::::::: REGISTRATION FORM::::::::: -->
+        <form class="home form" name="hc.registerFormInputs" ng-show="hc.registerForm">
+          <section layout="column">
+            <!-- action="/register" method="POST"> -->
+            <h3>Registration</h3>
+            <md-input-container>
+              <label for="username">Username</label>
+              <input type="text" ng-model="hc.registerInfo.username" name="username" required/>
+              <div class="errorMessage md-caption" ng-show="hc.passwordMismatchError()">The passwords you entered do not match.</div>
+            </md-input-container>
+
+            <md-input-container>
+              <label for="password">Password</label>
+              <input type="password" ng-model="hc.registerInfo.password" name="password" required/>
+            </md-input-container>
+
+            <md-input-container md-is-error="hc.passwordMismatch()">
+              <label for="confirm_password">Confirm Password</label>
+              <input type="password" ng-model="hc.registerInfo.confirm_password" name="confirm_password" required/>
+              <!-- Should add message here to inform user their passwords don't match -->
+
+              <div class="errorMessage md-caption" ng-show="hc.passwordMismatchError()">The passwords you entered do not match.</div>
+            </md-input-container>
+
+            <md-input-container>
+              <label for="contact_name">Contact Name</label>
+              <input type="text" ng-model="hc.registerInfo.contact_name" name="contact_name" id="contact_name" required/>
+            </md-input-container>
+
+            <md-input-container>
+              <label for="email_address">Email address</label>
+              <input type="email" ng-model="hc.registerInfo.email_address" name="email_address" id="email_address" required/>
+            </md-input-container>
+            <!-- e-mail validation messages go here -->
+            email = {{hc.registerInfo.email_address}}
+            error = {{hc.registerInfo.email_address.$valid}}
+            <md-input-container>
+              <md-button ng-click="hc.registerUser()" class="md-raised">Register</md-button>
+            </md-input-container>
+
+          </section>
+        </form> <!-- ::::::::: END REGISTRATION ::::::::: -->
 
 
 
-
-
-
-</div> <!-- ::::::::: END HOME PAGE ::::::::: -->
+      </div> <!-- ::::::::: END HOME PAGE ::::::::: -->

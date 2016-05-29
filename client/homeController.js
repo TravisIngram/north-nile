@@ -21,7 +21,7 @@ angular.module('northApp').controller('HomeController', ['UserTrackFactory','$ht
   hc.alertMessage = '';
   hc.headerExpanded = true;
 
-  // registration form password confirmation checking
+  // registration form validation
   hc.passwordMismatch = function(){
     if(hc.registerInfo.password !== hc.registerInfo.confirm_password){
       return true;
@@ -34,7 +34,7 @@ angular.module('northApp').controller('HomeController', ['UserTrackFactory','$ht
     }
   };
 
-  // :::: ng-show Functions ::::
+  // :::: ng-show Functions :::: //
 
   // loginShow():
   hc.loginShow = function() {

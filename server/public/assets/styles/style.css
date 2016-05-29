@@ -1,3 +1,4 @@
+
 /* ================================
 colors: final rgba # is % opaque
 #f3cb00	rgba(243,203,0,0.6)
@@ -17,11 +18,17 @@ font-family: 'Comfortaa', 'futura', cursive;
 =================================== */
 
 /* ::: GENERAL STYLES ::: */
+
 body {
-  background-image: url('../tomatoes.jpg');
+  size: auto;
+  background:
+    /* :: from C. Coyier @csstricks ::*/
+    linear-gradient(
+      rgba(112, 84, 62, 0.8),
+      rgba(112, 84, 62, 0.8)
+    ),
+    url('../kale.jpg');
   background-size: cover;
-  margin: 0;
-  padding: 0;
 }
 
 .md-button.md-raised {
@@ -47,18 +54,18 @@ body {
 a{
   text-decoration: none;
   color: inherit;
-
 }
 
 h1,h2,h3{
   font-family: 'Special Elite', 'courier new', monospace;
-  color: #9eceb8;
-  text-shadow: 1px 3px 1px #433225;
+  color: white;
+  font-weight: bolder;
 }
 
 h1 {
   font-size: 40px;
   font-weight: bolder;
+  text-shadow: 1px 3px 1px #433225;
 }
 
 h2{
@@ -66,9 +73,8 @@ h2{
 }
 
 p{
-  font-family: 'Comfortaa', 'futura', cursive;
-  color: white;
-  text-shadow: 1px 3px 1px #433225;
+font-family: 'Open Sans', 'arial', sans-serif;  color: white;
+text-shadow: 1px 3px 1px #433225;
 }
 
 
@@ -108,21 +114,15 @@ p{
 
 .errorMessage{
   color: #dd2c00;
+  font-family: 'Comfortaa', 'futura', cursive;
+
 }
 
 
 /* ::: HOME PAGE (formerly known as splash page) ::: */
 
-.home.backdrop{
-  background-color: rgba(112, 84, 62, 0.8);
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
 .home {
+  background-color: transparent;
   padding: 10px;
 
 }
@@ -135,7 +135,8 @@ p{
 }
 
 .home.header-condensed {
- background-color: hsla(69, 33%, 71%, 0.78);
+ background-color: rgba(243,203,0,0.2);
+ border-radius: 10px;
 }
 
 .home.nav {
