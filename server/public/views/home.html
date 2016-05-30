@@ -31,16 +31,10 @@
               <span>Nile of the North</span>
             </h2>
             <span flex></span>
-            <md-button class="md-icon-button" href="/map" aria-label="map" >
-              <md-icon md-svg-src="assets/img/ic_map_black_24px.svg"></md-icon>
-            </md-button>
-            <md-button class="md-icon-button" ng-click="hc.headerExpandedShow()" aria-label="home">
-              <md-icon md-svg-src="assets/img/ic_home_black_24px.svg"></md-icon>
-            </md-button>
-            <!-- <i class="fa fa-user" aria-hidden="true"></i> -->
 
-            <!-- *** Logout should only show if someone is logged in ***
-            <md-button value="LogOut" class="md-raised"><a href="/logout" target="_self">Log Out</a></md-button> -->
+            <md-button href="/map" aria-label="map"><i class="fa fa-map-o"></i>Map</md-button>
+            <md-button ng-click="hc.headerExpandedShow()" aria-label="home"><i class="fa fa-home"></i>Home</md-button>
+
           </div>
         </md-toolbar>
 
@@ -64,7 +58,7 @@
               </md-input-container>
 
               <div class="">
-                //password errors will go here
+                password errors will go here
               </div>
 
               <md-input-container>

@@ -35,6 +35,13 @@ body {
 		local('Soria'),
 }
 
+.md-button {
+  font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
+  font-size: 18px;
+  font-weight: bolder;
+  text-transform: lowercase;
+}
+
 .md-button.md-raised {
   background-color: #f3cb00;
   color: #70543e;
@@ -79,6 +86,24 @@ h2{
 p{
 font-family: 'Playfair Display', 'Georgia', serif;
 text-shadow: 1px 3px 1px #433225;
+}
+
+/* ::: NAV STYLES ::: */
+
+.home.header-condensed {
+ background-color: rgba(243,203,0,0.2);
+ border-radius: 10px;
+ height: 20px;
+}
+.fa-map-o, .fa-user{
+    font-size: 1em;
+    padding-right: 5px;
+
+}
+.fa-home {
+  font-size: 1.2em;
+  color: #fff;
+  padding-right: 5px;
 }
 
 
@@ -136,15 +161,6 @@ text-shadow: 1px 3px 1px #433225;
   text-shadow: 5px;
   padding: 90px;
   margin: 100px;
-}
-
-.home.header-condensed {
- background-color: rgba(243,203,0,0.2);
- border-radius: 10px;
-}
-
-.home.nav {
-
 }
 
 .home.form {
