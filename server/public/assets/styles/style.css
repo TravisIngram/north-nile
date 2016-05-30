@@ -17,6 +17,10 @@ font-family: 'Playfair Display', 'Georgia', serif;
 /* ::: GENERAL STYLES ::: */
 
 body {
+
+}
+
+.backfill{
   size: auto;
   background:
     /* :: Source: C. Coyier @csstricks :: */
@@ -26,6 +30,12 @@ body {
     ),
     url('../blooms.jpg');
   background-size: cover;
+  background-attachment:fixed;
+  position:absolute;
+  bottom:0;
+  width:100vw;
+  height:100vh;
+  overflow:scroll;
 }
 
 @font-face {
