@@ -85,6 +85,7 @@ angular.module('northApp').controller('MapController', ['ResourceFactory', 'User
   // open infoDrawer on marker Click
   mc.openInfoDrawer = function(event, args){
     mc.showInfoDrawer = true;
+    mc.showNewResourceDrawer = false;
 
     // grab last marker clicked to recenter map later
     mc.lastClicked = args.model;
@@ -138,7 +139,7 @@ angular.module('northApp').controller('MapController', ['ResourceFactory', 'User
       }
     } else {
       mc.newResource.account_id = mc.user.id;
-      ResourceFactory.saveNewResource(mc.newResource);
+      //ResourceFactory.saveNewResource(mc.newResource);
       mc.showNewResourceDrawer = false;
     }
   };
@@ -278,6 +279,7 @@ angular.module('northApp').controller('MapController', ['ResourceFactory', 'User
 
   // save resource from map
   mc.saveNewResource = function(resource){
+    mc.showNewResourceForm
     console.log('Saving new resource from user:', mc.user);
     resource.account_id = mc.user.id;
     ResourceFactory.saveNewResource(resource);
