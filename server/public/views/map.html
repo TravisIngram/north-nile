@@ -56,9 +56,13 @@
     <u>Audio</u>
     {{mc.lastClicked.audio_id}}
   </p>
-  <p ng-show="mc.lastClicked.image_id">
+  <p ng-show="mc.lastClicked.path1">
     <u>Pictures</u>
-    {{mc.lastClicked.image_id}}
+    <img class="resourceImage" ng-src="{{mc.lastClicked.path1}}" />
+    <img class="resourceImage" ng-src="{{mc.lastClicked.path2}}" />
+    <img class="resourceImage" ng-src="{{mc.lastClicked.path3}}" />
+    <img class="resourceImage" ng-src="{{mc.lastClicked.path4}}" />
+    <img class="resourceImage" ng-src="{{mc.lastClicked.path5}}" />
   </p>
   <p ng-show="mc.lastClicked.video_id">
     <u>Video</u>
