@@ -11,13 +11,13 @@
 
     <div class="home nav">
 
-      <md-button class="md-raised"><a href="/map"><i class="fa fa-map-o" aria-hidden="true"></i> Enter Map</a></md-button>
+      <md-button class="md-raised"><a href="/map"><i class="fa fa-map-o" aria-hidden="true"></i>Enter Map</a></md-button>
 
-      <md-button ng-hide="hc.user" ng-click="hc.loginShow()" class="md-raised"><i class="fa fa-sign-in" aria-hidden="true"></i> Log In</md-button>
+      <md-button class="md-raised" ng-hide="hc.user" ng-click="hc.loginShow()"><i class="fa fa-sign-in" aria-hidden="true"></i> Log In</md-button>
 
-      <md-button ng-show="hc.user" value="account" class="md-raised"  ng-click="hc.routeUser()"><i class="fa fa-user" aria-hidden="true"></i> Account</md-button>
+      <md-button class="md-raised" ng-show="hc.user" ng-click="hc.routeUser()"><i class="fa fa-user" aria-hidden="true"></i>Account</md-button>
 
-      <md-button ng-show="hc.user" value="LogOut" href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</md-button>
+      <md-button class="md-raised" ng-show="hc.user"><a href="/logout" target="_self"><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</a></md-button>
 
     </div>
   </div>
@@ -27,16 +27,14 @@
 
         <md-toolbar class="home header-condensed" ng-show="hc.headerCondensed">
           <div class="md-toolbar-tools">
-              <h1 class="md-toolbar-tools md-flex">Nile of the North</h1>
+            <h1 class="md-toolbar-tools md-flex">Nile of the North</h1>
 
-            <md-button href="/map"><i class="fa fa-map-o" aria-hidden="true"></i></md-button>
+            <md-button href="/map" aria-label="map"><i class="fa fa-map-o" aria-hidden="true"></i>Map</md-button>
 
             <md-button ng-click="hc.headerExpandedShow()" aria-label="home">
-              <i class="fa fa-home" aria-hidden="true"></i></md-button>
+              <i class="fa fa-home" aria-hidden="true"></i>Home</md-button>
 
 
-            <!-- *** Logout should only show if someone is logged in ***
-            <md-button value="LogOut" class="md-raised"><a href="/logout" target="_self">Log Out</a></md-button> -->
           </div>
         </md-toolbar>
 
