@@ -180,6 +180,14 @@ color: white;
   text-align: center;
 }
 
+.emailDialogText{
+  color: black;
+}
+
+.emailDialog{
+  padding: 1vw;
+}
+
 /*edit and add new resource modals on admin*/
 md-dialog{
   width:90vw;
