@@ -14,8 +14,6 @@ angular.module('northApp').controller('MapController', ['ResourceFactory', 'User
     }
   };
 
-  // leafletData.getMap().setActiveArea('activeArea');
-
   mc.storedMarkers = ResourceFactory.mapResources;
   mc.newResource = {};
 
@@ -115,6 +113,20 @@ angular.module('northApp').controller('MapController', ['ResourceFactory', 'User
       });
     }
   };
+
+    mc.currentIndex = 0;
+    mc.setCurrentSlideIndex = function (index) {
+        mc.currentIndex = index;
+    };
+    mc.isCurrentSlideIndex = function (index) {
+        return mc.currentIndex === index;
+    };
+    mc.prevSlide = function () {
+       mc.currentIndex = (mc.currentIndex < mc.lastClicked.images.length - 1) ? ++mc.currentIndex : 0;
+   };
+   mc.nextSlide = function () {
+       mc.currentIndex = (mc.currentIndex > 0) ? --mc.currentIndex : mc.lastClicked.images.length - 1;
+   };
 
   mc.saveResourceCoords = function(event, args){
     console.log('saving args:', args);

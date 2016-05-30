@@ -158,6 +158,15 @@ color: white;
 
 }
 
+.arrow{
+  width:5px;
+  height:5px;
+}
+.slide{
+  height: 40vh;
+  /*width: 10vw;*/
+}
+
 .activeArea { position: absolute; top: 50px; left: 50px; right: 50px; height: 90px; }
 
 #filter1{

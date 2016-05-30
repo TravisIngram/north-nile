@@ -4,6 +4,7 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
   var approvedResources = [];
   var mapResources = {};
   var userResources = [];
+  var images = [];
   var geocodeKey = 'd757d21efc7d5efeb1195e398d031a5e';
 
   var getUserResources = function(user){
@@ -44,8 +45,19 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
 
   var getSavedResources = function(callback){
     $http.get('/resources/all').then(function(response){
-      console.log('Got all saved resources:', response.data);
+      // console.log('Got all saved resources:', savedResources);
       angular.copy(response.data, savedResources);
+      // add image paths to an array
+      savedResources.map(function(resource){
+        resource.images = [];
+      if(resource.path1 !== null){resource.images.push(resource.path1)};
+      if(resource.path2 !== null){resource.images.push(resource.path2)};
+      if(resource.path3 !== null){resource.images.push(resource.path3)};
+      if(resource.path4 !== null){resource.images.push(resource.path4)};
+      if(resource.path5 !== null){resource.images.push(resource.path5)};
+      });
+      // savedResources.images = images;
+      console.log('Got all saved resources:', savedResources);
 
       var tempPendingResources = savedResources.filter(function(resource){
         if (resource.is_pending === true){
