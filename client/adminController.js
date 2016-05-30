@@ -114,6 +114,7 @@ angular.module('northApp').controller('NewAccountController', ['$mdDialog', 'Acc
   };
 
   nac.registerUser = function() {
+    nac.registerInfo.from_admin = true;
     $http.post('/register', nac.registerInfo).then(function(response){
       if (response.status == 200) {
         console.log('successful registration');
