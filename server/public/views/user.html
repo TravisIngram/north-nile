@@ -50,11 +50,23 @@
       </th>
     </thead>
     <tbody md-body>
-      <tr md-row ng-repeat = "parent in uc.userResources">
-        <td md-cell>{{parent.name}}</td>
-        <td md-cell>{{parent.location}}</td>
+      <tr md-row ng-repeat = "resource in uc.userResources">
+        <td md-cell>{{resource.name}}</td>
+        <td md-cell>{{resource.location}}</td>
+        <td md-cell>{{resource.date_created}}</td>
+        <td md-cell><md-button ng-click="uc.editUserResource(resource)">Edit</md-button></td>
       </tr>
-    </tbody>
+        <!-- <tbody md-body>
+          <tr md-row ng-repeat="account in uc.savedAccounts">
+            <td md-cell>{{account.username}}</td>
+            <td md-cell>{{account.email_address}}</td>
+            <td md-cell>{{account.contact_name}}</td>
+          </tr> -->
+
+        </tbody>
+
+
+    <!-- </tbody> -->
   </table>
 
   <!-- add a new resource -->

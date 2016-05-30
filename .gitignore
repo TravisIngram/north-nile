@@ -10,3 +10,4 @@ server/public/assets/scripts
 server/public/assets/scripts/homeController.js
 server/public/assets/scripts/mapController.js
 server/public/assets/scripts/northApp.module.js
+server/public/assets/img/uploads/*

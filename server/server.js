@@ -18,6 +18,7 @@ var registerRouter = require('./routes/registerRouter.js');
 var encryption=require('../modules/encryption');
 var resourceRouter = require('./routes/resourceRouter.js');
 var accountsRouter = require('./routes/accountsRouter.js');
+var uploadRouter = require('./routes/uploadRouter.js');
 
 var app = express();
 
@@ -117,6 +118,7 @@ app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
 app.use('/register', registerRouter);
 app.use('/accounts', accountsRouter);
+app.use('/upload', uploadRouter);
 app.use('/', indexRouter);
 // DO NOT PUT ANY OTHER ROUTES UNDER indexRouter!!!
 

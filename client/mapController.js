@@ -12,7 +12,9 @@ angular.module('northApp').controller('MapController', ['ResourceFactory', 'User
     } else {
       $location.path('/user');
     }
-  }
+  };
+
+  // leafletData.getMap().setActiveArea('activeArea');
 
   mc.storedMarkers = ResourceFactory.mapResources;
   mc.newResource = {};
@@ -26,10 +28,26 @@ angular.module('northApp').controller('MapController', ['ResourceFactory', 'User
   mc.filterMarkers = function(type, ev){
     mc.visibleMarkers = {};
 
-    // if(ev){
-    //   console.log('Filter event:', ev);
-    //   ev.currentTarget.addClass('disabledKeyButton')
-    // }
+    var filter1 = angular.element(document.querySelector('#filter1'));
+    var filter2 = angular.element(document.querySelector('#filter2'));
+    var filter3 = angular.element(document.querySelector('#filter3'));
+    var filter4 = angular.element(document.querySelector('#filter4'));
+
+    switch(type){
+      case 'Community Garden':
+        filter1.toggleClass('disabledKeyButton');
+        console.log('filter1:', filter1);
+        break;
+      case 'Culinary Arts':
+        filter2.toggleClass('disabledKeyButton');
+        break;
+      case 'Food Hub':
+        filter3.toggleClass('disabledKeyButton');
+        break;
+      case 'Food Distribution':
+        filter4.toggleClass('disabledKeyButton');
+        break;
+    }
 
     if(type === 'all'){
       for (marker in mc.storedMarkers){
@@ -71,22 +89,6 @@ angular.module('northApp').controller('MapController', ['ResourceFactory', 'User
     // grab last marker clicked to recenter map later
     mc.lastClicked = args.model;
 
-    // test text
-    mc.markerTitle = mc.lastClicked.title;
-    // test text to force overflow and scrolling
-    mc.dummyText1 = 'Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.';
-    mc.dummyText2 = 'Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.';
-    mc.dummyText3 = 'Capitalise on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.';
-
-    // update map size - needed if we are shrinking the map to recenter the icon/marker in the top middle
-    mc.mapStyle = {height:'30vh'};
-    leafletData.getMap().then(function(map) {
-      setTimeout(function(){ // may not be best practice - seems to result in the map moving too much
-        map.invalidateSize();
-        console.log('called');
-      }, 200);
-    });
-
     // this centers the map on the marker clicked
     angular.extend(mc, {
       center:{
@@ -101,15 +103,6 @@ angular.module('northApp').controller('MapController', ['ResourceFactory', 'User
   mc.closeInfoDrawer = function(event, args){
     if(mc.showInfoDrawer){
       mc.showInfoDrawer = false;
-
-      // update map size - needed if we are shrinking the map to recenter the icon/marker in the top middle
-      mc.mapStyle = {height:'100vh'};
-      leafletData.getMap().then(function(map) {
-        setTimeout(function(){
-          map.invalidateSize();
-          console.log('called');
-        }, 100);
-      });
 
       // this centers the map on the marker that initiated the click that this is 'undoing'
       angular.extend(mc, {

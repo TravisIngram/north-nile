@@ -114,6 +114,7 @@ angular.module('northApp').controller('NewAccountController', ['$mdDialog', 'Acc
   };
 
   nac.registerUser = function() {
+    nac.registerInfo.from_admin = true;
     $http.post('/register', nac.registerInfo).then(function(response){
       if (response.status == 200) {
         console.log('successful registration');
@@ -221,7 +222,7 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
 
 
 // add new resource modal controller
-angular.module('northApp').controller('NewResourceController', ['$http',  '$mdDialog', 'ResourceFactory', 'UserTrackFactory', function($http, $mdDialog, ResourceFactory, UserTrackFactory){
+angular.module('northApp').controller('NewResourceController', ['Upload','$http',  '$mdDialog', 'ResourceFactory', 'UserTrackFactory', function(Upload, $http, $mdDialog, ResourceFactory, UserTrackFactory){
   var nrc = this;
 
   nrc.newResource = {is_active:true};
@@ -236,11 +237,30 @@ angular.module('northApp').controller('NewResourceController', ['$http',  '$mdDi
   };
 
   nrc.saveNewResource = function(resource){
-    resource.account_id = nrc.user.id;
-    resource.is_pending = !resource.is_active;
-    resource.date_created = new Date();
-    ResourceFactory.saveNewResource(resource);
-    $mdDialog.hide();
+    // image upload
+    console.log('nrc.newImage', nrc.newImage);
+    Upload.upload({
+      url: '/upload/image',
+      arrayKey: '',
+      data: {file: nrc.newImage.file}
+    }).then(function(response){
+      console.log('Success response?', response);
+      // save rest of resource
+      resource.image_id = response.data.image_id;
+      resource.account_id = nrc.user.id;
+      resource.is_pending = !resource.is_active;
+      resource.date_created = new Date();
+      ResourceFactory.saveNewResource(resource);
+      $mdDialog.hide();
+
+    }, function(response){
+      console.log('Error response?', response);
+    }, function(evt){
+      // use for progress bar
+      console.log('Event response?', evt);
+    });
+    // end image upload
+
   };
 
   console.log('New Resource Controller loaded.');
