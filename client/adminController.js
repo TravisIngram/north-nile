@@ -39,7 +39,7 @@ angular.module('northApp').controller('AdminController', ['AccountFactory', 'Use
           return resource;
         }
       }
-    }
+    };
      $mdDialog.show(ac.editPendingOptions);
   };
 
@@ -50,7 +50,7 @@ angular.module('northApp').controller('AdminController', ['AccountFactory', 'Use
       clickOutsideToClose: true,
       controller: 'NewResourceController',
       controllerAs: 'nrc'
-    }
+    };
     $mdDialog.show(ac.newResourceOptions);
   };
 

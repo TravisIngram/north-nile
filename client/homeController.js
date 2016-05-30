@@ -57,7 +57,7 @@ angular.module('northApp').controller('HomeController', ['UserTrackFactory','$ht
     hc.headerCondensed = false;
     hc.loginForm = false;
     hc.registerForm = false;
-  }
+  };
 
   // :::: Login User, redirect based on success/failure ::::
 
