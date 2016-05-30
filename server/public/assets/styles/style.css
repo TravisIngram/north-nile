@@ -107,82 +107,7 @@ color: white;
   padding-right: 5px;
 }
 
-
-/* ::: MAP STYLES ::: */
-.key {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 10vh;
-  background-color: seagreen;
-}
-
-.infoDrawer {
-  position: absolute;
-  bottom: 10vh;
-  height: 60vh;
-  max-height: 60vh;
-  width: 100vw;
-  background-color: rgba(60,179,113, 0.9);
-  overflow-y: scroll;
-  transition-property: all;
-  transition-duration: .5s;
-  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-}
-
-.infoDrawer.ng-hide{
-  max-height: 0;
-}
-
-.keyButton{
-  margin: 1vw;
-}
-
-.disabledKeyButton{
-  background-color: #444 !important;
-}
-
-.errorMessage{
-  color: #dd2c00;
-  font-family: 'Playfair Display', 'Georgia', serif;
-
-}
-
-.activeArea { position: absolute; top: 50px; left: 50px; right: 50px; height: 90px; }
-
-#filter1{
-  background-color:#F3CB00;
-}
-#filter2{
-  background-color:#EC4500;
-}
-#filter3{
-  background-color:#9BB85C;
-}
-#filter4{
-  background-color:#93CEB8;
-}
-
-#userKeyButton, #homeKeyButton, #addKeyButton{
-  background-color:#70543E;
-}
-
-
-/* ::: HOME PAGE (formerly known as splash page) ::: */
-
-.home {
-  background-color: transparent;
-  padding: 10px;
-
-}
-
-.home.header-expanded {
-  text-align: center;
-  text-shadow: 5px;
-  padding: 90px;
-  margin: 100px;
-}
-/* ::: home nav animations ::: */
+/* ::: HOME/NAV ANIMATIONS ::: */
 
 /*!
  * animate.css -http://daneden.me/animate
@@ -191,14 +116,6 @@ color: white;
  *
  * Copyright (c) 2016 Daniel Eden
  */
-
- .ng-hide-add {
-   amination:1s fadeOut ease;
- }
-
- .ng-hide-remove {
-   animation: 1s fadeIn ease;
- }
 
 /* ANIMATIONS (FROM ANIMATE.CSS) ======================== */
 
@@ -238,6 +155,7 @@ color: white;
     opacity: 0;
   }
 }
+
 /* ::: fadeOut ::: */
 
 @keyframes fadeOut {
@@ -254,9 +172,83 @@ color: white;
   -webkit-animation-name: fadeOut;
   animation-name: fadeOut;
 }
+/* ng-hide-add and ng-hide-remove are tied to ng-hide and ng-show */
+.ng-hide-add {
+  amination: 1s fadeOut ease;
+}
 
-/* ::: end home nav animations ::: */
+.ng-hide-remove {
+  animation: 1s fadeIn ease;
+}
 
+/* ::: NG-VIEW PAGE TRANSITION ANIMATIONS ::: */
+
+/* ng-enter and ng-leave are tied to ng-view */
+.ng-enter {
+  animation: 0.8s fadeIn ease;
+}
+.ng-leave {
+  amination: 0.8s fadeOut ease;
+}
+
+/* ::: MAP STYLES ::: */
+
+.key {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 10vh;
+  background-color: seagreen;
+}
+
+.infoDrawer {
+  position: absolute;
+  bottom: 10vh;
+  height: 60vh;
+  max-height: 60vh;
+  width: 100vw;
+  background-color: mediumseagreen;
+  overflow-y: scroll;
+  transition-property: all;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
+.infoDrawer.ng-hide{
+  max-height: 0;
+}
+
+.keyButton{
+  margin: 1vw;
+}
+
+.disabledKeyButton{
+  background-color: #444 !important;
+}
+
+.errorMessage{
+  color: #dd2c00;
+  font-family: 'Playfair Display', 'Georgia', serif;
+
+}
+
+.activeArea { position: absolute; top: 50px; left: 50px; right: 50px; height: 90px; }
+
+
+/* ::: HOME PAGE (formerly known as splash page) ::: */
+
+.home {
+  background-color: transparent;
+  padding: 10px;
+
+}
+
+.home.header-expanded {
+  text-align: center;
+  text-shadow: 5px;
+  padding: 90px;
+  margin: 100px;
+}
 
 .home.form {
 
@@ -270,14 +262,6 @@ color: white;
 
 .pageTitle {
   text-align: center;
-}
-
-.emailDialogText{
-  color: black;
-}
-
-.emailDialog{
-  padding: 1vw;
 }
 
 /*edit and add new resource modals on admin*/
