@@ -138,7 +138,7 @@ text-shadow: 1px 3px 1px #433225;
 }
 
 .disabledKeyButton{
-  background-color: #444;
+  background-color: #444 !important;
 }
 
 .errorMessage{
@@ -146,6 +146,8 @@ text-shadow: 1px 3px 1px #433225;
   font-family: 'Playfair Display', 'Georgia', serif;
 
 }
+
+.activeArea { position: absolute; top: 50px; left: 50px; right: 50px; height: 90px; }
 
 
 /* ::: HOME PAGE (formerly known as splash page) ::: */

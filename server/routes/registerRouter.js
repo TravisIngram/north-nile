@@ -13,7 +13,7 @@ router.get('/', function(request, response, next){
 
 router.post('/', function(request, response, next){
   console.log(request.body);
-  pg.connect(dbConnectionString, function(err, client){
+  pg.connect(dbConnectionString, function(err, client, done){
     if (err){
       console.log('error connecting to db - registerRouter', err);
     }
@@ -32,9 +32,14 @@ router.post('/', function(request, response, next){
       });
       query.on('end', function() {
         var authenticationFunction = passport.authenticate('local');
-        authenticationFunction(request, response, function() {
+        if(!request.body.from_admin){
+          authenticationFunction(request, response, function() {
+            response.sendStatus(200);
+          });
+        } else {
           response.sendStatus(200);
-        });
+        }
+
         // response.redirect('/');
         client.end();
       });
