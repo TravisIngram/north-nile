@@ -191,7 +191,7 @@ color: white;
     text-align: center;
     text-shadow: 5px;
     padding: 90px;
-    margin: 100px;
+    /*margin: 100px;*/
   }
 }
 
@@ -291,6 +291,15 @@ color: white;
 
 .pageTitle {
   text-align: center;
+}
+
+md-card{
+  background-color:rgba(155, 184, 92, 0.73);
+  color:white;
+}
+md-table, md-head, th.md-column, td.md-cell, md-row{
+  color:white !important;
+  text-shadow: 1px 2px #444;
 }
 
 .emailDialogText{

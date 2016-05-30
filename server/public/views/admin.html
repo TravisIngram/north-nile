@@ -110,11 +110,12 @@
     </md-table-container>
   </md-card>
 
-  <md-button ng-click="ac.showAccounts()">Manage Accounts</md-button>
-  <md-button ng-click="ac.addAccount()" ng-show="ac.showAccountTable">Add Account</md-button>
-  <md-button ng-click="ac.showEmails()" ng-show="ac.showAccountTable">View Emails</md-button>
-  <md-card ng-show="ac.showAccountTable">
-    <md-table-container>
+
+  <md-card>
+    <md-button ng-click="ac.showAccounts()">Manage Accounts</md-button>
+    <md-button ng-click="ac.addAccount()" ng-show="ac.showAccountTable">Add Account</md-button>
+    <md-button ng-click="ac.showEmails()" ng-show="ac.showAccountTable">View Emails</md-button>
+    <md-table-container  ng-show="ac.showAccountTable">
       <table md-table>
         <thead md-head>
           <tr md-row>
