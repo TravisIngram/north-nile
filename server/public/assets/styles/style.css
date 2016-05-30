@@ -17,6 +17,10 @@ font-family: 'Playfair Display', 'Georgia', serif;
 /* ::: GENERAL STYLES ::: */
 
 body {
+
+}
+
+.backfill{
   size: auto;
   background:
     /* :: Source: C. Coyier @csstricks :: */
@@ -26,6 +30,12 @@ body {
     ),
     url('../blooms.jpg');
   background-size: cover;
+  background-attachment:fixed;
+  position:absolute;
+  bottom:0;
+  width:100vw;
+  height:100vh;
+  overflow:scroll;
 }
 
 @font-face {
@@ -111,7 +121,6 @@ color: white;
   padding-right: 5px;
 }
 
-
 /* ::: MAP STYLES ::: */
 .key {
   position: absolute;
@@ -127,7 +136,7 @@ color: white;
   height: 60vh;
   max-height: 60vh;
   width: 100vw;
-  background-color: mediumseagreen;
+  background-color: rgba(60,179,113, 0.9);
   overflow-y: scroll;
   transition-property: all;
   transition-duration: .5s;
@@ -152,8 +161,144 @@ color: white;
 
 }
 
+.arrow{
+  width:5px;
+  height:5px;
+}
+.slide{
+  height: 40vh;
+  /*width: 10vw;*/
+}
+
 .activeArea { position: absolute; top: 50px; left: 50px; right: 50px; height: 90px; }
 
+#filter1{
+  background-color:#F3CB00;
+}
+#filter2{
+  background-color:#EC4500;
+}
+#filter3{
+  background-color:#9BB85C;
+}
+#filter4{
+  background-color:#93CEB8;
+}
+
+#userKeyButton, #homeKeyButton, #addKeyButton{
+  background-color:#70543E;
+}
+
+
+/* ::: HOME PAGE (formerly known as splash page) ::: */
+
+.home {
+  background-color: transparent;
+  padding: 10px;
+
+}
+
+@media (min-width:600px) {
+  .home.header-expanded {
+    text-align: center;
+    text-shadow: 5px;
+    padding: 90px;
+    /*margin: 100px;*/
+  }
+}
+
+@media (max-width: 600px) {
+  .home.header-expanded {
+    text-align: center;
+    text-shadow: 5px;
+    padding: 20px;
+    /*margin: 100px;*/
+  }
+}
+
+/* ::: HOME NAV ANIMATIONS ::: */
+
+/*!
+ * animate.css -http://daneden.me/animate
+ * Version - 3.5.1
+ * Licensed under the MIT license - http://opensource.org/licenses/MIT
+ *
+ * Copyright (c) 2016 Daniel Eden
+ */
+
+/* ANIMATIONS (FROM ANIMATE.CSS) ======================== */
+
+/* ::: fadeIn ::: */
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+@-webkit-keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+/* ::: fadeOut ::: */
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.fadeOut {
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;
+}
+/* ng-hide-add and ng-hide-remove are tied to ng-hide and ng-show */
+.ng-hide-add {
+  amination: 1s fadeOut ease;
+}
+
+.ng-hide-remove {
+  animation: 1s fadeIn ease;
+}
+
+/* ::: NG-VIEW PAGE TRANSITION ANIMATIONS ::: */
+
+/* ng-enter and ng-leave are tied to ng-view */
+.ng-enter {
+  animation: 0.8s fadeIn ease;
+}
+.ng-leave {
+  amination: 0.8s fadeOut ease;
+}
 
 /* ::: HOME PAGE (formerly known as splash page) ::: */
 
@@ -174,8 +319,17 @@ color: white;
 
 }
 
-.home.dashboard {
+md-card{
+  background-color:rgba(155, 184, 92, 0.73);
+  color:white;
+}
+md-table, md-head, th.md-column, td.md-cell, md-row, md-icon{
+  color:white !important;
+  text-shadow: 1px 2px #444;
+}
 
+.emailDialogText{
+  color: black;
 }
 
 /* ::: ADMIN/USER DASHBOARDS ::: */

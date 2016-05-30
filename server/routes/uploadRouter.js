@@ -29,7 +29,8 @@ router.post('/image', function(request, response){
 
     // insert file paths to database, insert image key to resource row
     request.files.map(function(file){
-      filePaths.push(file.path); // add file paths to array
+      var filePath = file.path.substring(14); // remove server/public/ from the file path
+      filePaths.push(filePath); // add file paths to array
     });
 
     pg.connect(dbConnectionString, function(err, client, done){

@@ -12,6 +12,7 @@ angular.module('northApp').controller('AdminController', ['AccountFactory', 'Use
 
   ac.savedAccounts = AccountFactory.savedAccounts;
   ac.getSavedAccounts = AccountFactory.getSavedAccounts;
+  ac.emails = [];
 
   ac.selectedModerationResources = [];
   ac.selectedModerationResource = {};
@@ -85,10 +86,36 @@ angular.module('northApp').controller('AdminController', ['AccountFactory', 'Use
     $mdDialog.show(ac.addAccountOptions);
   };
 
+  ac.showEmails = function(){
+    ac.emails = [];
+    ac.savedAccounts.map(function(account){
+      ac.emails.push(account.email_address);
+    });
+    $mdDialog.show(
+      {
+        templateUrl:'/views/emails.html',
+        controller: 'EmailController',
+        controllerAs: 'ec',
+        clickOutsideToClose: true,
+        locals: {
+          emails: ac.emails
+        }
+      }
+    );
+  };
+
   // load tables on page load
   ac.getSavedResources();
   ac.getSavedAccounts();
   console.log('admin controller loaded!');
+}]);
+
+// view emails controller
+angular.module('northApp').controller('EmailController', ['emails', '$mdDialog', function(emails, $mdDialog){
+  var ec = this;
+  ec.emails = emails;
+
+  console.log('emails:', ec.emails);
 }]);
 
 // new account controller
