@@ -14,7 +14,7 @@ Body font:
 font-family: 'Playfair Display', 'Georgia', serif;
 =================================== */
 
-/* ::: GENERAL STYLES ::: */
+/* ::::: GENERAL STYLES ::::: */
 
 body {
 
@@ -72,6 +72,13 @@ body {
   background-color: transparent;
 }
 
+form {
+  font-family: 'Playfair Display', 'Georgia', serif;
+}
+
+md-input-container .md-input {
+    color: #fff;
+}
 
 a{
   text-decoration: none;
@@ -103,7 +110,7 @@ font-size: 17px;
 color: white;
 }
 
-/* ::: NAV STYLES ::: */
+/* ::::: NAV STYLES ::::: */
 
 .home.header-condensed {
  background-color: rgba(243,203,0,0.2);
@@ -121,7 +128,10 @@ color: white;
   padding-right: 5px;
 }
 
-/* ::: MAP STYLES ::: */
+
+
+/* ::::: MAP STYLES ::::: */
+
 .key {
   position: absolute;
   bottom: 0;
@@ -300,7 +310,7 @@ color: white;
   amination: 0.8s fadeOut ease;
 }
 
-/* ::: HOME PAGE (formerly known as splash page) ::: */
+/* ::::: HOME PAGE ::::: */
 
 .home {
   background-color: transparent;
@@ -316,9 +326,10 @@ color: white;
 }
 
 .home.form {
-
+  color: pink;
 }
 
+<<<<<<< Updated upstream
 md-card{
   background-color:rgba(155, 184, 92, 0.73);
   color:white;
@@ -327,12 +338,15 @@ md-table, md-head, th.md-column, td.md-cell, md-row, md-icon{
   color:white !important;
   text-shadow: 1px 2px #444;
 }
+=======
+/* ::::: ADMIN DASHBOARD ::::: */
+
+.home.dashboard {
+>>>>>>> Stashed changes
 
 .emailDialogText{
   color: black;
 }
-
-/* ::: ADMIN/USER DASHBOARDS ::: */
 
 .pageTitle {
   text-align: center;
@@ -342,3 +356,5 @@ md-table, md-head, th.md-column, td.md-cell, md-row, md-icon{
 md-dialog{
   width:90vw;
 }
+
+/* ::::: VISITOR/USER DASHBOARD ::::: */

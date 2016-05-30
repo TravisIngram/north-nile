@@ -9,7 +9,7 @@
     <div class="md-toolbar-tools">
 
       <div class="userClass">
-        <h2>Hello, {{uc.user.info.username}}</h2>
+        <h2>Hello, {{uc.user.info.username}}!</h2>
       </div>
 
       <span flex></span>
@@ -21,26 +21,16 @@
     </div>
   </md-toolbar>
 
-
+  
   <!-- user resources -->
   <h2 class="pageTitle"> Food Resource Locations </h2>
 
   <table md-table>
     <thead md-head>
-
-      <th md-column>
-        Resource Name
-        {{uc.savedResources.name}}
-      </th>
-      <th md-column>
-        Resource type
-      </th>
-      <th md-column>
-        Date Created
-      </th>
-      <th md-column>
-        Edit
-      </th>
+      <th md-column>Resource Name{{uc.savedResources.name}}</th>
+      <th md-column>Resource type</th>
+      <th md-column>Date Created</th>
+      <th md-column>Edit</th>
     </thead>
     <tbody md-body>
       <tr md-row ng-repeat = "resource in uc.userResources">
@@ -49,22 +39,20 @@
         <td md-cell>{{resource.date_created}}</td>
         <td md-cell><md-button ng-click="uc.editUserResource(resource)">Edit</md-button></td>
       </tr>
-        <!-- <tbody md-body>
-          <tr md-row ng-repeat="account in uc.savedAccounts">
-            <td md-cell>{{account.username}}</td>
-            <td md-cell>{{account.email_address}}</td>
-            <td md-cell>{{account.contact_name}}</td>
-          </tr> -->
+      <!-- <tbody md-body>
+      <tr md-row ng-repeat="account in uc.savedAccounts">
+      <td md-cell>{{account.username}}</td>
+      <td md-cell>{{account.email_address}}</td>
+      <td md-cell>{{account.contact_name}}</td>
+    </tr> -->
 
-        </tbody>
+  </tbody>
 
 
-    <!-- </tbody> -->
-  </table>
+  <!-- </tbody> -->
+</table>
 
-  <!-- add a new resource -->
+<!-- add a new resource -->
+<md-button ng-click="uc.addNewResource()" aria-label="resource"><i class="fa fa-plus-circle"></i> New Resource</md-button>
 
-  <md-button class="md-icon-button" ng-click="uc.addNewResource()" aria-label="resource">
-    <md-icon md-svg-src="assets/img/ic_add_circle_outline_black_24px.svg"></md-icon>
-  </md-button>
 </div> <!-- ::::::::: END USER DASHBOARD ::::::::: -->
