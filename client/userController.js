@@ -11,7 +11,9 @@ angular.module('northApp').controller('UserController', ['UserTrackFactory', '$h
   // uc.user = UserTrackFactory.user;
 //ability to add new resource //
 uc.userResources=ResourceFactory.userResources;
+uc.editUserResource = ResourceFactory.editUserResource;
 uc.getUserResources = ResourceFactory.getUserResources;
+uc.approvedResources = ResourceFactory.approvedResources;
 
 
 console.log('user controller called getUserResources');
@@ -32,6 +34,23 @@ uc.addNewResource = function(){
   console.log('finished addnewResource function');
 };
 
+// edit dialogs
+uc.editUserResource = function(resource){
+  console.log('editUserResource:', resource);
+  uc.editPendingOptions = {
+    templateUrl: '/views/edit-resource.html',
+    clickOutsideToClose: true,
+    controller: 'EditResourceController',
+    controllerAs:'erc',
+    resolve:{
+      userResource: function(){
+        return resource;
+      }
+    }
+  }
+   $mdDialog.show(uc.editPendingOptions);
+};
+
 
 }]);
 
@@ -50,5 +69,39 @@ angular.module('northApp').controller('UserNewResourceController', ['isAdmin', '
   unrc.cancelNewResource = function(){
     $mdDialog.hide();
   };
-
 }]);
+  // edit modal for user's resources//
+  angular.module('northApp').controller('EditResourceController', ['userResource', '$mdDialog', 'ResourceFactory', function(userResource,  $mdDialog, ResourceFactory){
+    var erc = this;
+    erc.userResource = userResource;
+
+    erc.cancelEditPending = function(){
+      console.log('uc.userResource:', userResource);
+      $mdDialog.hide();
+      erc.userResource = {};
+    };
+
+    erc.saveEdit = function(){
+      erc.userResource.is_pending = !erc.userResource.is_active;
+      console.log('erc.userResource:', erc.userResource);
+      ResourceFactory.updateResource(erc.userResource);
+      erc.user = {};
+      $mdDialog.hide();
+    };
+
+    erc.confirmRemoveResource = function(){
+      erc.showConfirmRemove = true;
+    };
+
+    erc.cancelRemoveResource = function(){
+      erc.showConfirmRemove = false;
+    };
+
+    erc.removeResource = function(resource){
+      ResourceFactory.removeResource(resource);
+      erc.showConfirmRemove = false;
+      $mdDialog.hide();
+    };
+
+    console.log('Edit Resource Controller loaded.', userResource);
+  }]);

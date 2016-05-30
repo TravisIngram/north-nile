@@ -81,7 +81,10 @@
 
   <md-card>
     <h2>Resources</h2>
-    <md-button ng-click="ac.addNewResource()">Add A Resource</md-button>
+    <md-button class="md-icon-button" ng-click="ac.addNewResource()"><aria-label="resource">
+      <md-icon md-svg-src="assets/img/ic_add_circle_outline_black_24px.svg"></md-icon>
+    </md-button>
+    <!-- <md-button ng-click="ac.addNewResource()">Add A Resource</md-button> -->
     <md-table-container>
       <table md-table>
         <thead md-head>
