@@ -165,6 +165,81 @@ color: white;
   padding: 90px;
   margin: 100px;
 }
+/* ::: home nav animations ::: */
+
+/*!
+ * animate.css -http://daneden.me/animate
+ * Version - 3.5.1
+ * Licensed under the MIT license - http://opensource.org/licenses/MIT
+ *
+ * Copyright (c) 2016 Daniel Eden
+ */
+
+ .ng-hide-add {
+   amination:1s fadeOut ease;
+ }
+
+ .ng-hide-remove {
+   animation: 1s fadeIn ease;
+ }
+
+/* ANIMATIONS (FROM ANIMATE.CSS) ======================== */
+
+/* ::: fadeIn ::: */
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+@-webkit-keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+/* ::: fadeOut ::: */
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.fadeOut {
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;
+}
+
+/* ::: end home nav animations ::: */
+
 
 .home.form {
 
