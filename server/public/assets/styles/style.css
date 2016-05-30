@@ -123,7 +123,7 @@ color: white;
   height: 60vh;
   max-height: 60vh;
   width: 100vw;
-  background-color: mediumseagreen;
+  background-color: rgba(60,179,113, 0.9);
   overflow-y: scroll;
   transition-property: all;
   transition-duration: .5s;
@@ -149,6 +149,23 @@ color: white;
 }
 
 .activeArea { position: absolute; top: 50px; left: 50px; right: 50px; height: 90px; }
+
+#filter1{
+  background-color:#F3CB00;
+}
+#filter2{
+  background-color:#EC4500;
+}
+#filter3{
+  background-color:#9BB85C;
+}
+#filter4{
+  background-color:#93CEB8;
+}
+
+#userKeyButton, #homeKeyButton, #addKeyButton{
+  background-color:#70543E;
+}
 
 
 /* ::: HOME PAGE (formerly known as splash page) ::: */

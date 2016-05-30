@@ -85,6 +85,7 @@ angular.module('northApp').controller('MapController', ['ResourceFactory', 'User
   // open infoDrawer on marker Click
   mc.openInfoDrawer = function(event, args){
     mc.showInfoDrawer = true;
+    mc.showNewResourceDrawer = false;
 
     // grab last marker clicked to recenter map later
     mc.lastClicked = args.model;
