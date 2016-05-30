@@ -5,19 +5,19 @@
 
   <!-- ::::::::: full home header + nav ::::::::: -->
   <div class="home header-expanded" ng-show="hc.headerExpanded">
-    <h1>Nile of the North</h1>
+    <a href="/"><h1>Nile of the North</h1></a>
 
     <p>Deadlights jack lad schooner scallywag dance the hempen jig carouser broadside cable strike colors. Bring a spring upon her cable holystone blow the man down spanker Shiver me timbers to go on account lookout wherry doubloon chase. Belay yo-ho-ho keelhaul squiffy black spot yardarm spyglass sheet transom heave to.</p>
 
     <div class="home nav">
 
-      <md-button class="md-raised"><a href="/map">Enter Map</a></md-button>
+      <md-button class="md-raised"><a href="/map"><i class="fa fa-map-o" aria-hidden="true"></i> Enter Map</a></md-button>
 
-      <md-button ng-hide="hc.user" ng-click="hc.loginShow()" class="md-raised">Log In</md-button>
+      <md-button ng-hide="hc.user" ng-click="hc.loginShow()" class="md-raised"><i class="fa fa-sign-in" aria-hidden="true"></i> Log In</md-button>
 
-      <md-button ng-show="hc.user" value="account" class="md-raised"  ng-click="hc.routeUser()">Account</md-button>
+      <md-button ng-show="hc.user" value="account" class="md-raised"  ng-click="hc.routeUser()"><i class="fa fa-user" aria-hidden="true"></i> Account</md-button>
 
-      <md-button ng-show="hc.user" value="LogOut" class="md-raised"><a href="/logout" target="_self">Log Out</a></md-button>
+      <md-button ng-show="hc.user" value="LogOut" href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</md-button>
 
     </div>
   </div>
@@ -27,14 +27,16 @@
 
         <md-toolbar class="home header-condensed" ng-show="hc.headerCondensed">
           <div class="md-toolbar-tools">
-            <h2>
-              <span>Nile of the North</span>
-            </h2>
-            <span flex></span>
+              <h1 class="md-toolbar-tools md-flex">Nile of the North</h1>
 
-            <md-button href="/map" aria-label="map"><i class="fa fa-map-o"></i>Map</md-button>
-            <md-button ng-click="hc.headerExpandedShow()" aria-label="home"><i class="fa fa-home"></i>Home</md-button>
+            <md-button href="/map"><i class="fa fa-map-o" aria-hidden="true"></i></md-button>
 
+            <md-button ng-click="hc.headerExpandedShow()" aria-label="home">
+              <i class="fa fa-home" aria-hidden="true"></i></md-button>
+
+
+            <!-- *** Logout should only show if someone is logged in ***
+            <md-button value="LogOut" class="md-raised"><a href="/logout" target="_self">Log Out</a></md-button> -->
           </div>
         </md-toolbar>
 
@@ -57,8 +59,8 @@
                 <input type="password" ng-model="hc.loginInfo.password" name="login-password" required/>
               </md-input-container>
 
+              <!-- pw errors -->
               <div class="">
-                password errors will go here
               </div>
 
               <md-input-container>
