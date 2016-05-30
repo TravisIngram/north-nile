@@ -297,7 +297,7 @@ md-card{
   background-color:rgba(155, 184, 92, 0.73);
   color:white;
 }
-md-table, md-head, th.md-column, td.md-cell, md-row{
+md-table, md-head, th.md-column, td.md-cell, md-row, md-icon{
   color:white !important;
   text-shadow: 1px 2px #444;
 }
