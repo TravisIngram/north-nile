@@ -26,10 +26,26 @@ angular.module('northApp').controller('MapController', ['ResourceFactory', 'User
   mc.filterMarkers = function(type, ev){
     mc.visibleMarkers = {};
 
-    // if(ev){
-    //   console.log('Filter event:', ev);
-    //   ev.currentTarget.addClass('disabledKeyButton')
-    // }
+    var filter1 = angular.element(document.querySelector('#filter1'));
+    var filter2 = angular.element(document.querySelector('#filter2'));
+    var filter3 = angular.element(document.querySelector('#filter3'));
+    var filter4 = angular.element(document.querySelector('#filter4'));
+
+    switch(type){
+      case 'Community Garden':
+        filter1.toggleClass('disabledKeyButton');
+        console.log('filter1:', filter1);
+        break;
+      case 'Culinary Arts':
+        filter2.toggleClass('disabledKeyButton');
+        break;
+      case 'Food Hub':
+        filter3.toggleClass('disabledKeyButton');
+        break;
+      case 'Food Distribution':
+        filter4.toggleClass('disabledKeyButton');
+        break;
+    }
 
     if(type === 'all'){
       for (marker in mc.storedMarkers){

@@ -113,7 +113,7 @@ text-shadow: 1px 3px 1px #433225;
 }
 
 .disabledKeyButton{
-  background-color: #444;
+  background-color: #444 !important;
 }
 
 .errorMessage{
