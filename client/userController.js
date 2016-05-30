@@ -47,7 +47,7 @@ uc.editUserResource = function(resource){
         return resource;
       }
     }
-  }
+  };
    $mdDialog.show(uc.editPendingOptions);
 };
 

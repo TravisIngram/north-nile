@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <!-- ::::::::: ADMIN DASHBOARD ::::::::: -->
 <div class="home dashboard">
   <!-- The function that shows this section will come from passport authentication of an Admin -->
@@ -5,9 +7,9 @@
   <md-toolbar class="home header-condensed">
     <div class="md-toolbar-tools">
 
-        <div class="userClass">
-            <h2>Hello, {{ac.user.username}}</h2>
-        </div>
+      <div class="userClass">
+        <h2>Hello, {{ac.user.username}}</h2>
+      </div>
 
       <span flex></span>
 
@@ -44,27 +46,27 @@
               Edit
             </th>
           </tr>
-          </thead>
-          <tbody md-body>
-            <tr md-row ng-repeat="resource in ac.pendingResources" md-select="resource" md-selectid="name">
-              <td md-cell>{{resource.username}}</td>
-              <td md-cell>{{resource.name}}</td>
-              <td md-cell>{{resource.resource_type}}</td>
-              <td md-cell>{{resource.dateCreated | date : format}}</td>
-              <td md-cell><md-button ng-click="ac.editResource(resource)">Edit</md-button></td>
-            </tr>
-            <tr md-row ng-show="ac.pendingResources.length == 0">
-                <td md-cell>
-                  No resources needing approval.
-                </td>
-                <td md-cell></td>
-                <td md-cell></td>
-                <td md-cell></td>
-                <td md-cell></td>
-            </tr>
-          </tbody>
+        </thead>
+        <tbody md-body>
+          <tr md-row ng-repeat="resource in ac.pendingResources" md-select="resource" md-selectid="name">
+            <td md-cell>{{resource.username}}</td>
+            <td md-cell>{{resource.name}}</td>
+            <td md-cell>{{resource.resource_type}}</td>
+            <td md-cell>{{resource.dateCreated | date : format}}</td>
+            <td md-cell><md-button ng-click="ac.editResource(resource)">Edit</md-button></td>
+          </tr>
+          <tr md-row ng-show="ac.pendingResources.length == 0">
+            <td md-cell>
+              No resources needing approval.
+            </td>
+            <td md-cell></td>
+            <td md-cell></td>
+            <td md-cell></td>
+            <td md-cell></td>
+          </tr>
+        </tbody>
       </table>
-    </md-data-table>
+    </md-table-container>
     <md-button ng-click="ac.approveResources()">Approve</md-button>
   </md-card>
 
@@ -96,16 +98,16 @@
               Edit
             </th>
           </tr>
-          </thead>
-          <tbody md-body>
-            <tr md-row ng-repeat="resource in ac.approvedResources" md-select="resource" md-selectid="name" md-auto-select>
-              <td md-cell>{{resource.username}}</td>
-              <td md-cell>{{resource.name}}</td>
-              <td md-cell>{{resource.resource_type}}</td>
-              <td md-cell>{{resource.date_created | date : format}}</td>
-              <td md-cell><md-button ng-click="ac.editResource(resource)">Edit</md-button></td>
-            </tr>
-          </tbody>
+        </thead>
+        <tbody md-body>
+          <tr md-row ng-repeat="resource in ac.approvedResources" md-select="resource" md-selectid="name" md-auto-select>
+            <td md-cell>{{resource.username}}</td>
+            <td md-cell>{{resource.name}}</td>
+            <td md-cell>{{resource.resource_type}}</td>
+            <td md-cell>{{resource.date_created | date : format}}</td>
+            <td md-cell><md-button ng-click="ac.editResource(resource)">Edit</md-button></td>
+          </tr>
+        </tbody>
       </table>
     </md-table-container>
   </md-card>
