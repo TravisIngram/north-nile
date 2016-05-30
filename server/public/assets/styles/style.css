@@ -17,6 +17,10 @@ font-family: 'Playfair Display', 'Georgia', serif;
 /* ::: GENERAL STYLES ::: */
 
 body {
+
+}
+
+.backfill{
   size: auto;
   background:
     /* :: Source: C. Coyier @csstricks :: */
@@ -26,6 +30,12 @@ body {
     ),
     url('../blooms.jpg');
   background-size: cover;
+  background-attachment:fixed;
+  position:absolute;
+  bottom:0;
+  width:100vw;
+  height:100vh;
+  overflow:scroll;
 }
 
 @font-face {
@@ -107,7 +117,93 @@ color: white;
   padding-right: 5px;
 }
 
-/* ::: HOME/NAV ANIMATIONS ::: */
+/* ::: MAP STYLES ::: */
+.key {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 10vh;
+  background-color: seagreen;
+}
+
+.infoDrawer {
+  position: absolute;
+  bottom: 10vh;
+  height: 60vh;
+  max-height: 60vh;
+  width: 100vw;
+  background-color: rgba(60,179,113, 0.9);
+  overflow-y: scroll;
+  transition-property: all;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
+.infoDrawer.ng-hide{
+  max-height: 0;
+}
+
+.keyButton{
+  margin: 1vw;
+}
+
+.disabledKeyButton{
+  background-color: #444 !important;
+}
+
+.errorMessage{
+  color: #dd2c00;
+  font-family: 'Playfair Display', 'Georgia', serif;
+
+}
+
+.activeArea { position: absolute; top: 50px; left: 50px; right: 50px; height: 90px; }
+
+#filter1{
+  background-color:#F3CB00;
+}
+#filter2{
+  background-color:#EC4500;
+}
+#filter3{
+  background-color:#9BB85C;
+}
+#filter4{
+  background-color:#93CEB8;
+}
+
+#userKeyButton, #homeKeyButton, #addKeyButton{
+  background-color:#70543E;
+}
+
+
+/* ::: HOME PAGE (formerly known as splash page) ::: */
+
+.home {
+  background-color: transparent;
+  padding: 10px;
+
+}
+
+@media (min-width:600px) {
+  .home.header-expanded {
+    text-align: center;
+    text-shadow: 5px;
+    padding: 90px;
+    /*margin: 100px;*/
+  }
+}
+
+@media (max-width: 600px) {
+  .home.header-expanded {
+    text-align: center;
+    text-shadow: 5px;
+    padding: 20px;
+    /*margin: 100px;*/
+  }
+}
+
+/* ::: HOME NAV ANIMATIONS ::: */
 
 /*!
  * animate.css -http://daneden.me/animate
@@ -191,50 +287,6 @@ color: white;
   amination: 0.8s fadeOut ease;
 }
 
-/* ::: MAP STYLES ::: */
-
-.key {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 10vh;
-  background-color: seagreen;
-}
-
-.infoDrawer {
-  position: absolute;
-  bottom: 10vh;
-  height: 60vh;
-  max-height: 60vh;
-  width: 100vw;
-  background-color: mediumseagreen;
-  overflow-y: scroll;
-  transition-property: all;
-  transition-duration: .5s;
-  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-}
-
-.infoDrawer.ng-hide{
-  max-height: 0;
-}
-
-.keyButton{
-  margin: 1vw;
-}
-
-.disabledKeyButton{
-  background-color: #444 !important;
-}
-
-.errorMessage{
-  color: #dd2c00;
-  font-family: 'Playfair Display', 'Georgia', serif;
-
-}
-
-.activeArea { position: absolute; top: 50px; left: 50px; right: 50px; height: 90px; }
-
-
 /* ::: HOME PAGE (formerly known as splash page) ::: */
 
 .home {
@@ -254,8 +306,17 @@ color: white;
 
 }
 
-.home.dashboard {
+md-card{
+  background-color:rgba(155, 184, 92, 0.73);
+  color:white;
+}
+md-table, md-head, th.md-column, td.md-cell, md-row{
+  color:white !important;
+  text-shadow: 1px 2px #444;
+}
 
+.emailDialogText{
+  color: black;
 }
 
 /* ::: ADMIN/USER DASHBOARDS ::: */
