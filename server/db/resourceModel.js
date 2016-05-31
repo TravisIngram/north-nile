@@ -12,7 +12,7 @@ function createResource(callback) {
         ' "name" varchar(150) NOT NULL,' +
         ' "location" varchar(150) NOT NULL,' +
         ' "description" text,' +
-        ' "resource_type" varchar(50),' +
+        ' "resource_type" varchar(50) NOT NULL,' +
         ' "website" varchar(150),' +
         ' "social_media" varchar(150),' +
         ' "leadership" varchar(150),' +
