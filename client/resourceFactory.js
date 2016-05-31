@@ -22,7 +22,7 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
         getSavedResources();
       });
     } else {
-      $http.get('https://api.opencagedata.com/geocode/v1/json?q=' + resource.location + '&bounds=44.847794,-93.045173,45.115892,-93.468146&key=' + geocodeKey).then(function(response){
+      $http.get('https://api.opencagedata.com/geocode/v1/json?q=' + resource.location + '&key=' + geocodeKey).then(function(response){
         console.log('Geocode response:', response);
         if(response.data.results[0]){
           resource.latitude = response.data.results[0].geometry.lat;
