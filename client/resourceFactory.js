@@ -60,6 +60,7 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
       console.log('Got all saved resources:', savedResources);
 
       var tempPendingResources = savedResources.filter(function(resource){
+        // console.log('Pending?', resource);
         if (resource.is_pending === true){
           // console.log('resource is pending',resource);
           return true;

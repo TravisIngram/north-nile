@@ -54,14 +54,19 @@ uc.editUserResource = function(resource){
 
 }]);
 
-angular.module('northApp').controller('UserNewResourceController', ['isAdmin', '$mdDialog', 'ResourceFactory', function(isAdmin,$mdDialog, ResourceFactory){
+angular.module('northApp').controller('UserNewResourceController', ['UserTrackFactory','isAdmin', '$mdDialog', 'ResourceFactory', function(UserTrackFactory, isAdmin,$mdDialog, ResourceFactory){
   console.log('UserNewResourceController has loaded', isAdmin);
   var unrc=this;
   unrc.isAdmin = isAdmin;
   unrc.newResource = {is_active:false};
+  var promise = UserTrackFactory.getUserData();
+  promise.then(function(response){
+    unrc.user = response.data;
+  });
 
   unrc.saveNewResource = function(resource){
     resource.is_pending = true;
+    resource.account_id = unrc.user.id;
     resource.date_created = new Date();
     ResourceFactory.saveNewResource(resource);
     $mdDialog.hide();
