@@ -14,7 +14,10 @@ function createResource(callback) {
         ' "description" text,' +
         ' "resource_type" varchar(50) NOT NULL,' +
         ' "website" varchar(150),' +
-        ' "social_media" varchar(150),' +
+        ' "twitter" varchar(150),' +
+        ' "facebook" varchar(150),' +
+        ' "instagram" varchar(150),' +
+        ' "snapchat" varchar(150),' +
         ' "leadership" varchar(150),' +
         ' "public_phone" varchar(50),' +
         ' "public_email" varchar(150),' +
