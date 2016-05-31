@@ -203,10 +203,12 @@ body {
   .home.header-expanded {
     text-align: center;
     text-shadow: 5px;
-    padding: 90px;
-    margin-top: 25px;
-    margin-left: 10%;
-    margin-right: 10%;
+  }
+
+  .home.header-condensed h1 {
+    max-width: 300px;
+    text-align: center;
+    font-size: 20px;
   }
 
   .pageTitle{
@@ -356,7 +358,7 @@ body {
     .home.header-expanded {
       text-align: center;
       text-shadow: 5px;
-      padding: 90px;
+      padding: 40px;
       /*margin: 100px;*/
     }
   }
@@ -366,7 +368,6 @@ body {
       text-align: center;
       text-shadow: 5px;
       padding: 20px;
-      /*margin: 100px;*/
     }
   }
 
