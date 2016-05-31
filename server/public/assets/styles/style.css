@@ -243,6 +243,10 @@ body {
     }
   }
 
+  .fileUpload{
+    opacity:0;
+  }
+
   /* ::::: VISITOR/USER DASHBOARD ::::: */
 
 
