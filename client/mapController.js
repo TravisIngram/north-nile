@@ -99,9 +99,11 @@ angular.module('northApp').controller('MapController', ['ngAudio','ResourceFacto
     // grab last marker clicked to recenter map later
     mc.lastClicked = args.model;
 
-    // load audio
-    mc.lastClicked.sound = ngAudio.load(mc.lastClicked.audio_reference);
-    // console.log('Mc.lastClicked:', mc.lastClicked);
+    // load audio if present
+    if(mc.lastClicked.audio_reference){
+      mc.lastClicked.sound = ngAudio.load(mc.lastClicked.audio_reference);
+    }
+
 
     // this centers the map on the marker clicked
     angular.extend(mc, {

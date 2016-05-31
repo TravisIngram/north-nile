@@ -52,7 +52,7 @@
     <u>Hours</u>
     {{mc.lastClicked.hours}}
   </p>
-  <p >
+  <p ng-show="mc.lastClicked.audio_reference">
     <u>Audio</u>
     {{mc.lastClicked.audio_id}}
     <md-button ng-click="mc.play(mc.lastClicked.sound)" class="md-fab md-mini">
