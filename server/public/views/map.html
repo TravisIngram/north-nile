@@ -9,15 +9,15 @@
   <md-button id="userKeyButton" ng-show="mc.user" class="md-fab md-mini keyButton" aria-label="account" ng-click="mc.routeUser()">
     <i class="fa fa-user"></i>
   </md-button>
-  <md-button id="filter1" class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('Community Garden')" aria-label="community-garden-filter"><md-icon md-svg-src="assets/img/nature-1.svg"></md-icon></md-button>
-  <md-button id="filter2" class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('Culinary Arts')" aria-label="culinary-arts-filter"><md-icon md-svg-src="assets/img/dish-spoon-and-fork.svg"></md-icon></md-button>
-  <md-button id="filter3" class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('Food Hub')" aria-label="food-hub-filter"><md-icon md-svg-src="assets/img/front-store.svg"></md-icon></md-button>
-  <md-button id="filter4" class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('Food Distribution')" aria-label="food-distribution-filter"><md-icon md-svg-src="assets/img/truck.svg"></md-icon></md-button>
+  <div class = "fourMapIcons">
+  <md-button id="filter1" class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('Community Garden')" aria-label="community-garden-filter"><md-icon md-svg-src="assets/img/nature-1.svg"></md-icon><md-tooltip>Community Garden</md-tooltip></md-button>
+  <md-button id="filter2" class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('Culinary Arts')" aria-label="culinary-arts-filter"><md-icon md-svg-src="assets/img/dish-spoon-and-fork.svg"></md-icon><md-tooltip>Culinary Arts</md-tooltip></md-button>
+  <md-button id="filter3" class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('Food Hub')" aria-label="food-hub-filter"><md-icon md-svg-src="assets/img/front-store.svg"></md-icon><md-tooltip>Food Hub</md-tooltip></md-button>
+  <md-button id="filter4" class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('Food Distribution')" aria-label="food-distribution-filter"><md-icon md-svg-src="assets/img/truck.svg"></md-icon><md-tooltip>Food Distribution</md-tooltip></md-button>
   <md-button id="addKeyButton" class="md-fab md-mini keyButton" ng-click="mc.addNewResource()" aria-label="home">
     <i class="fa fa-plus"></i>
   </md-button>
 </div>
-
 <div class="infoDrawer" ng-show="mc.showInfoDrawer" md-swipe-down="mc.closeInfoDrawer()">
   <h2>{{mc.lastClicked.name}}</h2>
   <p>

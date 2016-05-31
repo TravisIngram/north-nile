@@ -14,15 +14,39 @@ angular.module('northApp').controller('MapController', ['ResourceFactory', 'User
     }
   };
 
-  var customIcon = {
-                    iconUrl: 'img/leaf-green.png',
-                    shadowUrl: 'img/leaf-shadow.png',
-                    iconSize:     [38, 95], // size of the icon
-                    shadowSize:   [50, 64], // size of the shadow
-                    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-                    shadowAnchor: [4, 62],  // the same for the shadow
-                    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-                };
+var communityGarden = {
+                  iconUrl: 'assets/img/nature-1.svg',
+                  // shadowUrl: 'assets/img/nature-1.svg',
+                  iconSize:     [38, 95], // size of the icon
+                  shadowSize:   [50, 64], // size of the shadow
+                  iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                  shadowAnchor: [4, 62],  // the same for the shadow
+                  popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+              };
+var culinaryArts = {
+                  iconUrl: 'assets/img/orangeBlackCulinary.svg',
+                  iconSize:     [38, 95], // size of the icon
+                  shadowSize:   [50, 64], // size of the shadow
+                  iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                  shadowAnchor: [4, 62],  // the same for the shadow
+                  popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+              };
+var foodHub = {
+                  iconUrl: 'assets/img/front-store.svg',
+                  iconSize:     [38, 95], // size of the icon
+                  shadowSize:   [50, 64], // size of the shadow
+                  iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                  shadowAnchor: [4, 62],  // the same for the shadow
+                  popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+              };
+var foodDistribution = {
+                  iconUrl: 'assets/img/lightblueWhiteTruck.psd.svg',
+                  iconSize:     [38, 95], // size of the icon
+                  shadowSize:   [50, 64], // size of the shadow
+                  iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                  shadowAnchor: [4, 62],  // the same for the shadow
+                  popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+              };
 
   mc.storedMarkers = ResourceFactory.mapResources;
   mc.newResource = {};
@@ -31,6 +55,7 @@ angular.module('northApp').controller('MapController', ['ResourceFactory', 'User
   mc.markerSize = Object.keys(mc.storedMarkers).length;
   mc.count = mc.markerSize + 1;
   mc.visibleMarkers = {};
+
 
   // filter visibility of markers
   mc.filterMarkers = function(type, ev){
@@ -60,6 +85,18 @@ angular.module('northApp').controller('MapController', ['ResourceFactory', 'User
     if(type === 'all'){
       for (marker in mc.storedMarkers){
         mc.storedMarkers[marker].visibility = true;
+        if(mc.storedMarkers[marker].resource_type == 'Community Garden'){
+          mc.storedMarkers[marker].icon = communityGarden;
+        }
+        if(mc.storedMarkers[marker].resource_type == 'Culinary Arts'){
+          mc.storedMarkers[marker].icon = culinaryArts;
+        }
+        if(mc.storedMarkers[marker].resource_type == 'Food Hub'){
+          mc.storedMarkers[marker].icon = foodHub;
+        }
+        if(mc.storedMarkers[marker].resource_type == 'Food Distribution'){
+          mc.storedMarkers[marker].icon = foodDistribution; //sasha where does this "icon" come from?
+        }
         // mc.storedMarkers[marker].icon = customIcon;
       }
     } else if (type === 'none'){
@@ -86,6 +123,7 @@ angular.module('northApp').controller('MapController', ['ResourceFactory', 'User
     // write changes to map
     angular.extend(mc, {
       markers: mc.visibleMarkers
+
     });
   };
 
