@@ -23,36 +23,41 @@
 
 
   <!-- user resources -->
+
   <h2 class="pageTitle"> Food Resource Locations </h2>
+  <md-card>
+    <md-button class="md-icon-button" ng-click="uc.addNewResource()"><aria-label="resource">
+      <md-icon md-svg-src="assets/img/ic_add_circle_outline_black_24px.svg"></md-icon>
+    </md-button>
+    <md-table-container>
+      <table md-table>
+        <thead md-head>
+          <tr md-row class="md-row">
+            <th md-column>
+              Resource Name
+            </th>
+            <th md-column>
+              Resource Location
+            </th>
+            <th md-column>
+              Date Created
+            </th>
+            <th md-column>
+              Edit
+            </th>
+          </tr>
+          </thead>
+          <tbody md-body>
+            <tr md-row ng-repeat="resource in uc.userResources" md-select="resource" md-selectid="name" md-auto-select>
+              <td md-cell>{{resource.name}}</td>
+              <td md-cell>{{resource.location}}</td>
+              <td md-cell>{{resource.date_created | date : format}}</td>
+              <td md-cell><md-button ng-click="uc.editUserResource(resource)">Edit</md-button></td>
+            </tr>
+          </tbody>
+      </table>
+    </md-table-container>
+  </md-card>
+</div>
 
-  <table md-table>
-    <thead md-head>
-      <th md-column>Resource Name{{uc.savedResources.name}}</th>
-      <th md-column>Resource type</th>
-      <th md-column>Date Created</th>
-      <th md-column>Edit</th>
-    </thead>
-    <tbody md-body>
-      <tr md-row ng-repeat = "resource in uc.userResources">
-        <td md-cell>{{resource.name}}</td>
-        <td md-cell>{{resource.location}}</td>
-        <td md-cell>{{resource.date_created}}</td>
-        <td md-cell><md-button ng-click="uc.editUserResource(resource)">Edit</md-button></td>
-      </tr>
-      <!-- <tbody md-body>
-      <tr md-row ng-repeat="account in uc.savedAccounts">
-      <td md-cell>{{account.username}}</td>
-      <td md-cell>{{account.email_address}}</td>
-      <td md-cell>{{account.contact_name}}</td>
-    </tr> -->
-
-  </tbody>
-
-
-  <!-- </tbody> -->
-</table>
-
-<!-- add a new resource -->
-<md-button ng-click="uc.addNewResource()" aria-label="resource"><i class="fa fa-plus-circle"></i> New Resource</md-button>
-
-</div> <!-- ::::::::: END USER DASHBOARD ::::::::: -->
+<!-- ::::::::: END USER DASHBOARD ::::::::: -->
