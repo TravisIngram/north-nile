@@ -41,7 +41,7 @@ angular.module('northApp').controller('AdminController', ['AccountFactory', 'Use
         }
       }
     };
-     $mdDialog.show(ac.editPendingOptions);
+    $mdDialog.show(ac.editPendingOptions);
   };
 
   // add new resource
@@ -153,10 +153,10 @@ angular.module('northApp').controller('NewAccountController', ['$mdDialog', 'Acc
             ok: 'Close'
           });
           $mdDialog
-            .show( alert )
-            .finally(function() {
-              alert = undefined;
-            });
+          .show( alert )
+          .finally(function() {
+            alert = undefined;
+          });
         }
         showAlert();
         AccountFactory.getSavedAccounts();
@@ -176,10 +176,10 @@ angular.module('northApp').controller('NewAccountController', ['$mdDialog', 'Acc
           ok: 'Close'
         });
         $mdDialog
-          .show( alert )
-          .finally(function() {
-            alert = undefined;
-          });
+        .show( alert )
+        .finally(function() {
+          alert = undefined;
+        });
       }
       showAlert();
       nac.registerInfo.username = undefined;
