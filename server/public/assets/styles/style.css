@@ -103,26 +103,52 @@ body {
   }
 
   md-dialog.md-default-theme, md-dialog{
-    background-color:  rgba(243,203,0,0.7);
-    color: white;
+    background-color:  rgba(255,255,255,0.8);
+    color: #70543e;
   }
 
-  md-dialog p {
+  md-dialog p{
     font-family: 'Playfair Display', 'Georgia', serif;
-    color: white;
+    color: #70543e;
   }
 
-  form {
+  md-dialog h2 {
+    color: #ec4500;
+    font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
+    font-weight: bolder;
+    font-size: 25px;
+    text-align: center;
+  }
+
+  form, .home form{
     font-family: 'Playfair Display', 'Georgia', serif;
-    background-color:  rgba(255,255,255,0.2);
-    display: block;
+    background-color:  rgba(255,255,255,0.3);
     border-radius: 10px;
     padding: 15px;
-    width: 50%;
+    max-width: 70%;
+    min-width: 30%;
+    color #70543e;
+    box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
+    margin: auto;
   }
 
-  md-input-container .md-input {
-    color: #fff;
+  .md-input {
+    color: white;
+    font-family: 'Playfair Display', 'Georgia', serif;
+    border-color: white;
+  }
+
+  md-input-container {
+    display: block;
+    position: relative;
+    padding: 2px;
+    margin: 18px 0;
+    vertical-align: middle;
+  }
+
+  md-input-container.md-default-theme label, md-input-container label, md-input-container.md-default-theme .md-placeholder, md-input-container .md-placeholder {
+    color: white;
+    font-family: 'Playfair Display', 'Georgia', serif;
   }
 
   /* ::::: NAV STYLES ::::: */
@@ -131,6 +157,7 @@ body {
     background-color: rgba(255,255,255,0.2);
     border-radius: 10px;
     height: 20px;
+    box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
   }
   .fa-map-o, .fa-user{
     font-size: 1em;
@@ -161,6 +188,8 @@ body {
   md-card{
     background-color:rgba(155, 184, 92, 0.73);
     color:white;
+    box-shadow: 2px 3px 4px rgba(56,42,31,0.5);
+
   }
   md-table, md-head, th.md-column, td.md-cell, md-row, md-icon{
     color:white !important;

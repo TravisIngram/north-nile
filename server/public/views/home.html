@@ -87,47 +87,48 @@
 
 
     <!-- ::::::::: REGISTRATION FORM::::::::: -->
-    <form class="home form" name="hc.registerFormInputs" ng-show="hc.registerForm">
+    <div class="home form" name="hc.registerFormInputs" ng-show="hc.registerForm">
       <section layout="column">
-        <!-- action="/register" method="POST"> -->
         <h3>Registration</h3>
-        <md-input-container>
-          <label for="username">Username</label>
-          <input type="text" ng-model="hc.registerInfo.username" name="username" required/>
-          <div class="errorMessage md-caption" ng-show="hc.passwordMismatchError()">The passwords you entered do not match.</div>
-        </md-input-container>
+        <!-- action="/register" method="POST"> -->
+        <form name="register-form">
+          <md-input-container>
+            <label for="username">Username</label>
+            <input type="text" ng-model="hc.registerInfo.username" name="username" required/>
+            <div class="errorMessage md-caption" ng-show="hc.passwordMismatchError()">The passwords you entered do not match.</div>
+          </md-input-container>
 
-        <md-input-container>
-          <label for="password">Password</label>
-          <input type="password" ng-model="hc.registerInfo.password" name="password" required/>
-        </md-input-container>
+          <md-input-container>
+            <label for="password">Password</label>
+            <input type="password" ng-model="hc.registerInfo.password" name="password" required/>
+          </md-input-container>
 
-        <md-input-container md-is-error="hc.passwordMismatch()">
-          <label for="confirm_password">Confirm Password</label>
-          <input type="password" ng-model="hc.registerInfo.confirm_password" name="confirm_password" required/>
-          <!-- Should add message here to inform user their passwords don't match -->
+          <md-input-container md-is-error="hc.passwordMismatch()">
+            <label for="confirm_password">Confirm Password</label>
+            <input type="password" ng-model="hc.registerInfo.confirm_password" name="confirm_password" required/>
+            <!-- Should add message here to inform user their passwords don't match -->
 
-          <div class="errorMessage md-caption" ng-show="hc.passwordMismatchError()">The passwords you entered do not match.</div>
-        </md-input-container>
+            <div class="errorMessage md-caption" ng-show="hc.passwordMismatchError()">The passwords you entered do not match.</div>
+          </md-input-container>
 
-        <md-input-container>
-          <label for="contact_name">Contact Name</label>
-          <input type="text" ng-model="hc.registerInfo.contact_name" name="contact_name" id="contact_name" required/>
-        </md-input-container>
+          <md-input-container>
+            <label for="contact_name">Contact Name</label>
+            <input type="text" ng-model="hc.registerInfo.contact_name" name="contact_name" id="contact_name" required/>
+          </md-input-container>
 
-        <md-input-container>
-          <label for="email_address">Email address</label>
-          <input type="email" ng-model="hc.registerInfo.email_address" name="email_address" id="email_address" required/>
-        </md-input-container>
-        <!-- e-mail validation messages go here -->
-        email = {{hc.registerInfo.email_address}}
-        error = {{hc.registerInfo.email_address.$valid}}
-        <md-input-container>
-          <md-button ng-click="hc.registerUser()" class="md-raised">Register</md-button>
-        </md-input-container>
-
+          <md-input-container>
+            <label for="email_address">Email address</label>
+            <input type="email" ng-model="hc.registerInfo.email_address" name="email_address" id="email_address" required/>
+          </md-input-container>
+          <!-- e-mail validation messages go here -->
+          email = {{hc.registerInfo.email_address}}
+          error = {{hc.registerInfo.email_address.$valid}}
+          <md-input-container>
+            <md-button ng-click="hc.registerUser()" class="md-raised">Register</md-button>
+          </md-input-container>
+        </form>
       </section>
-    </form> <!-- ::::::::: END REGISTRATION ::::::::: -->
+    </div> <!-- ::::::::: END REGISTRATION ::::::::: -->
 
 
 
