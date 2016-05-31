@@ -147,19 +147,19 @@ angular.module('northApp').controller('NewAccountController', ['$mdDialog', 'Acc
       if (response.status == 200) {
         console.log('successful registration');
         // Function below will prompt login. Would be nice to automatically login user?
-        function showAlert() {
-          alert = $mdDialog.alert({
-            title: 'Congratulations!',
-            textContent: 'Registration successful.',
-            ok: 'Close'
-          });
-          $mdDialog
-          .show( alert )
-          .finally(function() {
-            alert = undefined;
-          });
-        }
-        showAlert();
+        // function showAlert() {
+        //   alert = $mdDialog.alert({
+        //     title: 'Congratulations!',
+        //     textContent: 'Registration successful.',
+        //     ok: 'Close'
+        //   });
+        //   $mdDialog
+        //   .show( alert )
+        //   .finally(function() {
+        //     alert = undefined;
+        //   });
+        // }
+        // showAlert();
         AccountFactory.getSavedAccounts();
       }
     }, function(response){
