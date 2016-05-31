@@ -263,22 +263,20 @@ angular.module('northApp').controller('NewResourceController', ['Upload','$http'
     $mdDialog.hide();
   };
 
-  nrc.saveNewResource = function(resource){
-    // image upload
-    console.log('nrc.newImage', nrc.newImage);
+  nrc.uploadImage = function(image, resource){
     Upload.upload({
       url: '/upload/image',
       arrayKey: '',
-      data: {file: nrc.newImage.file}
+      data: {file: image.file}
     }).then(function(response){
       console.log('Success response?', response);
       // save rest of resource
       resource.image_id = response.data.image_id;
-      resource.account_id = nrc.user.id;
-      resource.is_pending = !resource.is_active;
-      resource.date_created = new Date();
-      ResourceFactory.saveNewResource(resource);
-      $mdDialog.hide();
+      // resource.account_id = nrc.user.id;
+      // resource.is_pending = !resource.is_active;
+      // resource.date_created = new Date();
+      // ResourceFactory.saveNewResource(resource);
+      // $mdDialog.hide();
 
     }, function(response){
       console.log('Error response?', response);
@@ -287,7 +285,14 @@ angular.module('northApp').controller('NewResourceController', ['Upload','$http'
       console.log('Event response?', evt);
     });
     // end image upload
+  };
 
+  nrc.saveNewResource = function(resource){
+    resource.account_id = nrc.user.id;
+    resource.is_pending = !resource.is_active;
+    resource.date_created = new Date();
+    ResourceFactory.saveNewResource(resource);
+    $mdDialog.hide();
   };
 
   console.log('New Resource Controller loaded.');

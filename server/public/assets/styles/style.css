@@ -157,7 +157,7 @@ body {
   }
 
   .splashText{
-    text-align:justify;;
+    text-align:justify;
   }
 
 
@@ -246,8 +246,20 @@ body {
     }
   }
 
+  /*hide input type=file element*/
   .fileUpload{
     opacity:0;
+  }
+
+  #newImageUploadAdmin{
+    width: 0.1px;
+    height: 0.1px;
+  }
+
+  /*button for actual uploading*/
+  .uploadButton{
+    background-color: #ec4500 !important;
+    float: right;
   }
 
   /* ::::: VISITOR/USER DASHBOARD ::::: */

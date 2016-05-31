@@ -76,8 +76,9 @@
 
       <md-input-container>
         <label class="" for="new_images">Images</label>
+        <md-button ng-show="nrc.newImage.file" ng-click="nrc.uploadImage(nrc.newImage, nrc.newResource)" class="md-button uploadButton"><i class="fa fa-cloud-upload" aria-hidden="true"></i></md-button>
         <!--   <input type="text" name="new_images" ng-model="nrc.newResource.images" /> -->
-        <input id="new_images" class="fileUpload" type="file" ngf-select ngf-multiple="true" ng-model="nrc.newImage.file" name="new_images" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" ngf-max-files="5" aria-label="upload_images"/>
+        <input id="newImageUploadAdmin" class="fileUpload" type="file" ngf-select ngf-multiple="true" ng-model="nrc.newImage.file" name="new_images" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" ngf-max-files="5" aria-label="upload_images"/>
       </md-input-container>
 
       <md-input-container>
