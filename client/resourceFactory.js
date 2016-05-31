@@ -9,20 +9,21 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
 
   var getUserResources = function(user){
     console.log('trying to log user', user);
-    $http.get('/resources/user/' + user.info.id).then(function(response){
+    $http.get('/resources/user/' + user.id).then(function(response){
       console.log(response);
       angular.copy(response.data, userResources);
     });
   };
 
-  var saveNewResource = function(resource){
+  var saveNewResource = function(resource, user){
     if(resource.latitude){
       $http.post('/resources/new', resource).then(function(response){
         console.log('Save new resource response no geocode:', response);
         getSavedResources();
+        getUserResources(user);
       });
     } else {
-      $http.get('https://api.opencagedata.com/geocode/v1/json?q=' + resource.location + '&bounds=44.847794,-93.045173,45.115892,-93.468146&key=' + geocodeKey).then(function(response){
+      $http.get('https://api.opencagedata.com/geocode/v1/json?q=' + resource.location + '&key=' + geocodeKey).then(function(response){
         console.log('Geocode response:', response);
         if(response.data.results[0]){
           resource.latitude = response.data.results[0].geometry.lat;
@@ -31,6 +32,7 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
         $http.post('/resources/new', resource).then(function(response){
           console.log('Save new resource response:', response);
           getSavedResources();
+          getUserResources(user);
         });
       }, function(response){
         console.log('Geocode failed:', response);
@@ -38,6 +40,7 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
         $http.post('/resources/new', resource).then(function(response){
           console.log('Save new resource response:', response);
           getSavedResources();
+          getUserResources(user);
         });
       });
     }

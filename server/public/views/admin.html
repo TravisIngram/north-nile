@@ -34,7 +34,7 @@
             <th md-column>Resource Name</th>
             <th md-column>Resource Type</th>
             <th md-column>Date Created</th>
-            <th md-column>Edit</th>
+            <!-- <th md-column>Edit</th> -->
           </tr>
         </thead>
         <tbody md-body>
@@ -42,8 +42,8 @@
             <td md-cell>{{resource.username}}</td>
             <td md-cell>{{resource.name}}</td>
             <td md-cell>{{resource.resource_type}}</td>
-            <td md-cell>{{resource.dateCreated | date : format}}</td>
-            <td md-cell><md-button ng-click="ac.editResource(resource)">Edit</md-button></td>
+            <td md-cell>{{resource.date_created | date : format}}</td>
+            <td md-cell><md-button ng-click="ac.editResource(resource)">Details</md-button></td>
           </tr>
           <tr md-row ng-show="ac.pendingResources.length == 0">
             <td md-cell>
@@ -76,7 +76,7 @@
             <th md-column>Resource Name</th>
             <th md-column>Resource Type</th>
             <th md-column>Date Created</th>
-            <th md-column>Edit</th>
+            <!-- <th md-column>Edit</th> -->
           </tr>
         </thead>
         <tbody md-body>
@@ -85,7 +85,7 @@
             <td md-cell>{{resource.name}}</td>
             <td md-cell>{{resource.resource_type}}</td>
             <td md-cell>{{resource.date_created | date : format}}</td>
-            <td md-cell><md-button ng-click="ac.editResource(resource)">Edit</md-button></td>
+            <td md-cell><md-button ng-click="ac.editResource(resource)">Details</md-button></td>
           </tr>
         </tbody>
       </table>

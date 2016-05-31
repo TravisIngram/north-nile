@@ -1,4 +1,4 @@
-angular.module('northApp').controller('MapController', ['ResourceFactory', 'UserTrackFactory', '$scope', 'leafletData', 'leafletMarkerEvents', '$mdDialog', '$http', '$location', function(ResourceFactory, UserTrackFactory, $scope, leafletData, leafletMarkerEvents, $mdDialog, $http, $location){
+angular.module('northApp').controller('MapController', ['ngAudio','ResourceFactory', 'UserTrackFactory', '$scope', 'leafletData', 'leafletMarkerEvents', '$mdDialog', '$http', '$location', function(ngAudio, ResourceFactory, UserTrackFactory, $scope, leafletData, leafletMarkerEvents, $mdDialog, $http, $location){
   var mc = this;
 
   var promise = UserTrackFactory.getUserData();
@@ -137,6 +137,12 @@ var foodDistribution = {
     // grab last marker clicked to recenter map later
     mc.lastClicked = args.model;
 
+    // load audio if present
+    if(mc.lastClicked.audio_reference){
+      mc.lastClicked.sound = ngAudio.load(mc.lastClicked.audio_reference);
+    }
+
+
     // this centers the map on the marker clicked
     angular.extend(mc, {
       center:{
@@ -163,19 +169,49 @@ var foodDistribution = {
     }
   };
 
-    mc.currentIndex = 0;
-    mc.setCurrentSlideIndex = function (index) {
-        mc.currentIndex = index;
-    };
-    mc.isCurrentSlideIndex = function (index) {
-        return mc.currentIndex === index;
-    };
-    mc.prevSlide = function () {
-       mc.currentIndex = (mc.currentIndex < mc.lastClicked.images.length - 1) ? ++mc.currentIndex : 0;
-   };
-   mc.nextSlide = function () {
-       mc.currentIndex = (mc.currentIndex > 0) ? --mc.currentIndex : mc.lastClicked.images.length - 1;
-   };
+  // image carousel
+  mc.currentIndex = 0;
+  mc.setCurrentSlideIndex = function (index) {
+      mc.currentIndex = index;
+  };
+  mc.isCurrentSlideIndex = function (index) {
+      return mc.currentIndex === index;
+  };
+  mc.prevSlide = function () {
+     mc.currentIndex = (mc.currentIndex < mc.lastClicked.images.length - 1) ? ++mc.currentIndex : 0;
+ };
+ mc.nextSlide = function () {
+     mc.currentIndex = (mc.currentIndex > 0) ? --mc.currentIndex : mc.lastClicked.images.length - 1;
+ };
+
+ // audio player
+ mc.play = function(audio){
+   console.log('audio play:', audio);
+   if(mc.playing == true){
+     audio.pause();
+    //  mc.playing = false;
+   } else {
+     audio.play();
+    //  mc.playing = true;
+   }
+ };
+
+ mc.stop = function(audio){
+   console.log('audio stop:', audio);
+   audio.setCurrentTime(0);
+   audio.pause();
+  //  mc.playing = false;
+ };
+
+ mc.mute = function(){
+   if(mc.muted){
+     ngAudio.unmute();
+     mc.muted = false;
+   } else {
+     ngAudio.mute();
+     mc.muted = true;
+   }
+ };
 
   mc.saveResourceCoords = function(event, args){
     console.log('saving args:', args);

@@ -5,7 +5,7 @@ angular.module('northApp').controller('UserController', ['UserTrackFactory', '$h
   var promise = UserTrackFactory.getUserData();
   promise.then(function(response){
     console.log(response.data);
-    uc.user.info = response.data;
+    uc.user = response.data;
     uc.getUserResources(uc.user);
   });
   // uc.user = UserTrackFactory.user;
@@ -26,7 +26,7 @@ angular.module('northApp').controller('UserController', ['UserTrackFactory', '$h
       controller: 'UserNewResourceController',
       controllerAs: 'unrc',
       locals: {
-        isAdmin: uc.user.info.is_admin
+        isAdmin: uc.user.is_admin
       }
     };
     // console.log('mdDialog', $mdDialog.show(uc.newResourceOptions));
@@ -62,13 +62,14 @@ angular.module('northApp').controller('UserNewResourceController', ['UserTrackFa
   var promise = UserTrackFactory.getUserData();
   promise.then(function(response){
     unrc.user = response.data;
+    console.log('user user:', unrc.user);
   });
 
   unrc.saveNewResource = function(resource){
     resource.is_pending = true;
     resource.account_id = unrc.user.id;
     resource.date_created = new Date();
-    ResourceFactory.saveNewResource(resource);
+    ResourceFactory.saveNewResource(resource, unrc.user);
     $mdDialog.hide();
   };
   unrc.cancelNewResource = function(){

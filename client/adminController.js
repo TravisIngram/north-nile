@@ -13,6 +13,7 @@ angular.module('northApp').controller('AdminController', ['AccountFactory', 'Use
   ac.savedAccounts = AccountFactory.savedAccounts;
   ac.getSavedAccounts = AccountFactory.getSavedAccounts;
   ac.emails = [];
+  ac.showAccountTable = false;
 
   ac.selectedModerationResources = [];
   ac.selectedModerationResource = {};
@@ -57,7 +58,7 @@ angular.module('northApp').controller('AdminController', ['AccountFactory', 'Use
 
   // manage accounts
   ac.showAccounts = function(){
-    ac.showAccountTable = true;
+    ac.showAccountTable = !ac.showAccountTable;
   };
 
   ac.editAccount = function(account){
@@ -146,19 +147,19 @@ angular.module('northApp').controller('NewAccountController', ['$mdDialog', 'Acc
       if (response.status == 200) {
         console.log('successful registration');
         // Function below will prompt login. Would be nice to automatically login user?
-        function showAlert() {
-          alert = $mdDialog.alert({
-            title: 'Congratulations!',
-            textContent: 'Registration successful.',
-            ok: 'Close'
-          });
-          $mdDialog
-          .show( alert )
-          .finally(function() {
-            alert = undefined;
-          });
-        }
-        showAlert();
+        // function showAlert() {
+        //   alert = $mdDialog.alert({
+        //     title: 'Congratulations!',
+        //     textContent: 'Registration successful.',
+        //     ok: 'Close'
+        //   });
+        //   $mdDialog
+        //   .show( alert )
+        //   .finally(function() {
+        //     alert = undefined;
+        //   });
+        // }
+        // showAlert();
         AccountFactory.getSavedAccounts();
       }
     }, function(response){
@@ -263,22 +264,35 @@ angular.module('northApp').controller('NewResourceController', ['Upload','$http'
     $mdDialog.hide();
   };
 
-  nrc.saveNewResource = function(resource){
-    // image upload
-    console.log('nrc.newImage', nrc.newImage);
+  nrc.uploadAudio = function(audio, resource){
+    console.log('uploading audio');
+    Upload.upload({
+      url: '/upload/audio',
+      data: {file: audio.file}
+    }).then(function(response){
+      console.log('Successfully uploaded audio:', response);
+      resource.audio_id = response.data.audio_id;
+    }, function(response){
+      console.log('Failed at uploading audio:', response);
+    }, function(evt){
+      // console.log('evt', evt)
+    });
+  };
+
+  nrc.uploadImage = function(image, resource){
     Upload.upload({
       url: '/upload/image',
       arrayKey: '',
-      data: {file: nrc.newImage.file}
+      data: {file: image.file}
     }).then(function(response){
       console.log('Success response?', response);
       // save rest of resource
       resource.image_id = response.data.image_id;
-      resource.account_id = nrc.user.id;
-      resource.is_pending = !resource.is_active;
-      resource.date_created = new Date();
-      ResourceFactory.saveNewResource(resource);
-      $mdDialog.hide();
+      // resource.account_id = nrc.user.id;
+      // resource.is_pending = !resource.is_active;
+      // resource.date_created = new Date();
+      // ResourceFactory.saveNewResource(resource);
+      // $mdDialog.hide();
 
     }, function(response){
       console.log('Error response?', response);
@@ -287,7 +301,14 @@ angular.module('northApp').controller('NewResourceController', ['Upload','$http'
       console.log('Event response?', evt);
     });
     // end image upload
+  };
 
+  nrc.saveNewResource = function(resource){
+    resource.account_id = nrc.user.id;
+    resource.is_pending = !resource.is_active;
+    resource.date_created = new Date();
+    ResourceFactory.saveNewResource(resource);
+    $mdDialog.hide();
   };
 
   console.log('New Resource Controller loaded.');

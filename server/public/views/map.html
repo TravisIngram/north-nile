@@ -52,9 +52,18 @@
     <u>Hours</u>
     {{mc.lastClicked.hours}}
   </p>
-  <p ng-show="mc.lastClicked.audio_id">
+  <p ng-show="mc.lastClicked.audio_reference">
     <u>Audio</u>
     {{mc.lastClicked.audio_id}}
+    <md-button aria-label="play-pause_audio" ng-click="mc.play(mc.lastClicked.sound)" class="md-fab md-mini">
+      <md-icon ng-show="mc.lastClicked.sound.paused" class="fa fa-play" aria-hidden="true"></md-icon>
+      <md-icon ng-show="!mc.lastClicked.sound.paused" class="fa fa-pause" aria-hidden="true"></md-icon>
+    </md-button>
+    <md-button aria-label="stop_audio" ng-click="mc.stop(mc.lastClicked.sound)" class="md-fab md-mini"><i class="fa fa-stop" aria-hidden="true"></i></md-button>
+    <md-button aria-label="mute_audio" ng-click="mc.mute()" class="md-fab md-mini">
+      <md-icon ng-show="!mc.muted" class="fa fa-volume-off" aria-hidden="true"></md-icon>
+      <md-icon ng-show="mc.muted" class="fa fa-volume-up" aria-hidden="true"></md-icon>
+    </md-button>
   </p>
   <p ng-show="mc.lastClicked.path1">
     <u>Pictures</u>
@@ -62,8 +71,8 @@
       <div class="container slider" >
         <img ng-repeat="slide in mc.lastClicked.images" class="slide"
            ng-hide="!mc.isCurrentSlideIndex($index)" ng-src="{{slide}}">
-           <a class="arrow next" href="#" ng-click="mc.nextSlide()"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-           <a class="arrow prev" href="#" ng-click="mc.prevSlide()"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+           <a ng-show="mc.lastClicked.path1" class="arrow next" href="#" ng-click="mc.nextSlide()"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+           <a ng-show="mc.lastClicked.path1" class="arrow prev" href="#" ng-click="mc.prevSlide()"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
       </div>
     </section>
 
@@ -160,10 +169,28 @@
         <input type="text" name="new_website" ng-model="mc.newResource.website" />
       </md-input-container>
 
+      <!-- we'll ask for their social media links, then in display will create an icon button linking to them externally by using their information -->
+
       <md-input-container>
-        <label for="new_social_media">Social Media</label>
-        <input type="text" name="new_social_media" ng-model="mc.newResource.social_media" />
+        <label for="twitter">Twitter</label>
+        <input placeholder="Add link ex. https://twitter.com/projectsweetiep" type="text" name="twitter" ng-model="mc.newResource.twitter"  />
       </md-input-container>
+
+      <md-input-container>
+        <label for="facebook">Facebook</label>
+        <input placeholder="Add link ex. https://www.facebook.com/projectsweetiepie/" type="text" name="facebook" ng-model="mc.newResource.facebook"  />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="instagram">Instagram</label>
+        <input placeholder="Add link ex. https://www.instagram.com/nazmpls/" type="text" name="instagram" ng-model="mc.newResource.instagram"  />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="snapchat">Snapchat</label>
+        <input placeholder="Add link ex. https://www.snapchat.com/add/JXTA_ARTS" type="text" name="snapchat" ng-model="mc.newResource.snapchat"  />
+      </md-input-container>
+
 
       <md-input-container>
         <label for="new_leadership">Leadership</label>
