@@ -71,8 +71,8 @@
       <div class="container slider" >
         <img ng-repeat="slide in mc.lastClicked.images" class="slide"
            ng-hide="!mc.isCurrentSlideIndex($index)" ng-src="{{slide}}">
-           <a class="arrow next" href="#" ng-click="mc.nextSlide()"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-           <a class="arrow prev" href="#" ng-click="mc.prevSlide()"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+           <a ng-show="mc.lastClicked.path1" class="arrow next" href="#" ng-click="mc.nextSlide()"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+           <a ng-show="mc.lastClicked.path1" class="arrow prev" href="#" ng-click="mc.prevSlide()"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
       </div>
     </section>
 

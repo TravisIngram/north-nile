@@ -263,6 +263,21 @@ angular.module('northApp').controller('NewResourceController', ['Upload','$http'
     $mdDialog.hide();
   };
 
+  nrc.uploadAudio = function(audio, resource){
+    console.log('uploading audio');
+    Upload.upload({
+      url: '/upload/audio',
+      data: {file: audio.file}
+    }).then(function(response){
+      console.log('Successfully uploaded audio:', response);
+      resource.audio_id = response.data.audio_id;
+    }, function(response){
+      console.log('Failed at uploading audio:', response);
+    }, function(evt){
+      // console.log('evt', evt)
+    });
+  };
+
   nrc.uploadImage = function(image, resource){
     Upload.upload({
       url: '/upload/image',

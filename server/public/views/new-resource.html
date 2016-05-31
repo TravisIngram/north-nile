@@ -71,7 +71,9 @@
 
       <md-input-container>
         <label for="new_audio">Audio</label>
-        <input type="text" name="new_audio" ng-model="nrc.newResource.audio" />
+        <md-button ng-show="nrc.newAudio.file" ng-click="nrc.uploadAudio(nrc.newAudio, nrc.newResource)" class="md-button uploadButton"><i class="fa fa-cloud-upload" aria-hidden="true"></i></md-button>
+        <!-- <input type="text" name="new_audio" ng-model="nrc.newResource.audio" /> -->
+        <input id="newImageUploadAdmin" class="fileUpload" type="file" ngf-select ngf-multiple="false" ng-model="nrc.newAudio.file" name="new_audio" ngf-pattern="'audio/*'" accept="audio/*" ngf-max-size="20MB" aria-label="upload_audio"/>
       </md-input-container>
 
       <md-input-container>

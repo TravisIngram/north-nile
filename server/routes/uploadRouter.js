@@ -17,6 +17,45 @@ var upload = multer({
   storage: storage
 }).array('file');
 
+router.post('/audio', function(request, response){
+  upload(request, response, function(err){
+    if(err){
+      response.json({error_code:1, err_desc:err});
+      return;
+    }
+    console.log('uploading audio request:', request);
+    pg.connect(dbConnectionString, function(err, client, done){
+      if(err){
+        console.log('Error connecting to database to save audio path:', err);
+        response.sendStatus(500);
+      } else {
+        var audio_id;
+        var filePath = request.files[0].path.substring(14);
+
+        var queryString = 'INSERT INTO audio (audio_reference) VALUES ($1) RETURNING id';
+
+        var query = client.query(queryString, [filePath], function(err, result){
+          if (err){
+            console.log('Error returning audio id:', err);
+          } else {
+            audio_id = result.rows[0].id;
+          }
+        });
+
+        query.on('error', function(err){
+          console.log('Error saving audio paths:', err);
+          client.end();
+        });
+
+        query.on('end', function(){
+          console.log('Saved audio path successfully.');
+          response.send({audio_id: audio_id});
+        });
+      }
+    });
+  });
+});
+
 router.post('/image', function(request, response){
   var filePaths = [];
   upload(request, response, function(err){
@@ -74,9 +113,6 @@ router.post('/image', function(request, response){
         });
       }
     });
-
-
-
   });
 });
 
