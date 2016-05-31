@@ -61,7 +61,6 @@ angular.module('northApp').controller('MapController', ['ngAudio','ResourceFacto
       for (marker in mc.storedMarkers){
         mc.storedMarkers[marker].visibility = true;
         // mc.storedMarkers[marker].icon = customIcon;
-        mc.storedMarkers[marker].audio_path = "assets/styles/test.mp3";
       }
     } else if (type === 'none'){
       for (marker in mc.storedMarkers){
@@ -101,7 +100,7 @@ angular.module('northApp').controller('MapController', ['ngAudio','ResourceFacto
     mc.lastClicked = args.model;
 
     // load audio
-    mc.lastClicked.sound = ngAudio.load(mc.lastClicked.audio_path);
+    mc.lastClicked.sound = ngAudio.load(mc.lastClicked.audio_reference);
     // console.log('Mc.lastClicked:', mc.lastClicked);
 
     // this centers the map on the marker clicked
