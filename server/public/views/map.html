@@ -55,12 +55,12 @@
   <p ng-show="mc.lastClicked.audio_reference">
     <u>Audio</u>
     {{mc.lastClicked.audio_id}}
-    <md-button ng-click="mc.play(mc.lastClicked.sound)" class="md-fab md-mini">
+    <md-button aria-label="play-pause_audio" ng-click="mc.play(mc.lastClicked.sound)" class="md-fab md-mini">
       <md-icon ng-show="mc.lastClicked.sound.paused" class="fa fa-play" aria-hidden="true"></md-icon>
       <md-icon ng-show="!mc.lastClicked.sound.paused" class="fa fa-pause" aria-hidden="true"></md-icon>
     </md-button>
-    <md-button ng-click="mc.stop(mc.lastClicked.sound)" class="md-fab md-mini"><i class="fa fa-stop" aria-hidden="true"></i></md-button>
-    <md-button ng-click="mc.mute()" class="md-fab md-mini">
+    <md-button aria-label="stop_audio" ng-click="mc.stop(mc.lastClicked.sound)" class="md-fab md-mini"><i class="fa fa-stop" aria-hidden="true"></i></md-button>
+    <md-button aria-label="mute_audio" ng-click="mc.mute()" class="md-fab md-mini">
       <md-icon ng-show="!mc.muted" class="fa fa-volume-off" aria-hidden="true"></md-icon>
       <md-icon ng-show="mc.muted" class="fa fa-volume-up" aria-hidden="true"></md-icon>
     </md-button>
