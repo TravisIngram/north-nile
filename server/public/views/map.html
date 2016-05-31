@@ -169,10 +169,28 @@
         <input type="text" name="new_website" ng-model="mc.newResource.website" />
       </md-input-container>
 
+      <!-- we'll ask for their social media links, then in display will create an icon button linking to them externally by using their information -->
+
       <md-input-container>
-        <label for="new_social_media">Social Media</label>
-        <input type="text" name="new_social_media" ng-model="mc.newResource.social_media" />
+        <label for="twitter">Twitter</label>
+        <input placeholder="Add link ex. https://twitter.com/projectsweetiep" type="text" name="twitter" ng-model="mc.newResource.twitter"  />
       </md-input-container>
+
+      <md-input-container>
+        <label for="facebook">Facebook</label>
+        <input placeholder="Add link ex. https://www.facebook.com/projectsweetiepie/" type="text" name="facebook" ng-model="mc.newResource.facebook"  />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="instagram">Instagram</label>
+        <input placeholder="Add link ex. https://www.instagram.com/nazmpls/" type="text" name="instagram" ng-model="mc.newResource.instagram"  />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="snapchat">Snapchat</label>
+        <input placeholder="Add link ex. https://www.snapchat.com/add/JXTA_ARTS" type="text" name="snapchat" ng-model="mc.newResource.snapchat"  />
+      </md-input-container>
+
 
       <md-input-container>
         <label for="new_leadership">Leadership</label>
