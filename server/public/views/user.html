@@ -42,9 +42,9 @@
             <th md-column>
               Date Created
             </th>
-            <th md-column>
+            <!-- <th md-column>
               Edit
-            </th>
+            </th> -->
           </tr>
           </thead>
           <tbody md-body>
@@ -52,7 +52,7 @@
               <td md-cell>{{resource.name}}</td>
               <td md-cell>{{resource.location}}</td>
               <td md-cell>{{resource.date_created | date : format}}</td>
-              <td md-cell><md-button ng-click="uc.editUserResource(resource)">Edit</md-button></td>
+              <td md-cell><md-button ng-click="uc.editUserResource(resource)">Details</md-button></td>
             </tr>
           </tbody>
       </table>
