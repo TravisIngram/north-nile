@@ -58,12 +58,15 @@
   </p>
   <p ng-show="mc.lastClicked.path1">
     <u>Pictures</u>
-    <div class="container slider">
-      <img ng-repeat="slide in mc.lastClicked.images" class="slide"
-         ng-hide="!mc.isCurrentSlideIndex($index)" ng-src="{{slide}}">
-         <a class="arrow prev" href="#" ng-click="mc.nextSlide()">></a>
-         <a class="arrow next" href="#" ng-click="mc.prevSlide()"><</a>
-    </div>
+    <section layout="row"  layout-align="center end">
+      <div class="container slider" >
+        <img ng-repeat="slide in mc.lastClicked.images" class="slide"
+           ng-hide="!mc.isCurrentSlideIndex($index)" ng-src="{{slide}}">
+           <a class="arrow next" href="#" ng-click="mc.nextSlide()"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+           <a class="arrow prev" href="#" ng-click="mc.prevSlide()"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+      </div>
+    </section>
+
   </p>
   <p ng-show="mc.lastClicked.video_id">
     <u>Video</u>
