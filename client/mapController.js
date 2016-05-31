@@ -14,6 +14,16 @@ angular.module('northApp').controller('MapController', ['ResourceFactory', 'User
     }
   };
 
+  var customIcon = {
+                    iconUrl: 'img/leaf-green.png',
+                    shadowUrl: 'img/leaf-shadow.png',
+                    iconSize:     [38, 95], // size of the icon
+                    shadowSize:   [50, 64], // size of the shadow
+                    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                    shadowAnchor: [4, 62],  // the same for the shadow
+                    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+                };
+
   mc.storedMarkers = ResourceFactory.mapResources;
   mc.newResource = {};
 
@@ -50,6 +60,7 @@ angular.module('northApp').controller('MapController', ['ResourceFactory', 'User
     if(type === 'all'){
       for (marker in mc.storedMarkers){
         mc.storedMarkers[marker].visibility = true;
+        // mc.storedMarkers[marker].icon = customIcon;
       }
     } else if (type === 'none'){
       for (marker in mc.storedMarkers){
