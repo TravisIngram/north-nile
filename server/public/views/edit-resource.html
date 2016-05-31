@@ -2,7 +2,7 @@
 <md-dialog>
   <md-dialog-content class="md-dialog-content">
     <section layout="column">
-      test:{{erc.userResource}}
+      <!-- test:{{erc.userResource}} -->
       <md-input-container>
         <label for="pending_name">Name</label>
         <input type="text" name="pending_name" ng-model="erc.userResource.name" />
@@ -84,7 +84,7 @@
         <input type="text" name="pending_video" ng-model="erc.userResource.video" />
       </md-input-container>
 
-      <md-checkbox name="pending_approval" ng-model="erc.userResource.is_active" aria-label="pending_approval">Approved</md-checkbox>
+
 
       <md-button ng-show="!erc.showConfirmRemove" ng-click="erc.saveEdit()">Save</md-button>
       <md-button ng-show="!erc.showConfirmRemove" ng-click="erc.cancelEditPending()">Cancel</md-button>
