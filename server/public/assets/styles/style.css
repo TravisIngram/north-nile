@@ -52,27 +52,30 @@ body {
 
   h1 {
     font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
-    color: white;
+    color: #7EA493;
     font-size: 50px;
-    text-shadow: 1px 3px 1px #433225;
+    text-shadow: 2px 2px 3px #433225;
   }
 
   h2{
     font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
-    color: white;
+    color: #9bb85c;
     font-size: 28px;
+    text-shadow: 2px 2px 3px #433225;
   }
 
   h3 {
     font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
-    color: white;
+    color: #9eceb8;
     font-size: 24px;
+    text-shadow: 2px 2px 3px #433225;
   }
 
   p{
     font-family: 'Playfair Display', 'Georgia', serif;
     font-size: 17px;
     color: white;
+    text-shadow: 2px 2px 3px #433225;
   }
 
   .md-button {
@@ -103,8 +106,10 @@ body {
   }
 
   md-dialog.md-default-theme, md-dialog{
-    background-color:  rgba(255,255,255,0.8);
-    color: #70543e;
+    background-color: rgba(155,184,92,0.9);
+    color: white;
+    min-width: 30%;
+    max-width: 90%;
   }
 
   md-dialog p{
@@ -122,11 +127,11 @@ body {
 
   form, .home form{
     font-family: 'Playfair Display', 'Georgia', serif;
-    background-color:  rgba(255,255,255,0.3);
+    background-color:  rgba(158,206,184,0.6);
     border-radius: 10px;
     padding: 15px;
-    max-width: 70%;
-    min-width: 30%;
+    max-width: 90%;
+    min-width: 40%;
     color #70543e;
     box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
     margin: auto;
@@ -151,13 +156,24 @@ body {
     font-family: 'Playfair Display', 'Georgia', serif;
   }
 
+
+
+
   /* ::::: NAV STYLES ::::: */
 
+  .md-toolbar-tools{
+    letter-spacing: inherit;
+    color: white;
+    text-shadow: none;
+    font-weight: bolder;
+    font-size: 30px;
+  }
+
   .home.header-condensed {
-    background-color: rgba(255,255,255,0.2);
-    border-radius: 10px;
-    height: 20px;
-    box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
+    background-color: transparent;
+    height: 25px;
+    /*border-bottom: 1px dashed white;*/
+    /*box-shadow: 2px 2px 5px rgba(56,42,31,0.5);*/
   }
   .fa-map-o, .fa-user{
     font-size: 1em;
@@ -169,6 +185,9 @@ body {
     color: #fff;
     padding-right: 5px;
   }
+
+
+
 
   /* ::::: HOME PAGE ::::: */
 
@@ -182,18 +201,29 @@ body {
     text-align: center;
     text-shadow: 5px;
     padding: 90px;
-    margin: 100px;
+    margin-top: 25px;
+    margin-left: 10%;
+    margin-right: 10%;
   }
 
+  .pageTitle{
+    text-align: center;
+  }
   md-card{
-    background-color:rgba(155, 184, 92, 0.73);
-    color:white;
-    box-shadow: 2px 3px 4px rgba(56,42,31,0.5);
-
+    background-color:rgba(158,206,184,0.6);
+    color:white !important;
+    box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
+    border-radius: 5px;
   }
+
+  md-card h2{
+    padding-top: auto;
+    padding-left: 30px;
+  }
+
   md-table, md-head, th.md-column, td.md-cell, md-row, md-icon{
     color:white !important;
-    text-shadow: 1px 2px #444;
+    text-shadow: 2px 2px 5px rgba(56,42,31,0.5);
   }
 
   /* ::::: ADMIN DASHBOARD ::::: */
