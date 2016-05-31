@@ -154,8 +154,6 @@ angular.module('northApp').controller('HomeController', ['UserTrackFactory','$ht
       hc.registerInfo.username = undefined;
     });
   };
-
-
-  console.log('hc.registerFormInputs:', hc.registerFormInputs);
+  
   console.log('Home controller loaded.');
 }]);

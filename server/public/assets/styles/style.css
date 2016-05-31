@@ -156,6 +156,9 @@ body {
     font-family: 'Playfair Display', 'Georgia', serif;
   }
 
+  .splashText{
+    text-align:justify;;
+  }
 
 
 
@@ -241,6 +244,10 @@ body {
     md-dialog{
       width:90vw;
     }
+  }
+
+  .fileUpload{
+    opacity:0;
   }
 
   /* ::::: VISITOR/USER DASHBOARD ::::: */
