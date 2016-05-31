@@ -13,6 +13,7 @@ angular.module('northApp').controller('AdminController', ['AccountFactory', 'Use
   ac.savedAccounts = AccountFactory.savedAccounts;
   ac.getSavedAccounts = AccountFactory.getSavedAccounts;
   ac.emails = [];
+  ac.showAccountTable = false;
 
   ac.selectedModerationResources = [];
   ac.selectedModerationResource = {};
@@ -57,7 +58,7 @@ angular.module('northApp').controller('AdminController', ['AccountFactory', 'Use
 
   // manage accounts
   ac.showAccounts = function(){
-    ac.showAccountTable = true;
+    ac.showAccountTable = !ac.showAccountTable;
   };
 
   ac.editAccount = function(account){
