@@ -22,7 +22,7 @@
 <div class="infoDrawer" ng-show="mc.showInfoDrawer" md-swipe-down="mc.closeInfoDrawer()">
   <h2>{{mc.lastClicked.name}}</h2>
   <p>
-    <u>Type</u>
+    <u>Resource Type</u>
     {{mc.lastClicked.resource_type}}
   </p>
   <p>
@@ -36,6 +36,22 @@
   <p ng-show="mc.lastClicked.website">
     <u>Website</u>
     {{mc.lastClicked.website}}
+  </p>
+  <p ng-show="mc.lastClicked.twitter">
+    <u>Twitter</u>
+    {{mc.lastClicked.twitter}}
+  </p>
+  <p ng-show="mc.lastClicked.facebook">
+    <u>Facebook</u>
+    {{mc.lastClicked.facebook}}
+  </p>
+  <p ng-show="mc.lastClicked.instagram">
+    <u>Instagram</u>
+    {{mc.lastClicked.instagram}}
+  </p>
+  <p ng-show="mc.lastClicked.snapchat">
+    <u>Snapchat</u>
+    {{mc.lastClicked.snapchat}}
   </p>
   <p ng-show="mc.lastClicked.leadership">
     <u>Leadership</u>
@@ -110,18 +126,24 @@
     </section>
   </form>
 
-  <form class="home form" name="mc.registerFormInputs" ng-show="mc.showNewResourceRegister">
+  <form class="home form" name="registerFormInputs" ng-show="mc.showNewResourceRegister">
     <section layout="column">
       <h3>Registration</h3>
 
       <md-input-container>
         <label for="username">Username</label>
         <input type="text" ng-model="mc.registerInfo.username" name="username" required/>
+        <div ng-messages="registerFormInputs.username.$error">
+          <div ng-message="required">This is required!</div>
+        </div>
       </md-input-container>
 
       <md-input-container>
         <label for="password">Password</label>
         <input type="password" ng-model="mc.registerInfo.password" name="password" required/>
+        <div ng-messages="registerFormInputs.password.$error">
+          <div ng-message="required">This is required!</div>
+        </div>
       </md-input-container>
 
       <md-input-container md-is-error="mc.passwordMismatch()">
@@ -134,35 +156,61 @@
       <md-input-container>
         <label for="contact_name">Contact Name</label>
         <input type="text" ng-model="mc.registerInfo.contact_name" name="contact_name" id="contact_name" required/>
+        <div ng-messages="registerFormInputs.contact_name.$error">
+          <div ng-message="required">This is required!</div>
+        </div>
       </md-input-container>
 
       <md-input-container>
         <label for="email_address">Email address</label>
         <input type="email" ng-model="mc.registerInfo.email_address" name="email_address" id="email_address" required/>
+        <div ng-messages="registerFormInputs.email_address.$error">
+          <div ng-message="required">This is required!</div>
+        </div>
       </md-input-container>
 
       <md-input-container>
-        <md-button ng-click="mc.registerUser()" class="md-raised">Register</md-button>
+        <md-button ng-disabled="registerFormInputs.$invalid" ng-click="mc.registerUser()" class="md-raised">Register</md-button>
       </md-input-container>
     </section>
   </form>
 
-  <form ng-show="mc.showNewResourceForm">
+  <form name="newResourceForm" ng-show="mc.showNewResourceForm">
     <section layout="column">
-      Press and hold (right-click on desktop) on the map where you like the new resource to be located{{mc.newResource}}
+      <span>Press and hold (right-click on desktop) on the map where you like the new resource to be located</span>
+      <span ng-show="mc.newResource.latitude">Location added!</span>
       <md-input-container>
         <label for="new_name">Name</label>
-        <input type="text" name="new_name" ng-model="mc.newResource.name" />
+        <input type="text" name="new_name" ng-model="mc.newResource.name" required/>
+        <div ng-messages="newResourceForm.new_name.$error">
+          <div ng-message="required">This is required!</div>
+        </div>
       </md-input-container>
 
       <md-input-container>
         <label for="new_location">Location</label>
-        <input type="text" name="new_location" ng-model="mc.newResource.location" />
+        <input type="text" name="new_location" ng-model="mc.newResource.location" required/>
+        <div ng-messages="newResourceForm.new_location.$error">
+          <div ng-message="required">This is required!</div>
+        </div>
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_type">Type</label>
+        <md-select name="new_type" ng-model="mc.newResource.resource_type" required>
+          <md-option value="Community Garden">Community Garden</md-option>
+          <md-option value="Culinary Arts">Culinary Arts</md-option>
+          <md-option value="Food Hub">Food Hub</md-option>
+          <md-option value="Food Distribution">Food Distribution</md-option>
+        </md-select>
+        <div ng-messages="newResourceForm.new_type.$error">
+          <div ng-message="required">This is required!</div>
+        </div>
       </md-input-container>
 
       <md-input-container>
         <label for="new_description">Description</label>
-        <input type="text" name="new_description" ng-model="mc.newResource.description" />
+        <input type="text" name="new_description" ng-model="mc.newResource.description"/>
       </md-input-container>
 
       <md-input-container>
@@ -200,12 +248,18 @@
 
       <md-input-container>
         <label for="new_phone">Public Phone</label>
-        <input type="text" name="new_phone" ng-model="mc.newResource.public_phone" />
+        <input type="phone" name="new_phone" ng-model="mc.newResource.public_phone" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"/>
+        <div ng-messages="newResourceForm.new_phone.$error">
+          <div ng-message="pattern">Please enter a valid 10-digit phone number.</div>
+        </div>
       </md-input-container>
 
       <md-input-container>
         <label for="new_email">Public Email</label>
-        <input type="text" name="new_email" ng-model="mc.newResource.public_email" />
+        <input type="email" name="new_email" ng-model="mc.newResource.public_email" />
+        <div ng-messages="newResourceForm.new_email.$error">
+          <div ng-message="email">Please enter a valid email address.</div>
+        </div>
       </md-input-container>
 
       <md-input-container>
@@ -221,17 +275,6 @@
       <md-input-container>
         <label for="new_lng">Coordinates - Longitude</label>
         <input type="text" name="new_lng" ng-model="mc.newResource.longitude" />
-      </md-input-container>
-
-      <md-input-container>
-        <label for="new_type">Type</label>
-        <!-- <input type="text" name="pending_type" ng-model="epc.selectedResource.type" /> -->
-        <md-select name="new_type" ng-model="mc.newResource.resource_type">
-          <md-option value="Community Garden">Community Garden</md-option>
-          <md-option value="Culinary Arts">Culinary Arts</md-option>
-          <md-option value="Food Hub">Food Hub</md-option>
-          <md-option value="Food Distribution">Food Distribution</md-option>
-        </md-select>
       </md-input-container>
 
       <md-input-container>
@@ -251,7 +294,7 @@
 
       <md-checkbox ng-if="mc.user.is_admin == 1" name="new_approval" ng-model="mc.newResource.is_active" aria-label="new_approval">Approved</md-checkbox>
 
-      <md-button ng-click="mc.saveNewResource(mc.newResource)">Save</md-button>
+      <md-button ng-disabled="newResourceForm.$invalid" ng-click="mc.saveNewResource(mc.newResource)">Save</md-button>
       <md-button ng-click="mc.cancelNewResource()">Cancel</md-button>
     </section>
   </form>
