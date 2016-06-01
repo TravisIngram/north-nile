@@ -379,6 +379,8 @@ var foodDistribution = {
     mc.showNewResourceForm
     console.log('Saving new resource from user:', mc.user);
     resource.account_id = mc.user.id;
+    resource.is_pending = !resource.is_active;
+    resource.date_created = new Date();
     ResourceFactory.saveNewResource(resource);
     mc.showNewResourceDrawer = false;
     mc.newResource = {};
