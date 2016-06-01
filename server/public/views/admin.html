@@ -110,7 +110,7 @@
         <tbody md-body>
           <tr md-row ng-repeat="account in ac.savedAccounts">
             <td md-cell>{{account.username}}</td>
-            <td md-cell>{{account.email_address}}</td>
+            <td md-cell><a ng-href="mailto:{{account.email_address}}">{{account.email_address}}</a></td>
             <td md-cell>{{account.contact_name}}</td>
             <td md-cell><md-button ng-click="ac.editAccount(account)">Edit</md-button></td>
           </tr>

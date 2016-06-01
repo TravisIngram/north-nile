@@ -307,6 +307,10 @@ body {
     margin: 1vw;
   }
 
+  .fourMapIcons>.keyButton{
+    padding: 0;    
+  }
+
   .disabledKeyButton{
     background-color: #444 !important;
   }
@@ -323,7 +327,7 @@ body {
     position: absolute;
     z-index: 1002;
     display: block;
-    top: 80%;
+    top: 100%;
     margin-top: -35px;
     width: 36px;
     height: 71px;
