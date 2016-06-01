@@ -55,6 +55,7 @@ body {
     color: #7EA493;
     font-size: 5vmax;
     text-shadow: 2px 2px 3px #433225;
+    margin: 15px;
   }
 
   h2{
@@ -82,8 +83,8 @@ body {
     font-size: 18px;
     font-weight: bolder;
     text-transform: lowercase;
-    margin: 2px;
-    padding: 2px;
+    margin: 3px;
+    padding: 5px;
   }
 
   .md-button.md-raised {
@@ -93,7 +94,7 @@ body {
     font-weight: bolder;
     font-size: 16px;
     margin: 1vw;
-    padding: 2px;
+    padding: 5px;
     text-transform: lowercase;
   }
 
@@ -109,10 +110,10 @@ body {
   }
 
   md-dialog.md-default-theme, md-dialog{
-    background-color: rgba(155,184,92,1);
+    background-color: rgba(124,147,73,8);
     color: white;
-    min-width: 30%;
-    max-width: 90%;
+    width: 90vw;
+    margin: 2px 15px;
   }
 
   md-dialog p{
@@ -121,11 +122,12 @@ body {
   }
 
   md-dialog h2 {
-    color: #ec4500;
+    color: #9bb85c;
     font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
     font-weight: bolder;
-    font-size: 25px;
+    font-size: 30px;
     text-align: center;
+    margin: 5px;
   }
 
   form, .home form{
@@ -176,14 +178,13 @@ body {
   .home.header-condensed {
     background-color: transparent;
     height: 25px;
-    /*border-bottom: 1px dashed white;*/
-    /*box-shadow: 2px 2px 5px rgba(56,42,31,0.5);*/
   }
+
   .fa-map-o, .fa-user{
     font-size: 1em;
     padding-right: 5px;
-
   }
+
   .fa-home {
     font-size: 1.2em;
     color: #fff;
@@ -204,6 +205,7 @@ body {
     padding: 0;
     font-size: 3.5vmax;
     letter-spacing: 0px;
+    margin: 25px;
 
   }
 
@@ -214,6 +216,7 @@ body {
   .pageTitle{
     text-align: center;
   }
+
   md-card{
     background-color:rgba(158,206,184,0.6);
     color:white !important;
@@ -221,9 +224,8 @@ body {
     border-radius: 5px;
   }
 
-  md-card h2{
-    padding-top: auto;
-    padding-left: 30px;
+  md-card h3{
+    padding: 2px 30px;
   }
 
   md-table, md-head, th.md-column, td.md-cell, md-row, md-icon{
@@ -265,6 +267,11 @@ body {
   }
 
   /* ::::: VISITOR/USER DASHBOARD ::::: */
+
+
+
+
+
 
 
 
@@ -358,7 +365,7 @@ body {
     .home.header-expanded {
       text-align: center;
       text-shadow: 5px;
-      padding: 40px;
+      padding: 20px;
       /*margin: 100px;*/
     }
   }
@@ -367,7 +374,7 @@ body {
     .home.header-expanded {
       text-align: center;
       text-shadow: 5px;
-      padding: 20px;
+      padding: 10px;
     }
   }
 
