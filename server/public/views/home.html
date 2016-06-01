@@ -44,7 +44,6 @@
       <md-button ng-click="hc.headerExpandedShow()" aria-label="home">
         <i class="fa fa-home" aria-hidden="true"></i>Home</md-button>
 
-
       </div>
     </md-toolbar>
 
@@ -88,17 +87,23 @@
     <!-- ::::::::: REGISTRATION FORM::::::::: -->
     <div class="home form" ng-show="hc.registerForm">
       <section layout="column">
-        <form name="hc.registerFormInputs">
+        <form name="registerFormInputs">
           <h3>Registration</h3>
 
           <md-input-container>
             <label for="username">Username</label>
             <input type="text" ng-model="hc.registerInfo.username" name="username" required/>
+            <div ng-messages="registerFormInputs.username.$error">
+              <div ng-message="required">This is required!</div>
+            </div>
           </md-input-container>
 
           <md-input-container>
             <label for="password">Password</label>
             <input type="password" ng-model="hc.registerInfo.password" name="password" required/>
+            <div ng-messages="registerFormInputs.password.$error">
+              <div ng-message="required">This is required!</div>
+            </div>
           </md-input-container>
 
           <md-input-container md-is-error="hc.passwordMismatch()">
@@ -112,17 +117,21 @@
           <md-input-container>
             <label for="contact_name">Contact Name</label>
             <input type="text" ng-model="hc.registerInfo.contact_name" name="contact_name" id="contact_name" required/>
+            <div ng-messages="registerFormInputs.contact_name.$error">
+              <div ng-message="required">This is required!</div>
+            </div>
           </md-input-container>
 
           <md-input-container>
             <label for="email_address">Email address</label>
             <input type="email" ng-model="hc.registerInfo.email_address" name="email_address" id="email_address" required/>
+            <div ng-messages="registerFormInputs.email_address.$error">
+              <div ng-message="required">This is required!</div>
+            </div>
           </md-input-container>
-          <!-- e-mail validation messages go here -->
-          email = {{hc.registerInfo.email_address}}
-          error = {{hc.registerInfo.email_address.$valid}}
+
           <md-input-container>
-            <md-button ng-click="hc.registerUser()" class="md-raised"><i class="fa fa-user" aria-hidden="true"></i>Register</md-button>
+            <md-button ng-disabled="registerFormInputs.$invalid" ng-click="hc.registerUser()" class="md-raised"><i class="fa fa-user" aria-hidden="true"></i>Register</md-button>
           </md-input-container>
           <md-input-container>
             <h3>Already have an account?</h3>
