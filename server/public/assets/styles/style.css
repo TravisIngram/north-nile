@@ -80,22 +80,18 @@ body {
 
   .md-button {
     font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bolder;
     text-transform: lowercase;
-    margin: 3px;
-    padding: 5px;
-    line-height: 15px;
+    margin: 5px;
+    padding: 0px;
   }
 
   .md-button.md-raised {
     background-color: #f3cb00;
     color: #70543e;
     font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
-    font-weight: bolder;
     font-size: 16px;
-    margin: 1vw;
-    padding: 5px;
     text-transform: lowercase;
   }
 
@@ -131,7 +127,7 @@ body {
     margin: 5px;
   }
 
-  form, .home form{
+  /*form, .home form{
     font-family: 'Playfair Display', 'Georgia', serif;
     background-color:  rgba(158,206,184,0.6);
     border-radius: 10px;
@@ -139,6 +135,26 @@ body {
     color #70543e;
     box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
     margin: 10vmin;
+  }*/
+
+  .home .register form{
+    font-family: 'Playfair Display', 'Georgia', serif;
+    background-color:  rgba(158,206,184,0.6);
+    border-radius: 10px;
+    padding: 15px;
+    color #70543e;
+    box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
+    margin: 5px 15vmin;
+  }
+
+  .home .login {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    background-color:  rgba(158,206,184,0.6);
+    border-radius: 10px;
+    padding: 15px;
+    color: #70543e;
+    box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
+    margin: 5px 20vmin;
   }
 
   .md-input {
@@ -176,7 +192,7 @@ body {
     margin: 5px;
   }
 
-  .home.header-condensed {
+  .home .header-condensed {
     background-color: transparent;
     height: 25px;
   }
@@ -308,7 +324,7 @@ body {
   }
 
   .fourMapIcons>.keyButton{
-    padding: 0;    
+    padding: 0;
   }
 
   .disabledKeyButton{

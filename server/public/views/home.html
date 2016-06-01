@@ -10,7 +10,7 @@
     <h1>Nile of the North</h1>
 
     <!-- <p>Deadlights jack lad schooner scallywag dance the hempen jig carouser broadside cable strike colors. Bring a spring upon her cable holystone blow the man down spanker Shiver me timbers to go on account lookout wherry doubloon chase. Belay yo-ho-ho keelhaul squiffy black spot yardarm spyglass sheet transom heave to.</p> -->
-    <md-button class="md-raised"><a href="/map"><i class="fa fa-map-o" aria-hidden="true"></i>Enter Map</a></md-button>
+    <md-button class="md-raised"><a href="/map"><i class="fa fa-map-o" aria-hidden="true"></i>Map</a></md-button>
 
     <md-button class="md-raised" ng-hide="hc.user" ng-click="hc.loginShow()"><i class="fa fa-sign-in" aria-hidden="true"></i> Log In</md-button>
 
@@ -22,12 +22,9 @@
     </div>
 
     <div class="home nav">
-
-
       <md-button class="md-raised" ng-show="hc.user" ng-click="hc.routeUser()"><i class="fa fa-user" aria-hidden="true"></i>Account</md-button>
 
       <md-button class="md-raised" ng-show="hc.user"><a href="/logout" target="_self"><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</a></md-button>
-
     </div>
   </div>
 
@@ -43,7 +40,6 @@
       <md-button ng-click="hc.headerExpandedShow()" aria-label="home">
         <i class="fa fa-home" aria-hidden="true"></i>Home</md-button>
 
-
       </div>
     </md-toolbar>
 
@@ -51,7 +47,7 @@
     <!-- we need to make sure the other sections are closed (false) -->
 
     <!-- ::::::::: LOGIN FORM ::::::::: -->
-    <div class="home form" ng-show="hc.loginForm">
+    <div class="home login" ng-show="hc.loginForm">
 
       <section layout="column">
 
@@ -85,7 +81,7 @@
 
 
     <!-- ::::::::: REGISTRATION FORM::::::::: -->
-    <div class="home form" ng-show="hc.registerForm">
+    <div class="home register" ng-show="hc.registerForm">
       <section layout="column">
         <form name="hc.registerFormInputs">
           <h3>Registration</h3>
