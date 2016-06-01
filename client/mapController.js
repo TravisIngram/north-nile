@@ -418,7 +418,7 @@ var foodDistribution = {
     resource.account_id = mc.user.id;
     resource.is_pending = !resource.is_active;
     resource.date_created = new Date();
-    ResourceFactory.saveNewResource(resource);
+    ResourceFactory.saveNewResource(resource, mc.user);
     mc.showNewResourceDrawer = false;
     mc.newResource = {};
   };
