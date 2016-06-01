@@ -1,4 +1,4 @@
-angular.module('northApp').controller('MapController', ['ngAudio','ResourceFactory', 'UserTrackFactory', '$scope', 'leafletData', 'leafletMarkerEvents', '$mdDialog', '$http', '$location', function(ngAudio, ResourceFactory, UserTrackFactory, $scope, leafletData, leafletMarkerEvents, $mdDialog, $http, $location){
+angular.module('northApp').controller('MapController', ['Upload','ngAudio','ResourceFactory', 'UserTrackFactory', '$scope', 'leafletData', 'leafletMarkerEvents', '$mdDialog', '$http', '$location', function(Upload, ngAudio, ResourceFactory, UserTrackFactory, $scope, leafletData, leafletMarkerEvents, $mdDialog, $http, $location){
   var mc = this;
 
   var promise = UserTrackFactory.getUserData();
@@ -372,6 +372,43 @@ var foodDistribution = {
       showAlert();
       mc.registerInfo.username = undefined;
     });
+  };
+
+  // upload images and audio
+  mc.uploadAudio = function(audio, resource){
+    console.log('uploading audio');
+    Upload.upload({
+      url: '/upload/audio',
+      data: {file: audio.file}
+    }).then(function(response){
+      console.log('Successfully uploaded audio:', response);
+      resource.audio_id = response.data.audio_id;
+      mc.uploadAudioSuccess = true;
+    }, function(response){
+      console.log('Failed at uploading audio:', response);
+    }, function(evt){
+      // console.log('evt', evt)
+    });
+  };
+
+  mc.uploadImage = function(image, resource){
+    Upload.upload({
+      url: '/upload/image',
+      arrayKey: '',
+      data: {file: image.file}
+    }).then(function(response){
+      console.log('Success response?', response);
+      // save rest of resource
+      resource.image_id = response.data.image_id;
+      mc.uploadImageSuccess = true;
+
+    }, function(response){
+      console.log('Error response?', response);
+    }, function(evt){
+      // use for progress bar
+      console.log('Event response?', evt);
+    });
+    // end image upload
   };
 
   // save resource from map
