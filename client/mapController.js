@@ -1,4 +1,4 @@
-angular.module('northApp').controller('MapController', ['ngAudio','ResourceFactory', 'UserTrackFactory', '$scope', 'leafletData', 'leafletMarkerEvents', '$mdDialog', '$http', '$location', function(ngAudio, ResourceFactory, UserTrackFactory, $scope, leafletData, leafletMarkerEvents, $mdDialog, $http, $location){
+angular.module('northApp').controller('MapController', ['Upload','ngAudio','ResourceFactory', 'UserTrackFactory', '$scope', 'leafletData', 'leafletMarkerEvents', '$mdDialog', '$http', '$location', function(Upload, ngAudio, ResourceFactory, UserTrackFactory, $scope, leafletData, leafletMarkerEvents, $mdDialog, $http, $location){
   var mc = this;
 
   var promise = UserTrackFactory.getUserData();
@@ -15,7 +15,7 @@ angular.module('northApp').controller('MapController', ['ngAudio','ResourceFacto
   };
 
 var communityGarden = {
-                  iconUrl: 'assets/img/nature-1.svg',
+                  iconUrl: 'assets/img/GardenGreenBorder.svg',
                   // shadowUrl: 'assets/img/nature-1.svg',
                   iconSize:     [38, 95], // size of the icon
                   shadowSize:   [50, 64], // size of the shadow
@@ -24,7 +24,7 @@ var communityGarden = {
                   popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
               };
 var culinaryArts = {
-                  iconUrl: 'assets/img/orangeBlackCulinary.svg',
+                  iconUrl: 'assets/img/CulinaryRedBorder.svg',
                   iconSize:     [38, 95], // size of the icon
                   shadowSize:   [50, 64], // size of the shadow
                   iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
@@ -95,7 +95,7 @@ var foodDistribution = {
           mc.storedMarkers[marker].icon = foodHub;
         }
         if(mc.storedMarkers[marker].resource_type == 'Food Distribution'){
-          mc.storedMarkers[marker].icon = foodDistribution; //sasha where does this "icon" come from?
+          mc.storedMarkers[marker].icon = foodDistribution;
         }
         // mc.storedMarkers[marker].icon = customIcon;
       }
@@ -374,6 +374,43 @@ var foodDistribution = {
     });
   };
 
+  // upload images and audio
+  mc.uploadAudio = function(audio, resource){
+    console.log('uploading audio');
+    Upload.upload({
+      url: '/upload/audio',
+      data: {file: audio.file}
+    }).then(function(response){
+      console.log('Successfully uploaded audio:', response);
+      resource.audio_id = response.data.audio_id;
+      mc.uploadAudioSuccess = true;
+    }, function(response){
+      console.log('Failed at uploading audio:', response);
+    }, function(evt){
+      // console.log('evt', evt)
+    });
+  };
+
+  mc.uploadImage = function(image, resource){
+    Upload.upload({
+      url: '/upload/image',
+      arrayKey: '',
+      data: {file: image.file}
+    }).then(function(response){
+      console.log('Success response?', response);
+      // save rest of resource
+      resource.image_id = response.data.image_id;
+      mc.uploadImageSuccess = true;
+
+    }, function(response){
+      console.log('Error response?', response);
+    }, function(evt){
+      // use for progress bar
+      console.log('Event response?', evt);
+    });
+    // end image upload
+  };
+
   // save resource from map
   mc.saveNewResource = function(resource){
     mc.showNewResourceForm
@@ -381,7 +418,7 @@ var foodDistribution = {
     resource.account_id = mc.user.id;
     resource.is_pending = !resource.is_active;
     resource.date_created = new Date();
-    ResourceFactory.saveNewResource(resource);
+    ResourceFactory.saveNewResource(resource, mc.user);
     mc.showNewResourceDrawer = false;
     mc.newResource = {};
   };

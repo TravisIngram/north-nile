@@ -307,7 +307,7 @@ body {
   }
 
   .fourMapIcons>.keyButton{
-    padding: 0;    
+    padding: 0;
   }
 
   .disabledKeyButton{
@@ -349,13 +349,13 @@ body {
   .activeArea { position: absolute; top: 50px; left: 50px; right: 50px; height: 90px; }
 
   #filter1{
-    background-color:#F3CB00;
+    background-color:#9BB85C;
   }
   #filter2{
     background-color:#EC4500;
   }
   #filter3{
-    background-color:#9BB85C;
+    background-color:#F3CB00;
   }
   #filter4{
     background-color:#93CEB8;
