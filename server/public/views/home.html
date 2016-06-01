@@ -127,6 +127,7 @@
             <input type="email" ng-model="hc.registerInfo.email_address" name="email_address" id="email_address" required/>
             <div ng-messages="registerFormInputs.email_address.$error">
               <div ng-message="required">This is required!</div>
+              <div ng-message="email">Please enter a valid email address.</div>
             </div>
           </md-input-container>
 
