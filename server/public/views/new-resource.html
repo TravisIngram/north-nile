@@ -3,113 +3,127 @@
   <md-dialog-content class="md-dialog-content">
     <section layout="column">
       <h2>Add Resource</h2>
-      <!-- test:{{nrc.newResource}} -->
-      <md-input-container>
-        <label for="new_name">Name</label>
-        <input type="text" name="new_name" ng-model="nrc.newResource.name" required/>
-      </md-input-container>
+      <form name="newResourceForm">
+        <md-input-container>
+          <label for="new_name">Name</label>
+          <input type="text" name="new_name" ng-model="nrc.newResource.name" required/>
+          <div ng-messages="newResourceForm.new_name.$error">
+            <div ng-message="required">This is required!</div>
+          </div>
+        </md-input-container>
 
-      <md-input-container>
-        <label for="new_location">Location</label>
-        <input type="text" name="new_location" ng-model="nrc.newResource.location" required/>
-      </md-input-container>
+        <md-input-container>
+          <label for="new_location">Location</label>
+          <input type="text" name="new_location" ng-model="nrc.newResource.location" required/>
+          <div ng-messages="newResourceForm.new_location.$error">
+            <div ng-message="required">This is required!</div>
+          </div>
+        </md-input-container>
 
-      <md-input-container>
-        <label for="new_description">Description</label>
-        <input type="text" name="new_description" ng-model="nrc.newResource.description" />
-      </md-input-container>
+        <md-input-container>
+          <label for="new_type">Type</label>
+          <md-select name="new_type" ng-model="nrc.newResource.resource_type" required>
+            <md-option value="Community Garden">Community Garden</md-option>
+            <md-option value="Culinary Arts">Culinary Arts</md-option>
+            <md-option value="Food Hub">Food Hub</md-option>
+            <md-option value="Food Distribution">Food Distribution</md-option>
+          </md-select>
+          <div ng-messages="newResourceForm.new_type.$error">
+            <div ng-message="required">This is required!</div>
+          </div>
+        </md-input-container>
 
-      <md-input-container>
-        <label for="new_website">Website</label>
-        <input type="text" name="new_website" ng-model="nrc.newResource.website" />
-      </md-input-container>
+        <md-input-container>
+          <label for="new_description">Description</label>
+          <input type="text" name="new_description" ng-model="nrc.newResource.description" />
+        </md-input-container>
 
-      <!-- we'll ask for their social media links, then in display will create an icon button linking to them externally by using their information -->
+        <md-input-container>
+          <label for="new_website">Website</label>
+          <input type="text" name="new_website" ng-model="nrc.newResource.website" />
+        </md-input-container>
 
-      <md-input-container>
-        <label for="twitter">Twitter</label>
-        <input placeholder="Add link ex. https://twitter.com/projectsweetiep" type="text" name="twitter" ng-model="nrc.newResource.twitter"  />
-      </md-input-container>
+        <!-- we'll ask for their social media links, then in display will create an icon button linking to them externally by using their information -->
 
-      <md-input-container>
-        <label for="facebook">Facebook</label>
-        <input placeholder="Add link ex. https://www.facebook.com/projectsweetiepie/" type="text" name="facebook" ng-model="nrc.newResource.facebook"  />
-      </md-input-container>
+        <md-input-container>
+          <label for="twitter">Twitter</label>
+          <input placeholder="Add link ex. https://twitter.com/projectsweetiep" type="text" name="twitter" ng-model="nrc.newResource.twitter"  />
+        </md-input-container>
 
-      <md-input-container>
-        <label for="instagram">Instagram</label>
-        <input placeholder="Add link ex. https://www.instagram.com/nazmpls/" type="text" name="instagram" ng-model="nrc.newResource.instagram"  />
-      </md-input-container>
+        <md-input-container>
+          <label for="facebook">Facebook</label>
+          <input placeholder="Add link ex. https://www.facebook.com/projectsweetiepie/" type="text" name="facebook" ng-model="nrc.newResource.facebook"  />
+        </md-input-container>
 
-      <md-input-container>
-        <label for="snapchat">Snapchat</label>
-        <input placeholder="Add link ex. https://www.snapchat.com/add/JXTA_ARTS" type="text" name="snapchat" ng-model="nrc.newResource.snapchat"  />
-      </md-input-container>
+        <md-input-container>
+          <label for="instagram">Instagram</label>
+          <input placeholder="Add link ex. https://www.instagram.com/nazmpls/" type="text" name="instagram" ng-model="nrc.newResource.instagram"  />
+        </md-input-container>
 
-      <md-input-container>
-        <label for="new_leadership">Leadership</label>
-        <input type="text" name="new_leadership" ng-model="nrc.newResource.leadership" />
-      </md-input-container>
+        <md-input-container>
+          <label for="snapchat">Snapchat</label>
+          <input placeholder="Add link ex. https://www.snapchat.com/add/JXTA_ARTS" type="text" name="snapchat" ng-model="nrc.newResource.snapchat"  />
+        </md-input-container>
 
-      <md-input-container>
-        <label for="new_phone">Public Phone</label>
-        <input type="text" name="new_phone" ng-model="nrc.newResource.public_phone" />
-      </md-input-container>
+        <md-input-container>
+          <label for="new_leadership">Leadership</label>
+          <input type="text" name="new_leadership" ng-model="nrc.newResource.leadership" />
+        </md-input-container>
 
-      <md-input-container>
-        <label for="new_email">Public Email</label>
-        <input type="text" name="new_email" ng-model="nrc.newResource.public_email" />
-      </md-input-container>
+        <md-input-container>
+          <label for="new_phone">Public Phone</label>
+          <input type="phone" name="new_phone" ng-model="nrc.newResource.public_phone" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"/>
+          <div ng-messages="newResourceForm.new_phone.$error">
+            <div ng-message="pattern">Please enter a valid 10-digit phone number.</div>
+          </div>
+        </md-input-container>
 
-      <md-input-container>
-        <label for="new_hours">Hours</label>
-        <input type="text" name="new_hours" ng-model="nrc.newResource.hours" />
-      </md-input-container>
+        <md-input-container>
+          <label for="new_email">Public Email</label>
+          <input type="email" name="new_email" ng-model="nrc.newResource.public_email" />
+          <div ng-messages="newResourceForm.new_email.$error">
+            <div ng-message="email">Please enter a valid email address.</div>
+          </div>
+        </md-input-container>
 
-      <!-- <md-input-container>
-        <label for="new_lat">Coordinates - Latitude</label>
-        <input type="text" name="new_lat" ng-model="nrc.newResource.latitude" />
-      </md-input-container>
+        <md-input-container>
+          <label for="new_hours">Hours</label>
+          <input type="text" name="new_hours" ng-model="nrc.newResource.hours" />
+        </md-input-container>
 
-      <md-input-container>
-        <label for="new_lng">Coordinates - Longitude</label>
-        <input type="text" name="new_lng" ng-model="nrc.newResource.longitude" />
-      </md-input-container> -->
+        <!-- <md-input-container>
+          <label for="new_lat">Coordinates - Latitude</label>
+          <input type="text" name="new_lat" ng-model="nrc.newResource.latitude" />
+        </md-input-container>
 
-      <md-input-container>
-        <label for="new_type">Type</label>
-        <!-- <input type="text" name="pending_type" ng-model="epc.selectedResource.type" /> -->
-        <md-select name="new_type" ng-model="nrc.newResource.resource_type">
-          <md-option value="Community Garden">Community Garden</md-option>
-          <md-option value="Culinary Arts">Culinary Arts</md-option>
-          <md-option value="Food Hub">Food Hub</md-option>
-          <md-option value="Food Distribution">Food Distribution</md-option>
-        </md-select>
-      </md-input-container>
+        <md-input-container>
+          <label for="new_lng">Coordinates - Longitude</label>
+          <input type="text" name="new_lng" ng-model="nrc.newResource.longitude" />
+        </md-input-container> -->
 
-      <md-input-container>
-        <label for="new_audio">Audio</label>
-        <md-button ng-show="nrc.newAudio.file" ng-click="nrc.uploadAudio(nrc.newAudio, nrc.newResource)" class="md-button uploadButton"><i class="fa fa-cloud-upload" aria-hidden="true"></i></md-button>
-        <!-- <input type="text" name="new_audio" ng-model="nrc.newResource.audio" /> -->
-        <input id="newImageUploadAdmin" class="fileUpload" type="file" ngf-select ngf-multiple="false" ng-model="nrc.newAudio.file" name="new_audio" ngf-pattern="'audio/*'" accept="audio/*" ngf-max-size="20MB" aria-label="upload_audio"/>
-      </md-input-container>
+        <md-input-container>
+          <label for="new_audio">Upload Audio</label>
+          <md-button ng-show="nrc.newAudio.file" ng-click="nrc.uploadAudio(nrc.newAudio, nrc.newResource)" class="md-button uploadButton" aria-label="uploadAudio"><i class="fa fa-cloud-upload" aria-hidden="true"></i></md-button>
+          <input id="newImageUploadAdmin" class="fileUpload" type="file" ngf-select ngf-multiple="false" ng-model="nrc.newAudio.file" name="new_audio" ngf-pattern="'audio/*'" accept="audio/*" ngf-max-size="20MB" aria-label="upload_audio"/>
+        </md-input-container>
 
-      <md-input-container>
-        <label class="" for="new_images">Images</label>
-        <md-button ng-show="nrc.newImage.file" ng-click="nrc.uploadImage(nrc.newImage, nrc.newResource)" class="md-button uploadButton"><i class="fa fa-cloud-upload" aria-hidden="true"></i></md-button>
-        <!--   <input type="text" name="new_images" ng-model="nrc.newResource.images" /> -->
-        <input id="newImageUploadAdmin" class="fileUpload" type="file" ngf-select ngf-multiple="true" ng-model="nrc.newImage.file" name="new_images" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" ngf-max-files="5" aria-label="upload_images"/>
-      </md-input-container>
+        <md-input-container>
+          <label class="" for="new_images">Upload Images</label>
+          <md-button ng-show="nrc.newImage.file" ng-click="nrc.uploadImage(nrc.newImage, nrc.newResource)" class="md-button uploadButton" aria-label="uploadImage"><i class="fa fa-cloud-upload" aria-hidden="true"></i></md-button>
+          <input id="newImageUploadAdmin" class="fileUpload" type="file" ngf-select ngf-multiple="true" ng-model="nrc.newImage.file" name="new_images" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" ngf-max-files="5" aria-label="upload_images"/>
+        </md-input-container>
 
-      <md-input-container>
-        <label for="new_video">Video</label>
-        <input type="text" name="new_video" ng-model="nrc.newResource.video" />
-      </md-input-container>
+        <md-input-container>
+          <label for="new_video">Video</label>
+          <input type="text" name="new_video" ng-model="nrc.newResource.video" />
+        </md-input-container>
 
-      <md-checkbox name="new_approval" ng-model="nrc.newResource.is_active" aria-label="new_approval">Approved</md-checkbox>
+        <md-checkbox name="new_approval" ng-model="nrc.newResource.is_active" aria-label="new_approval">Approved</md-checkbox>
 
-      <md-button ng-click="nrc.saveNewResource(nrc.newResource)">Save</md-button>
-      <md-button ng-click="nrc.cancelNewResource()">Cancel</md-button>
+        <md-button ng-disabled="newResourceForm.$invalid" ng-click="nrc.saveNewResource(nrc.newResource)">Save</md-button>
+        <md-button ng-click="nrc.cancelNewResource()">Cancel</md-button>
+
+      </form>
     </section>
 
 

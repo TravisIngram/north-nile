@@ -306,6 +306,10 @@ body {
     margin: 1vw;
   }
 
+  .fourMapIcons>.keyButton{
+    padding: 0;    
+  }
+
   .disabledKeyButton{
     background-color: #444 !important;
   }

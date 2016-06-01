@@ -1,26 +1,36 @@
 <md-dialog>
   <md-dialog-content>
     <section md-layout="column">
+      <form name="editAccountForm">
+        <md-input-container>
+          <label for="account_name">Account Name</label>
+          <input type="text" name="account_name" ng-model="eac.selectedAccount.username" required/>
+          <div ng-messages="editAccountForm.account_name.$error">
+            <div ng-message="required">This is required!</div>
+          </div>
+        </md-input-container>
 
-      <md-input-container>
-        <label for="account_name">Account Name</label>
-        <input type="text" ng-model="eac.selectedAccount.username" />
-      </md-input-container>
+        <md-input-container>
+          <label for="account_email">Email Address</label>
+          <input type="text" name="account_email" ng-model="eac.selectedAccount.email_address" required/>
+          <div ng-messages="editAccountForm.account_email.$error">
+            <div ng-message="required">This is required!</div>
+          </div>
+        </md-input-container>
 
-      <md-input-container>
-        <label for="account_email">Email Address</label>
-        <input type="text" ng-model="eac.selectedAccount.email_address" />
-      </md-input-container>
+        <md-input-container>
+          <label for="account_contact">Contact Name</label>
+          <input type="text" name="account_contact" ng-model="eac.selectedAccount.contact_name" required/>
+          <div ng-messages="editAccountForm.account_contact.$error">
+            <div ng-message="required">This is required!</div>
+          </div>
+        </md-input-container>
 
-      <md-input-container>
-        <label for="account_name">Contact Name</label>
-        <input type="text" ng-model="eac.selectedAccount.contact_name" />
-      </md-input-container>
+        <md-checkbox name="account_admin" ng-model="eac.selectedAccount.is_admin" aria-label="is_admin">Administrator</md-checkbox>
 
-      <md-checkbox name="account_admin" ng-model="eac.selectedAccount.is_admin" aria-label="is_admin">Administrator</md-checkbox>
-
-      <md-button ng-click="eac.saveEditAccount(account)">Save</md-button>
-      <md-button ng-click="eac.cancelEditAccount()">Cancel</md-button>
+        <md-button ng-disabled="editAccountForm.$invalid" ng-click="eac.saveEditAccount(account)">Save</md-button>
+        <md-button ng-click="eac.cancelEditAccount()">Cancel</md-button>
+      </form>
     </section>
   </md-dialog-content>
 </md-dialog>
