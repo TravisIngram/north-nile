@@ -15,7 +15,7 @@ angular.module('northApp').controller('MapController', ['ngAudio','ResourceFacto
   };
 
 var communityGarden = {
-                  iconUrl: 'assets/img/nature-1.svg',
+                  iconUrl: 'assets/img/GardenGreenBorder.svg',
                   // shadowUrl: 'assets/img/nature-1.svg',
                   iconSize:     [38, 95], // size of the icon
                   shadowSize:   [50, 64], // size of the shadow
@@ -24,7 +24,7 @@ var communityGarden = {
                   popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
               };
 var culinaryArts = {
-                  iconUrl: 'assets/img/orangeBlackCulinary.svg',
+                  iconUrl: 'assets/img/CulinaryRedBorder.svg',
                   iconSize:     [38, 95], // size of the icon
                   shadowSize:   [50, 64], // size of the shadow
                   iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
@@ -95,7 +95,7 @@ var foodDistribution = {
           mc.storedMarkers[marker].icon = foodHub;
         }
         if(mc.storedMarkers[marker].resource_type == 'Food Distribution'){
-          mc.storedMarkers[marker].icon = foodDistribution; //sasha where does this "icon" come from?
+          mc.storedMarkers[marker].icon = foodDistribution;
         }
         // mc.storedMarkers[marker].icon = customIcon;
       }
