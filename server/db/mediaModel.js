@@ -55,31 +55,31 @@ function createImage(callback) {
   });
 }
 
-function createVideo(callback) {
-  pg.connect(dbConnection, function(err, client, done) {
-    if(err) {
-      console.log('Error connecting to DB.' + err);
-      process.exit(1);
-    } else {
-      var query = client.query('CREATE TABLE IF NOT EXISTS "video" (' +
-        ' "id" serial PRIMARY KEY,' +
-        ' "video_reference" varchar(150) NOT NULL)');
-
-      query.on('end', function() {
-        console.log('Successfully created Video schema.');
-        done();
-        callback(null);
-      });
-
-      query.on('error', function(err) {
-        console.log('Error creating Video schema.' + err);
-        callback(err);
-        process.exit(1);
-      });
-    }
-  });
-}
+// function createVideo(callback) {
+//   pg.connect(dbConnection, function(err, client, done) {
+//     if(err) {
+//       console.log('Error connecting to DB.' + err);
+//       process.exit(1);
+//     } else {
+//       var query = client.query('CREATE TABLE IF NOT EXISTS "video" (' +
+//         ' "id" serial PRIMARY KEY,' +
+//         ' "video_reference" varchar(150) NOT NULL)');
+//
+//       query.on('end', function() {
+//         console.log('Successfully created Video schema.');
+//         done();
+//         callback(null);
+//       });
+//
+//       query.on('error', function(err) {
+//         console.log('Error creating Video schema.' + err);
+//         callback(err);
+//         process.exit(1);
+//       });
+//     }
+//   });
+// }
 
 module.exports.createAudio = createAudio;
 module.exports.createImage = createImage;
-module.exports.createVideo = createVideo;
+// module.exports.createVideo = createVideo;
