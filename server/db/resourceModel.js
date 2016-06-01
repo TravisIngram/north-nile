@@ -30,7 +30,7 @@ function createResource(callback) {
         ' "account_id" int REFERENCES "account"(id),' +
         ' "audio_id" int REFERENCES "audio"(id),' +
         ' "image_id" int REFERENCES "image"(id),' +
-        ' "video_id" int REFERENCES "video"(id))');
+        ' "video" varchar(150))');
 
       query.on('end', function() {
         console.log('Successfully created Resource schema.');
