@@ -40,7 +40,8 @@ module.exports = function(grunt) {
                    "angular-material-data-table/dist/md-data-table.min.js",
                    "angular-material-data-table/dist/md-data-table.css",
                    "ng-file-upload/dist/ng-file-upload-shim.min.js",
-                   "ng-file-upload/dist/ng-file-upload.min.js"
+                   "ng-file-upload/dist/ng-file-upload.min.js",
+                   "angular-audio/app/angular.audio.js"
 
                ],
                "dest": "server/public/vendor/"

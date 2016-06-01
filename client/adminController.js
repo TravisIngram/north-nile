@@ -13,6 +13,7 @@ angular.module('northApp').controller('AdminController', ['AccountFactory', 'Use
   ac.savedAccounts = AccountFactory.savedAccounts;
   ac.getSavedAccounts = AccountFactory.getSavedAccounts;
   ac.emails = [];
+  ac.showAccountTable = false;
 
   ac.selectedModerationResources = [];
   ac.selectedModerationResource = {};
@@ -57,7 +58,7 @@ angular.module('northApp').controller('AdminController', ['AccountFactory', 'Use
 
   // manage accounts
   ac.showAccounts = function(){
-    ac.showAccountTable = true;
+    ac.showAccountTable = !ac.showAccountTable;
   };
 
   ac.editAccount = function(account){
@@ -146,19 +147,19 @@ angular.module('northApp').controller('NewAccountController', ['$mdDialog', 'Acc
       if (response.status == 200) {
         console.log('successful registration');
         // Function below will prompt login. Would be nice to automatically login user?
-        function showAlert() {
-          alert = $mdDialog.alert({
-            title: 'Congratulations!',
-            textContent: 'Registration successful.',
-            ok: 'Close'
-          });
-          $mdDialog
-          .show( alert )
-          .finally(function() {
-            alert = undefined;
-          });
-        }
-        showAlert();
+        // function showAlert() {
+        //   alert = $mdDialog.alert({
+        //     title: 'Congratulations!',
+        //     textContent: 'Registration successful.',
+        //     ok: 'Close'
+        //   });
+        //   $mdDialog
+        //   .show( alert )
+        //   .finally(function() {
+        //     alert = undefined;
+        //   });
+        // }
+        // showAlert();
         AccountFactory.getSavedAccounts();
       }
     }, function(response){
@@ -261,6 +262,21 @@ angular.module('northApp').controller('NewResourceController', ['Upload','$http'
 
   nrc.cancelNewResource = function(){
     $mdDialog.hide();
+  };
+
+  nrc.uploadAudio = function(audio, resource){
+    console.log('uploading audio');
+    Upload.upload({
+      url: '/upload/audio',
+      data: {file: audio.file}
+    }).then(function(response){
+      console.log('Successfully uploaded audio:', response);
+      resource.audio_id = response.data.audio_id;
+    }, function(response){
+      console.log('Failed at uploading audio:', response);
+    }, function(evt){
+      // console.log('evt', evt)
+    });
   };
 
   nrc.uploadImage = function(image, resource){

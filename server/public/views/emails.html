@@ -1,7 +1,7 @@
 <md-dialog>
   <md-dialog-content class="emailDialog">
     <h2 class="emailDialogText">Emails</h2>
-    <p class="emailDialogText" ng-repeat="email in ec.emails">
+    <p class="emailDialogText" ng-repeat="email in ec.emails track by $index">
       {{email}}
     </p>
   </md-dialog-content>

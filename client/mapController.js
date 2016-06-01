@@ -1,4 +1,4 @@
-angular.module('northApp').controller('MapController', ['ResourceFactory', 'UserTrackFactory', '$scope', 'leafletData', 'leafletMarkerEvents', '$mdDialog', '$http', '$location', function(ResourceFactory, UserTrackFactory, $scope, leafletData, leafletMarkerEvents, $mdDialog, $http, $location){
+angular.module('northApp').controller('MapController', ['ngAudio','ResourceFactory', 'UserTrackFactory', '$scope', 'leafletData', 'leafletMarkerEvents', '$mdDialog', '$http', '$location', function(ngAudio, ResourceFactory, UserTrackFactory, $scope, leafletData, leafletMarkerEvents, $mdDialog, $http, $location){
   var mc = this;
 
   var promise = UserTrackFactory.getUserData();
@@ -14,15 +14,39 @@ angular.module('northApp').controller('MapController', ['ResourceFactory', 'User
     }
   };
 
-  var customIcon = {
-                    iconUrl: 'img/leaf-green.png',
-                    shadowUrl: 'img/leaf-shadow.png',
-                    iconSize:     [38, 95], // size of the icon
-                    shadowSize:   [50, 64], // size of the shadow
-                    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-                    shadowAnchor: [4, 62],  // the same for the shadow
-                    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-                };
+var communityGarden = {
+                  iconUrl: 'assets/img/nature-1.svg',
+                  // shadowUrl: 'assets/img/nature-1.svg',
+                  iconSize:     [38, 95], // size of the icon
+                  shadowSize:   [50, 64], // size of the shadow
+                  iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                  shadowAnchor: [4, 62],  // the same for the shadow
+                  popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+              };
+var culinaryArts = {
+                  iconUrl: 'assets/img/orangeBlackCulinary.svg',
+                  iconSize:     [38, 95], // size of the icon
+                  shadowSize:   [50, 64], // size of the shadow
+                  iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                  shadowAnchor: [4, 62],  // the same for the shadow
+                  popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+              };
+var foodHub = {
+                  iconUrl: 'assets/img/front-store.svg',
+                  iconSize:     [38, 95], // size of the icon
+                  shadowSize:   [50, 64], // size of the shadow
+                  iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                  shadowAnchor: [4, 62],  // the same for the shadow
+                  popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+              };
+var foodDistribution = {
+                  iconUrl: 'assets/img/lightblueWhiteTruck.psd.svg',
+                  iconSize:     [38, 95], // size of the icon
+                  shadowSize:   [50, 64], // size of the shadow
+                  iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                  shadowAnchor: [4, 62],  // the same for the shadow
+                  popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+              };
 
   mc.storedMarkers = ResourceFactory.mapResources;
   mc.newResource = {};
@@ -31,6 +55,7 @@ angular.module('northApp').controller('MapController', ['ResourceFactory', 'User
   mc.markerSize = Object.keys(mc.storedMarkers).length;
   mc.count = mc.markerSize + 1;
   mc.visibleMarkers = {};
+
 
   // filter visibility of markers
   mc.filterMarkers = function(type, ev){
@@ -60,6 +85,18 @@ angular.module('northApp').controller('MapController', ['ResourceFactory', 'User
     if(type === 'all'){
       for (marker in mc.storedMarkers){
         mc.storedMarkers[marker].visibility = true;
+        if(mc.storedMarkers[marker].resource_type == 'Community Garden'){
+          mc.storedMarkers[marker].icon = communityGarden;
+        }
+        if(mc.storedMarkers[marker].resource_type == 'Culinary Arts'){
+          mc.storedMarkers[marker].icon = culinaryArts;
+        }
+        if(mc.storedMarkers[marker].resource_type == 'Food Hub'){
+          mc.storedMarkers[marker].icon = foodHub;
+        }
+        if(mc.storedMarkers[marker].resource_type == 'Food Distribution'){
+          mc.storedMarkers[marker].icon = foodDistribution; //sasha where does this "icon" come from?
+        }
         // mc.storedMarkers[marker].icon = customIcon;
       }
     } else if (type === 'none'){
@@ -86,6 +123,7 @@ angular.module('northApp').controller('MapController', ['ResourceFactory', 'User
     // write changes to map
     angular.extend(mc, {
       markers: mc.visibleMarkers
+
     });
   };
 
@@ -98,6 +136,12 @@ angular.module('northApp').controller('MapController', ['ResourceFactory', 'User
 
     // grab last marker clicked to recenter map later
     mc.lastClicked = args.model;
+
+    // load audio if present
+    if(mc.lastClicked.audio_reference){
+      mc.lastClicked.sound = ngAudio.load(mc.lastClicked.audio_reference);
+    }
+
 
     // this centers the map on the marker clicked
     angular.extend(mc, {
@@ -125,19 +169,49 @@ angular.module('northApp').controller('MapController', ['ResourceFactory', 'User
     }
   };
 
-    mc.currentIndex = 0;
-    mc.setCurrentSlideIndex = function (index) {
-        mc.currentIndex = index;
-    };
-    mc.isCurrentSlideIndex = function (index) {
-        return mc.currentIndex === index;
-    };
-    mc.prevSlide = function () {
-       mc.currentIndex = (mc.currentIndex < mc.lastClicked.images.length - 1) ? ++mc.currentIndex : 0;
-   };
-   mc.nextSlide = function () {
-       mc.currentIndex = (mc.currentIndex > 0) ? --mc.currentIndex : mc.lastClicked.images.length - 1;
-   };
+  // image carousel
+  mc.currentIndex = 0;
+  mc.setCurrentSlideIndex = function (index) {
+      mc.currentIndex = index;
+  };
+  mc.isCurrentSlideIndex = function (index) {
+      return mc.currentIndex === index;
+  };
+  mc.prevSlide = function () {
+     mc.currentIndex = (mc.currentIndex < mc.lastClicked.images.length - 1) ? ++mc.currentIndex : 0;
+ };
+ mc.nextSlide = function () {
+     mc.currentIndex = (mc.currentIndex > 0) ? --mc.currentIndex : mc.lastClicked.images.length - 1;
+ };
+
+ // audio player
+ mc.play = function(audio){
+   console.log('audio play:', audio);
+   if(mc.playing == true){
+     audio.pause();
+    //  mc.playing = false;
+   } else {
+     audio.play();
+    //  mc.playing = true;
+   }
+ };
+
+ mc.stop = function(audio){
+   console.log('audio stop:', audio);
+   audio.setCurrentTime(0);
+   audio.pause();
+  //  mc.playing = false;
+ };
+
+ mc.mute = function(){
+   if(mc.muted){
+     ngAudio.unmute();
+     mc.muted = false;
+   } else {
+     ngAudio.mute();
+     mc.muted = true;
+   }
+ };
 
   mc.saveResourceCoords = function(event, args){
     console.log('saving args:', args);

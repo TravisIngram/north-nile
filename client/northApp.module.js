@@ -1,4 +1,4 @@
-angular.module('northApp', ['ngRoute', 'leaflet-directive', 'ngMaterial', 'ngMessages', 'ngAnimate', 'md.data.table', 'ngFileUpload']);
+angular.module('northApp', ['ngRoute', 'leaflet-directive', 'ngMaterial', 'ngMessages', 'ngAnimate', 'md.data.table', 'ngFileUpload', 'ngAudio']);
 
 
 angular.module('northApp').config(['$routeProvider', '$locationProvider', '$mdGestureProvider', function($routeProvider, $locationProvider, $mdGestureProvider){

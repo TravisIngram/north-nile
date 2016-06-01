@@ -112,19 +112,19 @@ angular.module('northApp').controller('HomeController', ['UserTrackFactory','$ht
         $location.path('/user');
         console.log('successful registration');
         // Function below will prompt login. Would be nice to automatically login user?
-        function showAlert() {
-          alert = $mdDialog.alert({
-            title: 'Congratulations!',
-            textContent: 'Registration successful, please log in.',
-            ok: 'Close'
-          });
-          $mdDialog
-          .show( alert )
-          .finally(function() {
-            alert = undefined;
-          });
-        }
-        showAlert();
+        // function showAlert() {
+        //   alert = $mdDialog.alert({
+        //     title: 'Congratulations!',
+        //     textContent: 'Registration successful.',
+        //     ok: 'Close'
+        //   });
+        //   $mdDialog
+        //   .show( alert )
+        //   .finally(function() {
+        //     alert = undefined;
+        //   });
+        // }
+        // showAlert();
         hc.registerInfo={};
         hc.registerForm=false;
         hc.loginForm=true;
@@ -154,6 +154,6 @@ angular.module('northApp').controller('HomeController', ['UserTrackFactory','$ht
       hc.registerInfo.username = undefined;
     });
   };
-  
+
   console.log('Home controller loaded.');
 }]);
