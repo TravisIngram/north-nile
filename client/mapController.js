@@ -1,50 +1,103 @@
-angular.module('northApp').controller('MapController', ['$scope', 'leafletData', 'leafletMarkerEvents', '$mdBottomSheet', function($scope, leafletData, leafletMarkerEvents, $mdBottomSheet){
+angular.module('northApp').controller('MapController', ['ngAudio','ResourceFactory', 'UserTrackFactory', '$scope', 'leafletData', 'leafletMarkerEvents', '$mdDialog', '$http', '$location', function(ngAudio, ResourceFactory, UserTrackFactory, $scope, leafletData, leafletMarkerEvents, $mdDialog, $http, $location){
   var mc = this;
 
-  // test data - eventually will be pulled from server/database
-  mc.storedMarkers = {
-      m1: {
-          lat: 44.996121,
-          lng: -93.295845,
-          title: 'Mr. Books Bruschetta Machine',
-          type: 'one',
-          visible: false
-      },
-      m2:{
-        lat: 44.998995,
-        lng: -93.291068,
-        title: 'Ms. Kitchens Oblique Reference Parlor',
-        type: 'two',
-        visible: false
-      },
-      m3: {
-          lat: 44.999143,
-          lng: -93.297133,
-          title: 'Mr. Bones Bruschetta Machine',
-          type: 'one',
-          visible: false
-      },
-      m4:{
-        lat: 45.002572,
-        lng: -93.289515,
-        title: 'Ms. Burbakers Oblique Reference Parlor',
-        type: 'two',
-        visible: false
-      }
+  var promise = UserTrackFactory.getUserData();
+  promise.then(function(response){
+    mc.user = response.data;
+  });
+
+  mc.routeUser = function() {
+    if (mc.user.is_admin == true) {
+      $location.path('/admin');
+    } else {
+      $location.path('/user');
+    }
   };
+
+var communityGarden = {
+                  iconUrl: 'assets/img/nature-1.svg',
+                  // shadowUrl: 'assets/img/nature-1.svg',
+                  iconSize:     [38, 95], // size of the icon
+                  shadowSize:   [50, 64], // size of the shadow
+                  iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                  shadowAnchor: [4, 62],  // the same for the shadow
+                  popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+              };
+var culinaryArts = {
+                  iconUrl: 'assets/img/orangeBlackCulinary.svg',
+                  iconSize:     [38, 95], // size of the icon
+                  shadowSize:   [50, 64], // size of the shadow
+                  iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                  shadowAnchor: [4, 62],  // the same for the shadow
+                  popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+              };
+var foodHub = {
+                  iconUrl: 'assets/img/front-store.svg',
+                  iconSize:     [38, 95], // size of the icon
+                  shadowSize:   [50, 64], // size of the shadow
+                  iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                  shadowAnchor: [4, 62],  // the same for the shadow
+                  popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+              };
+var foodDistribution = {
+                  iconUrl: 'assets/img/lightblueWhiteTruck.psd.svg',
+                  iconSize:     [38, 95], // size of the icon
+                  shadowSize:   [50, 64], // size of the shadow
+                  iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                  shadowAnchor: [4, 62],  // the same for the shadow
+                  popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+              };
+
+  mc.storedMarkers = ResourceFactory.mapResources;
+  mc.newResource = {};
 
   // start count at a number higher than any keys present in the object - this ensures no duplicates
   mc.markerSize = Object.keys(mc.storedMarkers).length;
   mc.count = mc.markerSize + 1;
   mc.visibleMarkers = {};
 
+
   // filter visibility of markers
-  mc.filterMarkers = function(type){
+  mc.filterMarkers = function(type, ev){
     mc.visibleMarkers = {};
+
+    var filter1 = angular.element(document.querySelector('#filter1'));
+    var filter2 = angular.element(document.querySelector('#filter2'));
+    var filter3 = angular.element(document.querySelector('#filter3'));
+    var filter4 = angular.element(document.querySelector('#filter4'));
+
+    switch(type){
+      case 'Community Garden':
+        filter1.toggleClass('disabledKeyButton');
+        console.log('filter1:', filter1);
+        break;
+      case 'Culinary Arts':
+        filter2.toggleClass('disabledKeyButton');
+        break;
+      case 'Food Hub':
+        filter3.toggleClass('disabledKeyButton');
+        break;
+      case 'Food Distribution':
+        filter4.toggleClass('disabledKeyButton');
+        break;
+    }
 
     if(type === 'all'){
       for (marker in mc.storedMarkers){
         mc.storedMarkers[marker].visibility = true;
+        if(mc.storedMarkers[marker].resource_type == 'Community Garden'){
+          mc.storedMarkers[marker].icon = communityGarden;
+        }
+        if(mc.storedMarkers[marker].resource_type == 'Culinary Arts'){
+          mc.storedMarkers[marker].icon = culinaryArts;
+        }
+        if(mc.storedMarkers[marker].resource_type == 'Food Hub'){
+          mc.storedMarkers[marker].icon = foodHub;
+        }
+        if(mc.storedMarkers[marker].resource_type == 'Food Distribution'){
+          mc.storedMarkers[marker].icon = foodDistribution; //sasha where does this "icon" come from?
+        }
+        // mc.storedMarkers[marker].icon = customIcon;
       }
     } else if (type === 'none'){
       for (marker in mc.storedMarkers){
@@ -53,7 +106,7 @@ angular.module('northApp').controller('MapController', ['$scope', 'leafletData',
     } else {
       // loop through the list of markers from the database, and toggle visibility based on type
       for (marker in mc.storedMarkers){
-        if(mc.storedMarkers[marker].type === type){
+        if(mc.storedMarkers[marker].resource_type === type){
           mc.storedMarkers[marker].visibility = !mc.storedMarkers[marker].visibility; // toggle visibility
         }
       }
@@ -70,8 +123,135 @@ angular.module('northApp').controller('MapController', ['$scope', 'leafletData',
     // write changes to map
     angular.extend(mc, {
       markers: mc.visibleMarkers
+
     });
   };
+
+  mc.lastClicked = {};
+
+  // open infoDrawer on marker Click
+  mc.openInfoDrawer = function(event, args){
+    mc.showInfoDrawer = true;
+    mc.showNewResourceDrawer = false;
+
+    // grab last marker clicked to recenter map later
+    mc.lastClicked = args.model;
+
+    // load audio if present
+    if(mc.lastClicked.audio_reference){
+      mc.lastClicked.sound = ngAudio.load(mc.lastClicked.audio_reference);
+    }
+
+
+    // this centers the map on the marker clicked
+    angular.extend(mc, {
+      center:{
+        lat: mc.lastClicked.lat,
+        lng: mc.lastClicked.lng,
+        zoom: 15
+      }
+    });
+  };
+
+  // close infoDrawer on map click
+  mc.closeInfoDrawer = function(event, args){
+    if(mc.showInfoDrawer){
+      mc.showInfoDrawer = false;
+
+      // this centers the map on the marker that initiated the click that this is 'undoing'
+      angular.extend(mc, {
+        center:{
+          lat: mc.lastClicked.lat,
+          lng: mc.lastClicked.lng,
+          zoom: 15
+        }
+      });
+    }
+  };
+
+  // image carousel
+  mc.currentIndex = 0;
+  mc.setCurrentSlideIndex = function (index) {
+      mc.currentIndex = index;
+  };
+  mc.isCurrentSlideIndex = function (index) {
+      return mc.currentIndex === index;
+  };
+  mc.prevSlide = function () {
+     mc.currentIndex = (mc.currentIndex < mc.lastClicked.images.length - 1) ? ++mc.currentIndex : 0;
+ };
+ mc.nextSlide = function () {
+     mc.currentIndex = (mc.currentIndex > 0) ? --mc.currentIndex : mc.lastClicked.images.length - 1;
+ };
+
+ // audio player
+ mc.play = function(audio){
+   console.log('audio play:', audio);
+   if(mc.playing == true){
+     audio.pause();
+    //  mc.playing = false;
+   } else {
+     audio.play();
+    //  mc.playing = true;
+   }
+ };
+
+ mc.stop = function(audio){
+   console.log('audio stop:', audio);
+   audio.setCurrentTime(0);
+   audio.pause();
+  //  mc.playing = false;
+ };
+
+ mc.mute = function(){
+   if(mc.muted){
+     ngAudio.unmute();
+     mc.muted = false;
+   } else {
+     ngAudio.mute();
+     mc.muted = true;
+   }
+ };
+
+  mc.saveResourceCoords = function(event, args){
+    console.log('saving args:', args);
+    mc.newResource.latitude = args.leafletEvent.latlng.lat;
+    mc.newResource.longitude = args.leafletEvent.latlng.lng;
+  };
+
+  // open drawer for new resource form
+  mc.addNewResource = function(){
+    if(!mc.showNewResourceDrawer){
+      mc.showNewResourceDrawer = true;
+      if(mc.user){
+        // if logged in
+        mc.showNewResourceForm = true;
+        mc.showNewResourceLogin = false;
+        mc.showNewResourceRegister = false;
+      } else {
+        // if not logged in
+        mc.showNewResourceLogin = true;
+        mc.showNewResourceRegister = false;
+        mc.showNewResourceForm = false;
+      }
+    } else {
+      mc.newResource.account_id = mc.user.id;
+      //ResourceFactory.saveNewResource(mc.newResource);
+      mc.showNewResourceDrawer = false;
+    }
+  };
+
+  // get markers from database
+  ResourceFactory.getSavedResources(mc.filterMarkers);
+
+  // bind event handlers
+  $scope.$on('leafletDirectiveMarker.map.click', mc.openInfoDrawer);
+  $scope.$on('leafletDirectiveMap.map.click', mc.closeInfoDrawer);
+  $scope.$on('leafletDirectiveMap.map.contextmenu', mc.saveResourceCoords);
+
+
+  // set all markers to visible on page load
+  //mc.filterMarkers('all');
 
   // configure map defaults
   angular.extend(mc, {
@@ -93,69 +273,121 @@ angular.module('northApp').controller('MapController', ['$scope', 'leafletData',
         markers: mc.visibleMarkers
   });
 
-  mc.lastClicked = {};
 
-  // open infoDrawer on marker Click
-  mc.openInfoDrawer = function(event, args){
-    mc.showInfoDrawer = true;
+  // map login
+  mc.loginUser = function() {
+    $http.post('/login', mc.loginInfo).then(function(response){
+      if (response.status == 200) {
+        mc.user = response.data;
+        console.log('successful login', response.data.is_admin);
+        if (response.data.is_admin === true) {
+          console.log('admin is true');
+          mc.loginInfo = {};
 
-    // grab last marker clicked to recenter map later
-    mc.lastClicked = args.model;
+          // $location.url('/map');
+          // hide login form and show new resource form
+          mc.showNewResourceLogin = false;
+          mc.showNewResourceForm = true;
+        } else {
+          console.log('admin is not true');
+          mc.loginInfo = {};
 
-    // test text
-    mc.markerTitle = mc.lastClicked.title;
-    // test text to force overflow and scrolling
-    mc.dummyText1 = 'Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.';
-    mc.dummyText2 = 'Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.';
-    mc.dummyText3 = 'Capitalise on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.';
-
-    // update map size - needed if we are shrinking the map to recenter the icon/marker in the top middle
-    mc.mapStyle = {height:'30vh'};
-    leafletData.getMap().then(function(map) {
-      setTimeout(function(){ // may not be best practice - seems to result in the map moving too much
-        map.invalidateSize();
-        console.log('called');
-      }, 200);
-    });
-
-    // this centers the map on the marker clicked
-    angular.extend(mc, {
-      center:{
-        lat: mc.lastClicked.lat,
-        lng: mc.lastClicked.lng,
-        zoom: 15
+          // $location.url('/map');
+          // hide login form and show new resource form
+          mc.showNewResourceLogin = false;
+          mc.showNewResourceForm = true;
+        }
+     }
+    }, function(response){
+      console.log('unsuccessful login');
+      // Alert user to incorrect username/password ::::
+      function showAlert() {
+        alert = $mdDialog.alert({
+          title: 'Attention',
+          textContent: 'Incorrect username and/or password. Please enter information again.',
+          ok: 'Close'
+        });
+        $mdDialog
+          .show( alert )
+          .finally(function() {
+            alert = undefined;
+          });
       }
+      showAlert();
+      mc.loginInfo = {};
+
     });
   };
 
-  // close infoDrawer on map click
-  mc.closeInfoDrawer = function(event, args){
-    mc.showInfoDrawer = false;
+  mc.registerShow = function(){
+    mc.showNewResourceLogin = false;
+    mc.showNewResourceRegister = true;
+  };
 
-    // update map size - needed if we are shrinking the map to recenter the icon/marker in the top middle
-    mc.mapStyle = {height:'100vh'};
-    leafletData.getMap().then(function(map) {
-      setTimeout(function(){
-        map.invalidateSize();
-        console.log('called');
-      }, 100);
-    });
+  // registration form password confirmation checking
+  mc.registerInfo = {};
+  mc.passwordMismatch = function(){
+    if(mc.registerInfo.password !== mc.registerInfo.confirm_password){
+      return true;
+    }
+  };
 
-    // this centers the map on the marker that initiated the click that this is 'undoing'
-    angular.extend(mc, {
-      center:{
-        lat: mc.lastClicked.lat,
-        lng: mc.lastClicked.lng,
-        zoom: 15
+  mc.passwordMismatchError = function(){
+    if (mc.passwordMismatch() && mc.registerFormInputs.confirm_password.$dirty){
+      return true;
+    }
+  };
+
+  // :::: Register User ::::
+
+  mc.registerUser = function() {
+    $http.post('/register', mc.registerInfo).then(function(response){
+      if (response.status == 200) {
+        console.log('successful registration');
+        mc.loginInfo = {username: mc.registerInfo.username};
+        mc.registerInfo = {};
+        mc.showNewResourceRegister = false;
+        mc.showNewResourceLogin = true;
       }
+    }, function(response){
+      console.log('unsuccessful registration');
+      function showAlert() {
+        if(mc.registerInfo.username === undefined){
+          mc.alertMessage = 'Username field cannot be blank';
+        } else {
+          mc.alertMessage = 'Username already exists, please choose another.';
+        }
+
+        alert = $mdDialog.alert({
+          title: 'Attention',
+          textContent: mc.alertMessage,
+          ok: 'Close'
+        });
+        $mdDialog
+          .show( alert )
+          .finally(function() {
+            alert = undefined;
+          });
+      }
+      showAlert();
+      mc.registerInfo.username = undefined;
     });
   };
 
-  // bind event handlers
-  $scope.$on('leafletDirectiveMarker.map.click', mc.openInfoDrawer);
-  $scope.$on('leafletDirectiveMap.map.click', mc.closeInfoDrawer);
+  // save resource from map
+  mc.saveNewResource = function(resource){
+    mc.showNewResourceForm
+    console.log('Saving new resource from user:', mc.user);
+    resource.account_id = mc.user.id;
+    ResourceFactory.saveNewResource(resource);
+    mc.showNewResourceDrawer = false;
+    mc.newResource = {};
+  };
 
-  // set all markers to visible on page load
-  mc.filterMarkers('all');
+  mc.cancelNewResource = function(){
+    mc.showNewResourceDrawer = false;
+    mc.newResource = {};
+  };
+
   console.log('Map controller loaded.');
 }]);

@@ -1,4 +1,4 @@
-angular.module('northApp', ['ngRoute', 'leaflet-directive', 'ngMaterial', 'ngMessages', 'ngAnimate']);
+angular.module('northApp', ['ngRoute', 'leaflet-directive', 'ngMaterial', 'ngMessages', 'ngAnimate', 'md.data.table', 'ngFileUpload', 'ngAudio']);
 
 
 angular.module('northApp').config(['$routeProvider', '$locationProvider', '$mdGestureProvider', function($routeProvider, $locationProvider, $mdGestureProvider){
@@ -12,6 +12,16 @@ angular.module('northApp').config(['$routeProvider', '$locationProvider', '$mdGe
     templateUrl: '/views/map.html',
     controller: 'MapController',
     controllerAs: 'mc'
+  })
+  .when('/admin', {
+    templateUrl: '/views/admin.html',
+    controller: 'AdminController',
+    controllerAs: 'ac'
+  })
+  .when('/user', {
+    templateUrl: '/views/user.html',
+    controller: 'UserController',
+    controllerAs: 'uc'
   });
 
   $mdGestureProvider.skipClickHijack();

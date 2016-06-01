@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<!-- ::::::::: USER DASHBOARD ::::::::: -->
+
+<div class="home dashboard backdrop">
+
+  <!-- ::::::::: Nav Bar ::::::::: -->
+  <md-toolbar class="home header-condensed">
+    <div class="md-toolbar-tools">
+
+      <div class="userClass">
+        <h1 class="md-toolbar-tools md-flex">Hello, {{uc.user.username}}!</h1>
+      </div>
+
+      <span flex></span>
+
+      <md-button href="/map" aria-label="map"><i class="fa fa-map-o"></i>Map</md-button>
+      <md-button href="/" aria-label="home"><i class="fa fa-home"></i>Home</md-button>
+      <md-button aria-label="logout"><i class="fa fa-user"></i><a href="/logout" target="_self">Logout</a></md-button>
+
+    </div>
+  </md-toolbar>
+
+
+  <!-- user resources -->
+
+  <h2 class="pageTitle"> Food Resource Locations </h2>
+  <md-card>
+    <md-button class="md-icon-button" ng-click="uc.addNewResource()"><aria-label="resource">
+      <md-icon md-svg-src="assets/img/ic_add_circle_outline_black_24px.svg"></md-icon>
+    </md-button>
+    <md-table-container>
+      <table md-table>
+        <thead md-head>
+          <tr md-row class="md-row">
+            <th md-column>
+              Resource Name
+            </th>
+            <th md-column>
+              Resource Location
+            </th>
+            <th md-column>
+              Date Created
+            </th>
+            <!-- <th md-column>
+              Edit
+            </th> -->
+          </tr>
+          </thead>
+          <tbody md-body>
+            <tr md-row ng-repeat="resource in uc.userResources" md-select="resource" md-selectid="name" md-auto-select>
+              <td md-cell>{{resource.name}}</td>
+              <td md-cell>{{resource.location}}</td>
+              <td md-cell>{{resource.date_created | date : format}}</td>
+              <td md-cell><md-button ng-click="uc.editUserResource(resource)">Details</md-button></td>
+            </tr>
+          </tbody>
+      </table>
+    </md-table-container>
+  </md-card>
+</div>
+
+<!-- ::::::::: END USER DASHBOARD ::::::::: -->

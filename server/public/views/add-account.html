@@ -1,0 +1,43 @@
+<md-dialog>
+  <md-dialog-content>
+    <form class="home form" name="nac.registerFormInputs">
+      <section layout="column">
+        <h3>Registration</h3>
+
+        <md-input-container>
+          <label for="username">Username</label>
+          <input type="text" ng-model="nac.registerInfo.username" name="username" required/>
+        </md-input-container>
+
+        <md-input-container>
+          <label for="password">Password</label>
+          <input type="password" ng-model="nac.registerInfo.password" name="password" required/>
+        </md-input-container>
+
+        <md-input-container md-is-error="nac.passwordMismatch()">
+          <label for="confirm_password">Confirm Password</label>
+          <input type="password" ng-model="nac.registerInfo.confirm_password" name="confirm_password" required/>
+          <!-- Should add message here to inform user their passwords don't match -->
+          <div class="errorMessage md-caption" ng-show="nac.passwordMismatchError()">Please make sure your passwords match.</div>
+        </md-input-container>
+
+        <md-input-container>
+          <label for="contact_name">Contact Name</label>
+          <input type="text" ng-model="nac.registerInfo.contact_name" name="contact_name" id="contact_name" required/>
+        </md-input-container>
+
+        <md-input-container>
+          <label for="email_address">Email address</label>
+          <input type="email" ng-model="nac.registerInfo.email_address" name="email_address" id="email_address" required/>
+        </md-input-container>
+
+        <md-input-container>
+          <md-button ng-click="nac.registerUser()" class="md-raised">Register</md-button>
+        </md-input-container>
+        <md-input-container>
+          <md-button ng-click="nac.cancelNewAccount()" class="md-raised">Cancel</md-button>
+        </md-input-container>
+      </section>
+    </form>
+  </md-dialog-content>
+</md-dialog>

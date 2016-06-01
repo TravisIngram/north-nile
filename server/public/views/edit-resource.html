@@ -1,0 +1,103 @@
+<!-- Edit Modals -->
+<md-dialog>
+  <md-dialog-content class="md-dialog-content">
+    <section layout="column">
+      <!-- test:{{erc.userResource}} -->
+      <md-input-container>
+        <label for="pending_name">Name</label>
+        <input type="text" name="pending_name" ng-model="erc.userResource.name" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="pending_location">Location</label>
+        <input type="text" name="pending_location" ng-model="erc.userResource.location" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="pending_description">Description</label>
+        <input type="text" name="pending_description" ng-model="erc.userResource.description" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="pending_website">Website</label>
+        <input type="text" name="pending_website" ng-model="erc.userResource.website" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="pending_social_media">Social Media</label>
+        <input type="text" name="pending_social_media" ng-model="erc.userResource.social_media" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="pending_leadership">Leadership</label>
+        <input type="text" name="pending_leadership" ng-model="erc.userResource.leadership" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="pending_phone">Public Phone</label>
+        <input type="text" name="pending_phone" ng-model="erc.userResource.public_phone" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="pending_email">Public Email</label>
+        <input type="text" name="pending_email" ng-model="erc.userResource.public_email" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="pending_hours">Hours</label>
+        <input type="text" name="pending_hours" ng-model="erc.userResource.hours" />
+      </md-input-container>
+
+      <!-- <md-input-container>
+        <label for="pending_lat">Coordinates - Latitude</label>
+        <input type="text" name="pending_lat" ng-model="erc.userResource.latitude" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="pending_lng">Coordinates - Longitude</label>
+        <input type="text" name="pending_lng" ng-model="erc.userResource.longitude" />
+      </md-input-container> -->
+
+      <md-input-container>
+        <label for="pending_type">Type</label>
+        <!-- <input type="text" name="pending_type" ng-model="epc.selectedResource.type" /> -->
+        <md-select name="pending_type" ng-model="erc.userResource.resource_type">
+          <md-option value="Community Garden">Community Garden</md-option>
+          <md-option value="Culinary Arts">Culinary Arts</md-option>
+          <md-option value="Food Hub">Food Hub</md-option>
+          <md-option value="Food Distribution">Food Distribution</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container>
+        <label for="pending_audio">Audio</label>
+        <input type="text" name="pending_audio" ng-model="erc.userResource.audio" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="pending_images">Images</label>
+        <input type="text" name="pending_images" ng-model="erc.userResource.images" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="pending_video">Video</label>
+        <input type="text" name="pending_video" ng-model="erc.userResource.video" />
+      </md-input-container>
+
+
+
+      <md-button ng-show="!erc.showConfirmRemove" ng-click="erc.saveEdit()">Save</md-button>
+      <md-button ng-show="!erc.showConfirmRemove" ng-click="erc.cancelEditPending()">Cancel</md-button>
+      <md-button ng-show="!erc.showConfirmRemove" ng-click="erc.confirmRemoveResource()">Remove</md-button>
+
+      <!-- <section md-layout="row" class="two"> -->
+        <p ng-show="erc.showConfirmRemove">Are you sure you want to remove this resource? This action cannot be undone.</p>
+        <md-button flex ng-show="erc.showConfirmRemove" ng-click="erc.removeResource(erc.userResource)">Yes</md-button>
+        <md-button flex ng-show="erc.showConfirmRemove" ng-click="erc.cancelRemoveResource()">No</md-button>
+      <!-- </section> -->
+
+    </section>
+
+
+  </md-dialog-content>
+</md-dialog>

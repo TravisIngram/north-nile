@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<!-- ::::::::: ADMIN DASHBOARD ::::::::: -->
+<div class="home dashboard">
+  <!-- The function that shows this section will come from passport authentication of an Admin -->
+  <!-- ::::::::: Nav Bar ::::::::: -->
+  <md-toolbar class="home header-condensed">
+    <div class="md-toolbar-tools">
+
+      <div class="userClass">
+        <h1 class="md-toolbar-tools md-flex name">Hello, {{ac.user.username}}!</h1>
+      </div>
+
+      <span flex></span>
+
+      <md-button href="/map" aria-label="map"><i class="fa fa-map-o"></i>Map</md-button>
+      <md-button href="/" aria-label="home"><i class="fa fa-home"></i>Home</md-button>
+      <md-button aria-label="logout"><i class="fa fa-user"></i><a href="/logout" target="_self">Logout</a></md-button>
+
+    </div>
+  </md-toolbar>
+
+  <h2 class="pageTitle">Administrator Dashboard</h2>
+
+
+  <!-- Moderation Queue -->
+  <md-card>
+    <h3>Moderation Queue</h3>
+    <md-table-container>
+      <table md-table md-row-select multiple ng-model="ac.selectedModerationResources">
+        <thead md-head>
+          <tr md-row class="md-row">
+            <th md-column>Account Name</th>
+            <th md-column>Resource Name</th>
+            <th md-column>Resource Type</th>
+            <th md-column>Date Created</th>
+            <!-- <th md-column>Edit</th> -->
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row ng-repeat="resource in ac.pendingResources" md-select="resource" md-selectid="name">
+            <td md-cell>{{resource.username}}</td>
+            <td md-cell>{{resource.name}}</td>
+            <td md-cell>{{resource.resource_type}}</td>
+            <td md-cell>{{resource.date_created | date : format}}</td>
+            <td md-cell><md-button ng-click="ac.editResource(resource)">Details</md-button></td>
+          </tr>
+          <tr md-row ng-show="ac.pendingResources.length == 0">
+            <td md-cell>
+              No resources needing approval.
+            </td>
+            <td md-cell></td>
+            <td md-cell></td>
+            <td md-cell></td>
+            <td md-cell></td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+    <md-button ng-click="ac.approveResources()">Approve</md-button>
+  </md-card>
+
+  <!-- Approved Resources -->
+
+  <md-card>
+    <h3>Resources</h3>
+    <md-button class="md-icon-button" ng-click="ac.addNewResource()" aria-label="resource">
+      <md-icon md-svg-src="assets/img/ic_add_circle_outline_black_24px.svg"></md-icon>
+    </md-button>
+    <!-- <md-button ng-click="ac.addNewResource()">Add A Resource</md-button> -->
+    <md-table-container>
+      <table md-table>
+        <thead md-head>
+          <tr md-row class="md-row">
+            <th md-column>Account Name</th>
+            <th md-column>Resource Name</th>
+            <th md-column>Resource Type</th>
+            <th md-column>Date Created</th>
+            <!-- <th md-column>Edit</th> -->
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row ng-repeat="resource in ac.approvedResources" md-select="resource" md-selectid="name" md-auto-select>
+            <td md-cell>{{resource.username}}</td>
+            <td md-cell>{{resource.name}}</td>
+            <td md-cell>{{resource.resource_type}}</td>
+            <td md-cell>{{resource.date_created | date : format}}</td>
+            <td md-cell><md-button ng-click="ac.editResource(resource)">Details</md-button></td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+  </md-card>
+
+
+  <md-card>
+    <md-button ng-click="ac.showAccounts()">Manage Accounts</md-button>
+    <md-button ng-click="ac.addAccount()" ng-show="ac.showAccountTable">Add Account</md-button>
+    <md-button ng-click="ac.showEmails()" ng-show="ac.showAccountTable">View Emails</md-button>
+    <md-table-container  ng-show="ac.showAccountTable">
+      <table md-table>
+        <thead md-head>
+          <tr md-row>
+            <th md-column>Account Name</th>
+            <th md-column>Contact Email</th>
+            <th md-column>Contact Name</th>
+            <th md-column>Edit</th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row ng-repeat="account in ac.savedAccounts">
+            <td md-cell>{{account.username}}</td>
+            <td md-cell>{{account.email_address}}</td>
+            <td md-cell>{{account.contact_name}}</td>
+            <td md-cell><md-button ng-click="ac.editAccount(account)">Edit</md-button></td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+  </md-card>
+
+
+</div> <!-- ::::::::: END ADMIN DASHBOARD ::::::::: -->

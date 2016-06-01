@@ -1,0 +1,112 @@
+<!-- Edit Modals -->
+<md-dialog>
+  <md-dialog-content class="md-dialog-content">
+    <section layout="column">
+      test:{{unrc.newResource}}
+      <md-input-container>
+        <label for="new_name">Name</label>
+        <input type="text" name="new_name" ng-model="unrc.newResource.name" required/>
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_location">Location</label>
+        <input type="text" name="new_location" ng-model="unrc.newResource.location" required/>
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_description">Description</label>
+        <input type="text" name="new_description" ng-model="unrc.newResource.description" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_website">Website</label>
+        <input type="text" name="new_website" ng-model="unrc.newResource.website" />
+      </md-input-container>
+
+      <!-- we'll ask for their social media links, then in display will create an icon button linking to them externally by using their information -->
+
+      <md-input-container>
+        <label for="twitter">Twitter</label>
+        <input placeholder="Add link ex. https://twitter.com/projectsweetiep" type="text" name="twitter" ng-model="unrc.newResource.twitter"  />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="facebook">Facebook</label>
+        <input placeholder="Add link ex. https://www.facebook.com/projectsweetiepie/" type="text" name="facebook" ng-model="unrc.newResource.facebook"  />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="instagram">Instagram</label>
+        <input placeholder="Add link ex. https://www.instagram.com/nazmpls/" type="text" name="instagram" ng-model="unrc.newResource.instagram"  />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="snapchat">Snapchat</label>
+        <input placeholder="Add link ex. https://www.snapchat.com/add/JXTA_ARTS" type="text" name="snapchat" ng-model="unrc.newResource.snapchat"  />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_leadership">Leadership</label>
+        <input type="text" name="new_leadership" ng-model="unrc.newResource.leadership" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_phone">Public Phone</label>
+        <input type="text" name="new_phone" ng-model="unrc.newResource.public_phone" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_email">Public Email</label>
+        <input type="text" name="new_email" ng-model="unrc.newResource.public_email" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_hours">Hours</label>
+        <input type="text" name="new_hours" ng-model="unrc.newResource.hours" />
+      </md-input-container>
+
+      <!-- <md-input-container>
+        <label for="new_lat">Coordinates - Latitude</label>
+        <input type="text" name="new_lat" ng-model="unrc.newResource.latitude" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_lng">Coordinates - Longitude</label>
+        <input type="text" name="new_lng" ng-model="unrc.newResource.longitude" />
+      </md-input-container> -->
+
+      <md-input-container>
+        <label for="new_type">Type</label>
+        <!-- <input type="text" name="pending_type" ng-model="epc.selectedResource.type" /> -->
+        <md-select name="new_type" ng-model="unrc.newResource.resource_type">
+          <md-option value="Community Garden">Community Garden</md-option>
+          <md-option value="Culinary Arts">Culinary Arts</md-option>
+          <md-option value="Food Hub">Food Hub</md-option>
+          <md-option value="Food Distribution">Food Distribution</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_audio">Audio</label>
+        <input type="text" name="new_audio" ng-model="unrc.newResource.audio" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_images">Images</label>
+        <input type="text" name="new_images" ng-model="unrc.newResource.images" />
+      </md-input-container>
+
+      <md-input-container>
+        <label for="new_video">Video</label>
+        <input type="text" name="new_video" ng-model="unrc.newResource.video" />
+      </md-input-container>
+
+      <md-checkbox ng-if="unrc.isAdmin !== null" name="new_approval" ng-model="unrc.newResource.is_active" aria-label="new_approval">Approved</md-checkbox>
+
+      <md-button ng-click="unrc.saveNewResource(unrc.newResource)">Save</md-button>
+      <md-button ng-click="unrc.cancelNewResource()">Cancel</md-button>
+    </section>
+
+
+  </md-dialog-content>
+</md-dialog>

@@ -12,9 +12,13 @@ router.get('/', function(request, response){
 router.post('/', passport.authenticate('local'), function(request, response){
   var authenticatedUser = {
     username: request.user.username,
-    is_admin: request.user.is_admin
+    is_admin: request.user.is_admin,
+    id: request.user.id
   };
 
   response.send(authenticatedUser);
 });
+
+
+
 module.exports=router;
