@@ -1,6 +1,7 @@
 var async             = require('async');
 var accountModel      = require('./accountModel.js');
 var mediaModel        = require('./mediaModel.js');
+var addressModel      = require('./addressModel.js');
 var resourceTypeModel = require('./resourceTypeModel.js');
 var resourceModel     = require('./resourceModel.js');
 
@@ -13,7 +14,8 @@ module.exports.dbInit = function() {
   accountModel.createAccount,
   mediaModel.createAudio,
   mediaModel.createImage,
-  mediaModel.createVideo,
+  addressModel.createAddress,
+  // mediaModel.createVideo,
   // resourceTypeModel.createResourceType,
   resourceModel.createResource
   ],

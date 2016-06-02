@@ -33,7 +33,7 @@ angular.module('northApp').controller('AdminController', ['AccountFactory', 'Use
     console.log('editresource:', resource);
     ac.editPendingOptions = {
       templateUrl: '/views/edit-pending.html',
-      clickOutsideToClose: true,
+      clickOutsideToClose: false,
       controller: 'EditPendingController',
       controllerAs:'epc',
       resolve:{
@@ -49,7 +49,7 @@ angular.module('northApp').controller('AdminController', ['AccountFactory', 'Use
   ac.addNewResource = function(){
     ac.newResourceOptions = {
       templateUrl: '/views/new-resource.html',
-      clickOutsideToClose: true,
+      clickOutsideToClose: false,
       controller: 'NewResourceController',
       controllerAs: 'nrc'
     };
@@ -64,7 +64,7 @@ angular.module('northApp').controller('AdminController', ['AccountFactory', 'Use
   ac.editAccount = function(account){
     ac.editAccountOptions = {
       templateUrl: '/views/edit-account.html',
-      clickOutsideToClose: true,
+      clickOutsideToClose: false,
       controller: 'EditAccountController',
       controllerAs: 'eac',
       resolve:{
@@ -80,7 +80,7 @@ angular.module('northApp').controller('AdminController', ['AccountFactory', 'Use
     console.log('adding account');
     ac.addAccountOptions = {
       templateUrl: '/views/add-account.html',
-      clickOutsideToClose: true,
+      clickOutsideToClose: false,
       controller: 'NewAccountController',
       controllerAs: 'nac'
     };
@@ -272,6 +272,7 @@ angular.module('northApp').controller('NewResourceController', ['Upload','$http'
     }).then(function(response){
       console.log('Successfully uploaded audio:', response);
       resource.audio_id = response.data.audio_id;
+      nrc.uploadAudioSuccess = true;
     }, function(response){
       console.log('Failed at uploading audio:', response);
     }, function(evt){
@@ -288,11 +289,7 @@ angular.module('northApp').controller('NewResourceController', ['Upload','$http'
       console.log('Success response?', response);
       // save rest of resource
       resource.image_id = response.data.image_id;
-      // resource.account_id = nrc.user.id;
-      // resource.is_pending = !resource.is_active;
-      // resource.date_created = new Date();
-      // ResourceFactory.saveNewResource(resource);
-      // $mdDialog.hide();
+      nrc.uploadImageSuccess = true;
 
     }, function(response){
       console.log('Error response?', response);

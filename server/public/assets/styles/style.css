@@ -28,7 +28,7 @@ body {
     rgba(112, 84, 62, 0.8),
     rgba(112, 84, 62, 0.8)
     ),
-    url('../carrots.jpg');
+    url('../kale.jpg');
     background-size: cover;
     background-attachment:fixed;
     position:absolute;
@@ -80,21 +80,18 @@ body {
 
   .md-button {
     font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bolder;
     text-transform: lowercase;
-    margin: 3px;
-    padding: 5px;
+    margin: 5px;
+    padding: 0px;
   }
 
   .md-button.md-raised {
     background-color: #f3cb00;
     color: #70543e;
     font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
-    font-weight: bolder;
     font-size: 16px;
-    margin: 1vw;
-    padding: 5px;
     text-transform: lowercase;
   }
 
@@ -130,7 +127,7 @@ body {
     margin: 5px;
   }
 
-  form, .home form{
+  /*form, .home form{
     font-family: 'Playfair Display', 'Georgia', serif;
     background-color:  rgba(158,206,184,0.6);
     border-radius: 10px;
@@ -138,6 +135,26 @@ body {
     color #70543e;
     box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
     margin: 10vmin;
+  }*/
+
+  .home .register form{
+    font-family: 'Playfair Display', 'Georgia', serif;
+    background-color:  rgba(158,206,184,0.6);
+    border-radius: 10px;
+    padding: 15px;
+    color #70543e;
+    box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
+    margin: 5px 15vmin;
+  }
+
+  .home .login {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    background-color:  rgba(158,206,184,0.6);
+    border-radius: 10px;
+    padding: 15px;
+    color: #70543e;
+    box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
+    margin: 5px 20vmin;
   }
 
   .md-input {
@@ -175,7 +192,7 @@ body {
     margin: 5px;
   }
 
-  .home.header-condensed {
+  .home .header-condensed {
     background-color: transparent;
     height: 25px;
   }
@@ -298,12 +315,33 @@ body {
     transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
   }
 
+  .drawerContent {
+    background-color: #737373;
+    border-radius: 6px;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .drawerTitle {
+    padding-top: 20px;
+    text-align: center;
+  }
+
+  .resourceTitle {
+    text-align: center;
+  }
+
+
   .infoDrawer.ng-hide{
     max-height: 0;
   }
 
   .keyButton{
     margin: 1vw;
+  }
+
+  .fourMapIcons>.keyButton{
+    padding: 0;
   }
 
   .disabledKeyButton{
@@ -322,7 +360,7 @@ body {
     position: absolute;
     z-index: 1002;
     display: block;
-    top: 80%;
+    top: 100%;
     margin-top: -35px;
     width: 36px;
     height: 71px;
@@ -345,13 +383,13 @@ body {
   .activeArea { position: absolute; top: 50px; left: 50px; right: 50px; height: 90px; }
 
   #filter1{
-    background-color:#F3CB00;
+    background-color:#9BB85C;
   }
   #filter2{
     background-color:#EC4500;
   }
   #filter3{
-    background-color:#9BB85C;
+    background-color:#F3CB00;
   }
   #filter4{
     background-color:#93CEB8;

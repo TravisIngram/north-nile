@@ -2,114 +2,130 @@
 <md-dialog>
   <md-dialog-content class="md-dialog-content">
     <section layout="column">
-      test:{{epc.selectedResource}}
-      <md-input-container>
-        <label for="pending_name">Name</label>
-        <input type="text" name="pending_name" ng-model="epc.selectedResource.name" />
-      </md-input-container>
+      <form name="editPendingForm">
+        <md-input-container>
+          <label for="pending_name">Name</label>
+          <input type="text" name="pending_name" ng-model="epc.selectedResource.name" required/>
+          <div ng-messages="editPendingForm.pending_name.$error">
+            <div ng-message="required">This is required!</div>
+          </div>
+        </md-input-container>
 
-      <md-input-container>
-        <label for="pending_location">Location</label>
-        <input type="text" name="pending_location" ng-model="epc.selectedResource.location" />
-      </md-input-container>
+        <md-input-container>
+          <label for="pending_location">Location</label>
+          <input type="text" name="pending_location" ng-model="epc.selectedResource.location" required/>
+          <div ng-messages="editPendingForm.pending_location.$error">
+            <div ng-message="required">This is required!</div>
+          </div>
+        </md-input-container>
 
-      <md-input-container>
-        <label for="pending_description">Description</label>
-        <input type="text" name="pending_description" ng-model="epc.selectedResource.description" />
-      </md-input-container>
+        <md-input-container>
+          <label for="pending_type">Type</label>
+          <md-select name="pending_type" ng-model="epc.selectedResource.resource_type" required>
+            <md-option value="Community Garden">Community Garden</md-option>
+            <md-option value="Culinary Arts">Culinary Arts</md-option>
+            <md-option value="Food Hub">Food Hub</md-option>
+            <md-option value="Food Distribution">Food Distribution</md-option>
+          </md-select>
+          <div ng-messages="editPendingForm.pending_type.$error">
+            <div ng-message="required">This is required!</div>
+          </div>
+        </md-input-container>
 
-      <md-input-container>
-        <label for="pending_website">Website</label>
-        <input type="text" name="pending_website" ng-model="epc.selectedResource.website" />
-      </md-input-container>
+        <md-input-container>
+          <label for="pending_description">Description</label>
+          <input type="text" name="pending_description" ng-model="epc.selectedResource.description" />
+        </md-input-container>
 
-      <md-input-container>
-        <label for="twitter">Twitter</label>
-        <input placeholder="Add link ex. https://twitter.com/projectsweetiep" type="text" name="twitter" ng-model="epc.selectedResource.twitter"  />
-      </md-input-container>
+        <md-input-container>
+          <label for="pending_website">Website</label>
+          <input type="text" name="pending_website" ng-model="epc.selectedResource.website" />
+        </md-input-container>
 
-      <md-input-container>
-        <label for="facebook">Facebook</label>
-        <input placeholder="Add link ex. https://www.facebook.com/projectsweetiepie/" type="text" name="facebook" ng-model="epc.selectedResource.facebook"  />
-      </md-input-container>
+        <md-input-container>
+          <label for="twitter">Twitter</label>
+          <input placeholder="Add link ex. https://twitter.com/projectsweetiep" type="text" name="twitter" ng-model="epc.selectedResource.twitter"  />
+        </md-input-container>
 
-      <md-input-container>
-        <label for="instagram">Instagram</label>
-        <input placeholder="Add link ex. https://www.instagram.com/nazmpls/" type="text" name="instagram" ng-model="epc.selectedResource.instagram"  />
-      </md-input-container>
+        <md-input-container>
+          <label for="facebook">Facebook</label>
+          <input placeholder="Add link ex. https://www.facebook.com/projectsweetiepie/" type="text" name="facebook" ng-model="epc.selectedResource.facebook"  />
+        </md-input-container>
 
-      <md-input-container>
-        <label for="snapchat">Snapchat</label>
-        <input placeholder="Add link ex. https://www.snapchat.com/add/JXTA_ARTS" type="text" name="snapchat" ng-model="epc.selectedResource.snapchat"  />
-      </md-input-container>
+        <md-input-container>
+          <label for="instagram">Instagram</label>
+          <input placeholder="Add link ex. https://www.instagram.com/nazmpls/" type="text" name="instagram" ng-model="epc.selectedResource.instagram"  />
+        </md-input-container>
 
-      <md-input-container>
-        <label for="pending_leadership">Leadership</label>
-        <input type="text" name="pending_leadership" ng-model="epc.selectedResource.leadership" />
-      </md-input-container>
+        <md-input-container>
+          <label for="snapchat">Snapchat</label>
+          <input placeholder="Add link ex. https://www.snapchat.com/add/JXTA_ARTS" type="text" name="snapchat" ng-model="epc.selectedResource.snapchat"  />
+        </md-input-container>
 
-      <md-input-container>
-        <label for="pending_phone">Public Phone</label>
-        <input type="text" name="pending_phone" ng-model="epc.selectedResource.public_phone" />
-      </md-input-container>
+        <md-input-container>
+          <label for="pending_leadership">Leadership</label>
+          <input type="text" name="pending_leadership" ng-model="epc.selectedResource.leadership" />
+        </md-input-container>
 
-      <md-input-container>
-        <label for="pending_email">Public Email</label>
-        <input type="text" name="pending_email" ng-model="epc.selectedResource.public_email" />
-      </md-input-container>
+        <md-input-container>
+          <label for="pending_phone">Public Phone</label>
+          <input type="phone" name="pending_phone" ng-model="epc.selectedResource.public_phone" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"/>
+          <div ng-messages="editPendingForm.pending_phone.$error">
+            <div ng-message="pattern">Please enter a valid 10-digit phone number.</div>
+          </div>
+        </md-input-container>
 
-      <md-input-container>
-        <label for="pending_hours">Hours</label>
-        <input type="text" name="pending_hours" ng-model="epc.selectedResource.hours" />
-      </md-input-container>
+        <md-input-container>
+          <label for="pending_email">Public Email</label>
+          <input type="email" name="pending_email" ng-model="epc.selectedResource.public_email" />
+          <div ng-messages="editPendingForm.pending_email.$error">
+            <div ng-message="email">Please enter a valid email address.</div>
+          </div>
+        </md-input-container>
 
-      <!-- <md-input-container>
-        <label for="pending_lat">Coordinates - Latitude</label>
-        <input type="text" name="pending_lat" ng-model="epc.selectedResource.latitude" />
-      </md-input-container>
+        <md-input-container>
+          <label for="pending_hours">Hours</label>
+          <input type="text" name="pending_hours" ng-model="epc.selectedResource.hours" />
+        </md-input-container>
 
-      <md-input-container>
-        <label for="pending_lng">Coordinates - Longitude</label>
-        <input type="text" name="pending_lng" ng-model="epc.selectedResource.longitude" />
-      </md-input-container> -->
+        <!-- <md-input-container>
+          <label for="pending_lat">Coordinates - Latitude</label>
+          <input type="text" name="pending_lat" ng-model="epc.selectedResource.latitude" />
+        </md-input-container>
 
-      <md-input-container>
-        <label for="pending_type">Type</label>
-        <!-- <input type="text" name="pending_type" ng-model="epc.selectedResource.type" /> -->
-        <md-select name="pending_type" ng-model="epc.selectedResource.resource_type">
-          <md-option value="Community Garden">Community Garden</md-option>
-          <md-option value="Culinary Arts">Culinary Arts</md-option>
-          <md-option value="Food Hub">Food Hub</md-option>
-          <md-option value="Food Distribution">Food Distribution</md-option>
-        </md-select>
-      </md-input-container>
+        <md-input-container>
+          <label for="pending_lng">Coordinates - Longitude</label>
+          <input type="text" name="pending_lng" ng-model="epc.selectedResource.longitude" />
+        </md-input-container> -->
 
-      <md-input-container>
-        <label for="pending_audio">Audio</label>
-        <input type="text" name="pending_audio" ng-model="epc.selectedResource.audio" />
-      </md-input-container>
+        <md-input-container>
+          <label for="pending_audio">Audio</label>
+          <input type="text" name="pending_audio" ng-model="epc.selectedResource.audio" />
+        </md-input-container>
 
-      <md-input-container>
-        <label for="pending_images">Images</label>
-        <input type="text" name="pending_images" ng-model="epc.selectedResource.images" />
-      </md-input-container>
+        <md-input-container>
+          <label for="pending_images">Images</label>
+          <input type="text" name="pending_images" ng-model="epc.selectedResource.images" />
+        </md-input-container>
 
-      <md-input-container>
-        <label for="pending_video">Video</label>
-        <input type="text" name="pending_video" ng-model="epc.selectedResource.video" />
-      </md-input-container>
+        <md-input-container>
+          <label for="pending_video">Video</label>
+          <input type="text" name="pending_video" ng-model="epc.selectedResource.video" />
+        </md-input-container>
 
-      <md-checkbox name="pending_approval" ng-model="epc.selectedResource.is_active" aria-label="pending_approval">Approved</md-checkbox>
+        <md-checkbox name="pending_approval" ng-model="epc.selectedResource.is_active" aria-label="pending_approval">Approved</md-checkbox>
 
-      <md-button ng-show="!epc.showConfirmRemove" ng-click="epc.saveEditPending()">Save</md-button>
-      <md-button ng-show="!epc.showConfirmRemove" ng-click="epc.cancelEditPending()">Cancel</md-button>
-      <md-button ng-show="!epc.showConfirmRemove" ng-click="epc.confirmRemoveResource()">Remove</md-button>
+        <md-button ng-disabled="editPendingForm.$invalid" ng-show="!epc.showConfirmRemove" ng-click="epc.saveEditPending()">Save</md-button>
+        <md-button ng-show="!epc.showConfirmRemove" ng-click="epc.cancelEditPending()">Cancel</md-button>
+        <md-button ng-show="!epc.showConfirmRemove" ng-click="epc.confirmRemoveResource()">Remove</md-button>
 
-      <!-- <section md-layout="row" class="two"> -->
-        <p ng-show="epc.showConfirmRemove">Are you sure you want to remove this resource? This action cannot be undone.</p>
-        <md-button flex ng-show="epc.showConfirmRemove" ng-click="epc.removeResource(epc.selectedResource)">Yes</md-button>
-        <md-button flex ng-show="epc.showConfirmRemove" ng-click="epc.cancelRemoveResource()">No</md-button>
-      <!-- </section> -->
+        <!-- <section md-layout="row" class="two"> -->
+          <p ng-show="epc.showConfirmRemove">Are you sure you want to remove this resource? This action cannot be undone.</p>
+          <md-button flex ng-show="epc.showConfirmRemove" ng-click="epc.removeResource(epc.selectedResource)">Yes</md-button>
+          <md-button flex ng-show="epc.showConfirmRemove" ng-click="epc.cancelRemoveResource()">No</md-button>
+        <!-- </section> -->
+
+      </form>
 
     </section>
 

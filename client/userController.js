@@ -1,4 +1,4 @@
-angular.module('northApp').controller('UserController', ['UserTrackFactory', '$http', '$mdDialog','ResourceFactory', function(UserTrackFactory, $http, $mdDialog, ResourceFactory){
+angular.module('northApp').controller('UserController', ['Upload','UserTrackFactory', '$http', '$mdDialog','ResourceFactory', function(Upload,UserTrackFactory, $http, $mdDialog, ResourceFactory){
   console.log('user controller loaded.');
   var uc = this;
   uc.user = {};
@@ -59,11 +59,48 @@ angular.module('northApp').controller('UserNewResourceController', ['UserTrackFa
   var unrc=this;
   unrc.isAdmin = isAdmin;
   unrc.newResource = {is_active:false};
+
   var promise = UserTrackFactory.getUserData();
   promise.then(function(response){
     unrc.user = response.data;
     console.log('user user:', unrc.user);
   });
+
+  unrc.uploadAudio = function(audio, resource){
+    console.log('uploading audio');
+    Upload.upload({
+      url: '/upload/audio',
+      data: {file: audio.file}
+    }).then(function(response){
+      console.log('Successfully uploaded audio:', response);
+      resource.audio_id = response.data.audio_id;
+      unrc.uploadAudioSuccess = true;
+    }, function(response){
+      console.log('Failed at uploading audio:', response);
+    }, function(evt){
+      // console.log('evt', evt)
+    });
+  };
+
+  unrc.uploadImage = function(image, resource){
+    Upload.upload({
+      url: '/upload/image',
+      arrayKey: '',
+      data: {file: image.file}
+    }).then(function(response){
+      console.log('Success response?', response);
+      // save rest of resource
+      resource.image_id = response.data.image_id;
+      unrc.uploadImageSuccess = true;
+
+    }, function(response){
+      console.log('Error response?', response);
+    }, function(evt){
+      // use for progress bar
+      console.log('Event response?', evt);
+    });
+    // end image upload
+  };
 
   unrc.saveNewResource = function(resource){
     resource.is_pending = true;
