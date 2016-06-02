@@ -11,11 +11,51 @@
           </div>
         </md-input-container>
 
-        <md-input-container>
+        <!-- <md-input-container>
           <label for="pending_location">Location</label>
           <input type="text" name="pending_location" ng-model="epc.selectedResource.location" required/>
           <div ng-messages="editPendingForm.pending_location.$error">
             <div ng-message="required">This is required!</div>
+          </div>
+        </md-input-container> -->
+
+        <md-input-container>
+          <label>Address</label>
+          <input type="text" name="new_address1" ng-model="epc.selectedResource.address_line1">
+        </md-input-container>
+
+        <md-input-container>
+          <label>Address Line 2</label>
+          <input type="text" name="new_address2" ng-model="epc.selectedResource.address_line2">
+        </md-input-container>
+
+        <md-input-container>
+          <label>Address Line 3</label>
+          <input type="text" name="new_address3" ng-model="epc.selectedResource.address_line3">
+        </md-input-container>
+
+        <md-input-container>
+          <label>City</label>
+          <input type="text" name="new_city" ng-model="epc.selectedResource.city_name">
+        </md-input-container>
+
+        <md-input-container>
+            <label>State</label>
+            <input type="text" name="new_state" ng-model="epc.selectedResource.state">
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Zip Code</label>
+          <input name="new_zip_code" ng-model="epc.selectedResource.zip_code"
+                   required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+          <div ng-messages="editPendingForm.zip_code.$error" role="alert" multiple>
+            <div ng-message="required" class="my-message">Please supply a zip code.</div>
+            <div ng-message="pattern" class="my-message">That doesn't look like a valid zip
+                code.
+            </div>
+            <div ng-message="md-maxlength" class="my-message">
+                Only a five digit zip code is required.
+            </div>
           </div>
         </md-input-container>
 
