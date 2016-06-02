@@ -352,6 +352,7 @@ body {
 
   #playButton, #stopButton, #muteButton {
     line-height: 56px;
+    padding:5px;
   }
 
   .fourMapIcons>.keyButton{
