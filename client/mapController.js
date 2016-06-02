@@ -49,7 +49,7 @@ var foodDistribution = {
               };
 
   mc.storedMarkers = ResourceFactory.mapResources;
-  mc.newResource = {};
+  mc.newResource = {city_name:"Minneapolis", state:"MN"};
 
   // start count at a number higher than any keys present in the object - this ensures no duplicates
   mc.markerSize = Object.keys(mc.storedMarkers).length;
