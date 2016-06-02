@@ -159,7 +159,6 @@ var foodDistribution = {
       mc.lastClicked.sound = ngAudio.load(mc.lastClicked.audio_reference);
     }
 
-
     // this centers the map on the marker clicked
     angular.extend(mc, {
       center:{
@@ -196,10 +195,10 @@ var foodDistribution = {
   };
   mc.prevSlide = function () {
      mc.currentIndex = (mc.currentIndex < mc.lastClicked.images.length - 1) ? ++mc.currentIndex : 0;
- };
- mc.nextSlide = function () {
+  };
+  mc.nextSlide = function () {
      mc.currentIndex = (mc.currentIndex > 0) ? --mc.currentIndex : mc.lastClicked.images.length - 1;
- };
+  };
 
  // audio player
  mc.play = function(audio){

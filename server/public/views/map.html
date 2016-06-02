@@ -4,10 +4,10 @@
 <div class="key" layout="row" layout-align="center">
   <p ng-show="mc.user"> Hello, {{mc.user.username}}</p>
   <md-button id="homeKeyButton" class="md-fab md-mini keyButton" href="/" aria-label="home">
-    <i class="fa fa-home"></i>
+    <md-icon id="homeKeyIcon" md-font-icon="fa-home" class="fa"></md-icon>
   </md-button>
   <md-button id="userKeyButton" ng-show="mc.user" class="md-fab md-mini keyButton" aria-label="account" ng-click="mc.routeUser()">
-    <i class="fa fa-user"></i>
+    <md-icon id="userKeyIcon" class="fa fa-user"></md-icon>
   </md-button>
   <div class="fourMapIcons">
     <md-button id="filter1" class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('Community Garden')" aria-label="community-garden-filter"><md-icon md-svg-src="assets/img/nature-1.svg"></md-icon><md-tooltip>Community Garden</md-tooltip></md-button>
@@ -15,7 +15,7 @@
     <md-button id="filter3" class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('Food Hub')" aria-label="food-hub-filter"><md-icon md-svg-src="assets/img/front-store.svg"></md-icon><md-tooltip>Food Hub</md-tooltip></md-button>
     <md-button id="filter4" class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('Food Distribution')" aria-label="food-distribution-filter"><md-icon md-svg-src="assets/img/truck.svg"></md-icon><md-tooltip>Food Distribution</md-tooltip></md-button>
     <md-button id="addKeyButton" class="md-fab md-mini keyButton" ng-click="mc.addNewResource()" aria-label="home">
-      <i class="fa fa-plus"></i>
+      <md-icon id="addKeyIcon" class="fa fa-plus"></md-icon>
     </md-button>
   </div>
 </div>
@@ -23,7 +23,7 @@
   <div class="drawerContent">
   <h2 class="drawerTitle">{{mc.lastClicked.name}}</h2>
   <p class="resourceTitle">
-    <md-icon md-svg-src="{{mc.addIcon.iconUrl}}"></md-icon>   {{mc.lastClicked.resource_type}} Resource 
+    <md-icon md-svg-src="{{mc.addIcon.iconUrl}}"></md-icon>   {{mc.lastClicked.resource_type}} Resource
   </p>
   <p>
     <u>Address</u>
@@ -72,14 +72,14 @@
   <p ng-show="mc.lastClicked.audio_reference">
     <u>Audio</u>
     {{mc.lastClicked.audio_id}}
-    <md-button aria-label="play-pause_audio" ng-click="mc.play(mc.lastClicked.sound)" class="md-fab md-mini">
-      <md-icon ng-show="mc.lastClicked.sound.paused" class="fa fa-play" aria-hidden="true"></md-icon>
-      <md-icon ng-show="!mc.lastClicked.sound.paused" class="fa fa-pause" aria-hidden="true"></md-icon>
+    <md-button id="playButton" aria-label="play-pause_audio" ng-click="mc.play(mc.lastClicked.sound)" class="md-fab md-mini">
+      <md-icon id="playIcon" ng-show="mc.lastClicked.sound.paused" md-font-icon="fa-play" class="fa" aria-hidden="true"></md-icon>
+      <md-icon id="pauseIcon" ng-show="!mc.lastClicked.sound.paused" md-font-icon="fa-pause" class="fa" aria-hidden="true"></md-icon>
     </md-button>
-    <md-button aria-label="stop_audio" ng-click="mc.stop(mc.lastClicked.sound)" class="md-fab md-mini"><i class="fa fa-stop" aria-hidden="true"></i></md-button>
-    <md-button aria-label="mute_audio" ng-click="mc.mute()" class="md-fab md-mini">
-      <md-icon ng-show="!mc.muted" class="fa fa-volume-off" aria-hidden="true"></md-icon>
-      <md-icon ng-show="mc.muted" class="fa fa-volume-up" aria-hidden="true"></md-icon>
+    <md-button id="stopButton" aria-label="stop_audio" ng-click="mc.stop(mc.lastClicked.sound)" class="md-fab md-mini"><md-icon id="stopIcon" class="fa fa-stop" aria-hidden="true"></md-icon></md-button>
+    <md-button id="muteButton" aria-label="mute_audio" ng-click="mc.mute()" class="md-fab md-mini">
+      <md-icon id="muteIcon" ng-show="!mc.muted" class="fa fa-volume-off" aria-hidden="true"></md-icon>
+      <md-icon id="mutedIcon" ng-show="mc.muted" class="fa fa-volume-up" aria-hidden="true"></md-icon>
     </md-button>
   </p>
   <p ng-show="mc.lastClicked.path1">
