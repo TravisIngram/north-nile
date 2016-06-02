@@ -23,7 +23,7 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
         getUserResources(user);
       });
     } else {
-      $http.get('https://api.opencagedata.com/geocode/v1/json?q=' + resource.location + '&key=' + geocodeKey).then(function(response){
+      $http.get('https://api.opencagedata.com/geocode/v1/json?q=' + resource.address_line1 + '+' + resource.address_line2 + '+' + resource.address_line3 + '+' + resource.city_name + '+' + resource.state + '+' + resource.zip_code + '&key=' + geocodeKey).then(function(response){
         console.log('Geocode response:', response);
         if(response.data.results[0]){
           resource.latitude = response.data.results[0].geometry.lat;
