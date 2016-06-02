@@ -68,7 +68,7 @@ body {
   h3 {
     font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
     color: #9eceb8;
-    font-size: 25px;
+    font-size: 5.5vw;
     text-shadow: 2px 2px 3px #433225;
   }
 
@@ -124,7 +124,7 @@ body {
     font-weight: bolder;
     font-size: 30px;
     text-align: center;
-    margin: 5px;
+    margin: 2px;
   }
 
   /*form, .home form{
@@ -178,6 +178,7 @@ body {
 
   .splashText{
     text-align:justify;
+    margin: 15px 4vw;
   }
 
 
@@ -215,7 +216,7 @@ body {
 
   .home {
     background-color: transparent;
-    padding: 10px;
+    padding: 0;
   }
 
   .home .headerTitle {
@@ -258,9 +259,11 @@ body {
     text-shadow: 2px 2px 5px rgba(56,42,31,0.5);
   }
 
-  .other-links {
-    bottom: 0;
-    border: 1px solid white;  
+  footer {
+    color: white;
+    margin: auto 5vw;
+    text-align: center;
+
   }
 
   /* ::::: ADMIN DASHBOARD ::::: */
