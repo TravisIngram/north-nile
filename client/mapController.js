@@ -134,6 +134,23 @@ var foodDistribution = {
     mc.showInfoDrawer = true;
     mc.showNewResourceDrawer = false;
 
+    // add icon to drawer display:
+      for (marker in mc.storedMarkers){
+        if(mc.storedMarkers[marker].resource_type == 'Community Garden'){
+          mc.addIcon = communityGarden;
+        }
+        if(mc.storedMarkers[marker].resource_type == 'Culinary Arts'){
+          mc.addIcon = culinaryArts;
+        }
+        if(mc.storedMarkers[marker].resource_type == 'Food Hub'){
+          mc.addIcon = foodHub;
+        }
+        if(mc.storedMarkers[marker].resource_type == 'Food Distribution'){
+          mc.addIcon = foodDistribution;
+        }
+      }
+  
+
     // grab last marker clicked to recenter map later
     mc.lastClicked = args.model;
 

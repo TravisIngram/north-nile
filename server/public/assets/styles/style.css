@@ -298,6 +298,23 @@ body {
     transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
   }
 
+  .drawerContent {
+    background-color: #737373;
+    border-radius: 6px;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .drawerTitle {
+    padding-top: 20px;
+    text-align: center;
+  }
+
+  .resourceTitle {
+    text-align: center;
+  }
+
+
   .infoDrawer.ng-hide{
     max-height: 0;
   }
