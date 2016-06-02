@@ -101,29 +101,29 @@
           <input type="text" name="new_lng" ng-model="nrc.newResource.longitude" />
         </md-input-container> -->
 
-        <md-input-container>
-          <label class="" for="new_audio">Click Here To Choose Audio</label>
+        <!-- <md-input-container> -->
+          <label class="md-button md-raised fileUploadLabel" for="new_audio">Click Here To Choose Audio</label>
           <span ng-show="nrc.newAudio.file">
             <span class="uploadHelperText" ng-show="!nrc.uploadAudioSuccess">Click the orange button to upload your audio.</span>
           </span>
           <span class="uploadHelperText" ng-show="nrc.uploadAudioSuccess">Upload complete!  Click save below to add your resource.</span>
           <md-button ng-show="nrc.newAudio.file" ng-click="nrc.uploadAudio(nrc.newAudio, nrc.newResource)" class="md-button uploadButton" aria-label="uploadAudio"><i class="fa fa-cloud-upload" aria-hidden="true"></i></md-button>
-          <input id="newImageUploadAdmin" class="fileUpload" type="file" ngf-select ngf-multiple="false" ng-model="nrc.newAudio.file" name="new_audio" ngf-pattern="'audio/*'" accept="audio/*" ngf-max-size="20MB" aria-label="upload_audio"/>
-        </md-input-container>
+          <input id="new_audio" class="fileUpload" type="file" ngf-select ngf-multiple="false" ng-model="nrc.newAudio.file" name="new_audio" ngf-pattern="'audio/*'" accept="audio/*" ngf-max-size="20MB" aria-label="upload_audio"/>
+        <!-- </md-input-container> -->
 
-        <md-input-container>
-          <label class="" for="new_images">Click Here To Choose Images (max 5)</label>
+        <!-- <md-input-container> -->
+          <label class="md-button md-raised fileUploadLabel" for="new_images">Click Here To Choose Images (max 5)</label>
           <span ng-show="nrc.newImage.file">
             <span class="uploadHelperText" ng-show="!nrc.uploadImageSuccess">Click the orange button to upload your images.</span>
           </span>
           <span class="uploadHelperText" ng-show="nrc.uploadImageSuccess">Upload complete!  Click save below to add your resource.</span>
           <md-button ng-show="nrc.newImage.file" ng-click="nrc.uploadImage(nrc.newImage, nrc.newResource)" class="md-button uploadButton" aria-label="uploadImage"><i class="fa fa-cloud-upload" aria-hidden="true"></i></md-button>
-          <input id="newImageUploadAdmin" class="fileUpload" type="file" ngf-select ngf-multiple="true" ng-model="nrc.newImage.file" name="new_images" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" ngf-max-files="5" aria-label="upload_images"/>
-        </md-input-container>
+          <input id="new_images" class="fileUpload" type="file" ngf-select ngf-multiple="true" ng-model="nrc.newImage.file" name="new_images" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" ngf-max-files="5" aria-label="upload_images"/>
+        <!-- </md-input-container> -->
 
         <md-input-container>
           <label for="new_video">Video</label>
-          <input type="text" name="new_video" ng-model="nrc.newResource.video" />
+          <input type="text" placeholder="Add link ex. https://www.youtube.com/watch?v=HHk47i6EfjM" name="new_video" ng-model="nrc.newResource.video" />
         </md-input-container>
 
         <md-checkbox name="new_approval" ng-model="nrc.newResource.is_active" aria-label="new_approval">Approved</md-checkbox>
