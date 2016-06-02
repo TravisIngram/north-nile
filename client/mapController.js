@@ -32,7 +32,7 @@ var culinaryArts = {
                   popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
               };
 var foodHub = {
-                  iconUrl: 'assets/img/front-store.svg',
+                  iconUrl: 'assets/img/StoreYellowBorder.svg',
                   iconSize:     [38, 95], // size of the icon
                   shadowSize:   [50, 64], // size of the shadow
                   iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
@@ -40,7 +40,7 @@ var foodHub = {
                   popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
               };
 var foodDistribution = {
-                  iconUrl: 'assets/img/lightblueWhiteTruck.psd.svg',
+                  iconUrl: 'assets/img/TruckBlueBorder.svg',
                   iconSize:     [38, 95], // size of the icon
                   shadowSize:   [50, 64], // size of the shadow
                   iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
@@ -149,6 +149,7 @@ var foodDistribution = {
           mc.addIcon = foodDistribution;
         }
       }
+
 
     // grab last marker clicked to recenter map later
     mc.lastClicked = args.model;
