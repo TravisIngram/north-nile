@@ -7,6 +7,12 @@ var resourceModel     = require('./resourceModel.js');
 
 var dbConnectionString = 'postgres://localhost:5432/north_nile';
 
+if (process.env.DATABASE_URL){
+  pg.defaults.ssl = true;
+  console.log('environment var');
+  dbConnectionString = process.env.DATABASE_URL;
+}
+
 module.exports.dbConnectionString = dbConnectionString;
 
 module.exports.dbInit = function() {
