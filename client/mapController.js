@@ -133,23 +133,21 @@ var foodDistribution = {
   mc.openInfoDrawer = function(event, args){
     mc.showInfoDrawer = true;
     mc.showNewResourceDrawer = false;
+    console.log('mc.lastClicked', mc.lastClicked);
 
-    // add icon to drawer display:
-      for (marker in mc.storedMarkers){
-        if(mc.storedMarkers[marker].resource_type == 'Community Garden'){
-          mc.addIcon = communityGarden;
+    // change color of background border
+        if (mc.lastClicked.resource_type == 'Community Garden'){
+          mc.colorBk = "resourceGreen";
         }
-        if(mc.storedMarkers[marker].resource_type == 'Culinary Arts'){
-          mc.addIcon = culinaryArts;
+        if (mc.lastClicked.resource_type == 'Culinary Arts'){
+          mc.colorBk = "resourceOrange";
         }
-        if(mc.storedMarkers[marker].resource_type == 'Food Hub'){
-          mc.addIcon = foodHub;
+        if (mc.lastClicked.resource_type == 'Food Hub'){
+          mc.colorBk = "resourceYellow";
         }
-        if(mc.storedMarkers[marker].resource_type == 'Food Distribution'){
-          mc.addIcon = foodDistribution;
+        if (mc.lastClicked.resource_type == 'Food Distribution'){
+          mc.colorBk = "resourceBlue";
         }
-      }
-  
 
     // grab last marker clicked to recenter map later
     mc.lastClicked = args.model;

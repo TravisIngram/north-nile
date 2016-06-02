@@ -291,7 +291,12 @@ body {
     height: 60vh;
     max-height: 60vh;
     width: 100vw;
-    background-color: rgba(60,179,113, 0.9);
+    /*background-color: rgba(60,179,113, 0.9);*/
+    /*background-color:#9C9C9C;*/
+    background-color:rgba(158,206,184,0.6);
+    color:white !important;
+    /*box-shadow: 2px 2px 5px rgba(56,42,31,0.5);*/
+    /*border-radius: 5px;*/
     overflow-y: scroll;
     transition-property: all;
     transition-duration: .5s;
@@ -299,19 +304,49 @@ body {
   }
 
   .drawerContent {
-    background-color: #737373;
     border-radius: 6px;
     width: 90%;
     margin: 0 auto;
   }
 
-  .drawerTitle {
-    padding-top: 20px;
+  .drawerContent>h2, .drawerContent>p {
     text-align: center;
+    color: #000;
+    text-shadow: none;
+  }
+  
+  .drawerContent>div, .drawerContent>div>h2, .drawerContent>div>p {
+    margin-top: 10px;
+    margin-right: 5%;
+    margin-bottom: 10px;
+    margin-left: 5%;
+    background-color: #fff;
+    color: #000;
+    text-shadow: none;
+    text-align: center;
+    border-radius: 6px;
+    padding: 10px;
+
   }
 
-  .resourceTitle {
-    text-align: center;
+  .drawerTitle {
+    padding-top: 20px;
+  }
+
+
+  .drawerContent.resourceGreen {
+    background-color:#9BB85C;
+  }
+
+  .drawerContent.resourceOrange{
+    background-color:#EC4500;
+  }
+  .drawerContent.resourceYellow {
+    background-color:#F3CB00;
+  }
+
+  .drawerContent.resourceBlue{
+    background-color:#93CEB8;
   }
 
 

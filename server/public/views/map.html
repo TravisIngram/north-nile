@@ -19,54 +19,60 @@
     </md-button>
   </div>
 </div>
-<div class="infoDrawer" ng-show="mc.showInfoDrawer" md-swipe-down="mc.closeInfoDrawer()">
-  <div class="drawerContent">
+<div class="infoDrawer {{mc.colorBk}}" ng-show="mc.showInfoDrawer" md-swipe-down="mc.closeInfoDrawer()">
+  <div class="drawerContent {{mc.colorBk}}">
+    <!-- Started styling, created div "wells", need to finish-->
   <h2 class="drawerTitle">{{mc.lastClicked.name}}</h2>
   <p class="resourceTitle">
-    <md-icon md-svg-src="{{mc.addIcon.iconUrl}}"></md-icon>   {{mc.lastClicked.resource_type}} Resource 
+    <md-icon md-svg-src="{{mc.lastClicked.icon.iconUrl}}"></md-icon>   {{mc.lastClicked.resource_type}} Resource
   </p>
+  <div>
   <p>
-    <u>Address</u>
+    <!-- <u>Address</u> -->
     {{mc.lastClicked.location}}
   </p>
+  </div>
+  <div>
   <p>
-    <u>Description</u>
+    <!-- <u>Description</u> -->
     {{mc.lastClicked.description}}
   </p>
+  </div>
   <p ng-show="mc.lastClicked.website">
-    <u>Website</u>
+    <!-- <u>Website</u> -->
     {{mc.lastClicked.website}}
   </p>
   <p ng-show="mc.lastClicked.twitter">
-    <u>Twitter</u>
+    <!-- <u>Twitter</u> -->
     {{mc.lastClicked.twitter}}
   </p>
   <p ng-show="mc.lastClicked.facebook">
-    <u>Facebook</u>
+    <!-- <u>Facebook</u> -->
     {{mc.lastClicked.facebook}}
   </p>
   <p ng-show="mc.lastClicked.instagram">
-    <u>Instagram</u>
+    <!-- <u>Instagram</u> -->
     {{mc.lastClicked.instagram}}
   </p>
   <p ng-show="mc.lastClicked.snapchat">
-    <u>Snapchat</u>
+    <!-- <u>Snapchat</u> -->
     {{mc.lastClicked.snapchat}}
   </p>
   <p ng-show="mc.lastClicked.leadership">
-    <u>Leadership</u>
-    {{mc.lastClicked.leadership}}
+    <!-- <u>Leadership</u> -->
+    Leadership: {{mc.lastClicked.leadership}}
   </p>
   <p ng-show="mc.lastClicked.public_phone">
-    <u>Phone Number</u>
+    <!-- <u>Phone Number</u> -->
     {{mc.lastClicked.public_phone}}
   </p>
   <p ng-show="mc.lastClicked.public_email">
-    <u>Email Address</u>
+    <!-- <u>Email Address</u> -->
     {{mc.lastClicked.public_email}}
   </p>
   <p ng-show="mc.lastClicked.hours">
-    <u>Hours</u>
+    <!-- <u>Hours</u> -->
+    Hours:</br>
     {{mc.lastClicked.hours}}
   </p>
   <p ng-show="mc.lastClicked.audio_reference">
