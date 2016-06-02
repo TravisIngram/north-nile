@@ -28,7 +28,7 @@ body {
     rgba(112, 84, 62, 0.8),
     rgba(112, 84, 62, 0.8)
     ),
-    url('../kale.jpg');
+    url('../carrots.jpg');
     background-size: cover;
     background-attachment:fixed;
     position:absolute;
@@ -68,7 +68,7 @@ body {
   h3 {
     font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
     color: #9eceb8;
-    font-size: 5.5vw;
+    font-size: 22px;
     text-shadow: 2px 2px 3px #433225;
   }
 
@@ -137,7 +137,7 @@ body {
     margin: 10vmin;
   }*/
 
-  .home .register form{
+  .home .register form {
     font-family: 'Playfair Display', 'Georgia', serif;
     background-color:  rgba(158,206,184,0.6);
     border-radius: 10px;
@@ -147,14 +147,14 @@ body {
     margin: 5px 15vmin;
   }
 
-  .home .login {
+  .home .login form {
     font-family: 'Playfair Display', 'Georgia', serif;
     background-color:  rgba(158,206,184,0.6);
     border-radius: 10px;
     padding: 15px;
     color: #70543e;
     box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
-    margin: 5px 20vmin;
+    margin: 5px 15vw;
   }
 
   .md-input {
@@ -189,8 +189,8 @@ body {
     color: white;
     text-shadow: none;
     font-weight: bolder;
-    padding: 2px;
-    margin: 5px;
+    /*padding: 2px;
+    margin: 5px;*/
   }
 
   .home .header-condensed {
@@ -221,9 +221,9 @@ body {
 
   .home .headerTitle {
     padding: 0;
-    font-size: 2.5vmax;
+    font-size: 5vw;
     letter-spacing: 0px;
-    margin: 0;
+    margin-left: 3vw;
 
   }
 
@@ -288,13 +288,9 @@ body {
     opacity:0;
   }
 
-  #newImageUploadAdmin, #newAudioUploadAdmin{
+  #newImageUploadAdmin{
     width: 0.1px;
     height: 0.1px;
-  }
-
-  .fileUploadLabel{
-    padding: 0 5px;
   }
 
   /*button for actual uploading*/
@@ -407,26 +403,10 @@ body {
 
   .keyButton{
     margin: 1vw;
-    padding: 0;
-    /*line-height:20px;*/
-  }
-
-  /*md-icon[md-font-icon]{
-    line-height:0;
-  }*/
-
-  #playIcon, #pauseIcon, #stopIcon, #muteIcon, #mutedIcon{
-    line-height: 0;
-  }
-
-  #playButton, #stopButton, #muteButton {
-    line-height: 56px;
-    padding:5px;
   }
 
   .fourMapIcons>.keyButton{
     padding: 0;
-    line-height:0;
   }
 
   .disabledKeyButton{
@@ -482,13 +462,6 @@ body {
 
   #userKeyButton, #homeKeyButton, #addKeyButton{
     background-color:#70543E;
-    line-height:56px;
-    padding:5px;
-  }
-
-  #homeKeyIcon, #userKeyIcon, #addKeyIcon{
-    line-height:0;
-    padding:0;
   }
 
   @media (min-width:600px) {
