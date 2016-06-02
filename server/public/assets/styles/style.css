@@ -28,7 +28,7 @@ body {
     rgba(112, 84, 62, 0.8),
     rgba(112, 84, 62, 0.8)
     ),
-    url('../carrots.jpg');
+    url('../kale.jpg');
     background-size: cover;
     background-attachment:fixed;
     position:absolute;
@@ -68,7 +68,7 @@ body {
   h3 {
     font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
     color: #9eceb8;
-    font-size: 25px;
+    font-size: 5.5vw;
     text-shadow: 2px 2px 3px #433225;
   }
 
@@ -80,21 +80,18 @@ body {
 
   .md-button {
     font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bolder;
     text-transform: lowercase;
-    margin: 3px;
-    padding: 5px;
+    margin: 5px;
+    padding: 0px;
   }
 
   .md-button.md-raised {
     background-color: #f3cb00;
     color: #70543e;
     font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
-    font-weight: bolder;
     font-size: 16px;
-    margin: 1vw;
-    padding: 5px;
     text-transform: lowercase;
   }
 
@@ -127,10 +124,10 @@ body {
     font-weight: bolder;
     font-size: 30px;
     text-align: center;
-    margin: 5px;
+    margin: 2px;
   }
 
-  form, .home form{
+  /*form, .home form{
     font-family: 'Playfair Display', 'Georgia', serif;
     background-color:  rgba(158,206,184,0.6);
     border-radius: 10px;
@@ -138,6 +135,26 @@ body {
     color #70543e;
     box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
     margin: 10vmin;
+  }*/
+
+  .home .register form{
+    font-family: 'Playfair Display', 'Georgia', serif;
+    background-color:  rgba(158,206,184,0.6);
+    border-radius: 10px;
+    padding: 15px;
+    color #70543e;
+    box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
+    margin: 5px 15vmin;
+  }
+
+  .home .login {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    background-color:  rgba(158,206,184,0.6);
+    border-radius: 10px;
+    padding: 15px;
+    color: #70543e;
+    box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
+    margin: 5px 20vmin;
   }
 
   .md-input {
@@ -161,6 +178,7 @@ body {
 
   .splashText{
     text-align:justify;
+    margin: 15px 4vw;
   }
 
 
@@ -175,7 +193,7 @@ body {
     margin: 5px;
   }
 
-  .home.header-condensed {
+  .home .header-condensed {
     background-color: transparent;
     height: 25px;
   }
@@ -198,19 +216,27 @@ body {
 
   .home {
     background-color: transparent;
-    padding: 10px;
+    padding: 0;
   }
 
   .home .headerTitle {
     padding: 0;
-    font-size: 3.5vmax;
+    font-size: 2.5vmax;
     letter-spacing: 0px;
-    margin: 25px;
+    margin: 0;
 
   }
 
   .home.header-expanded {
     text-shadow: 5px;
+  }
+
+  .mainTitle {
+    padding: 0;
+    color: white;
+    font-size: 6vmax;
+    letter-spacing: 0px;
+    margin: 5vh 10vw;
   }
 
   .pageTitle{
@@ -231,6 +257,13 @@ body {
   md-table, md-head, th.md-column, td.md-cell, md-row, md-icon{
     color:white !important;
     text-shadow: 2px 2px 5px rgba(56,42,31,0.5);
+  }
+
+  footer {
+    color: white;
+    margin: auto 5vw;
+    text-align: center;
+
   }
 
   /* ::::: ADMIN DASHBOARD ::::: */
@@ -255,9 +288,13 @@ body {
     opacity:0;
   }
 
-  #newImageUploadAdmin{
+  #newImageUploadAdmin, #newAudioUploadAdmin{
     width: 0.1px;
     height: 0.1px;
+  }
+
+  .fileUploadLabel{
+    padding: 0 5px;
   }
 
   /*button for actual uploading*/
@@ -370,10 +407,26 @@ body {
 
   .keyButton{
     margin: 1vw;
+    padding: 0;
+    /*line-height:20px;*/
+  }
+
+  /*md-icon[md-font-icon]{
+    line-height:0;
+  }*/
+
+  #playIcon, #pauseIcon, #stopIcon, #muteIcon, #mutedIcon{
+    line-height: 0;
+  }
+
+  #playButton, #stopButton, #muteButton {
+    line-height: 56px;
+    padding:5px;
   }
 
   .fourMapIcons>.keyButton{
     padding: 0;
+    line-height:0;
   }
 
   .disabledKeyButton{
@@ -429,6 +482,13 @@ body {
 
   #userKeyButton, #homeKeyButton, #addKeyButton{
     background-color:#70543E;
+    line-height:56px;
+    padding:5px;
+  }
+
+  #homeKeyIcon, #userKeyIcon, #addKeyIcon{
+    line-height:0;
+    padding:0;
   }
 
   @media (min-width:600px) {
