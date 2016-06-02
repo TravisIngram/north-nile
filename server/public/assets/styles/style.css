@@ -272,9 +272,13 @@ body {
     opacity:0;
   }
 
-  #newImageUploadAdmin{
+  #newImageUploadAdmin, #newAudioUploadAdmin{
     width: 0.1px;
     height: 0.1px;
+  }
+
+  .fileUploadLabel{
+    padding: 0 5px;
   }
 
   /*button for actual uploading*/
