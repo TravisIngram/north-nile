@@ -43,7 +43,9 @@
             <td md-cell>{{resource.name}}</td>
             <td md-cell>{{resource.resource_type}}</td>
             <td md-cell>{{resource.date_created | date : format}}</td>
-            <td md-cell><md-button ng-click="ac.editResource(resource)">Details</md-button></td>
+            <td md-cell>
+              <md-button ng-click="ac.editResource(resource)">Details
+              </md-button></td>
           </tr>
           <tr md-row ng-show="ac.pendingResources.length == 0">
             <td md-cell>
