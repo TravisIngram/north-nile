@@ -20,10 +20,10 @@
   </div>
 </div>
 <div class="infoDrawer" ng-show="mc.showInfoDrawer" md-swipe-down="mc.closeInfoDrawer()">
-  <h2>{{mc.lastClicked.name}}</h2>
-  <p>
-    <u>Resource Type</u>
-    {{mc.lastClicked.resource_type}}
+  <div class="drawerContent">
+  <h2 class="drawerTitle">{{mc.lastClicked.name}}</h2>
+  <p class="resourceTitle">
+    <md-icon md-svg-src="{{mc.addIcon.iconUrl}}"></md-icon>   {{mc.lastClicked.resource_type}} Resource 
   </p>
   <p>
     <u>Address</u>
@@ -98,6 +98,7 @@
     <u>Video</u>
     <a target="_blank" ng-href="{{mc.lastClicked.video}}">Click here to open video</a>
   </p>
+</div> <!-- /.drawerContent -->
 </div>
 
 <div class="infoDrawer" ng-show="mc.showNewResourceDrawer">

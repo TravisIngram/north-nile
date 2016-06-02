@@ -30,6 +30,7 @@ function createResource(callback) {
         ' "account_id" int REFERENCES "account"(id),' +
         ' "audio_id" int REFERENCES "audio"(id),' +
         ' "image_id" int REFERENCES "image"(id),' +
+        ' "address_id" int REFERENCES "address"(id),' +
         ' "video" varchar(150))');
 
       query.on('end', function() {
