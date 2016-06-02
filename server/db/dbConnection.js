@@ -14,7 +14,7 @@ module.exports.dbInit = function() {
   accountModel.createAccount,
   mediaModel.createAudio,
   mediaModel.createImage,
-  addressModel.createAddress,
+  // addressModel.createAddress,
   // mediaModel.createVideo,
   // resourceTypeModel.createResourceType,
   resourceModel.createResource
