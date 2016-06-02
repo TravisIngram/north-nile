@@ -301,7 +301,7 @@
 
       <md-input-container>
         <label for="new_video">Video</label>
-        <input type="text" name="new_video" ng-model="mc.newResource.video" />
+        <input type="text" placeholder="Add link ex. https://www.youtube.com/watch?v=HHk47i6EfjM" name="new_video" ng-model="mc.newResource.video" />
       </md-input-container>
 
       <md-checkbox ng-if="mc.user.is_admin == 1" name="new_approval" ng-model="mc.newResource.is_active" aria-label="new_approval">Approved</md-checkbox>
