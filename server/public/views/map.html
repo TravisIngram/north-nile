@@ -19,58 +19,47 @@
     </md-button>
   </div>
 </div>
-<div class="infoDrawer" ng-show="mc.showInfoDrawer" md-swipe-down="mc.closeInfoDrawer()">
-  <div class="drawerContent">
-  <h2 class="drawerTitle">{{mc.lastClicked.name}}</h2>
-  <p class="resourceTitle">
-    <md-icon md-svg-src="{{mc.addIcon.iconUrl}}"></md-icon>   {{mc.lastClicked.resource_type}} Resource
-  </p>
-  <p>
-    <u>Address</u>
-    {{mc.lastClicked.location}}
-  </p>
-  <p>
-    <u>Description</u>
-    {{mc.lastClicked.description}}
-  </p>
-  <p ng-show="mc.lastClicked.website">
-    <u>Website</u>
-    {{mc.lastClicked.website}}
-  </p>
-  <p ng-show="mc.lastClicked.twitter">
-    <u>Twitter</u>
-    {{mc.lastClicked.twitter}}
-  </p>
-  <p ng-show="mc.lastClicked.facebook">
-    <u>Facebook</u>
-    {{mc.lastClicked.facebook}}
-  </p>
-  <p ng-show="mc.lastClicked.instagram">
-    <u>Instagram</u>
-    {{mc.lastClicked.instagram}}
-  </p>
-  <p ng-show="mc.lastClicked.snapchat">
-    <u>Snapchat</u>
-    {{mc.lastClicked.snapchat}}
-  </p>
-  <p ng-show="mc.lastClicked.leadership">
-    <u>Leadership</u>
-    {{mc.lastClicked.leadership}}
-  </p>
-  <p ng-show="mc.lastClicked.public_phone">
-    <u>Phone Number</u>
-    {{mc.lastClicked.public_phone}}
-  </p>
-  <p ng-show="mc.lastClicked.public_email">
-    <u>Email Address</u>
-    {{mc.lastClicked.public_email}}
-  </p>
-  <p ng-show="mc.lastClicked.hours">
-    <u>Hours</u>
-    {{mc.lastClicked.hours}}
-  </p>
-  <p ng-show="mc.lastClicked.audio_reference">
-    <u>Audio</u>
+<div class="infoDrawer" ng-class="mc.colorBk" ng-show="mc.showInfoDrawer" md-swipe-down="mc.closeInfoDrawer()">
+  <div class="drawerContent {{mc.colorBk}}">
+    <!-- Started styling, created div "wells", need to finish-->
+  <div>
+    <h2 class="drawerTitle">{{mc.lastClicked.name}}</h2>
+    <p class="resourceTitle">
+      <md-icon md-svg-src="{{mc.lastClicked.icon.iconUrl}}"></md-icon>   {{mc.lastClicked.resource_type}} Resource</p>
+    <p>{{mc.lastClicked.location}}</p>
+  </div>
+
+  <div ng-show="mc.lastClicked.description">
+    <p>{{mc.lastClicked.description}}</p>
+  </div>
+
+  <div>
+    <!-- need to write a function to ng-show this div if any are available -->
+    <p ng-show="mc.lastClicked.website">Please visit our website:</br>
+      <a href="http://{{mc.lastClicked.website}}" target="_blank">{{mc.lastClicked.website}}</a>
+    </p>
+
+    <ul class="socialMedia">
+				<li ng-show="mc.lastClicked.twitter"><a href="{{mc.lastClicked.twitter}}" target="_blank"><i class="fa fa-twitter"></i></a></li>
+				<li ng-show="mc.lastClicked.facebook"><a href="{{mc.lastClicked.facebook}}" target="_blank"><i class="fa fa-facebook"></i></a></li>
+				<li ng-show="mc.lastClicked.instagram"><a href="{{mc.lastClicked.instagram}}" target="_blank"><i class="fa fa-instagram"></i></a></li>
+        <li ng-show="mc.lastClicked.snapchat"><a href="{{mc.lastClicked.snapchat}}" target="_blank"><i class="fa fa-snapchat"></i></a></li>
+	  </ul>
+
+  </div>
+
+  <div ng-show="mc.lastClicked.leadership">
+    <p>Leadership: {{mc.lastClicked.leadership}}</p>
+  </div>
+
+  <div>
+  <p ng-show="mc.lastClicked.public_phone">{{mc.lastClicked.public_phone}}</p>
+  <p ng-show="mc.lastClicked.public_email">{{mc.lastClicked.public_email}}</p>
+  <p ng-show="mc.lastClicked.hours">Hours:</br>{{mc.lastClicked.hours}}</p>
+  </div>
+
+  <div ng-show="mc.lastClicked.audio_reference">
+    <p>Audio</p>
     {{mc.lastClicked.audio_id}}
     <md-button id="playButton" aria-label="play-pause_audio" ng-click="mc.play(mc.lastClicked.sound)" class="md-fab md-mini">
       <md-icon id="playIcon" ng-show="mc.lastClicked.sound.paused" md-font-icon="fa-play" class="fa" aria-hidden="true"></md-icon>
@@ -81,23 +70,27 @@
       <md-icon id="muteIcon" ng-show="!mc.muted" class="fa fa-volume-off" aria-hidden="true"></md-icon>
       <md-icon id="mutedIcon" ng-show="mc.muted" class="fa fa-volume-up" aria-hidden="true"></md-icon>
     </md-button>
-  </p>
-  <p ng-show="mc.lastClicked.path1">
-    <u>Pictures</u>
-    <section layout="row"  layout-align="center end">
-      <div class="container slider" >
-        <img ng-repeat="slide in mc.lastClicked.images" class="slide"
-           ng-hide="!mc.isCurrentSlideIndex($index)" ng-src="{{slide}}">
-           <a ng-show="mc.lastClicked.path1" class="arrow next" href="#" ng-click="mc.nextSlide()"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-           <a ng-show="mc.lastClicked.path1" class="arrow prev" href="#" ng-click="mc.prevSlide()"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
-      </div>
-    </section>
+  </div>
 
-  </p>
-  <p ng-show="mc.lastClicked.video">
-    <u>Video</u>
+  <div ng-show="mc.lastClicked.path1">
+    <p>Pictures</br>
+      <section layout="row"  layout-align="center end">
+        <div class="container slider" >
+          <img ng-repeat="slide in mc.lastClicked.images" class="slide"
+             ng-hide="!mc.isCurrentSlideIndex($index)" ng-src="{{slide}}">
+             <a ng-show="mc.lastClicked.path1" class="arrow next" href="#" ng-click="mc.nextSlide()"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+             <a ng-show="mc.lastClicked.path1" class="arrow prev" href="#" ng-click="mc.prevSlide()"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+        </div>
+      </section>
+    </p>
+  </div>
+
+  <div ng-show="mc.lastClicked.video">
+  <p>Video</br>
     <a target="_blank" ng-href="{{mc.lastClicked.video}}">Click here to open video</a>
   </p>
+ </div>
+
 </div> <!-- /.drawerContent -->
 </div>
 
