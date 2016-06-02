@@ -1,4 +1,5 @@
 var async             = require('async');
+var pg                = require('pg');
 var accountModel      = require('./accountModel.js');
 var mediaModel        = require('./mediaModel.js');
 var addressModel      = require('./addressModel.js');

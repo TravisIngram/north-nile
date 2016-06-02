@@ -1,6 +1,12 @@
 var pg            = require('pg');
 var dbConnection  = 'postgres://localhost:5432/north_nile';
 
+if (process.env.DATABASE_URL){
+  pg.defaults.ssl = true;
+  console.log('environment var');
+  dbConnection = process.env.DATABASE_URL;
+}
+
 function createAudio(callback) {
   pg.connect(dbConnection, function(err, client, done) {
     if(err) {
