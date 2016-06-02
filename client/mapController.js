@@ -135,6 +135,9 @@ var foodDistribution = {
     mc.showNewResourceDrawer = false;
     console.log('mc.lastClicked', mc.lastClicked);
 
+    // grab last marker clicked to recenter map later
+    mc.lastClicked = args.model;
+
     // change color of background border
         if (mc.lastClicked.resource_type == 'Community Garden'){
           mc.colorBk = "resourceGreen";
@@ -149,8 +152,6 @@ var foodDistribution = {
           mc.colorBk = "resourceBlue";
         }
 
-    // grab last marker clicked to recenter map later
-    mc.lastClicked = args.model;
 
     // load audio if present
     if(mc.lastClicked.audio_reference){

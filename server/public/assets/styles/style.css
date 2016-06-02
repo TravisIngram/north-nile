@@ -314,8 +314,8 @@ body {
     color: #000;
     text-shadow: none;
   }
-  
-  .drawerContent>div, .drawerContent>div>h2, .drawerContent>div>p {
+
+  .drawerContent>div, .drawerContent>div>h2, .drawerContent>div>p, .drawerContent>div>a{
     margin-top: 10px;
     margin-right: 5%;
     margin-bottom: 10px;
@@ -326,12 +326,26 @@ body {
     text-align: center;
     border-radius: 6px;
     padding: 10px;
-
   }
 
   .drawerTitle {
     padding-top: 20px;
   }
+
+  .socialMedia {
+    text-align: center;
+    padding: 25px 0 25px;
+  }
+  .socialMedia li {
+	display: inline-block;
+	text-align: center;
+	background: #93CEB8;
+	width: 40px;
+	height: 40px;
+	transition: background 0.3s ease;
+	border-radius: 50%;
+	/*margin: 0 5px;*/
+}
 
 
   .drawerContent.resourceGreen {
@@ -346,7 +360,7 @@ body {
   }
 
   .drawerContent.resourceBlue{
-    background-color:#93CEB8;
+    background-color:;
   }
 
 
