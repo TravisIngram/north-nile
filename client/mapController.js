@@ -133,26 +133,25 @@ var foodDistribution = {
   mc.openInfoDrawer = function(event, args){
     mc.showInfoDrawer = true;
     mc.showNewResourceDrawer = false;
-
-    // add icon to drawer display:
-      for (marker in mc.storedMarkers){
-        if(mc.storedMarkers[marker].resource_type == 'Community Garden'){
-          mc.addIcon = communityGarden;
-        }
-        if(mc.storedMarkers[marker].resource_type == 'Culinary Arts'){
-          mc.addIcon = culinaryArts;
-        }
-        if(mc.storedMarkers[marker].resource_type == 'Food Hub'){
-          mc.addIcon = foodHub;
-        }
-        if(mc.storedMarkers[marker].resource_type == 'Food Distribution'){
-          mc.addIcon = foodDistribution;
-        }
-      }
-
+    console.log('mc.lastClicked', mc.lastClicked);
 
     // grab last marker clicked to recenter map later
     mc.lastClicked = args.model;
+
+    // change color of background border
+        if (mc.lastClicked.resource_type == 'Community Garden'){
+          mc.colorBk = "resourceGreen";
+        }
+        if (mc.lastClicked.resource_type == 'Culinary Arts'){
+          mc.colorBk = "resourceOrange";
+        }
+        if (mc.lastClicked.resource_type == 'Food Hub'){
+          mc.colorBk = "resourceYellow";
+        }
+        if (mc.lastClicked.resource_type == 'Food Distribution'){
+          mc.colorBk = "resourceBlue";
+        }
+
 
     // load audio if present
     if(mc.lastClicked.audio_reference){
