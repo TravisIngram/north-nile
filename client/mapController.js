@@ -187,7 +187,7 @@ var foodDistribution = {
  // audio player
  mc.play = function(audio){
    console.log('audio play:', audio);
-   if(mc.playing == true){
+   if(audio.paused !== true){
      audio.pause();
     //  mc.playing = false;
    } else {
