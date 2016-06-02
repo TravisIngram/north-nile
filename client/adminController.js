@@ -33,7 +33,7 @@ angular.module('northApp').controller('AdminController', ['AccountFactory', 'Use
     console.log('editresource:', resource);
     ac.editPendingOptions = {
       templateUrl: '/views/edit-pending.html',
-      clickOutsideToClose: true,
+      clickOutsideToClose: false,
       controller: 'EditPendingController',
       controllerAs:'epc',
       resolve:{
@@ -49,7 +49,7 @@ angular.module('northApp').controller('AdminController', ['AccountFactory', 'Use
   ac.addNewResource = function(){
     ac.newResourceOptions = {
       templateUrl: '/views/new-resource.html',
-      clickOutsideToClose: true,
+      clickOutsideToClose: false,
       controller: 'NewResourceController',
       controllerAs: 'nrc'
     };
@@ -64,7 +64,7 @@ angular.module('northApp').controller('AdminController', ['AccountFactory', 'Use
   ac.editAccount = function(account){
     ac.editAccountOptions = {
       templateUrl: '/views/edit-account.html',
-      clickOutsideToClose: true,
+      clickOutsideToClose: false,
       controller: 'EditAccountController',
       controllerAs: 'eac',
       resolve:{
@@ -80,7 +80,7 @@ angular.module('northApp').controller('AdminController', ['AccountFactory', 'Use
     console.log('adding account');
     ac.addAccountOptions = {
       templateUrl: '/views/add-account.html',
-      clickOutsideToClose: true,
+      clickOutsideToClose: false,
       controller: 'NewAccountController',
       controllerAs: 'nac'
     };
