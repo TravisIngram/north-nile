@@ -68,7 +68,7 @@ body {
   h3 {
     font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
     color: #9eceb8;
-    font-size: 25px;
+    font-size: 22px;
     text-shadow: 2px 2px 3px #433225;
   }
 
@@ -80,21 +80,18 @@ body {
 
   .md-button {
     font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bolder;
     text-transform: lowercase;
-    margin: 3px;
-    padding: 5px;
+    margin: 5px;
+    padding: 0px;
   }
 
   .md-button.md-raised {
     background-color: #f3cb00;
     color: #70543e;
     font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
-    font-weight: bolder;
     font-size: 16px;
-    margin: 1vw;
-    padding: 5px;
     text-transform: lowercase;
   }
 
@@ -127,10 +124,10 @@ body {
     font-weight: bolder;
     font-size: 30px;
     text-align: center;
-    margin: 5px;
+    margin: 2px;
   }
 
-  form, .home form{
+  /*form, .home form{
     font-family: 'Playfair Display', 'Georgia', serif;
     background-color:  rgba(158,206,184,0.6);
     border-radius: 10px;
@@ -138,6 +135,26 @@ body {
     color #70543e;
     box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
     margin: 10vmin;
+  }*/
+
+  .home .register form {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    background-color:  rgba(158,206,184,0.6);
+    border-radius: 10px;
+    padding: 15px;
+    color #70543e;
+    box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
+    margin: 5px 15vmin;
+  }
+
+  .home .login form {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    background-color:  rgba(158,206,184,0.6);
+    border-radius: 10px;
+    padding: 15px;
+    color: #70543e;
+    box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
+    margin: 5px 15vw;
   }
 
   .md-input {
@@ -161,6 +178,7 @@ body {
 
   .splashText{
     text-align:justify;
+    margin: 15px 4vw;
   }
 
 
@@ -171,11 +189,11 @@ body {
     color: white;
     text-shadow: none;
     font-weight: bolder;
-    padding: 2px;
-    margin: 5px;
+    /*padding: 2px;
+    margin: 5px;*/
   }
 
-  .home.header-condensed {
+  .home .header-condensed {
     background-color: transparent;
     height: 25px;
   }
@@ -198,19 +216,27 @@ body {
 
   .home {
     background-color: transparent;
-    padding: 10px;
+    padding: 0;
   }
 
   .home .headerTitle {
     padding: 0;
-    font-size: 3.5vmax;
+    font-size: 5vw;
     letter-spacing: 0px;
-    margin: 25px;
+    margin-left: 3vw;
 
   }
 
   .home.header-expanded {
     text-shadow: 5px;
+  }
+
+  .mainTitle {
+    padding: 0;
+    color: white;
+    font-size: 6vmax;
+    letter-spacing: 0px;
+    margin: 5vh 10vw;
   }
 
   .pageTitle{
@@ -231,6 +257,13 @@ body {
   md-table, md-head, th.md-column, td.md-cell, md-row, md-icon{
     color:white !important;
     text-shadow: 2px 2px 5px rgba(56,42,31,0.5);
+  }
+
+  footer {
+    color: white;
+    margin: auto 5vw;
+    text-align: center;
+
   }
 
   /* ::::: ADMIN DASHBOARD ::::: */
@@ -291,12 +324,78 @@ body {
     height: 60vh;
     max-height: 60vh;
     width: 100vw;
-    background-color: rgba(60,179,113, 0.9);
+    /*background-color: rgba(60,179,113, 0.9);*/
+    /*background-color:#9C9C9C;*/
+    background-color:rgba(158,206,184,0.6);
+    color:white !important;
+    /*box-shadow: 2px 2px 5px rgba(56,42,31,0.5);*/
+    /*border-radius: 5px;*/
     overflow-y: scroll;
     transition-property: all;
     transition-duration: .5s;
     transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
   }
+
+  .drawerContent {
+    border-radius: 6px;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .drawerContent>h2, .drawerContent>p {
+    text-align: center;
+    color: #000;
+    text-shadow: none;
+  }
+
+  .drawerContent>div, .drawerContent>div>h2, .drawerContent>div>p, .drawerContent>div>a{
+    margin-top: 10px;
+    margin-right: 5%;
+    margin-bottom: 10px;
+    margin-left: 5%;
+    background-color: #fff;
+    color: #000;
+    text-shadow: none;
+    text-align: center;
+    border-radius: 6px;
+    padding: 10px;
+  }
+
+  .drawerTitle {
+    padding-top: 20px;
+  }
+
+  .socialMedia {
+    text-align: center;
+    padding: 25px 0 25px;
+  }
+  .socialMedia li {
+	display: inline-block;
+	text-align: center;
+	background: #93CEB8;
+	width: 40px;
+	height: 40px;
+	transition: background 0.3s ease;
+	border-radius: 50%;
+	/*margin: 0 5px;*/
+}
+
+
+  .drawerContent.resourceGreen {
+    background-color:#9BB85C;
+  }
+
+  .drawerContent.resourceOrange{
+    background-color:#EC4500;
+  }
+  .drawerContent.resourceYellow {
+    background-color:#F3CB00;
+  }
+
+  .drawerContent.resourceBlue{
+    background-color:#93CEB8;
+  }
+
 
   .infoDrawer.ng-hide{
     max-height: 0;

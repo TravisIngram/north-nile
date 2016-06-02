@@ -25,10 +25,22 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
     } else {
       $http.get('https://api.opencagedata.com/geocode/v1/json?q=' + resource.address_line1 + '+' + resource.address_line2 + '+' + resource.address_line3 + '+' + resource.city_name + '+' + resource.state + '+' + resource.zip_code + '&key=' + geocodeKey).then(function(response){
         console.log('Geocode response:', response);
-        if(response.data.results[0]){
-          resource.latitude = response.data.results[0].geometry.lat;
-          resource.longitude = response.data.results[0].geometry.lng;
+        // if(response.data.results[0]){
+        //   resource.latitude = response.data.results[0].geometry.lat;
+        //   resource.longitude = response.data.results[0].geometry.lng;
+        // }
+        var mostConfident = {confidence:0};
+        if(response.data.results){
+          response.data.results.map(function(result){
+            if(result.confidence >= mostConfident.confidence){
+              mostConfident = result;
+            }
+          });
+          console.log('Geocode results:', mostConfident);
+          resource.latitude = mostConfident.geometry.lat;
+          resource.longitude = mostConfident.geometry.lng;
         }
+
         $http.post('/resources/new', resource).then(function(response){
           console.log('Save new resource response:', response);
           getSavedResources();
