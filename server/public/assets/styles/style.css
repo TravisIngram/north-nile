@@ -315,6 +315,23 @@ body {
     transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
   }
 
+  .drawerContent {
+    background-color: #737373;
+    border-radius: 6px;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .drawerTitle {
+    padding-top: 20px;
+    text-align: center;
+  }
+
+  .resourceTitle {
+    text-align: center;
+  }
+
+
   .infoDrawer.ng-hide{
     max-height: 0;
   }
@@ -366,13 +383,13 @@ body {
   .activeArea { position: absolute; top: 50px; left: 50px; right: 50px; height: 90px; }
 
   #filter1{
-    background-color:#F3CB00;
+    background-color:#9BB85C;
   }
   #filter2{
     background-color:#EC4500;
   }
   #filter3{
-    background-color:#9BB85C;
+    background-color:#F3CB00;
   }
   #filter4{
     background-color:#93CEB8;

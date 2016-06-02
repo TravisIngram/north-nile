@@ -272,6 +272,7 @@ angular.module('northApp').controller('NewResourceController', ['Upload','$http'
     }).then(function(response){
       console.log('Successfully uploaded audio:', response);
       resource.audio_id = response.data.audio_id;
+      nrc.uploadAudioSuccess = true;
     }, function(response){
       console.log('Failed at uploading audio:', response);
     }, function(evt){
@@ -288,11 +289,7 @@ angular.module('northApp').controller('NewResourceController', ['Upload','$http'
       console.log('Success response?', response);
       // save rest of resource
       resource.image_id = response.data.image_id;
-      // resource.account_id = nrc.user.id;
-      // resource.is_pending = !resource.is_active;
-      // resource.date_created = new Date();
-      // ResourceFactory.saveNewResource(resource);
-      // $mdDialog.hide();
+      nrc.uploadImageSuccess = true;
 
     }, function(response){
       console.log('Error response?', response);
