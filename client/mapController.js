@@ -17,33 +17,33 @@ angular.module('northApp').controller('MapController', ['Upload','ngAudio','Reso
 var communityGarden = {
                   iconUrl: 'assets/img/GardenGreenBorder.svg',
                   // shadowUrl: 'assets/img/nature-1.svg',
-                  iconSize:     [38, 95], // size of the icon
+                  iconSize:     [38, 38], // size of the icon
                   shadowSize:   [50, 64], // size of the shadow
-                  iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                  iconAnchor:   [19, 19], // point of the icon which will correspond to marker's location
                   shadowAnchor: [4, 62],  // the same for the shadow
                   popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
               };
 var culinaryArts = {
                   iconUrl: 'assets/img/CulinaryRedBorder.svg',
-                  iconSize:     [38, 95], // size of the icon
+                  iconSize:     [38, 38], // size of the icon
                   shadowSize:   [50, 64], // size of the shadow
-                  iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                  iconAnchor:   [19, 19], // point of the icon which will correspond to marker's location
                   shadowAnchor: [4, 62],  // the same for the shadow
                   popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
               };
 var foodHub = {
                   iconUrl: 'assets/img/StoreYellowBorder.svg',
-                  iconSize:     [38, 95], // size of the icon
+                  iconSize:     [38, 38], // size of the icon
                   shadowSize:   [50, 64], // size of the shadow
-                  iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                  iconAnchor:   [19, 19], // point of the icon which will correspond to marker's location
                   shadowAnchor: [4, 62],  // the same for the shadow
                   popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
               };
 var foodDistribution = {
                   iconUrl: 'assets/img/TruckBlueBorder.svg',
-                  iconSize:     [38, 95], // size of the icon
+                  iconSize:     [38, 38], // size of the icon
                   shadowSize:   [50, 64], // size of the shadow
-                  iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                  iconAnchor:   [19, 19], // point of the icon which will correspond to marker's location
                   shadowAnchor: [4, 62],  // the same for the shadow
                   popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
               };
