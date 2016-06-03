@@ -152,6 +152,27 @@ var foodDistribution = {
       mc.colorBk = "resourceBlue";
     }
 
+    // open web and social media if present
+    mc.webSocialShow = function(){
+      if (mc.lastClicked.website ||
+        mc.lastClicked.twitter ||
+        mc.lastClicked.facebook ||
+        mc.lastClicked.instagram ||
+        mc.lastClicked.snapchat) {
+        return true;
+      }
+    }
+
+    // open contact info if present
+    mc.contactShow = function(){
+      if (mc.lastClicked.leadership ||
+          mc.lastClicked.public_phone ||
+          mc.lastClicked.public_email ||
+          mc.lastClicked.hours) {
+          return true;
+      }
+    }
+
     // load audio if present
     if(mc.lastClicked.audio_reference){
       mc.lastClicked.sound = ngAudio.load(mc.lastClicked.audio_reference);

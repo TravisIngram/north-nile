@@ -326,9 +326,9 @@ body {
     max-height: 60vh;
     width: 100vw;
     /*background-color: rgba(60,179,113, 0.9);*/
-    /*background-color:#9C9C9C;*/
+    /*background-color: #70543e;*/
     background-color:rgba(158,206,184,0.6);
-    color:white !important;
+    color:#00000 !important;
     /*box-shadow: 2px 2px 5px rgba(56,42,31,0.5);*/
     /*border-radius: 5px;*/
     overflow-y: scroll;
@@ -336,7 +336,20 @@ body {
     transition-duration: .5s;
     transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
   }
-
+.infoDrawer .loginMap {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    /*background-color:  rgba(158,206,184,0.6);*/
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    color: #000000;
+    background-color: #FFFFFF;
+    /*box-shadow: 2px 2px 5px rgba(56,42,31,0.5);*/
+    margin: 5px 15vw;
+}
+.loginMap label{
+  color: #000000;
+}
   /* ::: this is the background for the resource display drawer ::: */
   .infoDrawerResource {
     position: absolute;
