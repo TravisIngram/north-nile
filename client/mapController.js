@@ -235,6 +235,37 @@ var foodDistribution = {
     mc.newResource.lat = mc.newResource.latitude;
     mc.newResource.lng = mc.newResource.longitude;
 
+    // reverse geocode
+    var geocodeKey = 'd757d21efc7d5efeb1195e398d031a5e'
+    $http.get('https://api.opencagedata.com/geocode/v1/json?q=' + mc.newResource.lat + ',' + mc.newResource.lng + '&pretty=1&key=' + geocodeKey).then(function(response){
+      // console.log('Reverse geocode:', response);
+      var mostConfident = {confidence:0};
+      if(response.data.results.length > 1){
+        response.data.results.map(function(result){
+          if(result.confidence >= mostConfident.confidence){
+            mostConfident = result;
+          }
+        });
+        var results = mostConfident;
+      } else {
+        var results = response.data.results[0];
+      }
+
+      console.log('Reverse geocode:', results);
+      if(results.components.house_number){
+        mc.newResource.address_line1 = results.components.house_number + ' ' + results.components.road;
+      }
+      if(results.components.city){
+        mc.newResource.city_name = results.components.city;
+      }
+      if(results.components.state){
+        mc.newResource.state = results.components.state;
+      }
+      if(results.components.postcode){
+        mc.newResource.zip_code = results.components.postcode;
+      }
+    });
+
     mc.visibleMarkers.temp = mc.newResource;
     // write changes to map
     angular.extend(mc, {
