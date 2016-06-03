@@ -127,12 +127,17 @@ body {
     margin: 2px;
   }
 
-  form {
+  /*form, .home form{
     font-family: 'Playfair Display', 'Georgia', serif;
-    display: block;
-  }
+    background-color:  rgba(158,206,184,0.6);
+    border-radius: 10px;
+    padding: 20px;
+    color #70543e;
+    box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
+    margin: 10vmin;
+  }*/
 
-  .home .register {
+  .home .register form {
     font-family: 'Playfair Display', 'Georgia', serif;
     background-color:  rgba(158,206,184,0.6);
     border-radius: 10px;
@@ -142,7 +147,7 @@ body {
     margin: 5px 15vmin;
   }
 
-  .home .login {
+  .home .login form {
     font-family: 'Playfair Display', 'Georgia', serif;
     background-color:  rgba(158,206,184,0.6);
     border-radius: 10px;
@@ -159,9 +164,10 @@ body {
   }
 
   md-input-container {
+    display: block;
     position: relative;
     padding: 2px;
-    margin: 10px 0;
+    margin: 18px 0;
     vertical-align: middle;
   }
 
@@ -309,7 +315,7 @@ body {
     bottom: 0;
     width: 100%;
     height: 10vh;
-    background-color: #C0C0C0;
+    background-color: seagreen;
   }
 
 /* ::: template drawer, not resource display anymore, input resource form and others? ::: */
@@ -332,21 +338,14 @@ body {
   }
 .infoDrawer .loginMap {
   font-family: 'Playfair Display', 'Georgia', serif;
-  background-color:  rgba(112,84,62,0.9);
-  text-shadow: none;
-  box-shadow: none;
-  border-radius: none;
+  background-color:  rgba(158,206,184,0.6);
+  border-radius: 10px;
   padding: 15px;
   color: #70543e;
-  margin: 2px 20vw;
-}
-.infoDrawer p {
-  color: #000000;
+  box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
+  margin: 5px 15vw;
 }
 .loginMap label{
-  color: #000000;
-}
-.loginMap form {
   color: #000000;
 }
   /* ::: this is the background for the resource display drawer ::: */
@@ -366,10 +365,6 @@ body {
     transition-property: all;
     transition-duration: .5s;
     transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-  }
-
-  .infoDrawerResource.ng-hide{
-    max-height:0;
   }
 
   .drawerContent {
@@ -633,7 +628,7 @@ body {
   }
   /* ng-hide-add and ng-hide-remove are tied to ng-hide and ng-show */
   .ng-hide-add {
-    animation: 1s fadeOut ease;
+    amination: 1s fadeOut ease;
   }
 
   .ng-hide-remove {
