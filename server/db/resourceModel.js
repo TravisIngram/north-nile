@@ -1,6 +1,12 @@
 var pg            = require('pg');
 var dbConnection  = 'postgres://localhost:5432/north_nile';
 
+if (process.env.DATABASE_URL){
+  pg.defaults.ssl = true;
+  console.log('environment var');
+  dbConnection = process.env.DATABASE_URL;
+}
+
 function createResource(callback) {
   pg.connect(dbConnection, function(err, client, done) {
     if(err) {
@@ -10,7 +16,6 @@ function createResource(callback) {
       var query = client.query('CREATE TABLE IF NOT EXISTS "resource" (' +
         ' "id" serial PRIMARY KEY,' +
         ' "name" varchar(150) NOT NULL,' +
-        ' "location" varchar(150) NOT NULL,' +
         ' "description" text,' +
         ' "resource_type" varchar(50) NOT NULL,' +
         ' "website" varchar(150),' +
@@ -18,6 +23,12 @@ function createResource(callback) {
         ' "facebook" varchar(150),' +
         ' "instagram" varchar(150),' +
         ' "snapchat" varchar(150),' +
+        ' "address_line1" varchar(150) NOT NULL,' +
+        ' "address_line2" varchar(150),' +
+        ' "address_line3" varchar(150),' +
+        ' "city_name" varchar(100) NOT NULL,' +
+        ' "state" char(2) NOT NULL,' +
+        ' "zip_code" varchar(16) NOT NULL,' +
         ' "leadership" varchar(150),' +
         ' "public_phone" varchar(50),' +
         ' "public_email" varchar(150),' +
@@ -30,7 +41,6 @@ function createResource(callback) {
         ' "account_id" int REFERENCES "account"(id),' +
         ' "audio_id" int REFERENCES "audio"(id),' +
         ' "image_id" int REFERENCES "image"(id),' +
-        ' "address_id" int REFERENCES "address"(id),' +
         ' "video" varchar(150))');
 
       query.on('end', function() {

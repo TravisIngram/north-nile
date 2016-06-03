@@ -32,7 +32,7 @@ var culinaryArts = {
                   popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
               };
 var foodHub = {
-                  iconUrl: 'assets/img/front-store.svg',
+                  iconUrl: 'assets/img/StoreYellowBorder.svg',
                   iconSize:     [38, 95], // size of the icon
                   shadowSize:   [50, 64], // size of the shadow
                   iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
@@ -40,7 +40,7 @@ var foodHub = {
                   popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
               };
 var foodDistribution = {
-                  iconUrl: 'assets/img/lightblueWhiteTruck.psd.svg',
+                  iconUrl: 'assets/img/TruckBlueBorder.svg',
                   iconSize:     [38, 95], // size of the icon
                   shadowSize:   [50, 64], // size of the shadow
                   iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
@@ -49,7 +49,7 @@ var foodDistribution = {
               };
 
   mc.storedMarkers = ResourceFactory.mapResources;
-  mc.newResource = {};
+  mc.newResource = {city_name:"Minneapolis", state:"MN"};
 
   // start count at a number higher than any keys present in the object - this ensures no duplicates
   mc.markerSize = Object.keys(mc.storedMarkers).length;
@@ -133,32 +133,30 @@ var foodDistribution = {
   mc.openInfoDrawer = function(event, args){
     mc.showInfoDrawer = true;
     mc.showNewResourceDrawer = false;
-
-    // add icon to drawer display:
-      for (marker in mc.storedMarkers){
-        if(mc.storedMarkers[marker].resource_type == 'Community Garden'){
-          mc.addIcon = communityGarden;
-        }
-        if(mc.storedMarkers[marker].resource_type == 'Culinary Arts'){
-          mc.addIcon = culinaryArts;
-        }
-        if(mc.storedMarkers[marker].resource_type == 'Food Hub'){
-          mc.addIcon = foodHub;
-        }
-        if(mc.storedMarkers[marker].resource_type == 'Food Distribution'){
-          mc.addIcon = foodDistribution;
-        }
-      }
-  
+    console.log('mc.lastClicked', mc.lastClicked);
 
     // grab last marker clicked to recenter map later
     mc.lastClicked = args.model;
+
+    // change color of background border
+        if (mc.lastClicked.resource_type == 'Community Garden'){
+          mc.colorBk = "resourceGreen";
+        }
+        if (mc.lastClicked.resource_type == 'Culinary Arts'){
+          mc.colorBk = "resourceOrange";
+        }
+        if (mc.lastClicked.resource_type == 'Food Hub'){
+          mc.colorBk = "resourceYellow";
+        }
+        if (mc.lastClicked.resource_type == 'Food Distribution'){
+          mc.colorBk = "resourceBlue";
+        }
+
 
     // load audio if present
     if(mc.lastClicked.audio_reference){
       mc.lastClicked.sound = ngAudio.load(mc.lastClicked.audio_reference);
     }
-
 
     // this centers the map on the marker clicked
     angular.extend(mc, {
@@ -196,10 +194,10 @@ var foodDistribution = {
   };
   mc.prevSlide = function () {
      mc.currentIndex = (mc.currentIndex < mc.lastClicked.images.length - 1) ? ++mc.currentIndex : 0;
- };
- mc.nextSlide = function () {
+  };
+  mc.nextSlide = function () {
      mc.currentIndex = (mc.currentIndex > 0) ? --mc.currentIndex : mc.lastClicked.images.length - 1;
- };
+  };
 
  // audio player
  mc.play = function(audio){

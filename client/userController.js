@@ -58,7 +58,7 @@ angular.module('northApp').controller('UserNewResourceController', ['UserTrackFa
   console.log('UserNewResourceController has loaded', isAdmin);
   var unrc=this;
   unrc.isAdmin = isAdmin;
-  unrc.newResource = {is_active:false};
+  unrc.newResource = {is_active:false, city_name:"Minneapolis", state:"MN"};
 
   var promise = UserTrackFactory.getUserData();
   promise.then(function(response){

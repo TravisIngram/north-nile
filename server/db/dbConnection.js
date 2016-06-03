@@ -1,4 +1,5 @@
 var async             = require('async');
+var pg                = require('pg');
 var accountModel      = require('./accountModel.js');
 var mediaModel        = require('./mediaModel.js');
 var addressModel      = require('./addressModel.js');
@@ -7,6 +8,12 @@ var resourceModel     = require('./resourceModel.js');
 
 var dbConnectionString = 'postgres://localhost:5432/north_nile';
 
+if (process.env.DATABASE_URL){
+  pg.defaults.ssl = true;
+  console.log('environment var');
+  dbConnectionString = process.env.DATABASE_URL;
+}
+
 module.exports.dbConnectionString = dbConnectionString;
 
 module.exports.dbInit = function() {
@@ -14,7 +21,7 @@ module.exports.dbInit = function() {
   accountModel.createAccount,
   mediaModel.createAudio,
   mediaModel.createImage,
-  addressModel.createAddress,
+  // addressModel.createAddress,
   // mediaModel.createVideo,
   // resourceTypeModel.createResourceType,
   resourceModel.createResource

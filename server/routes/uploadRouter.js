@@ -8,8 +8,10 @@ var storage = multer.diskStorage({
     cb(null, './server/public/assets/img/uploads');
   },
   filename: function(req, file, cb){
+    console.log('upload file:', file);
+    var fileName = file.originalname.split('.')[0];
     var datetimestamp = Date.now();
-    cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1]);
+    cb(null, fileName + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1]);
   }
 });
 
@@ -23,7 +25,7 @@ router.post('/audio', function(request, response){
       response.json({error_code:1, err_desc:err});
       return;
     }
-    console.log('uploading audio request:', request);
+    // console.log('uploading audio request:', request);
     pg.connect(dbConnectionString, function(err, client, done){
       if(err){
         console.log('Error connecting to database to save audio path:', err);
