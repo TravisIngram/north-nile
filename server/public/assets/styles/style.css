@@ -318,7 +318,27 @@ body {
     background-color: seagreen;
   }
 
+/* ::: template drawer, not resource display anymore, input resource form and others? ::: */
   .infoDrawer {
+    position: absolute;
+    bottom: 10vh;
+    height: 60vh;
+    max-height: 60vh;
+    width: 100vw;
+    /*background-color: rgba(60,179,113, 0.9);*/
+    /*background-color:#9C9C9C;*/
+    background-color:rgba(158,206,184,0.6);
+    color:white !important;
+    /*box-shadow: 2px 2px 5px rgba(56,42,31,0.5);*/
+    /*border-radius: 5px;*/
+    overflow-y: scroll;
+    transition-property: all;
+    transition-duration: .5s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  }
+
+  /* ::: this is the background for the resource display drawer ::: */
+  .infoDrawerResource {
     position: absolute;
     bottom: 10vh;
     height: 60vh;
@@ -340,6 +360,8 @@ body {
     border-radius: 6px;
     width: 90%;
     margin: 0 auto;
+    padding: 20px 0 20px;
+
   }
 
   .drawerContent>h2, .drawerContent>p {
@@ -358,28 +380,53 @@ body {
     text-shadow: none;
     text-align: center;
     border-radius: 6px;
-    padding: 10px;
+    padding: 10px 10px 10px 5px;
+  }
+
+  .drawerContent>div>p>a:hover{
+    color: #EC4500; /* orange */
+    transition: 0.3s ease;
   }
 
   .drawerTitle {
     padding-top: 20px;
   }
 
+  .resourceTitle {
+    font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
+    font-size: 23px;
+  }
+
+  .drawerContent>div>.address {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
   .socialMedia {
     text-align: center;
-    padding: 25px 0 25px;
+    padding: 0px 0 25px;
   }
+
   .socialMedia li {
 	display: inline-block;
 	text-align: center;
-	background: #93CEB8;
+	background: #93CEB8; /* blue */
 	width: 40px;
 	height: 40px;
 	transition: background 0.3s ease;
 	border-radius: 50%;
-	/*margin: 0 5px;*/
-}
+  margin-right: 5px;
+  }
 
+  .socialMedia i {
+    font-size: 25px;
+    padding-top: 7px;
+    color: #fff;
+  }
+
+  .socialMedia li:hover {
+	   background-color: #F3CB00; /* yellow */
+   }
 
   .drawerContent.resourceGreen {
     background-color:#9BB85C;
