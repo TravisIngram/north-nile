@@ -122,6 +122,28 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
     });
   };
 
+  var removeImage = function(id, place){
+    $http.delete('/upload/image/remove/' + id + '/' + place).then(function(response){
+      console.log('Removed image:', response);
+    });
+  };
+
+  var uploadImage = function(image, id, place){
+    Upload.upload({
+      url: '/upload/image',
+      arrayKey: '',
+      data: {file: image.file, id: id, place: place}
+    }).then(function(response){
+      console.log('Success response?', response);
+    }, function(response){
+      console.log('Error response?', response);
+    }, function(evt){
+      // use for progress bar
+      console.log('Event response?', evt);
+    });
+    // end image upload
+  };
+
 
   return {
     saveNewResource: saveNewResource,
@@ -133,6 +155,8 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
     mapResources: mapResources,
     getUserResources: getUserResources,
     userResources: userResources,
-    removeResource: removeResource
+    removeResource: removeResource,
+    removeImage: removeImage,
+    uploadImage: uploadImage
   }
 }]);

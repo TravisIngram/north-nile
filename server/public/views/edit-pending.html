@@ -107,6 +107,33 @@
           <label for="pending_images">Images</label>
           <input type="text" name="pending_images" ng-model="epc.selectedResource.images" />
         </md-input-container>
+        <div class="uploadContainer">
+          <div class="imageContainer">
+            <md-button class="md-mini md-fab" ng-show="!epc.selectedResource.path1">Add</md-button>
+            <md-button ng-click="epc.removeImage(epc.selectedResource.audio_id, 1)" ng-show="epc.selectedResource.path1" class="md-fab md-mini">Remove</md-button>
+            <img ng-show="epc.selectedResource.path1" ng-src="{{epc.selectedResource.path1}}" />
+          </div>
+          <div class="imageContainer">
+            <md-button class="md-mini md-fab" ng-show="!epc.selectedResource.path2">Add</md-button>
+            <md-button ng-click="epc.removeImage(epc.selectedResource.audio_id, 2)" ng-show="epc.selectedResource.path2" class="md-fab md-mini">Remove</md-button>
+            <img ng-show="epc.selectedResource.path2" ng-src="{{epc.selectedResource.path2}}" />
+          </div>
+          <div class="imageContainer">
+            <md-button class="md-mini md-fab" ng-show="!epc.selectedResource.path3">Add</md-button>
+            <md-button ng-click="epc.removeImage(epc.selectedResource.audio_id, 3)" ng-show="epc.selectedResource.path3" class="md-fab md-mini">Remove</md-button>
+            <img ng-show="epc.selectedResource.path3" ng-src="{{epc.selectedResource.path3}}" />
+          </div>
+          <div class="imageContainer">
+            <md-button class="md-mini md-fab" ng-show="!epc.selectedResource.path4">Add</md-button>
+            <md-button ng-click="epc.removeImage(epc.selectedResource.audio_id, 4)" ng-show="epc.selectedResource.path4" class="md-fab md-mini">Remove</md-button>
+            <img ng-show="epc.selectedResource.path4" ng-src="{{epc.selectedResource.path4}}" />
+          </div>
+          <div class="imageContainer">
+            <md-button class="md-mini md-fab" ng-show="!epc.selectedResource.path5">Add</md-button>
+            <md-button ng-click="epc.removeImage(epc.selectedResource.audio_id, 5)" ng-show="epc.selectedResource.path5" class="md-fab md-mini">Remove</md-button>
+            <img ng-show="epc.selectedResource.path5" ng-src="{{epc.selectedResource.path5}}" />
+          </div>
+        </div>
 
         <md-input-container>
           <label for="pending_video">Video</label>

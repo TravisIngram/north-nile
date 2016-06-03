@@ -245,6 +245,15 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
     $mdDialog.hide();
   };
 
+  // edit images
+  epc.removeImage = function(id, place){
+    ResourceFactory.removeImage(id, place);
+  };
+
+  epc.uploadImage = function(image, id, place){
+    ResourceFactory.uploadImage(image, id, place);
+  };
+
   console.log('Edit Pending Controller loaded.', selectedResource);
 }]);
 

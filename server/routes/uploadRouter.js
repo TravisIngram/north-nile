@@ -118,4 +118,8 @@ router.post('/image', function(request, response){
   });
 });
 
+router.delete('/remove/image/:id/:place', function(request, response){
+  console.log('request.params:', request.params);
+});
+
 module.exports = router;
