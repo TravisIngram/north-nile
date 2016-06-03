@@ -315,7 +315,7 @@ body {
     bottom: 0;
     width: 100%;
     height: 10vh;
-    background-color: seagreen;
+    background-color: #C0C0C0;
   }
 
 /* ::: template drawer, not resource display anymore, input resource form and others? ::: */
@@ -347,7 +347,13 @@ body {
     /*box-shadow: 2px 2px 5px rgba(56,42,31,0.5);*/
     margin: 5px 15vw;
 }
+.infoDrawer p {
+  color: #000000;
+}
 .loginMap label{
+  color: #000000;
+}
+.loginMap form {
   color: #000000;
 }
   /* ::: this is the background for the resource display drawer ::: */

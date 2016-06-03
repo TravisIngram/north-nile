@@ -4,7 +4,7 @@
 <div class="key" layout="row" layout-align="center">
   <!-- <p ng-show="mc.user"> Hello, {{mc.user.username}}</p> -->
   <md-button id="homeKeyButton" class="md-fab md-mini keyButton" href="/" aria-label="home">
-    <md-icon id="homeKeyIcon" md-font-icon="fa-home" class="fa"></md-icon>
+    <md-icon id="homeKeyIcon" md-font-icon="fa-home" class="fa"></md-icon><md-tooltip>Home</md-tooltip></md-button>
   </md-button>
   <md-button id="userKeyButton" ng-show="mc.user" class="md-fab md-mini keyButton" aria-label="account" ng-click="mc.routeUser()">
     <md-icon id="userKeyIcon" class="fa fa-user"></md-icon>
@@ -180,7 +180,7 @@
 
   <form name="newResourceForm" ng-show="mc.showNewResourceForm">
     <section layout="column">
-      <span>Press and hold (right-click on desktop) on the map where you like the new resource to be located</span>
+      <span>Press and hold (right-click on desktop) on the map where you like the new resource to be located, or just type the address below. </span>
       <span ng-show="mc.newResource.latitude">Location added!</span>
       <md-input-container>
         <label for="new_name">Food Resource Name</label>
