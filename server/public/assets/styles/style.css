@@ -403,10 +403,12 @@ body {
 
   .keyButton{
     margin: 1vw;
+    padding: 0;
   }
 
   .fourMapIcons>.keyButton{
     padding: 0;
+    line-height: 0;
   }
 
   .disabledKeyButton{
@@ -462,7 +464,27 @@ body {
 
   #userKeyButton, #homeKeyButton, #addKeyButton{
     background-color:#70543E;
+    line-height:56px;
+     padding:5px;
   }
+
+  #homeKeyIcon, #userKeyIcon, #addKeyIcon{
+     line-height:0;
+     padding:0;
+    }
+
+  #playIcon, #pauseIcon, #stopIcon, #muteIcon, #mutedIcon{
+      line-height: 0;
+  }
+
+  #playButton, #stopButton, #muteButton {
+     line-height: 56px;
+     padding:5px;
+    }
+
+    .fileUploadLabel{
+     padding: 0 5px;
+   }
 
   @media (min-width:600px) {
     .home.header-expanded {
