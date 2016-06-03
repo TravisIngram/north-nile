@@ -216,6 +216,7 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
   var epc = this;
 
   epc.selectedResource = selectedResource;
+  epc.newImagePaths = ResourceFactory.newImagePaths;
 
   epc.cancelEditPending = function(){
     console.log('ac.selectedResource:', selectedResource);
@@ -245,13 +246,25 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
     $mdDialog.hide();
   };
 
-  // edit images
+  // image upload
   epc.removeImage = function(id, place){
-    ResourceFactory.removeImage(id, place);
+    ResourceFactory.removeImage(id, place, epc.updateImages);
   };
 
-  epc.uploadImage = function(image, id, place){
-    ResourceFactory.uploadImage(image, id, place);
+  epc.updateImages = function(){
+
+    for (path in epc.newImagePaths.paths) {
+      console.log('path:', path);
+      if(epc.newImagePaths.paths[path] == ""){
+        epc.newImagePaths.paths[path] = "//:0";
+      }
+    }
+    console.log('newImages:', epc.newImagePaths);
+    epc.selectedResource.path1 = epc.newImagePaths.paths.path1;
+    epc.selectedResource.path2 = epc.newImagePaths.paths.path2;
+    epc.selectedResource.path3 = epc.newImagePaths.paths.path3;
+    epc.selectedResource.path4 = epc.newImagePaths.paths.path4;
+    epc.selectedResource.path5 = epc.newImagePaths.paths.path5;
   };
 
   console.log('Edit Pending Controller loaded.', selectedResource);
@@ -313,7 +326,7 @@ angular.module('northApp').controller('NewResourceController', ['Upload','$http'
     resource.account_id = nrc.user.id;
     resource.is_pending = !resource.is_active;
     resource.date_created = new Date();
-    ResourceFactory.saveNewResource(resource);
+    ResourceFactory.saveNewResource(resource, nrc.user);
     $mdDialog.hide();
   };
 
