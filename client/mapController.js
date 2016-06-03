@@ -296,6 +296,7 @@ var foodDistribution = {
 
   // open drawer for new resource form
   mc.addNewResource = function(){
+    mc.showInfoDrawer = false;
     if(!mc.showNewResourceDrawer){
       mc.showNewResourceDrawer = true;
       if(mc.user){
