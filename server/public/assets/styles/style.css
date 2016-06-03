@@ -127,17 +127,12 @@ body {
     margin: 2px;
   }
 
-  /*form, .home form{
+  form {
     font-family: 'Playfair Display', 'Georgia', serif;
-    background-color:  rgba(158,206,184,0.6);
-    border-radius: 10px;
-    padding: 20px;
-    color #70543e;
-    box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
-    margin: 10vmin;
-  }*/
+    display: block;
+  }
 
-  .home .register form {
+  .home .register {
     font-family: 'Playfair Display', 'Georgia', serif;
     background-color:  rgba(158,206,184,0.6);
     border-radius: 10px;
@@ -147,7 +142,7 @@ body {
     margin: 5px 15vmin;
   }
 
-  .home .login form {
+  .home .login {
     font-family: 'Playfair Display', 'Georgia', serif;
     background-color:  rgba(158,206,184,0.6);
     border-radius: 10px;
@@ -164,10 +159,9 @@ body {
   }
 
   md-input-container {
-    display: block;
     position: relative;
     padding: 2px;
-    margin: 18px 0;
+    margin: 10px 0;
     vertical-align: middle;
   }
 
@@ -337,15 +331,14 @@ body {
     transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
   }
 .infoDrawer .loginMap {
-    font-family: 'Playfair Display', 'Georgia', serif;
-    /*background-color:  rgba(158,206,184,0.6);*/
-    border-radius: 10px;
-    padding: 15px;
-    text-align: center;
-    color: #000000;
-    background-color: #FFFFFF;
-    /*box-shadow: 2px 2px 5px rgba(56,42,31,0.5);*/
-    margin: 5px 15vw;
+  font-family: 'Playfair Display', 'Georgia', serif;
+  background-color:  rgba(112,84,62,0.9);
+  text-shadow: none;
+  box-shadow: none;
+  border-radius: none;
+  padding: 15px;
+  color: #70543e;
+  margin: 2px 20vw;
 }
 .loginMap label{
   color: #000000;
