@@ -21,12 +21,10 @@
 </div>
 <div class="infoDrawerResource" ng-class="mc.colorBk" ng-show="mc.showInfoDrawer" md-swipe-down="mc.closeInfoDrawer()">
   <div class="drawerContent {{mc.colorBk}}">
-    <!-- Started styling, created div "wells", need to finish-->
   <div>
     <h2 class="drawerTitle">{{mc.lastClicked.name}}</h2>
     <p class="resourceTitle">
       <md-icon md-svg-src="{{mc.lastClicked.icon.iconUrl}}"></md-icon>   {{mc.lastClicked.resource_type}} Resource</p>
-    <!-- <p>{{mc.lastClicked.location}}</p> -->
     <p class="address" ng-show="mc.lastClicked.address_line1">{{mc.lastClicked.address_line1}}</p>
     <p class="address" ng-show="mc.newResource.address_line2">{{mc.lastClicked.address_line2}}</p>
     <p class="address" ng-show="mc.newResource.address_line3">{{mc.lastClicked.address_line3}}</p>
@@ -37,9 +35,8 @@
     <p>{{mc.lastClicked.description}}</p>
   </div>
 
-  <div ng-show="mc.lastClicked.website">
-    <!-- need to write a function to ng-show this div if any social media and/or website are available -->
-    <p class="resourceTitle">Please visit our website:</br>
+  <div ng-show="mc.webSocialShow()">
+    <p class="resourceTitle">Connect</br>
       <p class="address">
         <a href="http://{{mc.lastClicked.website}}" target="_blank">{{mc.lastClicked.website}}</a>
     </p>
@@ -53,9 +50,9 @@
 
   </div>
 
-  <div>
+  <div ng-show="mc.contactShow()">
     <!-- Need a function for whether or not to show this div -->
-    <p class="resourceTitle">Contact:</p>
+    <p class="resourceTitle">Contact</p>
     <p class="address" ng-show="mc.lastClicked.leadership">Leadership: {{mc.lastClicked.leadership}}</p>
     <p class="address" ng-show="mc.lastClicked.public_phone">{{mc.lastClicked.public_phone}}</p>
     <p class="address">
@@ -80,7 +77,7 @@
   </div>
 
   <div ng-show="mc.lastClicked.path1">
-    <p class="resourceTitle">Pictures</br>
+    <p class="resourceTitle">Photos</br>
       <section layout="row"  layout-align="center end">
         <div class="container slider" >
           <img ng-repeat="slide in mc.lastClicked.images" class="slide"

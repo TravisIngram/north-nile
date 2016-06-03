@@ -49,11 +49,10 @@
 
       <!-- ::::::::: LOGIN FORM ::::::::: -->
       <div class="home login" ng-show="hc.loginForm">
-
-        <section layout="column">
-
+        <section>
           <form name="login-form">
             <h3>Log In</h3>
+
             <md-input-container>
               <label for="login-username">Username</label>
               <input type="text" ng-model="hc.loginInfo.username" name="login-username" required/>
@@ -63,10 +62,6 @@
               <label for="login-password">Password</label>
               <input type="password" ng-model="hc.loginInfo.password" name="login-password" required/>
             </md-input-container>
-
-            <!-- pw errors -->
-            <div class="">
-            </div>
 
             <md-input-container>
               <md-button class="md-raised" ng-hide="hc.user" ng-click="hc.loginUser()"><i class="fa fa-sign-in" aria-hidden="true"></i> Log In</md-button>
@@ -145,7 +140,7 @@
     </div> <!-- ::::::::: END HOME PAGE ::::::::: -->
 
     <footer class="other-links">
-      <md-button href="http://www.projectsweetiepie.org/">Blog <i class="fa fa-external-link" aria-hidden="true"></i></md-button>
+      <md-button href="http://www.projectsweetiepie.org/" target="_blank">Blog <i class="fa fa-external-link" aria-hidden="true"></i></md-button>
 
-      <md-button href="http://www.projectsweetiepie.org/">PSP <i class="fa fa-tree" aria-hidden="true"></i></md-button>
+      <md-button href="http://www.projectsweetiepie.org/" target="_blank">PSP <i class="fa fa-tree" aria-hidden="true"></i></md-button>
     </footer>
