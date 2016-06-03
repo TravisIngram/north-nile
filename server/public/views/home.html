@@ -49,11 +49,10 @@
 
       <!-- ::::::::: LOGIN FORM ::::::::: -->
       <div class="home login" ng-show="hc.loginForm">
-
-        <section layout="column">
-
+        <section>
           <form name="login-form">
             <h3>Log In</h3>
+
             <md-input-container>
               <label for="login-username">Username</label>
               <input type="text" ng-model="hc.loginInfo.username" name="login-username" required/>
@@ -63,10 +62,6 @@
               <label for="login-password">Password</label>
               <input type="password" ng-model="hc.loginInfo.password" name="login-password" required/>
             </md-input-container>
-
-            <!-- pw errors -->
-            <div class="">
-            </div>
 
             <md-input-container>
               <md-button class="md-raised" ng-hide="hc.user" ng-click="hc.loginUser()"><i class="fa fa-sign-in" aria-hidden="true"></i> Log In</md-button>
