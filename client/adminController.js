@@ -216,6 +216,7 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
   var epc = this;
 
   epc.selectedResource = selectedResource;
+  epc.newImagePaths = ResourceFactory.newImagePaths;
 
   epc.cancelEditPending = function(){
     console.log('ac.selectedResource:', selectedResource);
@@ -243,6 +244,27 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
     ResourceFactory.removeResource(resource);
     epc.showConfirmRemove = false;
     $mdDialog.hide();
+  };
+
+  // image upload
+  epc.removeImage = function(id, place){
+    ResourceFactory.removeImage(id, place, epc.updateImages);
+  };
+
+  epc.updateImages = function(){
+
+    for (path in epc.newImagePaths.paths) {
+      console.log('path:', path);
+      if(epc.newImagePaths.paths[path] == ""){
+        epc.newImagePaths.paths[path] = "//:0";
+      }
+    }
+    console.log('newImages:', epc.newImagePaths);
+    epc.selectedResource.path1 = epc.newImagePaths.paths.path1;
+    epc.selectedResource.path2 = epc.newImagePaths.paths.path2;
+    epc.selectedResource.path3 = epc.newImagePaths.paths.path3;
+    epc.selectedResource.path4 = epc.newImagePaths.paths.path4;
+    epc.selectedResource.path5 = epc.newImagePaths.paths.path5;
   };
 
   console.log('Edit Pending Controller loaded.', selectedResource);

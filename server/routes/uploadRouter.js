@@ -118,4 +118,38 @@ router.post('/image', function(request, response){
   });
 });
 
+router.delete('/image/remove/:id/:place', function(request, response){
+  console.log('Removing image:', request.params);
+  var place = request.params.place;
+  var id = request.params.id;
+  var image_paths;
+  pg.connect(dbConnectionString, function(err, client, done){
+    if(err){
+      console.log('Error connecting to database to remove image:', err);
+      response.sendStatus(500);
+    } else {
+      var queryString = 'UPDATE "image" SET (path' + place + ') = (\'\') WHERE id = ' + id + 'RETURNING "path1", "path2", "path3", "path4", "path5"';
+
+      var query = client.query(queryString, function(err, result){
+        if(err){
+          console.log('Error returning image id:', err);
+        } else {
+          console.log('Image return result:', result);
+          image_paths = result.rows[0];
+        }
+      });
+
+      query.on('error', function(err){
+        console.log('Error removing image:', err);
+        client.end();
+      });
+
+      query.on('end', function(){
+        response.send(image_paths);
+        done();
+      });
+    }
+  });
+});
+
 module.exports = router;

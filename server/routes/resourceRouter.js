@@ -40,7 +40,7 @@ router.get('/all', function(request, response){
       // var queryString = 'SELECT * FROM "resource" INNER JOIN "account" ON resource.account_id = account.id';
 
 
-      var queryString = 'SELECT "resource".id, "name", "resource_type", "date_created", "account_id", "is_active", "is_pending", "username", "website", "twitter", "facebook", "instagram", "snapchat", "address_line1", "address_line2", "address_line3", "city_name", "state", "zip_code", "leadership", "latitude", "longitude", "description", "public_phone", "public_email", "hours", "video", "image".path1, "image".path2, "image".path3, "image".path4, "image".path5, "audio".audio_reference FROM "resource" LEFT OUTER JOIN "image" ON image.id = resource.image_id INNER JOIN "account" ON account.id = resource.account_id LEFT OUTER JOIN "audio" ON audio.id = resource.audio_id';
+      var queryString = 'SELECT "resource".id, "name", "resource_type", "date_created", "account_id", "is_active", "is_pending", "username", "website", "twitter", "facebook", "instagram", "snapchat", "address_line1", "address_line2", "address_line3", "city_name", "state", "zip_code", "leadership", "latitude", "longitude", "description", "public_phone", "public_email", "hours", "video", "image_id", "image".path1, "image".path2, "image".path3, "image".path4, "image".path5, "audio".audio_reference FROM "resource" LEFT OUTER JOIN "image" ON image.id = resource.image_id INNER JOIN "account" ON account.id = resource.account_id LEFT OUTER JOIN "audio" ON audio.id = resource.audio_id';
 
       var query = client.query(queryString);
 

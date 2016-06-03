@@ -6,6 +6,7 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
   var userResources = [];
   var images = [];
   var geocodeKey = 'd757d21efc7d5efeb1195e398d031a5e';
+  var newImagePaths = {};
 
   var getUserResources = function(user){
     console.log('trying to log user', user);
@@ -122,6 +123,19 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
     });
   };
 
+  var removeImage = function(id, place, cb){
+    $http.delete('upload/image/remove/' + id + '/' + place).then(function(response){
+      console.log('Removed image:', response);
+
+      newImagePaths.paths = response.data;
+      cb();
+    });
+  };
+
+  var uploadImage = function(image, id, place){
+    //
+  };
+
 
   return {
     saveNewResource: saveNewResource,
@@ -133,6 +147,9 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
     mapResources: mapResources,
     getUserResources: getUserResources,
     userResources: userResources,
-    removeResource: removeResource
+    removeResource: removeResource,
+    removeImage: removeImage,
+    uploadImage: uploadImage,
+    newImagePaths: newImagePaths
   }
 }]);
