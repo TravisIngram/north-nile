@@ -139,19 +139,18 @@ var foodDistribution = {
     mc.lastClicked = args.model;
 
     // change color of background border
-        if (mc.lastClicked.resource_type == 'Community Garden'){
-          mc.colorBk = "resourceGreen";
-        }
-        if (mc.lastClicked.resource_type == 'Culinary Arts'){
-          mc.colorBk = "resourceOrange";
-        }
-        if (mc.lastClicked.resource_type == 'Food Hub'){
-          mc.colorBk = "resourceYellow";
-        }
-        if (mc.lastClicked.resource_type == 'Food Distribution'){
-          mc.colorBk = "resourceBlue";
-        }
-
+    if (mc.lastClicked.resource_type == 'Community Garden'){
+      mc.colorBk = "resourceGreen";
+    }
+    if (mc.lastClicked.resource_type == 'Culinary Arts'){
+      mc.colorBk = "resourceOrange";
+    }
+    if (mc.lastClicked.resource_type == 'Food Hub'){
+      mc.colorBk = "resourceYellow";
+    }
+    if (mc.lastClicked.resource_type == 'Food Distribution'){
+      mc.colorBk = "resourceBlue";
+    }
 
     // load audio if present
     if(mc.lastClicked.audio_reference){
@@ -232,6 +231,15 @@ var foodDistribution = {
     console.log('saving args:', args);
     mc.newResource.latitude = args.leafletEvent.latlng.lat;
     mc.newResource.longitude = args.leafletEvent.latlng.lng;
+
+    mc.newResource.lat = mc.newResource.latitude;
+    mc.newResource.lng = mc.newResource.longitude;
+
+    mc.visibleMarkers.temp = mc.newResource;
+    // write changes to map
+    angular.extend(mc, {
+      markers: mc.visibleMarkers
+    });
   };
 
   // open drawer for new resource form
@@ -436,11 +444,23 @@ var foodDistribution = {
     ResourceFactory.saveNewResource(resource, mc.user);
     mc.showNewResourceDrawer = false;
     mc.newResource = {};
+
+    mc.visibleMarkers.temp = mc.newResource;
+    // write changes to map
+    angular.extend(mc, {
+      markers: mc.visibleMarkers
+    });
   };
 
   mc.cancelNewResource = function(){
     mc.showNewResourceDrawer = false;
     mc.newResource = {};
+
+    mc.visibleMarkers.temp = mc.newResource;
+    // write changes to map
+    angular.extend(mc, {
+      markers: mc.visibleMarkers
+    });
   };
 
   console.log('Map controller loaded.');
