@@ -2,7 +2,7 @@
 </leaflet>
 
 <div class="key" layout="row" layout-align="center">
-  <p ng-show="mc.user"> Hello, {{mc.user.username}}</p>
+  <!-- <p ng-show="mc.user"> Hello, {{mc.user.username}}</p> -->
   <md-button id="homeKeyButton" class="md-fab md-mini keyButton" href="/" aria-label="home">
     <md-icon id="homeKeyIcon" md-font-icon="fa-home" class="fa"></md-icon>
   </md-button>
@@ -103,7 +103,7 @@
 </div>
 
 <div class="infoDrawer" ng-show="mc.showNewResourceDrawer">
-
+<div class="loginMap">
   <form ng-show="mc.showNewResourceLogin">
     <section layout="column">
       <h3>Please Log In To Submit A New Resource</h3>
@@ -183,7 +183,7 @@
       <span>Press and hold (right-click on desktop) on the map where you like the new resource to be located</span>
       <span ng-show="mc.newResource.latitude">Location added!</span>
       <md-input-container>
-        <label for="new_name">Name</label>
+        <label for="new_name">Food Resource Name</label>
         <input type="text" name="new_name" ng-model="mc.newResource.name" required/>
         <div ng-messages="newResourceForm.new_name.$error">
           <div ng-message="required">This is required!</div>
@@ -351,5 +351,5 @@
       <md-button ng-click="mc.cancelNewResource()">Cancel</md-button>
     </section>
   </form>
-
+</div>
 </div>
