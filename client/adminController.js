@@ -304,7 +304,7 @@ angular.module('northApp').controller('NewResourceController', ['Upload','$http'
     resource.account_id = nrc.user.id;
     resource.is_pending = !resource.is_active;
     resource.date_created = new Date();
-    ResourceFactory.saveNewResource(resource);
+    ResourceFactory.saveNewResource(resource, nrc.user);
     $mdDialog.hide();
   };
 

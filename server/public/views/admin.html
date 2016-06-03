@@ -106,6 +106,7 @@
             <th md-column>Account Name</th>
             <th md-column>Contact Email</th>
             <th md-column>Contact Name</th>
+            <th md-column>Account Type</th>
             <th md-column>Edit</th>
           </tr>
         </thead>
@@ -114,6 +115,7 @@
             <td md-cell>{{account.username}}</td>
             <td md-cell><a ng-href="mailto:{{account.email_address}}">{{account.email_address}}</a></td>
             <td md-cell>{{account.contact_name}}</td>
+            <td md-cell>{{account.is_admin ? 'Administrator' : 'Standard'}}</td>
             <td md-cell><md-button ng-click="ac.editAccount(account)">Edit</md-button></td>
           </tr>
         </tbody>
