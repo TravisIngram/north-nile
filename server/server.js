@@ -35,7 +35,7 @@ app.use(session({
   secret: 'teal walls',
   resave: true,
   saveUninitialized: false,
-  cookie: {maxAge: 600000, secure: false}
+  cookie: {maxAge: 3600000, secure: false}
 }));
 //initializing passport//
 app.use(passport.initialize());
