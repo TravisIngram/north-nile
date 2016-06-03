@@ -262,7 +262,7 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
 angular.module('northApp').controller('NewResourceController', ['Upload','$http',  '$mdDialog', 'ResourceFactory', 'UserTrackFactory', function(Upload, $http, $mdDialog, ResourceFactory, UserTrackFactory){
   var nrc = this;
 
-  nrc.newResource = {is_active:true};
+  nrc.newResource = {is_active:true, city_name:"Minneapolis", state:"MN"};
   nrc.user = {};
   var promise = UserTrackFactory.getUserData();
   promise.then(function(response){
