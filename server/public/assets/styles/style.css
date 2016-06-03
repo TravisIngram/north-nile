@@ -369,6 +369,10 @@ body {
     transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
   }
 
+  .infoDrawerResource.ng-hide{
+    max-height:0;
+  }
+
   .drawerContent {
     border-radius: 6px;
     width: 90%;
@@ -630,7 +634,7 @@ body {
   }
   /* ng-hide-add and ng-hide-remove are tied to ng-hide and ng-show */
   .ng-hide-add {
-    amination: 1s fadeOut ease;
+    animation: 1s fadeOut ease;
   }
 
   .ng-hide-remove {
