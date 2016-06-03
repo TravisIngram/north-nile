@@ -200,7 +200,10 @@
 
         <md-input-container>
           <label>Address</label>
-          <input type="text" name="new_address1" ng-model="mc.newResource.address_line1">
+          <input type="text" name="new_address1" ng-model="mc.newResource.address_line1" required>
+          <div ng-messages="newResourceForm.new_address1.$error">
+            <div ng-message="required">This is required!</div>
+          </div>
         </md-input-container>
 
         <md-input-container>
@@ -215,19 +218,25 @@
 
         <md-input-container>
           <label>City</label>
-          <input type="text" name="new_city" ng-model="mc.newResource.city_name">
+          <input type="text" name="new_city" ng-model="mc.newResource.city_name" required>
+          <div ng-messages="newResourceForm.new_city.$error">
+            <div ng-message="required">This is required!</div>
+          </div>
         </md-input-container>
 
         <md-input-container>
             <label>State</label>
-            <input type="text" name="new_state" ng-model="mc.newResource.state">
+            <input type="text" name="new_state" ng-model="mc.newResource.state" required>
+            <div ng-messages="newResourceForm.new_state.$error">
+              <div ng-message="required">This is required!</div>
+            </div>
         </md-input-container>
 
         <md-input-container class="md-block" flex-gt-sm>
           <label>Zip Code</label>
           <input name="new_zip_code" ng-model="mc.newResource.zip_code"
                    required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
-          <div ng-messages="newResourceForm.zip_code.$error" role="alert" multiple>
+          <div ng-messages="newResourceForm.new_zip_code.$error" role="alert" multiple>
             <div ng-message="required" class="my-message">Please supply a zip code.</div>
             <div ng-message="pattern" class="my-message">That doesn't look like a valid zip
                 code.
