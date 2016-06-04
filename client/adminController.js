@@ -216,6 +216,7 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
   var epc = this;
 
   epc.selectedResource = selectedResource;
+  epc.newImagePaths = ResourceFactory.newImagePaths;
 
   epc.cancelEditPending = function(){
     console.log('ac.selectedResource:', selectedResource);
@@ -243,6 +244,64 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
     ResourceFactory.removeResource(resource);
     epc.showConfirmRemove = false;
     $mdDialog.hide();
+  };
+
+  // image upload
+  epc.showRemoveButton = function(place){
+    console.log('Show remove button:', epc.selectedResource['path' + place]);
+    if(epc.selectedResource['path' + place]==='//:0' || epc.selectedResource['path' + place]==='' ){
+      return true;
+    }
+  };
+
+  epc.removeImage = function(id, place){
+    ResourceFactory.removeImage(id, place, epc.updateImages);
+  };
+
+  epc.updateImageInfo = function(){
+    for (path in epc.newImagePaths.paths) {
+      console.log('path:', path);
+      if(epc.newImagePaths.paths[path] == ""){
+        epc.newImagePaths.paths[path] = "//:0";
+      }
+    }
+    console.log('newImages:', epc.newImagePaths.paths);
+    epc.selectedResource.image_id = epc.newImagePaths.image_id;
+    epc.selectedResource.path1 = epc.newImagePaths.paths.path1;
+    epc.selectedResource.path2 = epc.newImagePaths.paths.path2;
+    epc.selectedResource.path3 = epc.newImagePaths.paths.path3;
+    epc.selectedResource.path4 = epc.newImagePaths.paths.path4;
+    epc.selectedResource.path5 = epc.newImagePaths.paths.path5;
+    // epc.newImagePaths = {};
+  };
+
+  epc.updateImage = function(image, id, place){
+      ResourceFactory.updateImage(image, id, place, epc.updateImageInfo);
+  };
+
+  epc.uploadImage = function(image){
+    ResourceFactory.uploadImage(image, epc.updateImageInfo)
+  };
+
+  epc.removeAudio = function(id){
+    ResourceFactory.removeAudio(id, epc.clearAudioPath);
+  };
+
+  epc.clearAudioPath = function(){
+    epc.selectedResource.audio_reference = '';
+  };
+
+  epc.uploadAudio = function(audio){
+    ResourceFactory.uploadAudio(audio, epc.updateAudioInfo);
+  };
+
+  epc.updateAudio = function(audio, id){
+    ResourceFactory.updateAudio(audio, id, epc.updateAudioInfo);
+  };
+
+  epc.updateAudioInfo = function(audio_id, audio_reference){
+    epc.selectedResource.audio_id = audio_id;
+    epc.selectedResource.audio_reference = audio_reference;
   };
 
   console.log('Edit Pending Controller loaded.', selectedResource);
@@ -281,6 +340,7 @@ angular.module('northApp').controller('NewResourceController', ['Upload','$http'
   };
 
   nrc.uploadImage = function(image, resource){
+    console.log('new resource image:', image);
     Upload.upload({
       url: '/upload/image',
       arrayKey: '',

@@ -117,6 +117,7 @@ angular.module('northApp').controller('UserNewResourceController', ['UserTrackFa
 angular.module('northApp').controller('EditResourceController', ['userResource', '$mdDialog', 'ResourceFactory', function(userResource,  $mdDialog, ResourceFactory){
   var erc = this;
   erc.userResource = userResource;
+  erc.newImagePaths = ResourceFactory.newImagePaths;
 
   erc.cancelEditPending = function(){
     console.log('uc.userResource:', userResource);
@@ -145,6 +146,65 @@ angular.module('northApp').controller('EditResourceController', ['userResource',
     erc.showConfirmRemove = false;
     $mdDialog.hide();
   };
+
+  // image upload
+  erc.showRemoveButton = function(place){
+    console.log('Show remove button:', erc.userResource['path' + place]);
+    if(erc.userResource['path' + place]==='//:0' || erc.userResource['path' + place]==='' ){
+      return true;
+    }
+  };
+
+  erc.removeImage = function(id, place){
+    ResourceFactory.removeImage(id, place, erc.updateImages);
+  };
+
+  erc.updateImageInfo = function(){
+    for (path in erc.newImagePaths.paths) {
+      console.log('path:', path);
+      if(erc.newImagePaths.paths[path] == ""){
+        erc.newImagePaths.paths[path] = "//:0";
+      }
+    }
+    console.log('newImages:', erc.newImagePaths.paths);
+    erc.userResource.image_id = erc.newImagePaths.image_id;
+    erc.userResource.path1 = erc.newImagePaths.paths.path1;
+    erc.userResource.path2 = erc.newImagePaths.paths.path2;
+    erc.userResource.path3 = erc.newImagePaths.paths.path3;
+    erc.userResource.path4 = erc.newImagePaths.paths.path4;
+    erc.userResource.path5 = erc.newImagePaths.paths.path5;
+    // erc.newImagePaths = {};
+  };
+
+  erc.updateImage = function(image, id, place){
+      ResourceFactory.updateImage(image, id, place, erc.updateImageInfo);
+  };
+
+  erc.uploadImage = function(image){
+    ResourceFactory.uploadImage(image, erc.updateImageInfo)
+  };
+
+  erc.removeAudio = function(id){
+    ResourceFactory.removeAudio(id, erc.clearAudioPath);
+  };
+
+  erc.clearAudioPath = function(){
+    erc.userResource.audio_reference = '';
+  };
+
+  erc.uploadAudio = function(audio){
+    ResourceFactory.uploadAudio(audio, erc.updateAudioInfo);
+  };
+
+  erc.updateAudio = function(audio, id){
+    ResourceFactory.updateAudio(audio, id, erc.updateAudioInfo);
+  };
+
+  erc.updateAudioInfo = function(audio_id, audio_reference){
+    erc.userResource.audio_id = audio_id;
+    erc.userResource.audio_reference = audio_reference;
+  };
+
 
   console.log('Edit Resource Controller loaded.', userResource);
 }]);
