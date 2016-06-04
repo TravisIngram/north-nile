@@ -151,7 +151,7 @@ router.post('/image/single/:id/:place', function(request, response){
         query.on('end', function(){
           console.log('Saved single image successfully.');
           done();
-          response.send(image_paths);
+          response.send({image_paths:image_paths});
         });
       }
     });

@@ -140,7 +140,7 @@ angular.module('northApp').factory('ResourceFactory', ['$http', 'Upload', functi
       data: {file: image}
     }).then(function(response){
       console.log('Success response?', response);
-      newImagePaths.paths = response.data;
+      newImagePaths.paths = response.data.image_paths;
       cb();
     }, function(response){
       console.log('Error response?', response);

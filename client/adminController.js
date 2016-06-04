@@ -266,7 +266,7 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
       }
     }
     console.log('newImages:', epc.newImagePaths.paths);
-    epc.selectedResource.audio_id = epc.newImagePaths.audio_id;
+    epc.selectedResource.image_id = epc.newImagePaths.image_id;
     epc.selectedResource.path1 = epc.newImagePaths.paths.path1;
     epc.selectedResource.path2 = epc.newImagePaths.paths.path2;
     epc.selectedResource.path3 = epc.newImagePaths.paths.path3;
