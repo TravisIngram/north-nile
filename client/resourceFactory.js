@@ -1,4 +1,4 @@
-angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
+angular.module('northApp').factory('ResourceFactory', ['$http', 'Upload', function($http, Upload){
   var savedResources = [];
   var pendingResources = [];
   var approvedResources = [];
@@ -132,13 +132,16 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
     });
   };
 
-  var uploadImage = function(image, id, place){
+  var uploadImage = function(image, id, place, cb){
+    console.log('resource factory image:', image);
     Upload.upload({
-      url: '/upload/image',
+      url: '/upload/image/single/' + id + '/' + place,
       arrayKey: '',
-      data: {file: image.file, id: id, place: place}
+      data: {file: image}
     }).then(function(response){
       console.log('Success response?', response);
+      newImagePaths.paths = response.data;
+      cb();
     }, function(response){
       console.log('Error response?', response);
     }, function(evt){

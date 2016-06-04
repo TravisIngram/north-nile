@@ -259,7 +259,6 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
   };
 
   epc.updateImages = function(){
-
     for (path in epc.newImagePaths.paths) {
       console.log('path:', path);
       if(epc.newImagePaths.paths[path] == ""){
@@ -272,6 +271,13 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
     epc.selectedResource.path3 = epc.newImagePaths.paths.path3;
     epc.selectedResource.path4 = epc.newImagePaths.paths.path4;
     epc.selectedResource.path5 = epc.newImagePaths.paths.path5;
+    // epc.newImagePaths = {};
+  };
+
+  //
+
+  epc.uploadImage = function(image, id, place){
+    ResourceFactory.uploadImage(image, id, place, epc.updateImages);
   };
 
   console.log('Edit Pending Controller loaded.', selectedResource);
@@ -310,6 +316,7 @@ angular.module('northApp').controller('NewResourceController', ['Upload','$http'
   };
 
   nrc.uploadImage = function(image, resource){
+    console.log('new resource image:', image);
     Upload.upload({
       url: '/upload/image',
       arrayKey: '',

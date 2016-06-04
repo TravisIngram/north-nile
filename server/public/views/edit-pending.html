@@ -149,27 +149,29 @@
         </md-input-container>
         <div class="uploadContainer">
           <div class="imageContainer">
-            <md-button ng-click="epc.uploadImage(image, id, place)" ng-show="!epc.selectedResource.path1==='//:0'">Add</md-button>
+            <label class="md-button"  for="upload_image_1" >Add</label>
+
             <md-button ng-click="epc.removeImage(epc.selectedResource.image_id, 1)" >Remove</md-button>
             <img class="thumbnail" ng-src="{{epc.selectedResource.path1}}" />
+            <input type="file" id="upload_image_1" name="upload_image_1" class="fileUpload" ng-model="epc.newImages.file1" ngf-select="epc.uploadImage(epc.newImages.file1, epc.selectedResource.image_id, 1)" ngf-multiple="false" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" aria-label="upload_images"/>
           </div>
           <div class="imageContainer">
-            <md-button ng-click="epc.uploadImage(image, id, place)" ng-show="!epc.selectedResource.path2==='//:0'">Add</md-button>
+            <md-button ng-click="epc.uploadImage(image, id, place)" >Add</md-button>
             <md-button ng-click="epc.removeImage(epc.selectedResource.image_id, 2)" >Remove</md-button>
             <img class="thumbnail" ng-src="{{epc.selectedResource.path2}}" />
           </div>
           <div class="imageContainer">
-            <md-button ng-click="epc.uploadImage(image, id, place)" ng-show="!epc.selectedResource.path3==='//:0'">Add</md-button>
+            <md-button ng-click="epc.uploadImage(image, id, place)" >Add</md-button>
             <md-button ng-click="epc.removeImage(epc.selectedResource.image_id, 3)" >Remove</md-button>
             <img class="thumbnail" ng-src="{{epc.selectedResource.path3}}" />
           </div>
           <div class="imageContainer">
-            <md-button ng-click="epc.uploadImage(image, id, place)" ng-show="!epc.selectedResource.path4==='//:0'">Add</md-button>
+            <md-button ng-click="epc.uploadImage(image, id, place)" >Add</md-button>
             <md-button ng-click="epc.removeImage(epc.selectedResource.image_id, 4)" >Remove</md-button>
             <img class="thumbnail" ng-src="{{epc.selectedResource.path4}}" />
           </div>
           <div class="imageContainer">
-            <md-button ng-click="epc.uploadImage(image, id, place)" ng-show="!epc.selectedResource.path5==='//:0'">Add</md-button>
+            <md-button ng-click="epc.uploadImage(image, id, place)" >Add</md-button>
             <md-button ng-click="epc.removeImage(epc.selectedResource.image_id, 5)" >Remove</md-button>
             <img class="thumbnail" ng-src="{{epc.selectedResource.path5}}" />
           </div>

@@ -25,7 +25,7 @@ router.post('/audio', function(request, response){
       response.json({error_code:1, err_desc:err});
       return;
     }
-    // console.log('uploading audio request:', request);
+    // console.log('uploading audio request:', request.files);
     pg.connect(dbConnectionString, function(err, client, done){
       if(err){
         console.log('Error connecting to database to save audio path:', err);
@@ -55,6 +55,57 @@ router.post('/audio', function(request, response){
         });
       }
     });
+  });
+});
+
+// var upload_single = multer({
+//   storage: storage
+// }).single('file');
+
+router.post('/image/single/:id/:place', function(request, response){
+  var id = request.params.id;
+  var place = request.params.place;
+  upload(request, response, function(err){
+    if(err){
+      response.json({error_code:1, err_desc:err});
+      return;
+    }
+
+    console.log('Single image:', request.files);
+    pg.connect(dbConnectionString, function(err, client, done){
+      if(err){
+        console.log('Error connecting to database to save single image:', err);
+        response.sendStatus(500);
+      } else {
+        var filePath = request.files[0].path.substring(14);
+        var image_paths;
+
+        var queryString = 'UPDATE image SET (path' + place + ') = (\'' + filePath + '\') WHERE id = ' + id + ' RETURNING "path1", "path2", "path3", "path4", "path5"';
+
+        console.log('queryString:', queryString);
+
+        var query = client.query(queryString, function(err, results){
+          if(err){
+            console.log('Error returning image paths single image:', err);
+          } else {
+            console.log('Returned image paths.');
+            image_paths = results.rows[0];
+          }
+        });
+
+        query.on('error', function(err){
+          console.log('Error saving image path single image:', err);
+          client.end();
+        });
+
+        query.on('end', function(){
+          console.log('Saved single image successfully.');
+          done();
+          response.send(image_paths);
+        });
+      }
+    });
+
   });
 });
 
