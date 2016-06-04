@@ -7,7 +7,7 @@
     <md-icon id="homeKeyIcon" md-font-icon="fa-home" class="fa"></md-icon><md-tooltip>Home</md-tooltip></md-button>
   </md-button>
   <md-button id="userKeyButton" ng-show="mc.user" class="md-fab md-mini keyButton" aria-label="account" ng-click="mc.routeUser()">
-    <md-icon id="userKeyIcon" class="fa fa-user"></md-icon>
+    <md-icon id="userKeyIcon" class="fa fa-user"></md-icon><md-tooltip>{{mc.user.username}}'s Resources</md-tooltip>
   </md-button>
   <div class="fourMapIcons">
     <md-button id="filter1" class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('Community Garden')" aria-label="community-garden-filter"><md-icon md-svg-src="assets/img/nature-1.svg"></md-icon><md-tooltip>Community Garden</md-tooltip></md-button>
@@ -15,7 +15,7 @@
     <md-button id="filter3" class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('Food Hub')" aria-label="food-hub-filter"><md-icon md-svg-src="assets/img/front-store.svg"></md-icon><md-tooltip>Food Hub</md-tooltip></md-button>
     <md-button id="filter4" class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('Food Distribution')" aria-label="food-distribution-filter"><md-icon md-svg-src="assets/img/truck.svg"></md-icon><md-tooltip>Food Distribution</md-tooltip></md-button>
     <md-button id="addKeyButton" class="md-fab md-mini keyButton" ng-click="mc.addNewResource()" aria-label="home">
-      <md-icon id="addKeyIcon" class="fa fa-plus"></md-icon>
+      <md-icon id="addKeyIcon" class="fa fa-plus"></md-icon><md-tooltip>Add New Resource</md-tooltip>
     </md-button>
   </div>
 </div>
