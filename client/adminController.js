@@ -18,6 +18,21 @@ angular.module('northApp').controller('AdminController', ['AccountFactory', 'Use
   ac.selectedModerationResources = [];
   ac.selectedModerationResource = {};
 
+  // Sort resource table columns by column heading
+  ac.tableSort = {
+    order: 'name',
+    limit: 5,
+    page: 1
+  };
+
+  ac.accountTableSort = {
+    order: 'username',
+    limit: 5,
+    page: 1
+  };
+
+  ac.limitOptions = [5, 10, 15];
+
   // approve resources en masse
   ac.approveResources = function(){
     console.log('approving resources.');
