@@ -31,7 +31,7 @@ var culinaryArts = {
                   shadowAnchor: [4, 62],  // the same for the shadow
                   popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
               };
-var foodHub = {
+var foodDistribution = {
                   iconUrl: 'assets/img/StoreYellowBorder.svg',
                   iconSize:     [38, 38], // size of the icon
                   shadowSize:   [50, 64], // size of the shadow
@@ -39,8 +39,8 @@ var foodHub = {
                   shadowAnchor: [4, 62],  // the same for the shadow
                   popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
               };
-var foodDistribution = {
-                  iconUrl: 'assets/img/GreenhouseBorder2.svg',
+var foodHub = {
+                  iconUrl: 'assets/img/GreenhousePerfect.svg',
                   iconSize:     [38, 38], // size of the icon
                   shadowSize:   [50, 64], // size of the shadow
                   iconAnchor:   [19, 19], // point of the icon which will correspond to marker's location
@@ -74,10 +74,10 @@ var foodDistribution = {
       case 'Culinary Arts':
         filter2.toggleClass('disabledKeyButton');
         break;
-      case 'Food Hub':
+      case 'Food Distribution':
         filter3.toggleClass('disabledKeyButton');
         break;
-      case 'Food Distribution':
+      case 'Food Hub':
         filter4.toggleClass('disabledKeyButton');
         break;
     }
@@ -91,11 +91,11 @@ var foodDistribution = {
         if(mc.storedMarkers[marker].resource_type == 'Culinary Arts'){
           mc.storedMarkers[marker].icon = culinaryArts;
         }
-        if(mc.storedMarkers[marker].resource_type == 'Food Hub'){
-          mc.storedMarkers[marker].icon = foodHub;
-        }
         if(mc.storedMarkers[marker].resource_type == 'Food Distribution'){
           mc.storedMarkers[marker].icon = foodDistribution;
+        }
+        if(mc.storedMarkers[marker].resource_type == 'Food Hub'){
+          mc.storedMarkers[marker].icon = foodHub;
         }
         // mc.storedMarkers[marker].icon = customIcon;
       }
@@ -140,7 +140,7 @@ var foodDistribution = {
 
     // change color of background border
     if (mc.lastClicked.resource_type == 'Community Garden'){
-      mc.colorBk = "resourceGreen";
+      mc.colorBk = "resourceBlue";
     }
     if (mc.lastClicked.resource_type == 'Culinary Arts'){
       mc.colorBk = "resourceOrange";
@@ -149,7 +149,7 @@ var foodDistribution = {
       mc.colorBk = "resourceYellow";
     }
     if (mc.lastClicked.resource_type == 'Food Distribution'){
-      mc.colorBk = "resourceBlue";
+      mc.colorBk = "resourceGreen";
     }
 
     // open web and social media if present
