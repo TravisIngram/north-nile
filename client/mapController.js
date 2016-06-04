@@ -351,8 +351,6 @@ var foodHub = {
         markers: mc.visibleMarkers
   });
 
-  console.log('Leaflet data:', leafletData.getDirectiveControls())
-
 
   // map login
   mc.loginUser = function() {
@@ -455,40 +453,80 @@ var foodHub = {
   };
 
   // upload images and audio
-  mc.uploadAudio = function(audio, resource){
-    console.log('uploading audio');
-    Upload.upload({
-      url: '/upload/audio',
-      data: {file: audio.file}
-    }).then(function(response){
-      console.log('Successfully uploaded audio:', response);
-      resource.audio_id = response.data.audio_id;
-      mc.uploadAudioSuccess = true;
-    }, function(response){
-      console.log('Failed at uploading audio:', response);
-    }, function(evt){
-      // console.log('evt', evt)
-    });
+  // mc.uploadAudio = function(audio, resource){
+  //   console.log('uploading audio');
+  //   Upload.upload({
+  //     url: '/upload/audio',
+  //     data: {file: audio.file}
+  //   }).then(function(response){
+  //     console.log('Successfully uploaded audio:', response);
+  //     resource.audio_id = response.data.audio_id;
+  //     mc.uploadAudioSuccess = true;
+  //   }, function(response){
+  //     console.log('Failed at uploading audio:', response);
+  //   }, function(evt){
+  //     // console.log('evt', evt)
+  //   });
+  // };
+
+  mc.uploadAudio = function(audio){
+    ResourceFactory.uploadAudio(audio, mc.updateAudioInfo);
   };
 
-  mc.uploadImage = function(image, resource){
-    Upload.upload({
-      url: '/upload/image',
-      arrayKey: '',
-      data: {file: image.file}
-    }).then(function(response){
-      console.log('Success response?', response);
-      // save rest of resource
-      resource.image_id = response.data.image_id;
-      mc.uploadImageSuccess = true;
+  mc.updateAudioInfo = function(audio_id, audio_reference){
+    mc.newResource.audio_id = audio_id;
+    mc.newResource.audio_reference = audio_reference;
+  };
 
-    }, function(response){
-      console.log('Error response?', response);
-    }, function(evt){
-      // use for progress bar
-      console.log('Event response?', evt);
-    });
-    // end image upload
+  mc.removeAudio = function(id){
+    ResourceFactory.removeAudio(id, mc.clearAudioPath);
+  };
+
+  mc.clearAudioPath = function(){
+    mc.newResource.audio_reference = '';
+  };
+
+  // mc.uploadImage = function(image, resource){
+  //   Upload.upload({
+  //     url: '/upload/image',
+  //     arrayKey: '',
+  //     data: {file: image.file}
+  //   }).then(function(response){
+  //     console.log('Success response?', response);
+  //     // save rest of resource
+  //     resource.image_id = response.data.image_id;
+  //     mc.uploadImageSuccess = true;
+  //
+  //   }, function(response){
+  //     console.log('Error response?', response);
+  //   }, function(evt){
+  //     // use for progress bar
+  //     console.log('Event response?', evt);
+  //   });
+  //   // end image upload
+  // };
+
+  mc.newImagePaths = ResourceFactory.newImagePaths;
+
+  mc.uploadImage = function(image){
+    ResourceFactory.uploadImage(image, mc.updateImageInfo);
+  };
+
+  mc.updateImageInfo = function(){
+    for (path in mc.newImagePaths.paths) {
+      console.log('path:', path);
+      if(mc.newImagePaths.paths[path] == ""){
+        mc.newImagePaths.paths[path] = "//:0";
+      }
+    }
+    console.log('newImages:', mc.newImagePaths.paths);
+    mc.newResource.image_id = mc.newImagePaths.image_id;
+    mc.newResource.path1 = mc.newImagePaths.paths.path1;
+    mc.newResource.path2 = mc.newImagePaths.paths.path2;
+    mc.newResource.path3 = mc.newImagePaths.paths.path3;
+    mc.newResource.path4 = mc.newImagePaths.paths.path4;
+    mc.newResource.path5 = mc.newImagePaths.paths.path5;
+    // epc.newImagePaths = {};
   };
 
   // save resource from map
