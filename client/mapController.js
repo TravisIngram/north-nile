@@ -15,7 +15,7 @@ angular.module('northApp').controller('MapController', ['Upload','ngAudio','Reso
   };
 
 var communityGarden = {
-                  iconUrl: 'assets/img/GardenGreenBorder.svg',
+                  iconUrl: 'assets/img/GardenBlueBorder.svg',
                   // shadowUrl: 'assets/img/nature-1.svg',
                   iconSize:     [38, 38], // size of the icon
                   shadowSize:   [50, 64], // size of the shadow
@@ -40,7 +40,7 @@ var foodHub = {
                   popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
               };
 var foodDistribution = {
-                  iconUrl: 'assets/img/GreenhouseBlueBorder.svg',
+                  iconUrl: 'assets/img/GreenhouseBorder2.svg',
                   iconSize:     [38, 38], // size of the icon
                   shadowSize:   [50, 64], // size of the shadow
                   iconAnchor:   [19, 19], // point of the icon which will correspond to marker's location
