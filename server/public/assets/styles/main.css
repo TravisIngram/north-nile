@@ -6,6 +6,7 @@ colors: final rgba # is % opaque
 #9bb85c	rgba(155,184,92,0.6)
 #9eceb8	rgba(158,206,184,0.6)
 #70543e rgba(112,84,62,0.6)
+possible other linear gradient: rgba(0,0,100,0.1)
 ===================================
 Header font:
 font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
@@ -25,8 +26,8 @@ body {
   background:
   /* :: Source: C. Coyier @csstricks :: */
   linear-gradient(
-    rgba(112, 84, 62, 0.8),
-    rgba(112, 84, 62, 0.8)
+    rgba(128,128,128,0.6),
+    rgba(128,128,128,0.6)
     ),
     url('../carrots.jpg');
     background-size: cover;
@@ -136,7 +137,7 @@ body {
 
   .home .headerTitle {
     padding: 0;
-    font-size: 5vw;
+    font-size: 3vw;
     letter-spacing: 0px;
     margin-left: 3vw;
 
@@ -231,8 +232,18 @@ body {
   }
 
   .splashText{
+    padding-top: 10px;
     text-align:justify;
+    font-size: 1.1em;
+    font-weight: bold;
     margin: 15px 4vw;
+    text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+             0px 8px 13px rgba(0,0,0,0.1),
+             0px 18px 23px rgba(0,0,0,0.1);
+  }
+
+  .splashTextCtr {
+    text-align: center;
   }
 
 
@@ -250,6 +261,8 @@ body {
   .home .header-condensed {
     background-color: transparent;
     height: 25px;
+    border-radius: 6px;
+    width: 90vw;
   }
 
   .fa-map-o, .fa-user{
