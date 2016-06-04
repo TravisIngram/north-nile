@@ -1,3 +1,4 @@
+var config            = require('../../config');
 var async             = require('async');
 var pg                = require('pg');
 var accountModel      = require('./accountModel.js');
