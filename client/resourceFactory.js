@@ -151,6 +151,44 @@ angular.module('northApp').factory('ResourceFactory', ['$http', 'Upload', functi
     // end image upload
   };
 
+  var removeAudio = function(id, cb){
+    console.log('Removing audio:', id);
+    $http.delete('upload/audio/remove/' + id).then(function(response){
+      console.log('Removed audio:', response);
+      cb();
+    });
+  };
+
+  var uploadAudio = function(audio, cb){
+    console.log('uploading audio');
+    Upload.upload({
+      url: '/upload/audio/',
+      data: {file: audio}
+    }).then(function(response){
+      console.log('Successfully uploaded audio:', response);
+      cb(response.data.audio_id, response.data.audio_reference);
+      // nrc.uploadAudioSuccess = true;
+    }, function(response){
+      console.log('Failed at uploading audio:', response);
+    }, function(evt){
+      // console.log('evt', evt)
+    });
+  };
+
+  var updateAudio = function(audio, id, cb){
+    Upload.upload({
+      url: '/upload/audio/update/' + id,
+      data: {file:audio}
+    }).then(function(response){
+      console.log('Successfully uploaded audio:', response);
+      cb(response.data.audio_id, response.data.audio_reference);
+    }, function(response){
+      console.log('Failed at uploading audio:', response);
+    }, function(evt){
+      // used for progress
+    });
+  };
+
 
   return {
     saveNewResource: saveNewResource,
@@ -165,6 +203,9 @@ angular.module('northApp').factory('ResourceFactory', ['$http', 'Upload', functi
     removeResource: removeResource,
     removeImage: removeImage,
     uploadImage: uploadImage,
-    newImagePaths: newImagePaths
+    newImagePaths: newImagePaths,
+    removeAudio: removeAudio,
+    uploadAudio: uploadAudio,
+    updateAudio: updateAudio
   }
 }]);

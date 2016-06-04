@@ -274,10 +274,29 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
     // epc.newImagePaths = {};
   };
 
-  //
-
   epc.uploadImage = function(image, id, place){
     ResourceFactory.uploadImage(image, id, place, epc.updateImages);
+  };
+
+  epc.removeAudio = function(id){
+    ResourceFactory.removeAudio(id, epc.clearAudioPath);
+  };
+
+  epc.clearAudioPath = function(){
+    epc.selectedResource.audio_reference = '';
+  };
+
+  epc.uploadAudio = function(audio){
+    ResourceFactory.uploadAudio(audio, epc.updateAudioInfo);
+  };
+
+  epc.updateAudio = function(audio, id){
+    ResourceFactory.updateAudio(audio, id, epc.updateAudioInfo);
+  };
+
+  epc.updateAudioInfo = function(audio_id, audio_reference){
+    epc.selectedResource.audio_id = audio_id;
+    epc.selectedResource.audio_reference = audio_reference;
   };
 
   console.log('Edit Pending Controller loaded.', selectedResource);

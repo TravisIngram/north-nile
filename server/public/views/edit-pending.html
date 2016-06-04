@@ -140,12 +140,28 @@
 
         <md-input-container>
           <label for="pending_audio">Audio</label>
-          <input type="text" name="pending_audio" ng-model="epc.selectedResource.audio" />
+          <!-- <input type="text" name="pending_audio" ng-model="epc.selectedResource.audio" /> -->
         </md-input-container>
+        <div class="uploadContainer">
+          <div class="audioContainer">
+            <label class="md-button" ng-show="!epc.selectedResource.audio_id" for="upload_audio" >Add</label>
+            <label class="md-button" ng-show="epc.selectedResource.audio_id" for="update_audio" >Add</label>
+            <p ng-show="epc.selectedResource.audio_reference">
+              Audio file present.
+            </p>
+            <p ng-show="!epc.selectedResource.audio_reference">
+              No audio files.
+            </p>
+            <md-button ng-click="epc.removeAudio(epc.selectedResource.audio_id, epc.selectedResource.audio_reference)" >Remove</md-button>
+            <input type="file" id="upload_audio" name="upload_audio" class="fileUpload" ng-model="epc.newAudio.file" ngf-select="epc.uploadAudio(epc.newAudio.file)" ngf-multiple="false" ngf-pattern="'audio/*'" accept="audio/*" ngf-max-size="20MB" aria-label="upload_audio"/>
+            <input type="file" id="update_audio" name="update_audio" class="fileUpload" ng-model="epc.newAudio.file" ngf-select="epc.updateAudio(epc.newAudio.file, epc.selectedResource.audio_id)" ngf-multiple="false" ngf-pattern="'audio/*'" accept="audio/*" ngf-max-size="20MB" aria-label="upload_audio"/>
 
-        <md-input-container>
+          </div>
+        </div>
+
+         <md-input-container>
           <label for="pending_images">Images</label>
-          <input type="text" name="pending_images" ng-model="epc.selectedResource.images" />
+          <!-- <input type="text" name="pending_images" ng-model="epc.selectedResource.images" /> -->
         </md-input-container>
         <div class="uploadContainer">
           <div class="imageContainer">
