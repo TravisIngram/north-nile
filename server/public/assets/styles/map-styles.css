@@ -5,7 +5,7 @@
   bottom: 0;
   width: 100%;
   height: 10vh;
-  background-color: #706c69;
+  background-color: #A09892;
 }
 
 /* ::: template drawer, not resource display anymore, input resource form and others? ::: */
@@ -223,7 +223,7 @@ left: 440px;
 }
 
 #userKeyButton, #homeKeyButton, #addKeyButton{
-  background-color:#70543E;
+  background-color:#786d64;
   line-height:56px;
    padding:5px;
 }

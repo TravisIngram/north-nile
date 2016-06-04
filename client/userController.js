@@ -54,7 +54,7 @@ angular.module('northApp').controller('UserController', ['Upload','UserTrackFact
 
 }]);
 
-angular.module('northApp').controller('UserNewResourceController', ['UserTrackFactory','isAdmin', '$mdDialog', 'ResourceFactory', function(UserTrackFactory, isAdmin,$mdDialog, ResourceFactory){
+angular.module('northApp').controller('UserNewResourceController', ['Upload','UserTrackFactory','isAdmin', '$mdDialog', 'ResourceFactory', function(Upload,UserTrackFactory, isAdmin,$mdDialog, ResourceFactory){
   console.log('UserNewResourceController has loaded', isAdmin);
   var unrc=this;
   unrc.isAdmin = isAdmin;
@@ -114,7 +114,7 @@ angular.module('northApp').controller('UserNewResourceController', ['UserTrackFa
   };
 }]);
 // edit modal for user's resources//
-angular.module('northApp').controller('EditResourceController', ['userResource', '$mdDialog', 'ResourceFactory', function(userResource,  $mdDialog, ResourceFactory){
+angular.module('northApp').controller('EditResourceController', ['Upload','userResource', '$mdDialog', 'ResourceFactory', function(Upload, userResource,  $mdDialog, ResourceFactory){
   var erc = this;
   erc.userResource = userResource;
   erc.newImagePaths = ResourceFactory.newImagePaths;
@@ -206,5 +206,5 @@ angular.module('northApp').controller('EditResourceController', ['userResource',
   };
 
 
-  console.log('Edit Resource Controller loaded.', userResource);
+  console.log('Edit Resource Controller loaded.', erc.userResource);
 }]);
