@@ -1,6 +1,7 @@
 var router = require('express').Router();
 var multer = require('multer');
 var pg = require('pg');
+var fs = require('fs');
 var dbConnectionString = require('../db/dbConnection.js').dbConnectionString;
 
 var storage = multer.diskStorage({
@@ -179,26 +180,57 @@ router.delete('/image/remove/:id/:place', function(request, response){
       console.log('Error connecting to database to remove image:', err);
       response.sendStatus(500);
     } else {
-      var queryString = 'UPDATE "image" SET (path' + place + ') = (\'\') WHERE id = ' + id + 'RETURNING "path1", "path2", "path3", "path4", "path5"';
+      var returnedRow = {};
+      var queryString = 'SELECT path' + place + ' FROM image WHERE id = ' + id;
 
-      var query = client.query(queryString, function(err, result){
-        if(err){
-          console.log('Error returning image id:', err);
-        } else {
-          console.log('Image return result:', result);
-          image_paths = result.rows[0];
-        }
-      });
+      var query = client.query(queryString);
 
       query.on('error', function(err){
-        console.log('Error removing image:', err);
-        client.end();
+        console.log('Error getting file paths to remove images:', err);
+        done();
+      });
+
+      query.on('row', function(row){
+        console.log('rows to remove:', row);
+        returnedRow = row;
       });
 
       query.on('end', function(){
-        response.send(image_paths);
-        done();
+        // rows.map(function(filePath){
+        //   fs.unlinkSync('server/public/' + filePath);
+        // });
+        for (cell in returnedRow){
+          if(cell !== 'id'){
+            var fullPath = 'server/public/' + returnedRow[cell];
+            console.log('fullPath:', fullPath);
+            fs.unlinkSync(fullPath);
+          }
+        }
+        console.log('Removed image files, setting paths to null.');
+        // set file path to null
+        var queryString = 'UPDATE "image" SET (path' + place + ') = (\'\') WHERE id = ' + id + 'RETURNING "path1", "path2", "path3", "path4", "path5"';
+
+        var query = client.query(queryString, function(err, result){
+          if(err){
+            console.log('Error returning image id:', err);
+          } else {
+            console.log('Image return result:', result);
+            image_paths = result.rows[0];
+          }
+        });
+
+        query.on('error', function(err){
+          console.log('Error removing image:', err);
+          client.end();
+        });
+
+        query.on('end', function(){
+          response.send(image_paths);
+          done();
+        });
       });
+
+
     }
   });
 });
