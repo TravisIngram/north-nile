@@ -144,6 +144,18 @@ margin-right: 5px;
   background-color:#93CEB8;
 }
 
+.approvedResourcesTable {
+  max-height:40vh;
+}
+
+md-checkbox.md-checked .md-icon {
+  background-color: #ec4500;
+}
+
+
+  .infoDrawerResource.ng-hide{
+    max-height:0;
+  }
 
 .infoDrawer.ng-hide{
   max-height: 0;
