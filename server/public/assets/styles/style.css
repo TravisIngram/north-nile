@@ -303,6 +303,10 @@ body {
     max-height:40vh;
   }
 
+  md-checkbox.md-checked .md-icon {
+    background-color: #ec4500;
+  }
+
   /* ::::: VISITOR/USER DASHBOARD ::::: */
 
 
@@ -369,6 +373,10 @@ body {
     transition-property: all;
     transition-duration: .5s;
     transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  }
+
+  .infoDrawerResource.ng-hide{
+    max-height:0;
   }
 
   .drawerContent {
