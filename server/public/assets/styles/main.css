@@ -188,6 +188,10 @@ font-family: 'Playfair Display', 'Georgia', serif;
     margin: 10vmin;
   }
 
+  md-input-container .md-input {
+    color: #4c4c4c;
+  }
+
   md-input-container.md-default-theme.md-input-invalid .md-input, md-input-container.md-input-invalid .md-input{
     border-color: #f3cb00;
   }
