@@ -125,5 +125,8 @@ app.use('/', indexRouter);
 // server
 var server = app.listen(process.env.PORT || 3000, function() {
   var port = server.address().port;
-  console.log('Server listening on port ' + port + '...\nPress Ctrl + c to close connection');
+  if(port == 3000){
+    console.log('Server started at: http://localhost:3000/');
+    console.log('Press Ctrl + c to close connection');
+  }
 });
