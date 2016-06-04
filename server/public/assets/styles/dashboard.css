@@ -3,18 +3,19 @@
 /* ::::: ADMIN DASHBOARD ::::: */
 
 .home.dashboard {
-  .emailDialogText{
-    color: black;
-  }
+}
 
-  .pageTitle {
-    text-align: center;
-  }
+.emailDialogText{
+  color: #4c4c4c;
+}
 
-  /*edit and add new resource modals on admin*/
-  md-dialog{
-    width:90vw;
-  }
+.pageTitle {
+  text-align: center;
+}
+
+/*edit and add new resource modals on admin*/
+md-dialog{
+  width:90vw;
 }
 
 /*hide input type=file element*/
