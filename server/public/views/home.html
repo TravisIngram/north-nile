@@ -10,7 +10,7 @@
     <h1 class="mainTitle">Nile of the North</h1>
 
     <!-- <p>Deadlights jack lad schooner scallywag dance the hempen jig carouser broadside cable strike colors. Bring a spring upon her cable holystone blow the man down spanker Shiver me timbers to go on account lookout wherry doubloon chase. Belay yo-ho-ho keelhaul squiffy black spot yardarm spyglass sheet transom heave to.</p> -->
-    <md-button class="md-raised"><a href="/map"><i class="fa fa-map-o" aria-hidden="true"></i>Map</a></md-button>
+    <md-button href="/map" class="md-raised"><i class="fa fa-map-o" aria-hidden="true"></i>Map</md-button>
 
     <md-button class="md-raised" ng-hide="hc.user" ng-click="hc.loginShow()"><i class="fa fa-sign-in" aria-hidden="true"></i> Log In</md-button>
 
@@ -25,7 +25,7 @@
       <div class="home nav">
         <md-button class="md-raised" ng-show="hc.user" ng-click="hc.routeUser()"><i class="fa fa-user" aria-hidden="true"></i>Account</md-button>
 
-        <md-button class="md-raised" ng-show="hc.user"><a href="/logout" target="_self"><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</a></md-button>
+        <md-button href="/logout" target="_self" class="md-raised" ng-show="hc.user"><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</md-button>
       </div>
     </div>
 
