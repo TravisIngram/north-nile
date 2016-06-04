@@ -5,28 +5,56 @@
 <!-- ::::::::: START HOME PAGE ::::::::: -->
 <div class="home">
 
-  <!-- ::::::::: full home header + nav ::::::::: -->
+<!-- ::::::::: full home header + nav ::::::::: -->
   <div class="home header-expanded" ng-show="hc.headerExpanded">
-    <h1 class="mainTitle">Nile of the North</h1>
 
-    <!-- <p>Deadlights jack lad schooner scallywag dance the hempen jig carouser broadside cable strike colors. Bring a spring upon her cable holystone blow the man down spanker Shiver me timbers to go on account lookout wherry doubloon chase. Belay yo-ho-ho keelhaul squiffy black spot yardarm spyglass sheet transom heave to.</p> -->
-    <md-button class="md-raised"><a href="/map"><i class="fa fa-map-o" aria-hidden="true"></i>Map</a></md-button>
+    <md-toolbar class="home header-condensed">
+      <div class="md-toolbar-tools">
+        <h1 class="headerTitle md-toolbar-tools md-flex">Nile of the North</h1>
 
-    <md-button class="md-raised" ng-hide="hc.user" ng-click="hc.loginShow()"><i class="fa fa-sign-in" aria-hidden="true"></i> Log In</md-button>
+        <span flex></span>
 
-    <div>
-      <p class="splashText">North Minneapolis is not unlike many other marginalized urban communities of color that have in recent times come to be coined “food deserts”. Food deserts can be described as geographic areas where resident’s access to affordable healthy food options (especially fresh fruits and vegetables) is restricted.</p>
+        <md-button href="/map"><i class="fa fa-map-o" aria-hidden="true"></i> Map</md-button>
 
-      <p class="splashText">Nile of the North is a green vision of economic and ecological vitality. It has evolved from the diligent collaboration of a cohort of North Minneapolis residents, citizens interested in food justice, non-profits, social service agencies, and businesses. These food champions have been intent on creating a social, sustainable healthy food system. Their ongoing efforts to eradicate food insecurity stand in stark contrast to the local media portrayal and perception of the North Side as a community plagued by crime, death, and vigilance.</p>
-      <h3>“If you have a garden and a library,<br />you have everything you need” <br />- Cicero</h3>
+        <md-button ng-hide="hc.user" ng-click="hc.loginShow()"><i class="fa fa-sign-in" aria-hidden="true"></i> Log In</md-button>
+
+        <md-button ng-show="hc.user" ng-click="hc.routeUser()"><i class="fa fa-user" aria-hidden="true"></i>Account</md-button>
+
+        <md-button ng-show="hc.user" href="/logout" target="_self"><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</md-button>
+
+        <md-button href="http://www.projectsweetiepie.org/blog" target="_blank">Blog <i class="fa fa-external-link" aria-hidden="true"></i></md-button>
+
+        <!-- <md-button href="http://www.projectsweetiepie.org/" target="_blank">PSP <i class="fa fa-tree" aria-hidden="true"></i></md-button> -->
+      </div>
+
+      </md-toolbar>
+
+
+    <!-- <h1 class="mainTitle">Nile of the North</h1> -->
+
+    <div class="splashText">
+      <p >The "Nile of the North" is a green vision of economic and ecological vitality. It has evolved from and been inspired by the diligent and collaborative hard work of a cohort of north side Minneapolis residents, concerned citizens interested in food justice, non-profits, social service agencies, and businesses intent on creating a social, sustainable healthy food system.
+      </p>
+
+      <p>As Northside Fresh Coalition, these champions advocate ongoing efforts to eradicate food insecurity by creating a shared vision for North Minneapolis's food system and community. Improving our food system is key to overcoming economic, environmental and social barriers to health and revitalization of our community. "Nile of the North" is born of this collective effort.</p>
+
+      <div class="splashTextCtr">
+        <h3>These map stories are:</h3>
+          <p>Images of a community</br>
+          A resource guide for residents seeking access to healthy food<br />
+          A network for food entrepreneurs, community food advocates to share ideas and resources<br />
+          A place to market the availability of healthy food to the community<br />
+        </p>
+        <h3>“If you have a garden and a library,<br />you have everything you need” <br />- Cicero</h3>
+      </div>
 
     </div>
 
-      <div class="home nav">
+      <!-- <div class="home nav">
         <md-button class="md-raised" ng-show="hc.user" ng-click="hc.routeUser()"><i class="fa fa-user" aria-hidden="true"></i>Account</md-button>
 
         <md-button class="md-raised" ng-show="hc.user"><a href="/logout" target="_self"><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</a></md-button>
-      </div>
+      </div> -->
     </div>
 
     <!-- ::::::::: condensed header + nav ::::::::: -->
@@ -139,8 +167,8 @@
 
     </div> <!-- ::::::::: END HOME PAGE ::::::::: -->
 
-    <footer class="other-links">
+    <!-- <footer class="other-links">
       <md-button href="http://www.projectsweetiepie.org/" target="_blank">Blog <i class="fa fa-external-link" aria-hidden="true"></i></md-button>
 
       <md-button href="http://www.projectsweetiepie.org/" target="_blank">PSP <i class="fa fa-tree" aria-hidden="true"></i></md-button>
-    </footer>
+    </footer> -->

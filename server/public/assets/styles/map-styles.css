@@ -5,7 +5,7 @@
   bottom: 0;
   width: 100%;
   height: 10vh;
-  background-color: seagreen;
+  background-color: #A09892;
 }
 
 /* ::: template drawer, not resource display anymore, input resource form and others? ::: */
@@ -15,9 +15,7 @@
   height: 60vh;
   max-height: 60vh;
   width: 100vw;
-  /*background-color: rgba(60,179,113, 0.9);*/
-  /*background-color: #70543e;*/
-  background-color:rgba(158,206,184,0.6);
+  background-color:rgba(158,206,184,0.8);
   color:#00000 !important;
   /*box-shadow: 2px 2px 5px rgba(56,42,31,0.5);*/
   /*border-radius: 5px;*/
@@ -28,7 +26,7 @@
 }
 .infoDrawer .loginMap {
 font-family: 'Playfair Display', 'Georgia', serif;
-background-color:  rgba(158,206,184,0.6);
+background-color:  white;
 border-radius: 10px;
 padding: 15px;
 color: #70543e;
@@ -182,24 +180,26 @@ md-checkbox.md-checked .md-icon {
 }
 
 .arrow{
-  width:5px;
-  height:5px;
+  /*width:5px;
+  height:5px;*/
   position: absolute;
-  z-index: 1002;
+  /*z-index: 1002;*/
   display: block;
-  top: 100%;
+  /*top: 100%;
   margin-top: -35px;
   width: 36px;
-  height: 71px;
+  height: 71px;*/
   outline: none;
 }
 
 .next{
-right: 20px;
+/*right: 20px;*/
+right: 440px;
 }
 
 .prev{
-left: 20px;
+/*left: 20px;*/
+left: 440px;
 }
 
 .slide{
@@ -210,20 +210,20 @@ left: 20px;
 .activeArea { position: absolute; top: 50px; left: 50px; right: 50px; height: 90px; }
 
 #filter1{
-  background-color:#9BB85C;
+  background-color:#9eceb8;
 }
 #filter2{
   background-color:#EC4500;
 }
 #filter3{
-  background-color:#F3CB00;
+  background-color:#f3cb00;
 }
 #filter4{
-  background-color:#93CEB8;
+  background-color:#9bb85c;
 }
 
 #userKeyButton, #homeKeyButton, #addKeyButton{
-  background-color:#70543E;
+  background-color:#786d64;
   line-height:56px;
    padding:5px;
 }

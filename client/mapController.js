@@ -15,7 +15,7 @@ angular.module('northApp').controller('MapController', ['Upload','ngAudio','Reso
   };
 
 var communityGarden = {
-                  iconUrl: 'assets/img/GardenGreenBorder.svg',
+                  iconUrl: 'assets/img/GardenBlueBorder.svg',
                   // shadowUrl: 'assets/img/nature-1.svg',
                   iconSize:     [38, 38], // size of the icon
                   shadowSize:   [50, 64], // size of the shadow
@@ -31,7 +31,7 @@ var culinaryArts = {
                   shadowAnchor: [4, 62],  // the same for the shadow
                   popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
               };
-var foodHub = {
+var foodDistribution = {
                   iconUrl: 'assets/img/StoreYellowBorder.svg',
                   iconSize:     [38, 38], // size of the icon
                   shadowSize:   [50, 64], // size of the shadow
@@ -39,8 +39,8 @@ var foodHub = {
                   shadowAnchor: [4, 62],  // the same for the shadow
                   popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
               };
-var foodDistribution = {
-                  iconUrl: 'assets/img/TruckBlueBorder.svg',
+var foodHub = {
+                  iconUrl: 'assets/img/GreenhousePerfect.svg',
                   iconSize:     [38, 38], // size of the icon
                   shadowSize:   [50, 64], // size of the shadow
                   iconAnchor:   [19, 19], // point of the icon which will correspond to marker's location
@@ -74,10 +74,10 @@ var foodDistribution = {
       case 'Culinary Arts':
         filter2.toggleClass('disabledKeyButton');
         break;
-      case 'Food Hub':
+      case 'Food Distribution':
         filter3.toggleClass('disabledKeyButton');
         break;
-      case 'Food Distribution':
+      case 'Food Hub':
         filter4.toggleClass('disabledKeyButton');
         break;
     }
@@ -91,11 +91,11 @@ var foodDistribution = {
         if(mc.storedMarkers[marker].resource_type == 'Culinary Arts'){
           mc.storedMarkers[marker].icon = culinaryArts;
         }
-        if(mc.storedMarkers[marker].resource_type == 'Food Hub'){
-          mc.storedMarkers[marker].icon = foodHub;
-        }
         if(mc.storedMarkers[marker].resource_type == 'Food Distribution'){
           mc.storedMarkers[marker].icon = foodDistribution;
+        }
+        if(mc.storedMarkers[marker].resource_type == 'Food Hub'){
+          mc.storedMarkers[marker].icon = foodHub;
         }
         // mc.storedMarkers[marker].icon = customIcon;
       }
@@ -140,16 +140,16 @@ var foodDistribution = {
 
     // change color of background border
     if (mc.lastClicked.resource_type == 'Community Garden'){
-      mc.colorBk = "resourceGreen";
+      mc.colorBk = "resourceBlue";
     }
     if (mc.lastClicked.resource_type == 'Culinary Arts'){
       mc.colorBk = "resourceOrange";
     }
     if (mc.lastClicked.resource_type == 'Food Hub'){
-      mc.colorBk = "resourceYellow";
+      mc.colorBk = "resourceGreen";
     }
     if (mc.lastClicked.resource_type == 'Food Distribution'){
-      mc.colorBk = "resourceBlue";
+      mc.colorBk = "resourceYellow";
     }
 
     // open web and social media if present
@@ -453,40 +453,80 @@ var foodDistribution = {
   };
 
   // upload images and audio
-  mc.uploadAudio = function(audio, resource){
-    console.log('uploading audio');
-    Upload.upload({
-      url: '/upload/audio',
-      data: {file: audio.file}
-    }).then(function(response){
-      console.log('Successfully uploaded audio:', response);
-      resource.audio_id = response.data.audio_id;
-      mc.uploadAudioSuccess = true;
-    }, function(response){
-      console.log('Failed at uploading audio:', response);
-    }, function(evt){
-      // console.log('evt', evt)
-    });
+  // mc.uploadAudio = function(audio, resource){
+  //   console.log('uploading audio');
+  //   Upload.upload({
+  //     url: '/upload/audio',
+  //     data: {file: audio.file}
+  //   }).then(function(response){
+  //     console.log('Successfully uploaded audio:', response);
+  //     resource.audio_id = response.data.audio_id;
+  //     mc.uploadAudioSuccess = true;
+  //   }, function(response){
+  //     console.log('Failed at uploading audio:', response);
+  //   }, function(evt){
+  //     // console.log('evt', evt)
+  //   });
+  // };
+
+  mc.uploadAudio = function(audio){
+    ResourceFactory.uploadAudio(audio, mc.updateAudioInfo);
   };
 
-  mc.uploadImage = function(image, resource){
-    Upload.upload({
-      url: '/upload/image',
-      arrayKey: '',
-      data: {file: image.file}
-    }).then(function(response){
-      console.log('Success response?', response);
-      // save rest of resource
-      resource.image_id = response.data.image_id;
-      mc.uploadImageSuccess = true;
+  mc.updateAudioInfo = function(audio_id, audio_reference){
+    mc.newResource.audio_id = audio_id;
+    mc.newResource.audio_reference = audio_reference;
+  };
 
-    }, function(response){
-      console.log('Error response?', response);
-    }, function(evt){
-      // use for progress bar
-      console.log('Event response?', evt);
-    });
-    // end image upload
+  mc.removeAudio = function(id){
+    ResourceFactory.removeAudio(id, mc.clearAudioPath);
+  };
+
+  mc.clearAudioPath = function(){
+    mc.newResource.audio_reference = '';
+  };
+
+  // mc.uploadImage = function(image, resource){
+  //   Upload.upload({
+  //     url: '/upload/image',
+  //     arrayKey: '',
+  //     data: {file: image.file}
+  //   }).then(function(response){
+  //     console.log('Success response?', response);
+  //     // save rest of resource
+  //     resource.image_id = response.data.image_id;
+  //     mc.uploadImageSuccess = true;
+  //
+  //   }, function(response){
+  //     console.log('Error response?', response);
+  //   }, function(evt){
+  //     // use for progress bar
+  //     console.log('Event response?', evt);
+  //   });
+  //   // end image upload
+  // };
+
+  mc.newImagePaths = ResourceFactory.newImagePaths;
+
+  mc.uploadImage = function(image){
+    ResourceFactory.uploadImage(image, mc.updateImageInfo);
+  };
+
+  mc.updateImageInfo = function(){
+    for (path in mc.newImagePaths.paths) {
+      console.log('path:', path);
+      if(mc.newImagePaths.paths[path] == ""){
+        mc.newImagePaths.paths[path] = "//:0";
+      }
+    }
+    console.log('newImages:', mc.newImagePaths.paths);
+    mc.newResource.image_id = mc.newImagePaths.image_id;
+    mc.newResource.path1 = mc.newImagePaths.paths.path1;
+    mc.newResource.path2 = mc.newImagePaths.paths.path2;
+    mc.newResource.path3 = mc.newImagePaths.paths.path3;
+    mc.newResource.path4 = mc.newImagePaths.paths.path4;
+    mc.newResource.path5 = mc.newImagePaths.paths.path5;
+    // epc.newImagePaths = {};
   };
 
   // save resource from map

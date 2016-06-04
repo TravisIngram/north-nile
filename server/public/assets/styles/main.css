@@ -6,6 +6,9 @@ colors: final rgba # is % opaque
 #9bb85c	rgba(155,184,92,0.6)
 #9eceb8	rgba(158,206,184,0.6)
 #70543e rgba(112,84,62,0.6)
+#786d64 rgba(120,109,100,0.6)
+#A09892 rgba(160,152,146,0.6)
+possible other linear gradient: rgba(0,0,100,0.1)
 ===================================
 Header font:
 font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
@@ -14,21 +17,17 @@ Body font:
 font-family: 'Playfair Display', 'Georgia', serif;
 =================================== */
 
-/* ::::: GENERAL STYLES ::::: */
-
-body {
-
-}
+/* :::::::::: GENERAL STYLES :::::::::: */
 
 .backfill{
   size: auto;
   background:
   /* :: Source: C. Coyier @csstricks :: */
   linear-gradient(
-    rgba(112, 84, 62, 0.8),
-    rgba(112, 84, 62, 0.8)
+    rgba(160,152,146,0.6),
+    rgba(160,152,146,0.6)
     ),
-    url('../carrots.jpg');
+    url('../basket.jpg');
     background-size: cover;
     background-attachment:fixed;
     position:absolute;
@@ -69,7 +68,7 @@ body {
     font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
     color: #9eceb8;
     font-size: 22px;
-    text-shadow: 2px 2px 3px #433225;
+    text-shadow: 2px 2px 2px #433225;
   }
 
   p{
@@ -84,7 +83,7 @@ body {
     font-weight: bolder;
     text-transform: lowercase;
     margin: 5px;
-    padding: 0px;
+    padding: 0;
   }
 
   .md-button.md-raised {
@@ -107,7 +106,7 @@ body {
   }
 
   md-dialog.md-default-theme, md-dialog{
-    background-color: rgba(124,147,73,8);
+    background-color: white;
     color: white;
     width: 90vw;
     margin: 2px 15px;
@@ -127,7 +126,8 @@ body {
     margin: 2px;
   }
 
-  /* ::::: HOME PAGE ::::: */
+
+  /* :::::::::: HOME PAGE :::::::::: */
 
   .home {
     background-color: transparent;
@@ -136,7 +136,7 @@ body {
 
   .home .headerTitle {
     padding: 0;
-    font-size: 5vw;
+    font-size: 3vw;
     letter-spacing: 0px;
     margin-left: 3vw;
 
@@ -159,7 +159,7 @@ body {
   }
 
   md-card{
-    background-color:rgba(158,206,184,0.6);
+    background-color:rgba(158,206,184,0.8);
     color:white !important;
     box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
     border-radius: 5px;
@@ -181,19 +181,44 @@ body {
 
   }
 
-  /*form, .home form{
+  form, .home form{
     font-family: 'Playfair Display', 'Georgia', serif;
-    background-color:  rgba(158,206,184,0.6);
+    background-color:  rgba(158,206,184,0.8);
     border-radius: 10px;
     padding: 20px;
     color #70543e;
     box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
     margin: 10vmin;
-  }*/
+  }
+
+  md-input-container .md-input {
+    color: #4c4c4c;
+  }
+
+  md-input-container.md-default-theme.md-input-invalid .md-input, md-input-container.md-input-invalid .md-input{
+    border-color: #f3cb00;
+  }
+
+  md-input-container.md-input-invalid [ng-message]{
+    color: #DAB600;
+  }
+
+  md-input-container.md-input-invalid.md-input-focused label {
+    color: #f3cb00;
+  }
+
+  md-input-container:not(.md-input-invalid).md-input-focused label {
+    color: white;
+  }
+
+  md-input-container:not(.md-input-invalid).md-input-focused .md-input {
+    border-color: white;
+  }
+
 
   .home .register form {
     font-family: 'Playfair Display', 'Georgia', serif;
-    background-color:  rgba(158,206,184,0.6);
+    background-color:  rgba(158,206,184,0.8);
     border-radius: 10px;
     padding: 15px;
     color #70543e;
@@ -203,7 +228,7 @@ body {
 
   .home .login form {
     font-family: 'Playfair Display', 'Georgia', serif;
-    background-color:  rgba(158,206,184,0.6);
+    background-color:  rgba(158,206,184,0.8);
     border-radius: 10px;
     padding: 15px;
     color: #70543e;
@@ -231,13 +256,23 @@ body {
   }
 
   .splashText{
+    padding-top: 10px;
     text-align:justify;
+    font-size: 1.1em;
+    font-weight: bold;
     margin: 15px 4vw;
+    text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+             0px 8px 13px rgba(0,0,0,0.1),
+             0px 18px 23px rgba(0,0,0,0.1);
+  }
+
+  .splashTextCtr {
+    text-align: center;
   }
 
 
 
-  /* ::::: NAV STYLES ::::: */
+  /* :::::::::: NAV STYLES :::::::::: */
 
   .md-toolbar-tools{
     color: white;
@@ -250,6 +285,8 @@ body {
   .home .header-condensed {
     background-color: transparent;
     height: 25px;
+    border-radius: 6px;
+    width: 90vw;
   }
 
   .fa-map-o, .fa-user{
