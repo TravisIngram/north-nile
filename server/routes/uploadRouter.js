@@ -203,7 +203,12 @@ router.delete('/image/remove/:id/:place', function(request, response){
           if(cell !== 'id'){
             var fullPath = 'server/public/' + returnedRow[cell];
             console.log('fullPath:', fullPath);
-            fs.unlinkSync(fullPath);
+            // check if file exists, if so, remove it
+            fs.lstat(fullPath, function(err, stat){
+              if(!err){
+                fs.unlinkSync(fullPath);
+              }
+            });
           }
         }
         console.log('Removed image files, setting paths to null.');
