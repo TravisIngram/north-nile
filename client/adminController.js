@@ -324,20 +324,37 @@ angular.module('northApp').controller('NewResourceController', ['Upload','$http'
     $mdDialog.hide();
   };
 
-  nrc.uploadAudio = function(audio, resource){
-    console.log('uploading audio');
-    Upload.upload({
-      url: '/upload/audio',
-      data: {file: audio.file}
-    }).then(function(response){
-      console.log('Successfully uploaded audio:', response);
-      resource.audio_id = response.data.audio_id;
-      nrc.uploadAudioSuccess = true;
-    }, function(response){
-      console.log('Failed at uploading audio:', response);
-    }, function(evt){
-      // console.log('evt', evt)
-    });
+  // nrc.uploadAudio = function(audio, resource){
+  //   console.log('uploading audio');
+  //   Upload.upload({
+  //     url: '/upload/audio',
+  //     data: {file: audio.file}
+  //   }).then(function(response){
+  //     console.log('Successfully uploaded audio:', response);
+  //     resource.audio_id = response.data.audio_id;
+  //     nrc.uploadAudioSuccess = true;
+  //   }, function(response){
+  //     console.log('Failed at uploading audio:', response);
+  //   }, function(evt){
+  //     // console.log('evt', evt)
+  //   });
+  // };
+
+  nrc.uploadAudio = function(audio){
+    ResourceFactory.uploadAudio(audio, nrc.updateAudioInfo);
+  };
+
+  nrc.updateAudioInfo = function(audio_id, audio_reference){
+    nrc.newResource.audio_id = audio_id;
+    nrc.newResource.audio_reference = audio_reference;
+  };
+
+  nrc.removeAudio = function(id){
+    ResourceFactory.removeAudio(id, nrc.clearAudioPath);
+  };
+
+  nrc.clearAudioPath = function(){
+    nrc.newResource.audio_reference = '';
   };
 
   // nrc.uploadImage = function(image, resource){

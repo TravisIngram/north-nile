@@ -58,6 +58,7 @@ angular.module('northApp').controller('UserNewResourceController', ['Upload','Us
   console.log('UserNewResourceController has loaded', isAdmin);
   var unrc=this;
   unrc.isAdmin = isAdmin;
+  unrc.newImagePaths = ResourceFactory.newImagePaths;
   unrc.newResource = {is_active:false, city_name:"Minneapolis", state:"MN"};
 
   var promise = UserTrackFactory.getUserData();
@@ -66,40 +67,78 @@ angular.module('northApp').controller('UserNewResourceController', ['Upload','Us
     console.log('user user:', unrc.user);
   });
 
-  unrc.uploadAudio = function(audio, resource){
-    console.log('uploading audio');
-    Upload.upload({
-      url: '/upload/audio',
-      data: {file: audio.file}
-    }).then(function(response){
-      console.log('Successfully uploaded audio:', response);
-      resource.audio_id = response.data.audio_id;
-      unrc.uploadAudioSuccess = true;
-    }, function(response){
-      console.log('Failed at uploading audio:', response);
-    }, function(evt){
-      // console.log('evt', evt)
-    });
+  // unrc.uploadAudio = function(audio, resource){
+  //   console.log('uploading audio');
+  //   Upload.upload({
+  //     url: '/upload/audio',
+  //     data: {file: audio.file}
+  //   }).then(function(response){
+  //     console.log('Successfully uploaded audio:', response);
+  //     resource.audio_id = response.data.audio_id;
+  //     unrc.uploadAudioSuccess = true;
+  //   }, function(response){
+  //     console.log('Failed at uploading audio:', response);
+  //   }, function(evt){
+  //     // console.log('evt', evt)
+  //   });
+  // };
+
+  unrc.uploadAudio = function(audio){
+    ResourceFactory.uploadAudio(audio, unrc.updateAudioInfo);
   };
 
-  unrc.uploadImage = function(image, resource){
-    Upload.upload({
-      url: '/upload/image',
-      arrayKey: '',
-      data: {file: image.file}
-    }).then(function(response){
-      console.log('Success response?', response);
-      // save rest of resource
-      resource.image_id = response.data.image_id;
-      unrc.uploadImageSuccess = true;
+  unrc.updateAudioInfo = function(audio_id, audio_reference){
+    unrc.newResource.audio_id = audio_id;
+    unrc.newResource.audio_reference = audio_reference;
+  };
 
-    }, function(response){
-      console.log('Error response?', response);
-    }, function(evt){
-      // use for progress bar
-      console.log('Event response?', evt);
-    });
-    // end image upload
+  unrc.removeAudio = function(id){
+    ResourceFactory.removeAudio(id, unrc.clearAudioPath);
+  };
+
+  unrc.clearAudioPath = function(){
+    unrc.newResource.audio_reference = '';
+  };
+
+  // unrc.uploadImage = function(image, resource){
+  //   Upload.upload({
+  //     url: '/upload/image',
+  //     arrayKey: '',
+  //     data: {file: image.file}
+  //   }).then(function(response){
+  //     console.log('Success response?', response);
+  //     // save rest of resource
+  //     resource.image_id = response.data.image_id;
+  //     unrc.uploadImageSuccess = true;
+  //
+  //   }, function(response){
+  //     console.log('Error response?', response);
+  //   }, function(evt){
+  //     // use for progress bar
+  //     console.log('Event response?', evt);
+  //   });
+  //   // end image upload
+  // };
+
+  unrc.uploadImage = function(image){
+    ResourceFactory.uploadImage(image, unrc.updateImageInfo);
+  };
+
+  unrc.updateImageInfo = function(){
+    for (path in unrc.newImagePaths.paths) {
+      console.log('path:', path);
+      if(unrc.newImagePaths.paths[path] == ""){
+        unrc.newImagePaths.paths[path] = "//:0";
+      }
+    }
+    console.log('newImages:', unrc.newImagePaths.paths);
+    unrc.newResource.image_id = unrc.newImagePaths.image_id;
+    unrc.newResource.path1 = unrc.newImagePaths.paths.path1;
+    unrc.newResource.path2 = unrc.newImagePaths.paths.path2;
+    unrc.newResource.path3 = unrc.newImagePaths.paths.path3;
+    unrc.newResource.path4 = unrc.newImagePaths.paths.path4;
+    unrc.newResource.path5 = unrc.newImagePaths.paths.path5;
+    // epc.newImagePaths = {};
   };
 
   unrc.saveNewResource = function(resource){

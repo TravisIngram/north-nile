@@ -180,7 +180,7 @@ angular.module('northApp').factory('ResourceFactory', ['$http', 'Upload', functi
   };
 
   var uploadAudio = function(audio, cb){
-    console.log('uploading audio');
+    console.log('uploading audio:', audio);
     Upload.upload({
       url: '/upload/audio/',
       data: {file: audio}
