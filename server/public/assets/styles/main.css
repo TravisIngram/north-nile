@@ -6,6 +6,8 @@ colors: final rgba # is % opaque
 #9bb85c	rgba(155,184,92,0.6)
 #9eceb8	rgba(158,206,184,0.6)
 #70543e rgba(112,84,62,0.6)
+#786d64 rgba(120,109,100,0.6)
+#A09892 rgba(160,152,146,0.6)
 possible other linear gradient: rgba(0,0,100,0.1)
 ===================================
 Header font:
@@ -22,8 +24,8 @@ font-family: 'Playfair Display', 'Georgia', serif;
   background:
   /* :: Source: C. Coyier @csstricks :: */
   linear-gradient(
-    rgba(128,128,128,0.6),
-    rgba(128,128,128,0.6)
+    rgba(160,152,146,0.6),
+    rgba(160,152,146,0.6)
     ),
     url('../basket.jpg');
     background-size: cover;
