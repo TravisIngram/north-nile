@@ -247,6 +247,13 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
   };
 
   // image upload
+  epc.showRemoveButton = function(place){
+    console.log('Show remove button:', epc.selectedResource['path' + place]);
+    if(epc.selectedResource['path' + place]==='//:0' || epc.selectedResource['path' + place]==='' ){
+      return true;
+    }
+  };
+
   epc.removeImage = function(id, place){
     ResourceFactory.removeImage(id, place, epc.updateImages);
   };
