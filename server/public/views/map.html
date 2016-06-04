@@ -13,7 +13,7 @@
     <md-button id="filter1" class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('Community Garden')" aria-label="community-garden-filter"><md-icon md-svg-src="assets/img/nature-1.svg"></md-icon><md-tooltip>Community Garden</md-tooltip></md-button>
     <md-button id="filter2" class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('Culinary Arts')" aria-label="culinary-arts-filter"><md-icon md-svg-src="assets/img/dish-spoon-and-fork.svg"></md-icon><md-tooltip>Culinary Arts</md-tooltip></md-button>
     <md-button id="filter3" class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('Food Hub')" aria-label="food-hub-filter"><md-icon md-svg-src="assets/img/front-store.svg"></md-icon><md-tooltip>Food Hub</md-tooltip></md-button>
-    <md-button id="filter4" class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('Food Distribution')" aria-label="food-distribution-filter"><md-icon md-svg-src="assets/img/truck.svg"></md-icon><md-tooltip>Food Distribution</md-tooltip></md-button>
+    <md-button id="filter4" class="md-fab md-mini keyButton" ng-click="mc.filterMarkers('Food Distribution')" aria-label="food-distribution-filter"><md-icon md-svg-src="assets/img/Greenhouse2.svg"></md-icon><md-tooltip>Food Distribution</md-tooltip></md-button>
     <md-button id="addKeyButton" class="md-fab md-mini keyButton" ng-click="mc.addNewResource()" aria-label="home">
       <md-icon id="addKeyIcon" class="fa fa-plus"></md-icon><md-tooltip>Add New Resource</md-tooltip>
     </md-button>
@@ -92,7 +92,7 @@
   <div ng-show="mc.lastClicked.video">
   <p class="resourceTitle">Video</p>
     <p class="address">
-      <a target="_blank" ng-href="{{mc.lastClicked.video}}">Click here to open video</a>
+      <a target="_blank" ng-href="{{mc.lastClicked.video}}">Open Video</a>
     </p>
  </div>
 
@@ -327,17 +327,18 @@
       </md-input-container>
 
       <!-- <md-input-container> -->
-        <label class="md-button md-raised fileUploadLabel" for="new_audio_map">Click Here To Choose Audio</label>
+        <label class="md-button md-raised fileUploadLabel" for="new_audio_map">Choose Audio</label>
         <span ng-show="mc.newAudio.file">
           <span class="uploadHelperText" ng-show="!mc.uploadAudioSuccess">Click the orange button to upload your audio.</span>
         </span>
-        <span class="uploadHelperText" ng-show="mc.uploadAudioSuccess">Upload complete!  Click save below to add your resource.</span>
+        <span class="uploadHelperText" ng-show="mc.uploadAudioSuccess">Upload complete! Click save below to add your resource.</span>
         <md-button ng-show="mc.newAudio.file" ng-click="mc.uploadAudio(mc.newAudio, mc.newResource)" class="md-button uploadButton" aria-label="uploadAudio"><i class="fa fa-cloud-upload" aria-hidden="true"></i></md-button>
         <input id="new_audio_map" class="fileUpload" type="file" ngf-select ngf-multiple="false" ng-model="mc.newAudio.file" name="new_audio_map" ngf-pattern="'audio/*'" accept="audio/*" ngf-max-size="20MB" aria-label="upload_audio"/>
       <!-- </md-input-container> -->
 
       <!-- <md-input-container> -->
-        <label class="md-button md-raised fileUploadLabel" for="new_images_map">Click Here To Choose Images (max 5)</label>
+        <label class="md-button md-raised fileUploadLabel" for="new_images_map">Select Images</label>
+
         <span ng-show="mc.newImage.file">
           <span class="uploadHelperText" ng-show="!mc.uploadImageSuccess">Click the orange button to upload your images.</span>
         </span>

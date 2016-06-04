@@ -15,11 +15,7 @@ Body font:
 font-family: 'Playfair Display', 'Georgia', serif;
 =================================== */
 
-/* ::::: GENERAL STYLES ::::: */
-
-body {
-
-}
+/* :::::::::: GENERAL STYLES :::::::::: */
 
 .backfill{
   size: auto;
@@ -70,7 +66,7 @@ body {
     font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
     color: #9eceb8;
     font-size: 22px;
-    text-shadow: 2px 2px 3px #433225;
+    text-shadow: 2px 2px 2px #433225;
   }
 
   p{
@@ -85,7 +81,7 @@ body {
     font-weight: bolder;
     text-transform: lowercase;
     margin: 5px;
-    padding: 0px;
+    padding: 0;
   }
 
   .md-button.md-raised {
@@ -128,7 +124,8 @@ body {
     margin: 2px;
   }
 
-  /* ::::: HOME PAGE ::::: */
+
+  /* :::::::::: HOME PAGE :::::::::: */
 
   .home {
     background-color: transparent;
@@ -182,7 +179,7 @@ body {
 
   }
 
-  /*form, .home form{
+  form, .home form{
     font-family: 'Playfair Display', 'Georgia', serif;
     background-color:  rgba(158,206,184,0.6);
     border-radius: 10px;
@@ -190,7 +187,32 @@ body {
     color #70543e;
     box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
     margin: 10vmin;
-  }*/
+  }
+
+  md-input-container .md-input {
+    color: #4c4c4c;
+  }
+
+  md-input-container.md-default-theme.md-input-invalid .md-input, md-input-container.md-input-invalid .md-input{
+    border-color: #f3cb00;
+  }
+
+  md-input-container.md-input-invalid [ng-message]{
+    color: #DAB600;
+  }
+
+  md-input-container.md-input-invalid.md-input-focused label {
+    color: #f3cb00;
+  }
+
+  md-input-container:not(.md-input-invalid).md-input-focused label {
+    color: white;
+  }
+
+  md-input-container:not(.md-input-invalid).md-input-focused .md-input {
+    border-color: white;
+  }
+
 
   .home .register form {
     font-family: 'Playfair Display', 'Georgia', serif;
@@ -248,7 +270,7 @@ body {
 
 
 
-  /* ::::: NAV STYLES ::::: */
+  /* :::::::::: NAV STYLES :::::::::: */
 
   .md-toolbar-tools{
     color: white;
