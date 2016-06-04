@@ -146,10 +146,10 @@ var foodHub = {
       mc.colorBk = "resourceOrange";
     }
     if (mc.lastClicked.resource_type == 'Food Hub'){
-      mc.colorBk = "resourceYellow";
+      mc.colorBk = "resourceGreen";
     }
     if (mc.lastClicked.resource_type == 'Food Distribution'){
-      mc.colorBk = "resourceGreen";
+      mc.colorBk = "resourceYellow";
     }
 
     // open web and social media if present
