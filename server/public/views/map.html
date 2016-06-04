@@ -38,7 +38,7 @@
   <div ng-show="mc.webSocialShow()">
     <p class="resourceTitle">Connect</br>
       <p class="address">
-        <a href="http://{{mc.lastClicked.website}}" target="_blank">{{mc.lastClicked.website}}</a>
+        <a ng-href="{{mc.lastClicked.website | urlFilter}}" target="_blank">{{mc.lastClicked.website}}</a>
     </p>
 
     <ul class="socialMedia">

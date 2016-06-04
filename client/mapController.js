@@ -275,6 +275,8 @@ var foodDistribution = {
       console.log('Reverse geocode:', results);
       if(results.components.house_number){
         mc.newResource.address_line1 = results.components.house_number + ' ' + results.components.road;
+      } else {
+        mc.newResource.address_line1 = results.components.road;
       }
       if(results.components.city){
         mc.newResource.city_name = results.components.city;
