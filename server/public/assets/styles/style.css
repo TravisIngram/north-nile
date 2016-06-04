@@ -299,6 +299,10 @@ body {
     float: right;
   }
 
+  .approvedResourcesTable {
+    max-height:40vh;
+  }
+
   /* ::::: VISITOR/USER DASHBOARD ::::: */
 
 
