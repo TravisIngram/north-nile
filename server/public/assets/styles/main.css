@@ -25,7 +25,7 @@ font-family: 'Playfair Display', 'Georgia', serif;
     rgba(128,128,128,0.6),
     rgba(128,128,128,0.6)
     ),
-    url('../carrots.jpg');
+    url('../basket.jpg');
     background-size: cover;
     background-attachment:fixed;
     position:absolute;
@@ -104,7 +104,7 @@ font-family: 'Playfair Display', 'Georgia', serif;
   }
 
   md-dialog.md-default-theme, md-dialog{
-    background-color: rgba(124,147,73,8);
+    background-color: white;
     color: white;
     width: 90vw;
     margin: 2px 15px;
@@ -157,7 +157,7 @@ font-family: 'Playfair Display', 'Georgia', serif;
   }
 
   md-card{
-    background-color:rgba(158,206,184,0.6);
+    background-color:rgba(158,206,184,0.8);
     color:white !important;
     box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
     border-radius: 5px;
@@ -181,7 +181,7 @@ font-family: 'Playfair Display', 'Georgia', serif;
 
   form, .home form{
     font-family: 'Playfair Display', 'Georgia', serif;
-    background-color:  rgba(158,206,184,0.6);
+    background-color:  rgba(158,206,184,0.8);
     border-radius: 10px;
     padding: 20px;
     color #70543e;
@@ -216,7 +216,7 @@ font-family: 'Playfair Display', 'Georgia', serif;
 
   .home .register form {
     font-family: 'Playfair Display', 'Georgia', serif;
-    background-color:  rgba(158,206,184,0.6);
+    background-color:  rgba(158,206,184,0.8);
     border-radius: 10px;
     padding: 15px;
     color #70543e;
@@ -226,7 +226,7 @@ font-family: 'Playfair Display', 'Georgia', serif;
 
   .home .login form {
     font-family: 'Playfair Display', 'Georgia', serif;
-    background-color:  rgba(158,206,184,0.6);
+    background-color:  rgba(158,206,184,0.8);
     border-radius: 10px;
     padding: 15px;
     color: #70543e;
