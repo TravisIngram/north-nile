@@ -1,0 +1,264 @@
+
+/* ================================
+colors: final rgba # is % opaque
+#f3cb00	rgba(243,203,0,0.6)
+#ec4500	rgba(236,69,0,0.6)
+#9bb85c	rgba(155,184,92,0.6)
+#9eceb8	rgba(158,206,184,0.6)
+#70543e rgba(112,84,62,0.6)
+===================================
+Header font:
+font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
+
+Body font:
+font-family: 'Playfair Display', 'Georgia', serif;
+=================================== */
+
+/* ::::: GENERAL STYLES ::::: */
+
+body {
+
+}
+
+.backfill{
+  size: auto;
+  background:
+  /* :: Source: C. Coyier @csstricks :: */
+  linear-gradient(
+    rgba(112, 84, 62, 0.8),
+    rgba(112, 84, 62, 0.8)
+    ),
+    url('../carrots.jpg');
+    background-size: cover;
+    background-attachment:fixed;
+    position:absolute;
+    bottom:0;
+    width:100vw;
+    height:100vh;
+    overflow:scroll;
+  }
+
+  @font-face {
+    font-family: 'Soria';
+    src: url('./soria.ttf');
+    src:
+    local('Soria'),
+  }
+
+  a{
+    text-decoration: none;
+    color: inherit;
+  }
+
+  h1 {
+    font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
+    color: #7EA493;
+    font-size: 5vmax;
+    text-shadow: 2px 2px 3px #433225;
+    margin: 15px;
+  }
+
+  h2{
+    font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
+    color: #9bb85c;
+    font-size: 30px;
+    text-shadow: 2px 2px 3px #433225;
+  }
+
+  h3 {
+    font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
+    color: #9eceb8;
+    font-size: 22px;
+    text-shadow: 2px 2px 3px #433225;
+  }
+
+  p{
+    font-family: 'Playfair Display', 'Georgia', serif;
+    color: white;
+    text-shadow: 2px 2px 3px #433225;
+  }
+
+  .md-button {
+    font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
+    font-size: 16px;
+    font-weight: bolder;
+    text-transform: lowercase;
+    margin: 5px;
+    padding: 0px;
+  }
+
+  .md-button.md-raised {
+    background-color: #f3cb00;
+    color: #70543e;
+    font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
+    font-size: 16px;
+    text-transform: lowercase;
+  }
+
+  .md-button.md-raised:not([disabled]):hover {
+    background-color: rgba(243,203,0,0.7);
+    color: #70543e;
+    font-size: 16px;
+  }
+
+  .md-button.md-raised[disabled] {
+    color : rgba(0, 0, 0, 0.26);
+    background-color: transparent;
+  }
+
+  md-dialog.md-default-theme, md-dialog{
+    background-color: rgba(124,147,73,8);
+    color: white;
+    width: 90vw;
+    margin: 2px 15px;
+  }
+
+  md-dialog p{
+    font-family: 'Playfair Display', 'Georgia', serif;
+    color: #70543e;
+  }
+
+  md-dialog h2 {
+    color: #9bb85c;
+    font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
+    font-weight: bolder;
+    font-size: 30px;
+    text-align: center;
+    margin: 2px;
+  }
+
+  /* ::::: HOME PAGE ::::: */
+
+  .home {
+    background-color: transparent;
+    padding: 0;
+  }
+
+  .home .headerTitle {
+    padding: 0;
+    font-size: 5vw;
+    letter-spacing: 0px;
+    margin-left: 3vw;
+
+  }
+
+  .home.header-expanded {
+    text-shadow: 5px;
+  }
+
+  .mainTitle {
+    padding: 0;
+    color: white;
+    font-size: 6vmax;
+    letter-spacing: 0px;
+    margin: 5vh 10vw;
+  }
+
+  .pageTitle{
+    text-align: center;
+  }
+
+  md-card{
+    background-color:rgba(158,206,184,0.6);
+    color:white !important;
+    box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
+    border-radius: 5px;
+  }
+
+  md-card h3{
+    padding: 2px 30px;
+  }
+
+  md-table, md-head, th.md-column, td.md-cell, md-row, md-icon{
+    color:white !important;
+    text-shadow: 2px 2px 5px rgba(56,42,31,0.5);
+  }
+
+  footer {
+    color: white;
+    margin: auto 5vw;
+    text-align: center;
+
+  }
+
+  /*form, .home form{
+    font-family: 'Playfair Display', 'Georgia', serif;
+    background-color:  rgba(158,206,184,0.6);
+    border-radius: 10px;
+    padding: 20px;
+    color #70543e;
+    box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
+    margin: 10vmin;
+  }*/
+
+  .home .register form {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    background-color:  rgba(158,206,184,0.6);
+    border-radius: 10px;
+    padding: 15px;
+    color #70543e;
+    box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
+    margin: 5px 15vmin;
+  }
+
+  .home .login form {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    background-color:  rgba(158,206,184,0.6);
+    border-radius: 10px;
+    padding: 15px;
+    color: #70543e;
+    box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
+    margin: 5px 15vw;
+  }
+
+  .md-input {
+    color: white;
+    font-family: 'Playfair Display', 'Georgia', serif;
+    border-color: white;
+  }
+
+  md-input-container {
+    display: block;
+    position: relative;
+    padding: 2px;
+    margin: 18px 0;
+    vertical-align: middle;
+  }
+
+  md-input-container.md-default-theme label, md-input-container label, md-input-container.md-default-theme .md-placeholder, md-input-container .md-placeholder {
+    color: white;
+    font-family: 'Playfair Display', 'Georgia', serif;
+  }
+
+  .splashText{
+    text-align:justify;
+    margin: 15px 4vw;
+  }
+
+
+
+  /* ::::: NAV STYLES ::::: */
+
+  .md-toolbar-tools{
+    color: white;
+    text-shadow: none;
+    font-weight: bolder;
+    /*padding: 2px;
+    margin: 5px;*/
+  }
+
+  .home .header-condensed {
+    background-color: transparent;
+    height: 25px;
+  }
+
+  .fa-map-o, .fa-user{
+    font-size: 1em;
+    padding-right: 5px;
+  }
+
+  .fa-home {
+    font-size: 1.2em;
+    color: #fff;
+    padding-right: 5px;
+  }
