@@ -351,6 +351,8 @@ var foodHub = {
         markers: mc.visibleMarkers
   });
 
+  console.log('Leaflet data:', leafletData.getDirectiveControls())
+
 
   // map login
   mc.loginUser = function() {
