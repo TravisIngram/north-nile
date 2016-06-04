@@ -132,7 +132,7 @@ angular.module('northApp').factory('ResourceFactory', ['$http', 'Upload', functi
     });
   };
 
-  var uploadImage = function(image, id, place, cb){
+  var updateImage = function(image, id, place, cb){
     console.log('resource factory image:', image);
     Upload.upload({
       url: '/upload/image/single/' + id + '/' + place,
@@ -141,6 +141,26 @@ angular.module('northApp').factory('ResourceFactory', ['$http', 'Upload', functi
     }).then(function(response){
       console.log('Success response?', response);
       newImagePaths.paths = response.data;
+      cb();
+    }, function(response){
+      console.log('Error response?', response);
+    }, function(evt){
+      // use for progress bar
+      console.log('Event response?', evt);
+    });
+    // end image upload
+  };
+
+  var uploadImage = function(image, cb){
+    console.log('resource factory image:', image);
+    Upload.upload({
+      url: '/upload/image',
+      arrayKey: '',
+      data: {file: image}
+    }).then(function(response){
+      console.log('Success response?', response);
+      newImagePaths.image_id = response.data.image_id;
+      newImagePaths.paths = response.data.image_paths;
       cb();
     }, function(response){
       console.log('Error response?', response);
@@ -203,6 +223,7 @@ angular.module('northApp').factory('ResourceFactory', ['$http', 'Upload', functi
     removeResource: removeResource,
     removeImage: removeImage,
     uploadImage: uploadImage,
+    updateImage: updateImage,
     newImagePaths: newImagePaths,
     removeAudio: removeAudio,
     uploadAudio: uploadAudio,

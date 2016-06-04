@@ -258,14 +258,15 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
     ResourceFactory.removeImage(id, place, epc.updateImages);
   };
 
-  epc.updateImages = function(){
+  epc.updateImageInfo = function(){
     for (path in epc.newImagePaths.paths) {
       console.log('path:', path);
       if(epc.newImagePaths.paths[path] == ""){
         epc.newImagePaths.paths[path] = "//:0";
       }
     }
-    console.log('newImages:', epc.newImagePaths);
+    console.log('newImages:', epc.newImagePaths.paths);
+    epc.selectedResource.audio_id = epc.newImagePaths.audio_id;
     epc.selectedResource.path1 = epc.newImagePaths.paths.path1;
     epc.selectedResource.path2 = epc.newImagePaths.paths.path2;
     epc.selectedResource.path3 = epc.newImagePaths.paths.path3;
@@ -274,8 +275,12 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
     // epc.newImagePaths = {};
   };
 
-  epc.uploadImage = function(image, id, place){
-    ResourceFactory.uploadImage(image, id, place, epc.updateImages);
+  epc.updateImage = function(image, id, place){
+      ResourceFactory.updateImage(image, id, place, epc.updateImageInfo);
+  };
+
+  epc.uploadImage = function(image){
+    ResourceFactory.uploadImage(image, epc.updateImageInfo)
   };
 
   epc.removeAudio = function(id){

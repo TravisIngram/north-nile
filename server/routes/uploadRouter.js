@@ -111,6 +111,7 @@ router.post('/audio', function(request, response){
 //   storage: storage
 // }).single('file');
 
+// update images
 router.post('/image/single/:id/:place', function(request, response){
   var id = request.params.id;
   var place = request.params.place;
@@ -180,7 +181,7 @@ router.post('/image', function(request, response){
         response.sendStatus(500);
       } else {
         var image_id;
-
+        var image_paths;
         // var queryString = 'INSERT INTO "image" (path1, path2, path3, path4, path5) VALUES ($1, $2, $3, $4, $5) RETURNING id;';
 
         // build query string based on number of inputs
@@ -190,7 +191,7 @@ router.post('/image', function(request, response){
           queryBase += ', path' + i;
           queryEnd += ', $' + i;
         }
-        queryEnd += ') RETURNING id;';
+        queryEnd += ') RETURNING id, path1, path2, path3, path4, path5;';
         queryString = queryBase + queryEnd;
         // console.log('queryString:', queryString);
 
@@ -200,6 +201,7 @@ router.post('/image', function(request, response){
           } else {
             // console.log('Image return result:', result);
             image_id = result.rows[0].id;
+            image_paths = {path1: result.rows[0].path1, path2: result.rows[0].path2, path3: result.rows[0].path3, path4: result.rows[0].path4, path5: result.rows[0].path5};
           }
         });
 
@@ -209,9 +211,9 @@ router.post('/image', function(request, response){
         });
 
         query.on('end', function(){
-          console.log('Saved image paths.');
+          console.log('Saved image paths.', image_paths);
           done();
-          response.send({image_id:image_id});
+          response.send({image_id:image_id, image_paths:image_paths});
         });
       }
     });
