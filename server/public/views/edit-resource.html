@@ -155,8 +155,8 @@
 
         <div class="uploadContainer">
           <div class="audioContainer">
-            <label class="md-button" ng-show="!erc.userResource.audio_id" for="upload_audio" >Add</label>
-            <label class="md-button" ng-show="erc.userResource.audio_id" for="update_audio" >Add</label>
+            <label class="md-button" ng-show="!erc.userResource.audio_id" for="upload_audio" >Choose Audio</label>
+            <label class="md-button" ng-show="erc.userResource.audio_id" for="update_audio" >Choose Audio</label>
             <p ng-show="erc.userResource.audio_reference">
               Audio file present.
             </p>
@@ -176,32 +176,32 @@
         </md-input-container>
         <div class="uploadContainer" ng-show="erc.userResource.image_id">
           <div class="imageContainer">
-            <label class="md-button"  for="upload_image_1" >Add</label>
+            <label class="md-button"  for="upload_image_1" >Choose Image</label>
 
             <md-button ng-click="erc.removeImage(erc.userResource.image_id, 1)" >Remove</md-button>
             <img class="thumbnail" ng-src="{{erc.userResource.path1}}" />
             <input type="file" id="upload_image_1" name="upload_image_1" class="fileUpload" ng-model="erc.newImages.file1" ngf-select="erc.updateImage(erc.newImages.file1, erc.userResource.image_id, 1)" ngf-multiple="false" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" aria-label="upload_images"/>
           </div>
           <div class="imageContainer">
-            <label class="md-button"  for="upload_image_2" >Add</label>
+            <label class="md-button"  for="upload_image_2" >Choose Image</label>
             <md-button ng-click="erc.removeImage(erc.userResource.image_id, 2)" >Remove</md-button>
             <img class="thumbnail" ng-src="{{erc.userResource.path2}}" />
             <input type="file" id="upload_image_2" name="upload_image_2" class="fileUpload" ng-model="erc.newImages.file2" ngf-select="erc.updateImage(erc.newImages.file2, erc.userResource.image_id, 2)" ngf-multiple="false" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" aria-label="upload_images"/>
           </div>
           <div class="imageContainer">
-            <label class="md-button"  for="upload_image_3" >Add</label>
+            <label class="md-button"  for="upload_image_3" >Choose Image</label>
             <md-button ng-click="erc.removeImage(erc.userResource.image_id, 3)" >Remove</md-button>
             <img class="thumbnail" ng-src="{{erc.userResource.path3}}" />
             <input type="file" id="upload_image_3" name="upload_image_3" class="fileUpload" ng-model="erc.newImages.file3" ngf-select="erc.updateImage(erc.newImages.file3, erc.userResource.image_id, 3)" ngf-multiple="false" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" aria-label="upload_images"/>
           </div>
           <div class="imageContainer">
-            <label class="md-button"  for="upload_image_4" >Add</label>
+            <label class="md-button"  for="upload_image_4" >Choose Image</label>
             <md-button ng-click="erc.removeImage(erc.userResource.image_id, 4)" >Remove</md-button>
             <img class="thumbnail" ng-src="{{erc.userResource.path4}}" />
             <input type="file" id="upload_image_4" name="upload_image_4" class="fileUpload" ng-model="erc.newImages.file4" ngf-select="erc.updateImage(erc.newImages.file4, erc.userResource.image_id, 4)" ngf-multiple="false" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" aria-label="upload_images"/>
           </div>
           <div class="imageContainer">
-            <label class="md-button"  for="upload_image_5" >Add</label>
+            <label class="md-button"  for="upload_image_5" >Choose Image</label>
             <md-button ng-click="erc.removeImage(erc.userResource.image_id, 5)" >Remove</md-button>
             <img class="thumbnail" ng-src="{{erc.userResource.path5}}" />
             <input type="file" id="upload_image_5" name="upload_image_5" class="fileUpload" ng-model="erc.newImages.file5" ngf-select="erc.updateImage(erc.newImages.file5, erc.userResource.image_id, 5)" ngf-multiple="false" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" aria-label="upload_images"/>
