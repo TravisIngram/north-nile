@@ -139,41 +139,45 @@ angular.module('northApp').factory('ResourceFactory', ['$http', 'Upload', functi
 
   var updateImage = function(image, id, place, cb){
     console.log('resource factory image:', image);
-    Upload.upload({
-      url: '/upload/image/single/' + id + '/' + place,
-      arrayKey: '',
-      data: {file: image}
-    }).then(function(response){
-      console.log('Success response?', response);
-      newImagePaths.paths = response.data.image_paths;
-      cb();
-    }, function(response){
-      console.log('Error response?', response);
-    }, function(evt){
-      // use for progress bar
-      console.log('Event response?', evt);
-    });
-    // end image upload
+    if(image){
+      Upload.upload({
+        url: '/upload/image/single/' + id + '/' + place,
+        arrayKey: '',
+        data: {file: image}
+      }).then(function(response){
+        console.log('Success response?', response);
+        newImagePaths.paths = response.data.image_paths;
+        cb();
+      }, function(response){
+        console.log('Error response?', response);
+      }, function(evt){
+        // use for progress bar
+        console.log('Event response?', evt);
+      });
+      // end image upload
+    }
   };
 
   var uploadImage = function(image, cb){
     console.log('resource factory image:', image);
-    Upload.upload({
-      url: '/upload/image',
-      arrayKey: '',
-      data: {file: image}
-    }).then(function(response){
-      console.log('Success response?', response);
-      newImagePaths.image_id = response.data.image_id;
-      newImagePaths.paths = response.data.image_paths;
-      cb();
-    }, function(response){
-      console.log('Error response?', response);
-    }, function(evt){
-      // use for progress bar
-      console.log('Event response?', evt);
-    });
-    // end image upload
+    if(image){
+      Upload.upload({
+        url: '/upload/image',
+        arrayKey: '',
+        data: {file: image}
+      }).then(function(response){
+        console.log('Success response?', response);
+        newImagePaths.image_id = response.data.image_id;
+        newImagePaths.paths = response.data.image_paths;
+        cb();
+      }, function(response){
+        console.log('Error response?', response);
+      }, function(evt){
+        // use for progress bar
+        console.log('Event response?', evt);
+      });
+      // end image upload
+    }
   };
 
   var removeAudio = function(id, cb){
@@ -186,32 +190,36 @@ angular.module('northApp').factory('ResourceFactory', ['$http', 'Upload', functi
 
   var uploadAudio = function(audio, cb){
     console.log('uploading audio:', audio);
-    Upload.upload({
-      url: '/upload/audio/',
-      data: {file: audio}
-    }).then(function(response){
-      console.log('Successfully uploaded audio:', response);
-      cb(response.data.audio_id, response.data.audio_reference);
-      // nrc.uploadAudioSuccess = true;
-    }, function(response){
-      console.log('Failed at uploading audio:', response);
-    }, function(evt){
-      // console.log('evt', evt)
-    });
+    if(audio){
+      Upload.upload({
+        url: '/upload/audio/',
+        data: {file: audio}
+      }).then(function(response){
+        console.log('Successfully uploaded audio:', response);
+        cb(response.data.audio_id, response.data.audio_reference);
+        // nrc.uploadAudioSuccess = true;
+      }, function(response){
+        console.log('Failed at uploading audio:', response);
+      }, function(evt){
+        // console.log('evt', evt)
+      });
+    }
   };
 
   var updateAudio = function(audio, id, cb){
-    Upload.upload({
-      url: '/upload/audio/update/' + id,
-      data: {file:audio}
-    }).then(function(response){
-      console.log('Successfully uploaded audio:', response);
-      cb(response.data.audio_id, response.data.audio_reference);
-    }, function(response){
-      console.log('Failed at uploading audio:', response);
-    }, function(evt){
-      // used for progress
-    });
+    if(audio){
+      Upload.upload({
+        url: '/upload/audio/update/' + id,
+        data: {file:audio}
+      }).then(function(response){
+        console.log('Successfully uploaded audio:', response);
+        cb(response.data.audio_id, response.data.audio_reference);
+      }, function(response){
+        console.log('Failed at uploading audio:', response);
+      }, function(evt){
+        // used for progress
+      });
+    }  
   };
 
 
