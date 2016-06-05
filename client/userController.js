@@ -195,7 +195,7 @@ angular.module('northApp').controller('EditResourceController', ['Upload','userR
   };
 
   erc.removeImage = function(id, place){
-    ResourceFactory.removeImage(id, place, erc.updateImages);
+    ResourceFactory.removeImage(id, place, erc.updateImageInfo);
   };
 
   erc.updateImageInfo = function(){
@@ -206,7 +206,12 @@ angular.module('northApp').controller('EditResourceController', ['Upload','userR
       }
     }
     console.log('newImages:', erc.newImagePaths.paths);
-    erc.userResource.image_id = erc.newImagePaths.image_id;
+    if(erc.newImagePaths.image_id){
+        erc.userResource.image_id = erc.newImagePaths.image_id;
+    } else if(erc.newImagePaths.id){
+      erc.userResource.image_id = erc.newImagePaths.id;
+    }
+
     erc.userResource.path1 = erc.newImagePaths.paths.path1;
     erc.userResource.path2 = erc.newImagePaths.paths.path2;
     erc.userResource.path3 = erc.newImagePaths.paths.path3;
