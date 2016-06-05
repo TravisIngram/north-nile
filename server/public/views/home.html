@@ -97,7 +97,7 @@
 
               <md-button class="md-raised" ng-hide="hc.user" ng-click="hc.loginUser()"><i class="fa fa-sign-in" aria-hidden="true"></i> Log In</md-button>
 
-              <h2>New account</h2>
+              <h2>New account?</h2>
               <md-button class="md-raised" ng-click="hc.registerShow()"><i class="fa fa-user" aria-hidden="true"></i>Register</md-button>
           </form>
         </section>
@@ -110,9 +110,9 @@
         <section layout="column">
           <form name="hc.registerFormInputs">
             <h3>Registration</h3>
-            
+
             <md-input-container>
-              <label for="username">Username</label>
+              <label for="username">Username<span class="md-caption"> (Required)</span></label>
               <input type="text" ng-model="hc.registerInfo.username" name="username" required/>
               <div ng-messages="hc.registerFormInputs.username.$error">
                 <div ng-message="required">This is required!</div>
@@ -120,7 +120,7 @@
             </md-input-container>
 
             <md-input-container>
-              <label for="password">Password</label>
+              <label for="password">Password<span class="md-caption"> (Required)</span></label>
               <input type="password" ng-model="hc.registerInfo.password" name="password" required/>
               <div ng-messages="hc.registerFormInputs.password.$error">
                 <div ng-message="required">This is required!</div>
@@ -128,7 +128,7 @@
             </md-input-container>
 
             <md-input-container md-is-error="hc.passwordMismatch()">
-              <label for="confirm_password">Confirm Password</label>
+              <label for="confirm_password">Confirm Password<span class="md-caption"> (Required)</span></label>
               <input type="password" ng-model="hc.registerInfo.confirm_password" name="confirm_password" required/>
               <!-- Should add message here to inform user their passwords don't match -->
 
@@ -136,7 +136,7 @@
             </md-input-container>
 
             <md-input-container>
-              <label for="contact_name">Contact Name</label>
+              <label for="contact_name">Contact Name<span class="md-caption"> (Required)</span></label>
               <input type="text" ng-model="hc.registerInfo.contact_name" name="contact_name" id="contact_name" required/>
               <div ng-messages="hc.registerFormInputs.contact_name.$error">
                 <div ng-message="required">This is required!</div>
@@ -144,7 +144,7 @@
             </md-input-container>
 
             <md-input-container>
-              <label for="email_address">Email address</label>
+              <label for="email_address">Email Address<span class="md-caption"> (Required)</span></label>
               <input type="email" ng-model="hc.registerInfo.email_address" name="email_address" id="email_address" required/>
               <div ng-messages="hc.registerFormInputs.email_address.$error">
                 <div ng-message="required">This is required!</div>
@@ -155,8 +155,8 @@
             <md-input-container>
               <md-button ng-disabled="hc.registerFormInputs.$invalid" ng-click="hc.registerUser()" class="md-raised"><i class="fa fa-user" aria-hidden="true"></i>Register</md-button>
             </md-input-container>
-            <p class="requiredFormText" ng-show="hc.registerFormInputs.$invalid">
-              Please fill out the required fields.
+            <p class="md-caption" ng-show="hc.registerFormInputs.$invalid">
+              *Please fill out the required fields.
             </p>
             <md-input-container>
               <h3>Already have an account?</h3>
@@ -173,7 +173,7 @@
 
     <!-- <footer class="other-links">
       <md-button href="http://www.projectsweetiepie.org/" target="_blank">Blog <i class="fa fa-external-link" aria-hidden="true"></i></md-button>
-      Icon made by [author link] from www.flaticon.com 
+      Icon made by [author link] from www.flaticon.com
 
       <md-button href="http://www.projectsweetiepie.org/" target="_blank">PSP <i class="fa fa-tree" aria-hidden="true"></i></md-button>
     </footer> -->
