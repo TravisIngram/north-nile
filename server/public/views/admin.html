@@ -114,7 +114,7 @@
     <md-table-container  ng-show="ac.showAccountTable">
       <h3>Accounts</h3>
       <table md-table>
-        <thead md-head>
+        <thead md-head md-order="ac.accountTableSort.order">
           <tr md-row>
             <th md-column md-order-by="username">Account Name</th>
             <th md-column md-order-by="contact_email">Contact Email</th>
@@ -124,7 +124,7 @@
           </tr>
         </thead>
         <tbody md-body>
-          <tr md-row md-select="resource" md-selectid="name" md-auto-select ng-repeat="account in ac.savedAccounts | orderBy: ac.accountTableSort.order | limitTo: ac.accountTableSort.limit : (ac.accountTableSort.page -1) * ac.accountTableSort.limit">
+          <tr md-row md-select="resource" md-select-id="name" md-auto-select ng-repeat="account in ac.savedAccounts | orderObjectBy: ac.accountTableSort.order | limitTo: ac.accountTableSort.limit : (ac.accountTableSort.page -1) * ac.accountTableSort.limit">
             <td md-cell>{{account.username}}</td>
             <td md-cell><a ng-href="mailto:{{account.email_address}}">{{account.email_address}}</a></td>
             <td md-cell>{{account.contact_name}}</td>
