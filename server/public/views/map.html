@@ -64,7 +64,7 @@
 
   <div ng-show="mc.lastClicked.audio_reference">
     <p class="resourceTitle">Audio</p>
-    {{mc.lastClicked.audio_id}}
+    <!-- {{mc.lastClicked.audio_id}} -->
     <md-button id="playButton" aria-label="play-pause_audio" ng-click="mc.play(mc.lastClicked.sound)" class="md-fab md-mini">
       <md-icon id="playIcon" ng-show="mc.lastClicked.sound.paused" md-font-icon="fa-play" class="fa" aria-hidden="true"></md-icon>
       <md-icon id="pauseIcon" ng-show="!mc.lastClicked.sound.paused" md-font-icon="fa-pause" class="fa" aria-hidden="true"></md-icon>
