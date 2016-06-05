@@ -60,6 +60,7 @@ font-family: 'Playfair Display', 'Georgia', serif;
     color: #9bb85c;
     font-size: 30px;
     text-shadow: 2px 2px 3px #433225;
+    letter-spacing: 2px;
   }
 
   h3 {
@@ -69,10 +70,10 @@ font-family: 'Playfair Display', 'Georgia', serif;
     text-shadow: 2px 2px 2px #433225;
   }
 
-  p{
+  p {
     font-family: 'Playfair Display', 'Georgia', serif;
     color: white;
-    text-shadow: 2px 2px 3px #433225;
+    /*text-shadow: 2px 2px 3px #433225;*/
   }
 
   .md-button {
@@ -162,7 +163,9 @@ font-family: 'Playfair Display', 'Georgia', serif;
     box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
     border-radius: 5px;
   }
-
+  md-row {
+   font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
+}
   md-card h3{
     padding: 2px 30px;
   }
@@ -297,3 +300,18 @@ font-family: 'Playfair Display', 'Georgia', serif;
     color: #fff;
     padding-right: 5px;
   }
+
+/* :::::::::: User Page :::::::::: */
+.userPage p {
+  font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+.userInput {
+  font-family: 'Times New Roman', serif;
+  font-size: 8px;
+}
+/*tooltip {
+  font-family: 'Playfair Display', 'Georgia', serif;
+}*/
