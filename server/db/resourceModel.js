@@ -1,8 +1,8 @@
 var pg            = require('pg');
-var dbConnection  = require('./dbConnection').dbConnectionString;
+var dbConnection  = require('./dbConnection');
 
 function createResource(callback) {
-  pg.connect(dbConnection, function(err, client, done) {
+  pg.connect(dbConnection.dbConnectionString, function(err, client, done) {
     if(err) {
       console.log('Error connecting to DB.' + err);
       process.exit(1);

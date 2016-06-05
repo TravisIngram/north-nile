@@ -1,4 +1,3 @@
-var config            = require('../../config');
 var async             = require('async');
 var pg                = require('pg');
 var accountModel      = require('./accountModel.js');
@@ -7,9 +6,7 @@ var addressModel      = require('./addressModel.js');
 var resourceTypeModel = require('./resourceTypeModel.js');
 var resourceModel     = require('./resourceModel.js');
 
-var dbConnectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/north_nile';
-
-module.exports.dbConnectionString = dbConnectionString;
+module.exports.dbConnectionString = require('../../config').dbConnection;
 
 module.exports.dbInit = function() {
   async.series([
