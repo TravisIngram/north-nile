@@ -22,7 +22,7 @@
 
         <md-input-container>
           <label>Address</label>
-          <input type="text" name="new_address1" ng-model="epc.selectedResource.address_line1">
+          <input type="text" name="new_address1" ng-model="epc.selectedResource.address_line1" required>
           <div ng-messages="editPendingForm.new_address1.$error">
             <div ng-message="required">This is required!</div>
           </div>
@@ -227,6 +227,9 @@
         <md-button ng-disabled="editPendingForm.$invalid" ng-show="!epc.showConfirmRemove" ng-click="epc.saveEditPending()">Save</md-button>
         <md-button ng-show="!epc.showConfirmRemove" ng-click="epc.cancelEditPending()">Cancel</md-button>
         <md-button ng-show="!epc.showConfirmRemove" ng-click="epc.confirmRemoveResource()">Remove</md-button>
+        <p class="requiredFormText" ng-show="editPendingForm.$invalid">
+          Please fill out the required fields.
+        </p>
 
         <!-- <section md-layout="row" class="two"> -->
           <p ng-show="epc.showConfirmRemove">Are you sure you want to remove this resource? This action cannot be undone.</p>

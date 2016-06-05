@@ -110,7 +110,7 @@
         <section layout="column">
           <form name="hc.registerFormInputs">
             <h3>Registration</h3>
-            {{hc.registerInfo}}
+            
             <md-input-container>
               <label for="username">Username</label>
               <input type="text" ng-model="hc.registerInfo.username" name="username" required/>
@@ -155,7 +155,7 @@
             <md-input-container>
               <md-button ng-disabled="hc.registerFormInputs.$invalid" ng-click="hc.registerUser()" class="md-raised"><i class="fa fa-user" aria-hidden="true"></i>Register</md-button>
             </md-input-container>
-            <p ng-show="hc.registerFormInputs.$invalid">
+            <p class="requiredFormText" ng-show="hc.registerFormInputs.$invalid">
               Please fill out the required fields.
             </p>
             <md-input-container>

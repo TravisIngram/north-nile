@@ -201,6 +201,9 @@
 
         <md-button ng-disabled="newUserResourceForm.$invalid" ng-click="unrc.saveNewResource(unrc.newResource)">Save</md-button>
         <md-button ng-click="unrc.cancelNewResource()">Cancel</md-button>
+        <p class="requiredFormText" ng-show="newUserResourceForm.$invalid">
+          Please fill out the required fields.
+        </p>
       </form>
 
     </section>

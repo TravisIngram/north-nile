@@ -47,6 +47,9 @@
         <md-input-container>
           <md-button ng-disabled="registerFormInputs.$invalid" ng-click="nac.registerUser()" class="md-raised">Register</md-button>
         </md-input-container>
+        <p class="requiredFormText" ng-show="registerFormInputs.$invalid">
+          Please fill out the required fields.
+        </p>
         <md-input-container>
           <md-button ng-click="nac.cancelNewAccount()" class="md-raised">Cancel</md-button>
         </md-input-container>

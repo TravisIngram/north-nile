@@ -172,6 +172,13 @@
       <md-input-container>
         <md-button ng-disabled="mc.registerFormInputs.$invalid" ng-click="mc.registerUser()" class="md-raised">Register</md-button>
       </md-input-container>
+      <p class="requiredFormText" ng-show="mc.registerFormInputs.$invalid">
+        Please fill out the required fields.
+      </p>
+      <md-input-container>
+        <p class="requiredFormText">Already have an account?</p>
+        <md-button class="md-raised" ng-click="mc.loginShow()">Login</md-button>
+      </md-input-container>
     </section>
   </form>
 
@@ -378,6 +385,9 @@
 
       <md-button ng-disabled="newResourceForm.$invalid" ng-click="mc.saveNewResource(mc.newResource)">Save</md-button>
       <md-button ng-click="mc.cancelNewResource()">Cancel</md-button>
+      <p class="requiredFormText" class="requiredFormText" ng-show="newResourceForm.$invalid">
+        Please fill out the required fields.
+      </p>
     </section>
   </form>
 </div>
