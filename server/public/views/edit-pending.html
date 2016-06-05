@@ -2,6 +2,7 @@
 <md-dialog>
   <md-dialog-content class="md-dialog-content">
     <section layout="column">
+      <h2>Edit Resource</h2>
       <form name="editPendingForm">
         <md-input-container>
           <label for="pending_name">Name</label>
@@ -215,7 +216,7 @@
           <br /><img class="thumbnail" ng-src="{{epc.selectedResource.path4}}" ng-show="epc.selectedResource.path4"/>
           <br /><img class="thumbnail" ng-src="{{epc.selectedResource.path5}}" ng-show="epc.selectedResource.path5"/>
         </div>
-        
+
         <md-input-container>
           <label for="pending_video">Video</label>
           <input type="text" placeholder="Add link ex. https://www.youtube.com/watch?v=HHk47i6EfjM" name="pending_video" ng-model="epc.selectedResource.video" />
