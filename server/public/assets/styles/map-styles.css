@@ -34,7 +34,10 @@ box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
 margin: 5px 15vw;
 }
 
-
+.md-button.md-fab.md-mini{
+  max-width: 11vw;
+  max-height:11vw;
+}
 
 @media (max-width:600px) {
   .infoDrawer .loginMap {
