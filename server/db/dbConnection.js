@@ -1,3 +1,4 @@
+var config            = require('../../config');
 var async             = require('async');
 var pg                = require('pg');
 var accountModel      = require('./accountModel.js');
@@ -6,13 +7,7 @@ var addressModel      = require('./addressModel.js');
 var resourceTypeModel = require('./resourceTypeModel.js');
 var resourceModel     = require('./resourceModel.js');
 
-var dbConnectionString = 'postgres://localhost:5432/north_nile';
-
-if (process.env.DATABASE_URL){
-  pg.defaults.ssl = true;
-  console.log('environment var');
-  dbConnectionString = process.env.DATABASE_URL;
-}
+var dbConnectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/north_nile';
 
 module.exports.dbConnectionString = dbConnectionString;
 
