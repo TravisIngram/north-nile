@@ -2,7 +2,7 @@
 <md-dialog>
   <md-dialog-content class="md-dialog-content">
     <section layout="column">
-
+      <h2>Edit Resource</h2>
       <form name="editResourceForm">
         <md-input-container>
           <label for="pending_name">Name</label>
@@ -94,22 +94,22 @@
 
         <md-input-container>
           <label for="twitter">Twitter</label>
-          <input placeholder="Add link ex. https://twitter.com/projectsweetiep" type="text" name="twitter" ng-model="epc.selectedResource.twitter"  />
+          <input placeholder="Add link ex. https://twitter.com/projectsweetiep" type="text" name="twitter" ng-model="erc.userResource.twitter"  />
         </md-input-container>
 
         <md-input-container>
           <label for="facebook">Facebook</label>
-          <input placeholder="Add link ex. https://www.facebook.com/projectsweetiepie/" type="text" name="facebook" ng-model="epc.selectedResource.facebook"  />
+          <input placeholder="Add link ex. https://www.facebook.com/projectsweetiepie/" type="text" name="facebook" ng-model="erc.userResource.facebook"  />
         </md-input-container>
 
         <md-input-container>
           <label for="instagram">Instagram</label>
-          <input placeholder="Add link ex. https://www.instagram.com/nazmpls/" type="text" name="instagram" ng-model="epc.selectedResource.instagram"  />
+          <input placeholder="Add link ex. https://www.instagram.com/nazmpls/" type="text" name="instagram" ng-model="erc.userResource.instagram"  />
         </md-input-container>
 
         <md-input-container>
           <label for="snapchat">Snapchat</label>
-          <input placeholder="Add link ex. https://www.snapchat.com/add/JXTA_ARTS" type="text" name="snapchat" ng-model="epc.selectedResource.snapchat"  />
+          <input placeholder="Add link ex. https://www.snapchat.com/add/JXTA_ARTS" type="text" name="snapchat" ng-model="erc.userResource.snapchat"  />
         </md-input-container>
 
         <md-input-container>
@@ -150,13 +150,73 @@
 
         <md-input-container>
           <label for="pending_audio">Audio</label>
-          <input type="text" name="pending_audio" ng-model="erc.userResource.audio" />
+          <!-- <input type="text" name="pending_audio" ng-model="erc.userResource.audio" /> -->
         </md-input-container>
 
-        <md-input-container>
+        <div class="uploadContainer">
+          <div class="audioContainer">
+            <label class="md-button" ng-show="!erc.userResource.audio_id" for="upload_audio" >Add</label>
+            <label class="md-button" ng-show="erc.userResource.audio_id" for="update_audio" >Add</label>
+            <p ng-show="erc.userResource.audio_reference">
+              Audio file present.
+            </p>
+            <p ng-show="!erc.userResource.audio_reference">
+              No audio files.
+            </p>
+            <md-button ng-click="erc.removeAudio(erc.userResource.audio_id, erc.userResource.audio_reference)" >Remove</md-button>
+            <input type="file" id="upload_audio" name="upload_audio" class="fileUpload" ng-model="erc.newAudio.file" ngf-select="erc.uploadAudio(erc.newAudio.file)" ngf-multiple="false" ngf-pattern="'audio/*'" accept="audio/*" ngf-max-size="20MB" aria-label="upload_audio"/>
+            <input type="file" id="update_audio" name="update_audio" class="fileUpload" ng-model="erc.newAudio.file" ngf-select="erc.updateAudio(erc.newAudio.file, erc.userResource.audio_id)" ngf-multiple="false" ngf-pattern="'audio/*'" accept="audio/*" ngf-max-size="20MB" aria-label="upload_audio"/>
+
+          </div>
+        </div>
+
+         <md-input-container>
           <label for="pending_images">Images</label>
-          <input type="text" name="pending_images" ng-model="erc.userResource.images" />
+          <!-- <input type="text" name="pending_images" ng-model="erc.userResource.images" /> -->
         </md-input-container>
+        <div class="uploadContainer" ng-show="erc.userResource.image_id">
+          <div class="imageContainer">
+            <label class="md-button"  for="upload_image_1" >Add</label>
+
+            <md-button ng-click="erc.removeImage(erc.userResource.image_id, 1)" >Remove</md-button>
+            <img class="thumbnail" ng-src="{{erc.userResource.path1}}" />
+            <input type="file" id="upload_image_1" name="upload_image_1" class="fileUpload" ng-model="erc.newImages.file1" ngf-select="erc.updateImage(erc.newImages.file1, erc.userResource.image_id, 1)" ngf-multiple="false" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" aria-label="upload_images"/>
+          </div>
+          <div class="imageContainer">
+            <label class="md-button"  for="upload_image_2" >Add</label>
+            <md-button ng-click="erc.removeImage(erc.userResource.image_id, 2)" >Remove</md-button>
+            <img class="thumbnail" ng-src="{{erc.userResource.path2}}" />
+            <input type="file" id="upload_image_2" name="upload_image_2" class="fileUpload" ng-model="erc.newImages.file2" ngf-select="erc.updateImage(erc.newImages.file2, erc.userResource.image_id, 2)" ngf-multiple="false" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" aria-label="upload_images"/>
+          </div>
+          <div class="imageContainer">
+            <label class="md-button"  for="upload_image_3" >Add</label>
+            <md-button ng-click="erc.removeImage(erc.userResource.image_id, 3)" >Remove</md-button>
+            <img class="thumbnail" ng-src="{{erc.userResource.path3}}" />
+            <input type="file" id="upload_image_3" name="upload_image_3" class="fileUpload" ng-model="erc.newImages.file3" ngf-select="erc.updateImage(erc.newImages.file3, erc.userResource.image_id, 3)" ngf-multiple="false" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" aria-label="upload_images"/>
+          </div>
+          <div class="imageContainer">
+            <label class="md-button"  for="upload_image_4" >Add</label>
+            <md-button ng-click="erc.removeImage(erc.userResource.image_id, 4)" >Remove</md-button>
+            <img class="thumbnail" ng-src="{{erc.userResource.path4}}" />
+            <input type="file" id="upload_image_4" name="upload_image_4" class="fileUpload" ng-model="erc.newImages.file4" ngf-select="erc.updateImage(erc.newImages.file4, erc.userResource.image_id, 4)" ngf-multiple="false" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" aria-label="upload_images"/>
+          </div>
+          <div class="imageContainer">
+            <label class="md-button"  for="upload_image_5" >Add</label>
+            <md-button ng-click="erc.removeImage(erc.userResource.image_id, 5)" >Remove</md-button>
+            <img class="thumbnail" ng-src="{{erc.userResource.path5}}" />
+            <input type="file" id="upload_image_5" name="upload_image_5" class="fileUpload" ng-model="erc.newImages.file5" ngf-select="erc.updateImage(erc.newImages.file5, erc.userResource.image_id, 5)" ngf-multiple="false" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" aria-label="upload_images"/>
+          </div>
+        </div>
+        <div class="newUploadContainer" ng-show="!erc.userResource.image_id">
+          <label class="md-button md-raised fileUploadLabel" for="new_images">Choose Images (max 5)</label>
+          <!-- <md-button ng-show="nrc.newImage.file" ng-click="nrc.uploadImage(nrc.newImage, nrc.newResource)" class="md-button uploadButton" aria-label="uploadImage"><i class="fa fa-cloud-upload" aria-hidden="true"></i></md-button> -->
+          <input id="new_images" class="fileUpload" type="file" ngf-select="erc.uploadImage(erc.newImage.file)" ngf-multiple="true" ng-model="erc.newImage.file" name="new_images" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" ngf-max-files="5" aria-label="upload_images"/>
+          <br /><img class="thumbnail" ng-src="{{erc.userResource.path1}}" ng-show="erc.userResource.path1" />
+          <br /><img class="thumbnail" ng-src="{{erc.userResource.path2}}" ng-show="erc.userResource.path2" />
+          <br /><img class="thumbnail" ng-src="{{erc.userResource.path3}}" ng-show="erc.userResource.path3" />
+          <br /><img class="thumbnail" ng-src="{{erc.userResource.path4}}" ng-show="erc.userResource.path4"/>
+          <br /><img class="thumbnail" ng-src="{{erc.userResource.path5}}" ng-show="erc.userResource.path5"/>
+        </div>
 
         <md-input-container>
           <label for="pending_video">Video</label>

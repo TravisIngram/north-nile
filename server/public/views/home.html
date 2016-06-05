@@ -18,11 +18,11 @@
 
         <md-button ng-hide="hc.user" ng-click="hc.loginShow()"><i class="fa fa-sign-in" aria-hidden="true"></i> Log In</md-button>
 
-        <md-button ng-show="hc.user" ng-click="hc.routeUser()"><i class="fa fa-user" aria-hidden="true"></i>Account</md-button>
+        <md-button ng-show="hc.user" ng-click="hc.routeUser()"><i class="fa fa-user" aria-hidden="true"></i> Account</md-button>
 
-        <md-button ng-show="hc.user"><a href="/logout" target="_self"><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</a></md-button>
+        <md-button ng-show="hc.user" href="/logout" target="_self"><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</md-button>
 
-        <md-button href="http://www.projectsweetiepie.org/blog" target="_blank">Blog <i class="fa fa-external-link" aria-hidden="true"></i></md-button>
+        <md-button href="http://www.projectsweetiepie.org/blog" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i> Blog</md-button>
 
         <!-- <md-button href="http://www.projectsweetiepie.org/" target="_blank">PSP <i class="fa fa-tree" aria-hidden="true"></i></md-button> -->
       </div>
@@ -33,10 +33,12 @@
     <!-- <h1 class="mainTitle">Nile of the North</h1> -->
 
     <div class="splashText">
-      <p >The "Nile of the North" is a green vision of economic and ecological vitality. It has evolved from and been inspired by the diligent and collaborative hard work of a cohort of north side Minneapolis residents, concerned citizens interested in food justice, non-profits, social service agencies, and businesses intent on creating a social, sustainable healthy food system.
+        <h1>Welcome to Nile of the North</h1>
+
+      <p >Nile of the North is a green vision of economic and ecological vitality. It has evolved from and been inspired by the diligent and collaborative hard work of a cohort of North-Minneapolis residents, concerned citizens interested in food justice, non-profits, social service agencies, and businesses intent on creating a social, sustainable healthy food system.
       </p>
 
-      <p>As Northside Fresh Coalition, these champions advocate ongoing efforts to eradicate food insecurity by creating a shared vision for North Minneapolis's food system and community. Improving our food system is key to overcoming economic, environmental and social barriers to health and revitalization of our community. "Nile of the North" is born of this collective effort.</p>
+      <p>As Northside Fresh Coalition, these champions advocate ongoing efforts to eradicate food insecurity by creating a shared vision for North-Minneapolis's food system and community. Improving our food system is key to overcoming economic, environmental and social barriers to health and revitalization of our community. Nile of the North is born of this collective effort.</p>
 
       <div class="splashTextCtr">
         <h3>These map stories are:</h3>
@@ -45,7 +47,9 @@
           A network for food entrepreneurs, community food advocates to share ideas and resources<br />
           A place to market the availability of healthy food to the community<br />
         </p>
-        <h3>“If you have a garden and a library,<br />you have everything you need” <br />- Cicero</h3>
+
+        <h3>“If you have a garden and a library, you have everything you need” <br />- Cicero</h3>
+
       </div>
 
     </div>
@@ -91,13 +95,10 @@
               <input type="password" ng-model="hc.loginInfo.password" name="login-password" required/>
             </md-input-container>
 
-            <md-input-container>
               <md-button class="md-raised" ng-hide="hc.user" ng-click="hc.loginUser()"><i class="fa fa-sign-in" aria-hidden="true"></i> Log In</md-button>
-            </md-input-container>
-            <md-input-container>
-              <h3>Need to make an account?</h3>
+
+              <h2>New account</h2>
               <md-button class="md-raised" ng-click="hc.registerShow()"><i class="fa fa-user" aria-hidden="true"></i>Register</md-button>
-            </md-input-container>
           </form>
         </section>
       </div> <!-- ::::::::: END LOGIN ::::::::: -->

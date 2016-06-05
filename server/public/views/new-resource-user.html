@@ -3,7 +3,7 @@
   <md-dialog-content class="md-dialog-content">
     <section layout="column">
       <!-- test:{{unrc.newResource}} -->
-
+      <h2>Add Resource</h2>
       <form name="newUserResourceForm">
         <md-input-container>
           <label for="new_name">Name</label>
@@ -152,24 +152,45 @@
         </md-input-container> -->
 
         <!-- <md-input-container> -->
-          <label class="md-button md-raised fileUploadLabel" for="new_audio_user">Choose Audio</label>
+          <!-- <label class="md-button md-raised fileUploadLabel" for="new_audio_user">Choose Audio</label>
           <span ng-show="unrc.newAudio.file">
             <span class="uploadHelperText" ng-show="!unrc.uploadAudioSuccess">Click the orange button to upload your audio.</span>
           </span>
           <span class="uploadHelperText" ng-show="unrc.uploadAudioSuccess">Upload complete!  Click save below to add your resource.</span>
           <md-button ng-show="unrc.newAudio.file" ng-click="unrc.uploadAudio(unrc.newAudio, unrc.newResource)" class="md-button uploadButton" aria-label="uploadAudio"><i class="fa fa-cloud-upload" aria-hidden="true"></i></md-button>
-          <input id="new_audio_user" class="fileUpload" type="file" ngf-select ngf-multiple="false" ng-model="unrc.newAudio.file" name="new_audio_user" ngf-pattern="'audio/*'" accept="audio/*" ngf-max-size="20MB" aria-label="upload_audio"/>
+          <input id="new_audio_user" class="fileUpload" type="file" ngf-select ngf-multiple="false" ng-model="unrc.newAudio.file" name="new_audio_user" ngf-pattern="'audio/*'" accept="audio/*" ngf-max-size="20MB" aria-label="upload_audio"/> -->
         <!-- </md-input-container> -->
+        <div class="uploadContainer">
+          <div class="audioContainer">
+            <label class="md-button md-raised" ng-show="!unrc.newResource.audio_reference" for="upload_audio" >Add Audio</label>
+            <p ng-show="unrc.newResource.audio_reference">
+              Audio file present.
+            </p>
+            <!-- <md-button class="md-raised" ng-show="unrc.newResource.audio_reference" ng-click="unrc.removeAudio(unrc.newResource.audio_id)" >Remove</md-button> -->
+            <input type="file" id="upload_audio" name="upload_audio" class="fileUpload" ng-model="unrc.newAudio.file" ngf-select="unrc.uploadAudio(unrc.newAudio.file)" ngf-multiple="false" ngf-pattern="'audio/*'" accept="audio/*" ngf-max-size="20MB" aria-label="upload_audio"/>
+
+          </div>
+        </div>
 
         <!-- <md-input-container> -->
-          <label class="md-button md-raised fileUploadLabel" for="new_images_user">Choose Images</label>
+          <!-- <label class="md-button md-raised fileUploadLabel" for="new_images_user">Choose Images</label>
           <span ng-show="unrc.newImage.file">
             <span class="uploadHelperText" ng-show="!unrc.uploadImageSuccess">Click the orange button to upload your images.</span>
           </span>
           <span class="uploadHelperText" ng-show="unrc.uploadImageSuccess">Upload complete!  Click save below to add your resource.</span>
           <md-button ng-show="unrc.newImage.file" ng-click="unrc.uploadImage(unrc.newImage, unrc.newResource)" class="md-button uploadButton" aria-label="uploadImage"><i class="fa fa-cloud-upload" aria-hidden="true"></i></md-button>
-          <input id="new_images_user" class="fileUpload" type="file" ngf-select ngf-multiple="true" ng-model="unrc.newImage.file" name="new_images_user" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" ngf-max-files="5" aria-label="upload_images"/>
+          <input id="new_images_user" class="fileUpload" type="file" ngf-select ngf-multiple="true" ng-model="unrc.newImage.file" name="new_images_user" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" ngf-max-files="5" aria-label="upload_images"/> -->
         <!-- </md-input-container> -->
+        <div class="newUploadContainer">
+          <label class="md-button md-raised fileUploadLabel" for="new_images">Choose Images (max 5)</label>
+          <!-- <md-button ng-show="nrc.newImage.file" ng-click="nrc.uploadImage(nrc.newImage, nrc.newResource)" class="md-button uploadButton" aria-label="uploadImage"><i class="fa fa-cloud-upload" aria-hidden="true"></i></md-button> -->
+          <input id="new_images" class="fileUpload" type="file" ngf-select="unrc.uploadImage(unrc.newImage.file)" ngf-multiple="true" ng-model="unrc.newImage.file" name="new_images" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" ngf-max-files="5" aria-label="upload_images"/>
+          <br /><img class="thumbnail" ng-src="{{unrc.newResource.path1}}" ng-show="unrc.newResource.path1" />
+          <br /><img class="thumbnail" ng-src="{{unrc.newResource.path2}}" ng-show="unrc.newResource.path2" />
+          <br /><img class="thumbnail" ng-src="{{unrc.newResource.path3}}" ng-show="unrc.newResource.path3" />
+          <br /><img class="thumbnail" ng-src="{{unrc.newResource.path4}}" ng-show="unrc.newResource.path4"/>
+          <br /><img class="thumbnail" ng-src="{{unrc.newResource.path5}}" ng-show="unrc.newResource.path5"/>
+        </div>
 
         <md-input-container>
           <label for="new_video">Video</label>

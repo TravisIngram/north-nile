@@ -1,4 +1,4 @@
-angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
+angular.module('northApp').factory('ResourceFactory', ['$http', 'Upload', function($http, Upload){
   var savedResources = [];
   var pendingResources = [];
   var approvedResources = [];
@@ -6,6 +6,7 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
   var userResources = [];
   var images = [];
   var geocodeKey = 'd757d21efc7d5efeb1195e398d031a5e';
+  var newImagePaths = {};
 
   var getUserResources = function(user){
     console.log('trying to log user', user);
@@ -122,6 +123,92 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
     });
   };
 
+  var removeImage = function(id, place, cb){
+    $http.delete('upload/image/remove/' + id + '/' + place).then(function(response){
+      console.log('Removed image:', response);
+
+      newImagePaths.paths = response.data;
+      cb();
+    });
+  };
+
+  var updateImage = function(image, id, place, cb){
+    console.log('resource factory image:', image);
+    Upload.upload({
+      url: '/upload/image/single/' + id + '/' + place,
+      arrayKey: '',
+      data: {file: image}
+    }).then(function(response){
+      console.log('Success response?', response);
+      newImagePaths.paths = response.data.image_paths;
+      cb();
+    }, function(response){
+      console.log('Error response?', response);
+    }, function(evt){
+      // use for progress bar
+      console.log('Event response?', evt);
+    });
+    // end image upload
+  };
+
+  var uploadImage = function(image, cb){
+    console.log('resource factory image:', image);
+    Upload.upload({
+      url: '/upload/image',
+      arrayKey: '',
+      data: {file: image}
+    }).then(function(response){
+      console.log('Success response?', response);
+      newImagePaths.image_id = response.data.image_id;
+      newImagePaths.paths = response.data.image_paths;
+      cb();
+    }, function(response){
+      console.log('Error response?', response);
+    }, function(evt){
+      // use for progress bar
+      console.log('Event response?', evt);
+    });
+    // end image upload
+  };
+
+  var removeAudio = function(id, cb){
+    console.log('Removing audio:', id);
+    $http.delete('upload/audio/remove/' + id).then(function(response){
+      console.log('Removed audio:', response);
+      cb();
+    });
+  };
+
+  var uploadAudio = function(audio, cb){
+    console.log('uploading audio:', audio);
+    Upload.upload({
+      url: '/upload/audio/',
+      data: {file: audio}
+    }).then(function(response){
+      console.log('Successfully uploaded audio:', response);
+      cb(response.data.audio_id, response.data.audio_reference);
+      // nrc.uploadAudioSuccess = true;
+    }, function(response){
+      console.log('Failed at uploading audio:', response);
+    }, function(evt){
+      // console.log('evt', evt)
+    });
+  };
+
+  var updateAudio = function(audio, id, cb){
+    Upload.upload({
+      url: '/upload/audio/update/' + id,
+      data: {file:audio}
+    }).then(function(response){
+      console.log('Successfully uploaded audio:', response);
+      cb(response.data.audio_id, response.data.audio_reference);
+    }, function(response){
+      console.log('Failed at uploading audio:', response);
+    }, function(evt){
+      // used for progress
+    });
+  };
+
 
   return {
     saveNewResource: saveNewResource,
@@ -133,6 +220,13 @@ angular.module('northApp').factory('ResourceFactory', ['$http', function($http){
     mapResources: mapResources,
     getUserResources: getUserResources,
     userResources: userResources,
-    removeResource: removeResource
+    removeResource: removeResource,
+    removeImage: removeImage,
+    uploadImage: uploadImage,
+    updateImage: updateImage,
+    newImagePaths: newImagePaths,
+    removeAudio: removeAudio,
+    uploadAudio: uploadAudio,
+    updateAudio: updateAudio
   }
 }]);

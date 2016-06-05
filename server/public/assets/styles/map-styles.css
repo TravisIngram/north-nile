@@ -5,7 +5,7 @@
   bottom: 0;
   width: 100%;
   height: 10vh;
-  background-color: #706c69;
+  background-color: #A09892;
 }
 
 /* ::: template drawer, not resource display anymore, input resource form and others? ::: */
@@ -16,7 +16,7 @@
   max-height: 60vh;
   width: 100vw;
   background-color:rgba(158,206,184,0.8);
-  color:#00000 !important;
+  color:#000 !important;
   /*box-shadow: 2px 2px 5px rgba(56,42,31,0.5);*/
   /*border-radius: 5px;*/
   overflow-y: scroll;
@@ -43,8 +43,6 @@ color: #000000;
   height: 60vh;
   max-height: 60vh;
   width: 100vw;
-  /*background-color: rgba(60,179,113, 0.9);*/
-  /*background-color:#9C9C9C;*/
   background-color:rgba(158,206,184,0.6);
   color:white !important;
   /*box-shadow: 2px 2px 5px rgba(56,42,31,0.5);*/
@@ -180,24 +178,26 @@ md-checkbox.md-checked .md-icon {
 }
 
 .arrow{
-  width:5px;
-  height:5px;
+  /*width:5px;
+  height:5px;*/
   position: absolute;
-  z-index: 1002;
+  /*z-index: 1002;*/
   display: block;
-  top: 100%;
+  /*top: 100%;
   margin-top: -35px;
   width: 36px;
-  height: 71px;
+  height: 71px;*/
   outline: none;
 }
 
 .next{
-right: 20px;
+/*right: 20px;*/
+right: 440px;
 }
 
 .prev{
-left: 20px;
+/*left: 20px;*/
+left: 440px;
 }
 
 .slide{
@@ -221,7 +221,7 @@ left: 20px;
 }
 
 #userKeyButton, #homeKeyButton, #addKeyButton{
-  background-color:#70543E;
+  background-color:#786d64;
   line-height:56px;
    padding:5px;
 }
