@@ -1,8 +1,8 @@
 var pg            = require('pg');
-var dbConnection  = require('./dbConnection').dbConnectionString;
+var dbConnection  = require('./dbConnection');
 
 function createAudio(callback) {
-  pg.connect(dbConnection, function(err, client, done) {
+  pg.connect(dbConnection.dbConnectionString, function(err, client, done) {
     if(err) {
       console.log('Error connecting to DB.' + err);
       process.exit(1);
@@ -27,7 +27,7 @@ function createAudio(callback) {
 }
 
 function createImage(callback) {
-  pg.connect(dbConnection, function(err, client, done) {
+  pg.connect(dbConnection.dbConnectionString, function(err, client, done) {
     if(err) {
       console.log('Error connecting to DB.' + err);
       process.exit(1);
@@ -56,7 +56,7 @@ function createImage(callback) {
 }
 
 // function createVideo(callback) {
-//   pg.connect(dbConnection, function(err, client, done) {
+//   pg.connect(dbConnection.dbConnectionString, function(err, client, done) {
 //     if(err) {
 //       console.log('Error connecting to DB.' + err);
 //       process.exit(1);
