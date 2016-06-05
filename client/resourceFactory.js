@@ -66,7 +66,6 @@ angular.module('northApp').factory('ResourceFactory', ['$http', 'Upload', functi
       // add title parameter and set = resource.name
       savedResources.map(function(resource) {
         resource.title = resource.name;
-        console.log(resource);
       });
 
       // add image paths to an array
