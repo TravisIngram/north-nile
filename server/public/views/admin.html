@@ -74,7 +74,7 @@
         <!-- <md-button class="md-icon-button" ng-click="ac.addNewResource()" aria-label="resource">
         <md-icon md-svg-src="assets/img/ic_add_circle_outline_black_24px.svg"></md-icon>
       </md-button> -->
-      <md-button ng-click="ac.addNewResource()"><i class="fa fa-plus-square-o" aria-hidden="true"></i></md-button>
+      <md-button ng-click="ac.addNewResource()"><i class="fa fa-plus-square fa-lg" aria-hidden="true"></i> new resource</md-button>
     </div>
 
     <md-table-container class="approvedResourcesTable">
@@ -108,7 +108,7 @@
   <md-card>
     <div class="table-button-wrapper">
       <md-button ng-click="ac.showAccounts()">Manage Accounts</md-button>
-      <md-button ng-click="ac.addAccount()" ng-show="ac.showAccountTable"><i class="fa fa-plus-square" aria-hidden="true"></i> new</md-button>
+      <md-button ng-click="ac.addAccount()" ng-show="ac.showAccountTable"><i class="fa fa-plus-square" aria-hidden="true"></i> new account</md-button>
       <md-button ng-click="ac.showEmails()" ng-show="ac.showAccountTable"><i class="fa fa-envelope" aria-hidden="true"></i> Email</md-button>
     </div>
     <md-table-container  ng-show="ac.showAccountTable">
