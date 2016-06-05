@@ -270,7 +270,7 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
   };
 
   epc.removeImage = function(id, place){
-    ResourceFactory.removeImage(id, place, epc.updateImages);
+    ResourceFactory.removeImage(id, place, epc.updateImageInfo);
   };
 
   epc.updateImageInfo = function(){
@@ -281,7 +281,12 @@ angular.module('northApp').controller('EditPendingController', ['selectedResourc
       }
     }
     console.log('newImages:', epc.newImagePaths.paths);
-    epc.selectedResource.image_id = epc.newImagePaths.image_id;
+    if(epc.newImagePaths.image_id){
+      epc.selectedResource.image_id = epc.newImagePaths.image_id;
+    } else if (epc.newImagePaths.id){
+      epc.selectedResource.image_id = epc.newImagePaths.id;
+    }
+
     epc.selectedResource.path1 = epc.newImagePaths.paths.path1;
     epc.selectedResource.path2 = epc.newImagePaths.paths.path2;
     epc.selectedResource.path3 = epc.newImagePaths.paths.path3;

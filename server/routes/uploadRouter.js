@@ -326,7 +326,7 @@ router.delete('/image/remove/:id/:place', function(request, response){
         }
         console.log('Removed image files, setting paths to null.');
         // set file path to null
-        var queryString = 'UPDATE "image" SET (path' + place + ') = (\'\') WHERE id = ' + id + 'RETURNING "path1", "path2", "path3", "path4", "path5"';
+        var queryString = 'UPDATE "image" SET (path' + place + ') = (\'\') WHERE id = ' + id + 'RETURNING id, "path1", "path2", "path3", "path4", "path5"';
 
         var query = client.query(queryString, function(err, result){
           if(err){
