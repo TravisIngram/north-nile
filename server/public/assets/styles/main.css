@@ -320,7 +320,9 @@ body {
     color: #fff;
     padding-right: 5px;
   }
-
+.iconCredit {
+  text-align: center;
+}
 /* :::::::::: User Page :::::::::: */
 /*.userPage p {
   font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;
