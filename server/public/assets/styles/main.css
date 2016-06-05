@@ -259,8 +259,8 @@ font-family: 'Playfair Display', 'Georgia', serif;
     text-align:justify;
     font-size: 14px;
     font-weight: bold;
-    margin: 15px 4vw;
-    background-color: rgba(158,206,184,0.6);
+    margin: 20px 4vw;
+    background-color: rgba(158,206,184,0.7);
     text-shadow: none;
     box-shadow: 2px 2px 2px rgba(56,42,31,0.5);
   }
@@ -270,7 +270,8 @@ font-family: 'Playfair Display', 'Georgia', serif;
   }
 
   .splashText h3 {
-    color: white;
+    text-align: center;
+    color: #35463E;
   }
 
   .splashTextCtr {
