@@ -18,6 +18,21 @@ angular.module('northApp').controller('AdminController', ['AccountFactory', 'Use
   ac.selectedModerationResources = [];
   ac.selectedModerationResource = {};
 
+  // Sort resource table columns by column heading
+  ac.tableSort = {
+    order: 'name',
+    limit: 5,
+    page: 1
+  };
+
+  ac.accountTableSort = {
+    order: 'username',
+    limit: 5,
+    page: 1
+  };
+
+  ac.limitOptions = [5, 10, 15];
+
   // approve resources en masse
   ac.approveResources = function(){
     console.log('approving resources.');
@@ -313,6 +328,7 @@ angular.module('northApp').controller('NewResourceController', ['Upload','$http'
   var nrc = this;
 
   nrc.newResource = {is_active:true, city_name:"Minneapolis", state:"MN"};
+  nrc.newImagePaths = ResourceFactory.newImagePaths;
   nrc.user = {};
   var promise = UserTrackFactory.getUserData();
   promise.then(function(response){
@@ -323,41 +339,79 @@ angular.module('northApp').controller('NewResourceController', ['Upload','$http'
     $mdDialog.hide();
   };
 
-  nrc.uploadAudio = function(audio, resource){
-    console.log('uploading audio');
-    Upload.upload({
-      url: '/upload/audio',
-      data: {file: audio.file}
-    }).then(function(response){
-      console.log('Successfully uploaded audio:', response);
-      resource.audio_id = response.data.audio_id;
-      nrc.uploadAudioSuccess = true;
-    }, function(response){
-      console.log('Failed at uploading audio:', response);
-    }, function(evt){
-      // console.log('evt', evt)
-    });
+  // nrc.uploadAudio = function(audio, resource){
+  //   console.log('uploading audio');
+  //   Upload.upload({
+  //     url: '/upload/audio',
+  //     data: {file: audio.file}
+  //   }).then(function(response){
+  //     console.log('Successfully uploaded audio:', response);
+  //     resource.audio_id = response.data.audio_id;
+  //     nrc.uploadAudioSuccess = true;
+  //   }, function(response){
+  //     console.log('Failed at uploading audio:', response);
+  //   }, function(evt){
+  //     // console.log('evt', evt)
+  //   });
+  // };
+
+  nrc.uploadAudio = function(audio){
+    ResourceFactory.uploadAudio(audio, nrc.updateAudioInfo);
   };
 
-  nrc.uploadImage = function(image, resource){
-    console.log('new resource image:', image);
-    Upload.upload({
-      url: '/upload/image',
-      arrayKey: '',
-      data: {file: image.file}
-    }).then(function(response){
-      console.log('Success response?', response);
-      // save rest of resource
-      resource.image_id = response.data.image_id;
-      nrc.uploadImageSuccess = true;
+  nrc.updateAudioInfo = function(audio_id, audio_reference){
+    nrc.newResource.audio_id = audio_id;
+    nrc.newResource.audio_reference = audio_reference;
+  };
 
-    }, function(response){
-      console.log('Error response?', response);
-    }, function(evt){
-      // use for progress bar
-      console.log('Event response?', evt);
-    });
-    // end image upload
+  nrc.removeAudio = function(id){
+    ResourceFactory.removeAudio(id, nrc.clearAudioPath);
+  };
+
+  nrc.clearAudioPath = function(){
+    nrc.newResource.audio_reference = '';
+  };
+
+  // nrc.uploadImage = function(image, resource){
+  //   console.log('new resource image:', image);
+  //   Upload.upload({
+  //     url: '/upload/image',
+  //     arrayKey: '',
+  //     data: {file: image.file}
+  //   }).then(function(response){
+  //     console.log('Success response?', response);
+  //     // save rest of resource
+  //     resource.image_id = response.data.image_id;
+  //     nrc.uploadImageSuccess = true;
+  //
+  //   }, function(response){
+  //     console.log('Error response?', response);
+  //   }, function(evt){
+  //     // use for progress bar
+  //     console.log('Event response?', evt);
+  //   });
+  //   // end image upload
+  // };
+
+  nrc.uploadImage = function(image){
+    ResourceFactory.uploadImage(image, nrc.updateImageInfo);
+  };
+
+  nrc.updateImageInfo = function(){
+    for (path in nrc.newImagePaths.paths) {
+      console.log('path:', path);
+      if(nrc.newImagePaths.paths[path] == ""){
+        nrc.newImagePaths.paths[path] = "//:0";
+      }
+    }
+    console.log('newImages:', nrc.newImagePaths.paths);
+    nrc.newResource.image_id = nrc.newImagePaths.image_id;
+    nrc.newResource.path1 = nrc.newImagePaths.paths.path1;
+    nrc.newResource.path2 = nrc.newImagePaths.paths.path2;
+    nrc.newResource.path3 = nrc.newImagePaths.paths.path3;
+    nrc.newResource.path4 = nrc.newImagePaths.paths.path4;
+    nrc.newResource.path5 = nrc.newImagePaths.paths.path5;
+    // epc.newImagePaths = {};
   };
 
   nrc.saveNewResource = function(resource){
