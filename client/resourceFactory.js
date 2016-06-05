@@ -63,6 +63,12 @@ angular.module('northApp').factory('ResourceFactory', ['$http', 'Upload', functi
     $http.get('/resources/all').then(function(response){
       // console.log('Got all saved resources:', savedResources);
       angular.copy(response.data, savedResources);
+      // add title parameter and set = resource.name
+      savedResources.map(function(resource) {
+        resource.title = resource.name;
+        console.log(resource);
+      });
+
       // add image paths to an array
       savedResources.map(function(resource){
         resource.images = [];
