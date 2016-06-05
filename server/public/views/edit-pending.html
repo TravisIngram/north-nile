@@ -154,15 +154,15 @@
         </md-input-container>
         <div class="uploadContainer">
           <div class="audioContainer">
-            <label class="md-button" ng-show="!epc.selectedResource.audio_id" for="upload_audio" >Add</label>
-            <label class="md-button" ng-show="epc.selectedResource.audio_id" for="update_audio" >Add</label>
+            <label class="md-button" ng-show="!epc.selectedResource.audio_id" for="upload_audio" >Choose Audio</label>
+            <label class="md-button" ng-show="epc.selectedResource.audio_id" for="update_audio" >Choose Audio</label>
             <p ng-show="epc.selectedResource.audio_reference">
               Audio file present.
             </p>
             <p ng-show="!epc.selectedResource.audio_reference">
               No audio files.
             </p>
-            <md-button ng-click="epc.removeAudio(epc.selectedResource.audio_id)" >Remove</md-button>
+            <md-button ng-click="epc.removeAudio(epc.selectedResource.audio_id)" >Remove Audio</md-button>
             <input type="file" id="upload_audio" name="upload_audio" class="fileUpload" ng-model="epc.newAudio.file" ngf-select="epc.uploadAudio(epc.newAudio.file)" ngf-multiple="false" ngf-pattern="'audio/*'" accept="audio/*" ngf-max-size="20MB" aria-label="upload_audio"/>
             <input type="file" id="update_audio" name="update_audio" class="fileUpload" ng-model="epc.newAudio.file" ngf-select="epc.updateAudio(epc.newAudio.file, epc.selectedResource.audio_id)" ngf-multiple="false" ngf-pattern="'audio/*'" accept="audio/*" ngf-max-size="20MB" aria-label="upload_audio"/>
 
@@ -175,32 +175,32 @@
         </md-input-container>
         <div class="uploadContainer" ng-show="epc.selectedResource.image_id">
           <div class="imageContainer">
-            <label class="md-button"  for="upload_image_1" >Add</label>
+            <label class="md-button"  for="upload_image_1" >Choose Image</label>
 
             <md-button ng-click="epc.removeImage(epc.selectedResource.image_id, 1)" >Remove</md-button>
             <img class="thumbnail" ng-src="{{epc.selectedResource.path1}}" />
             <input type="file" id="upload_image_1" name="upload_image_1" class="fileUpload" ng-model="epc.newImages.file1" ngf-select="epc.updateImage(epc.newImages.file1, epc.selectedResource.image_id, 1)" ngf-multiple="false" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" aria-label="upload_images"/>
           </div>
           <div class="imageContainer">
-            <label class="md-button"  for="upload_image_2" >Add</label>
+            <label class="md-button"  for="upload_image_2" >Choose Image</label>
             <md-button ng-click="epc.removeImage(epc.selectedResource.image_id, 2)" >Remove</md-button>
             <img class="thumbnail" ng-src="{{epc.selectedResource.path2}}" />
             <input type="file" id="upload_image_2" name="upload_image_2" class="fileUpload" ng-model="epc.newImages.file2" ngf-select="epc.updateImage(epc.newImages.file2, epc.selectedResource.image_id, 2)" ngf-multiple="false" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" aria-label="upload_images"/>
           </div>
           <div class="imageContainer">
-            <label class="md-button"  for="upload_image_3" >Add</label>
+            <label class="md-button"  for="upload_image_3" >Choose Image</label>
             <md-button ng-click="epc.removeImage(epc.selectedResource.image_id, 3)" >Remove</md-button>
             <img class="thumbnail" ng-src="{{epc.selectedResource.path3}}" />
             <input type="file" id="upload_image_3" name="upload_image_3" class="fileUpload" ng-model="epc.newImages.file3" ngf-select="epc.updateImage(epc.newImages.file3, epc.selectedResource.image_id, 3)" ngf-multiple="false" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" aria-label="upload_images"/>
           </div>
           <div class="imageContainer">
-            <label class="md-button"  for="upload_image_4" >Add</label>
+            <label class="md-button"  for="upload_image_4" >Choose Image</label>
             <md-button ng-click="epc.removeImage(epc.selectedResource.image_id, 4)" >Remove</md-button>
             <img class="thumbnail" ng-src="{{epc.selectedResource.path4}}" />
             <input type="file" id="upload_image_4" name="upload_image_4" class="fileUpload" ng-model="epc.newImages.file4" ngf-select="epc.updateImage(epc.newImages.file4, epc.selectedResource.image_id, 4)" ngf-multiple="false" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" aria-label="upload_images"/>
           </div>
           <div class="imageContainer">
-            <label class="md-button"  for="upload_image_5" >Add</label>
+            <label class="md-button"  for="upload_image_5" >Choose Image</label>
             <md-button ng-click="epc.removeImage(epc.selectedResource.image_id, 5)" >Remove</md-button>
             <img class="thumbnail" ng-src="{{epc.selectedResource.path5}}" />
             <input type="file" id="upload_image_5" name="upload_image_5" class="fileUpload" ng-model="epc.newImages.file5" ngf-select="epc.updateImage(epc.newImages.file5, epc.selectedResource.image_id, 5)" ngf-multiple="false" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" aria-label="upload_images"/>
