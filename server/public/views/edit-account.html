@@ -31,6 +31,9 @@
 
         <md-button ng-disabled="editAccountForm.$invalid" ng-click="eac.saveEditAccount(account)">Save</md-button>
         <md-button ng-click="eac.cancelEditAccount()">Cancel</md-button>
+        <p class="requiredFormText" ng-show="editAccountForm.$invalid">
+          Please fill out the required fields.
+        </p>
       </form>
     </section>
   </md-dialog-content>

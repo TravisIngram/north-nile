@@ -19,16 +19,18 @@
       <md-button href="/logout" target="_self" aria-label="logout"><i class="fa fa-user"></i>Log out</md-button>
 
     </div>
+
   </md-toolbar>
 
 
   <!-- user resources -->
 
   <h2 class="pageTitle"> Food Resource Locations </h2>
+  <div class="userPage">
   <md-card>
     <md-button class="md-icon-button" ng-click="uc.addNewResource()"><aria-label="resource">
       <md-icon md-svg-src="assets/img/ic_add_circle_outline_black_24px.svg"></md-icon>
-    </md-button>
+    <md-tooltip>Add New Resource!</md-tooltip></md-button>
     <md-table-container>
       <table md-table>
         <thead md-head>
@@ -47,15 +49,15 @@
             </th>
             <th md-column>
               Resource Type
-          <!--   </th>
-          <th md-column>
-            Details
-          </tr> -->
+            </th>
           </thead>
+
+
           <tbody md-body>
             <tr md-row ng-repeat="resource in uc.userResources" md-select="resource" md-selectid="name" md-auto-select>
+                  <div class="userInput">
               <td md-cell>{{resource.name}}</td>
-              <td md-cell>{{resource.address_line1}}</td>
+              <td md-cell> {{resource.address_line1}}</td>
               <td md-cell><p ng-show="resource.is_active">Active</p><p ng-show="resource.is_pending">Pending</p></td>
               <td md-cell>{{resource.date_created | date : format}}</td>
               <td md-cell>{{resource.resource_type}}</td>
@@ -65,6 +67,7 @@
       </table>
     </md-table-container>
   </md-card>
-</div>
+  </div>
+
 
 <!-- ::::::::: END USER DASHBOARD ::::::::: -->

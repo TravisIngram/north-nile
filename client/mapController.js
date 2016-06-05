@@ -401,6 +401,10 @@ var foodHub = {
     mc.showNewResourceLogin = false;
     mc.showNewResourceRegister = true;
   };
+  mc.loginShow = function(){
+    mc.showNewResourceLogin = true;
+    mc.showNewResourceRegister = false;
+  };
 
   // registration form password confirmation checking
   mc.registerInfo = {};

@@ -125,14 +125,14 @@
     </section>
   </form>
 
-  <form class="home form" name="registerFormInputs" ng-show="mc.showNewResourceRegister">
+  <form class="home form" name="mc.registerFormInputs" ng-show="mc.showNewResourceRegister">
     <section layout="column">
       <h3>Registration</h3>
 
       <md-input-container>
         <label for="username">Username</label>
         <input type="text" ng-model="mc.registerInfo.username" name="username" required/>
-        <div ng-messages="registerFormInputs.username.$error">
+        <div ng-messages="mc.registerFormInputs.username.$error">
           <div ng-message="required">This is required!</div>
         </div>
       </md-input-container>
@@ -140,7 +140,7 @@
       <md-input-container>
         <label for="password">Password</label>
         <input type="password" ng-model="mc.registerInfo.password" name="password" required/>
-        <div ng-messages="registerFormInputs.password.$error">
+        <div ng-messages="mc.registerFormInputs.password.$error">
           <div ng-message="required">This is required!</div>
         </div>
       </md-input-container>
@@ -155,7 +155,7 @@
       <md-input-container>
         <label for="contact_name">Contact Name</label>
         <input type="text" ng-model="mc.registerInfo.contact_name" name="contact_name" id="contact_name" required/>
-        <div ng-messages="registerFormInputs.contact_name.$error">
+        <div ng-messages="mc.registerFormInputs.contact_name.$error">
           <div ng-message="required">This is required!</div>
         </div>
       </md-input-container>
@@ -163,14 +163,21 @@
       <md-input-container>
         <label for="email_address">Email address</label>
         <input type="email" ng-model="mc.registerInfo.email_address" name="email_address" id="email_address" required/>
-        <div ng-messages="registerFormInputs.email_address.$error">
+        <div ng-messages="mc.registerFormInputs.email_address.$error">
           <div ng-message="required">This is required!</div>
           <div ng-message="email">Please enter a valid email address.</div>
         </div>
       </md-input-container>
 
       <md-input-container>
-        <md-button ng-disabled="registerFormInputs.$invalid" ng-click="mc.registerUser()" class="md-raised">Register</md-button>
+        <md-button ng-disabled="mc.registerFormInputs.$invalid" ng-click="mc.registerUser()" class="md-raised">Register</md-button>
+      </md-input-container>
+      <p class="requiredFormText" ng-show="mc.registerFormInputs.$invalid">
+        Please fill out the required fields.
+      </p>
+      <md-input-container>
+        <p class="requiredFormText">Already have an account?</p>
+        <md-button class="md-raised" ng-click="mc.loginShow()">Login</md-button>
       </md-input-container>
     </section>
   </form>
@@ -337,7 +344,7 @@
       <!-- </md-input-container> -->
       <div class="uploadContainer">
         <div class="audioContainer">
-          <label class="md-button md-raised" ng-show="!mc.newResource.audio_reference" for="upload_audio" >Add Audio</label>
+          <label class="md-button md-raised" ng-show="!mc.newResource.audio_reference" for="upload_audio" >Choose Audio</label>
           <p ng-show="mc.newResource.audio_reference">
             Audio file present.
           </p>
@@ -378,6 +385,9 @@
 
       <md-button ng-disabled="newResourceForm.$invalid" ng-click="mc.saveNewResource(mc.newResource)">Save</md-button>
       <md-button ng-click="mc.cancelNewResource()">Cancel</md-button>
+      <p class="requiredFormText" class="requiredFormText" ng-show="newResourceForm.$invalid">
+        Please fill out the required fields.
+      </p>
     </section>
   </form>
 </div>

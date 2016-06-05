@@ -76,6 +76,10 @@ md-dialog h2{
   float: right;
 }
 
+.imageContainer>img, .imageContainer>label, .imageContainer>md-button {
+  vertical-align: middle;
+}
+
 .thumbnail{
   height: 50px;
 }
