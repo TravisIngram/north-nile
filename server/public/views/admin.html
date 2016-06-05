@@ -84,7 +84,7 @@
           </tr>
         </thead>
         <tbody md-body>
-          <tr md-row md-select="resource" ng-repeat="resource in ac.approvedResources | orderBy: ac.tableSort.order | limitTo: ac.tableSort.limit : (ac.tableSort.page -1) * ac.tableSort.limit">
+          <tr md-row md-select="resource" ng-repeat="resource in ac.approvedResources | orderObjectBy: ac.tableSort.order | limitTo: ac.tableSort.limit : (ac.tableSort.page -1) * ac.tableSort.limit">
             <td md-cell>{{resource.username}}</td>
             <td md-cell>{{resource.name}}</td>
             <td md-cell>{{resource.resource_type}}</td>
