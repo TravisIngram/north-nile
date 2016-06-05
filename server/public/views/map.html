@@ -117,9 +117,8 @@
       <md-input-container>
         <md-button ng-click="mc.loginUser()" value="LogIn" class="md-raised">Log In</md-button>
       </md-input-container>
-
+      <h3>Need To Create A New Account?</h3>
       <md-input-container>
-        <p>Need to create a new account?</p>
         <md-button class="md-raised" ng-click="mc.registerShow()">Register</md-button>
       </md-input-container>
     </section>
@@ -130,7 +129,7 @@
       <h3>Registration</h3>
 
       <md-input-container>
-        <label for="username">Username</label>
+        <label for="username">Username<span class="md-caption"> (Required)</span></label>
         <input type="text" ng-model="mc.registerInfo.username" name="username" required/>
         <div ng-messages="mc.registerFormInputs.username.$error">
           <div ng-message="required">This is required!</div>
@@ -138,7 +137,7 @@
       </md-input-container>
 
       <md-input-container>
-        <label for="password">Password</label>
+        <label for="password">Password<span class="md-caption"> (Required)</span></label>
         <input type="password" ng-model="mc.registerInfo.password" name="password" required/>
         <div ng-messages="mc.registerFormInputs.password.$error">
           <div ng-message="required">This is required!</div>
@@ -146,14 +145,14 @@
       </md-input-container>
 
       <md-input-container md-is-error="mc.passwordMismatch()">
-        <label for="confirm_password">Confirm Password</label>
+        <label for="confirm_password">Confirm Password<span class="md-caption"> (Required)</span></label>
         <input type="password" ng-model="mc.registerInfo.confirm_password" name="confirm_password" required/>
         <!-- Should add message here to inform user their passwords don't match -->
         <div class="errorMessage md-caption" ng-show="mc.passwordMismatchError()">Please make sure your passwords match.</div>
       </md-input-container>
 
       <md-input-container>
-        <label for="contact_name">Contact Name</label>
+        <label for="contact_name">Contact Name<span class="md-caption"> (Required)</span></label>
         <input type="text" ng-model="mc.registerInfo.contact_name" name="contact_name" id="contact_name" required/>
         <div ng-messages="mc.registerFormInputs.contact_name.$error">
           <div ng-message="required">This is required!</div>
@@ -161,7 +160,7 @@
       </md-input-container>
 
       <md-input-container>
-        <label for="email_address">Email address</label>
+        <label for="email_address">Email address<span class="md-caption"> (Required)</span></label>
         <input type="email" ng-model="mc.registerInfo.email_address" name="email_address" id="email_address" required/>
         <div ng-messages="mc.registerFormInputs.email_address.$error">
           <div ng-message="required">This is required!</div>
@@ -172,11 +171,11 @@
       <md-input-container>
         <md-button ng-disabled="mc.registerFormInputs.$invalid" ng-click="mc.registerUser()" class="md-raised">Register</md-button>
       </md-input-container>
-      <p class="requiredFormText" ng-show="mc.registerFormInputs.$invalid">
+      <p class="requiredFormText" class="md-caption" ng-show="mc.registerFormInputs.$invalid">
         Please fill out the required fields.
       </p>
       <md-input-container>
-        <p class="requiredFormText">Already have an account?</p>
+        <h3>Already have an account?</h3>
         <md-button class="md-raised" ng-click="mc.loginShow()">Login</md-button>
       </md-input-container>
     </section>
