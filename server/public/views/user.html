@@ -36,39 +36,37 @@
         <thead md-head>
           <tr md-row class="md-row">
             <th md-column>
-              <p>Resource Name</p>
+              Resource Name
             </th>
             <th md-column>
-              <p>Resource Location</p>
+              Resource Location
             </th>
             <th md-column>
-              <p>Resource Status</p>
+              Resource Status
             </th>
             <th md-column>
-              <p>Date Created</p>
+              Date Created
             </th>
             <th md-column>
-              <p>Resource Type</p>
+              Resource Type
             </th>
           </thead>
-          </div>
+
 
           <tbody md-body>
             <tr md-row ng-repeat="resource in uc.userResources" md-select="resource" md-selectid="name" md-auto-select>
                   <div class="userInput">
-              <td md-cell><p>{{resource.name}}</p></td>
-              <td md-cell><p>{{resource.address_line1}}</p></td>
+              <td md-cell>{{resource.name}}</td>
+              <td md-cell> {{resource.address_line1}}</td>
               <td md-cell><p ng-show="resource.is_active">Active</p><p ng-show="resource.is_pending">Pending</p></td>
               <td md-cell>{{resource.date_created | date : format}}</td>
               <td md-cell>{{resource.resource_type}}</td>
               <td md-cell><md-button ng-click="uc.editUserResource(resource)">Details</md-button></td>
             </tr>
           </tbody>
-          </div>
       </table>
     </md-table-container>
   </md-card>
-
   </div>
 
 
