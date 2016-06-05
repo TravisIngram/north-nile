@@ -5,8 +5,8 @@
       <h2>Add Resource</h2>
       <form name="newResourceForm">
         <md-input-container>
-          <label for="new_name">Name</label>
-          <input type="text" name="new_name" ng-model="nrc.newResource.name" required/>
+          <label for="new_name">Name<span class="md-caption"> (Required)</span></label>
+          <input type="text" name="new_name" ng-model="nrc.newResource.name" required>
           <div ng-messages="newResourceForm.new_name.$error">
             <div ng-message="required">This is required!</div>
           </div>
@@ -21,8 +21,8 @@
         </md-input-container> -->
 
         <md-input-container>
-          <label>Address</label>
-          <input type="text" name="new_address1" ng-model="nrc.newResource.address_line1" required>
+          <label>Address<span class="md-caption"> (Required)</span></label>
+          <input required type="text" name="new_address1" ng-model="nrc.newResource.address_line1">
           <div ng-messages="newResourceForm.new_address1.$error">
             <div ng-message="required">This is required!</div>
           </div>
@@ -55,7 +55,7 @@
         </md-input-container>
 
         <md-input-container class="md-block" flex-gt-sm>
-          <label>Zip Code</label>
+          <label>Zip Code<span class="md-caption"> (Required)</span></label>
           <input name="new_zip_code" ng-model="nrc.newResource.zip_code"
                    required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
           <div ng-messages="newResourceForm.new_zip_code.$error" role="alert" multiple>
@@ -70,7 +70,7 @@
         </md-input-container>
 
         <md-input-container>
-          <label for="new_type">Type</label>
+          <label for="new_type">Type<span class="md-caption"> (Required)</span></label>
           <md-select name="new_type" ng-model="nrc.newResource.resource_type" required>
             <md-option value="Community Garden">Community Garden</md-option>
             <md-option value="Culinary Arts">Culinary Arts</md-option>
@@ -200,7 +200,9 @@
 
         <md-button ng-disabled="newResourceForm.$invalid" ng-click="nrc.saveNewResource(nrc.newResource)">Save</md-button>
         <md-button ng-click="nrc.cancelNewResource()">Cancel</md-button>
-
+        <p class="requiredFormText" ng-show="newResourceForm.$invalid">
+          Please fill out the required fields.
+        </p>
       </form>
     </section>
 

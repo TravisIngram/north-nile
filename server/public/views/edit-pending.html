@@ -5,7 +5,7 @@
       <h2>Edit Resource</h2>
       <form name="editPendingForm">
         <md-input-container>
-          <label for="pending_name">Name</label>
+          <label for="pending_name">Name<span class="md-caption"> (Required)</span></label>
           <input type="text" name="pending_name" ng-model="epc.selectedResource.name" required/>
           <div ng-messages="editPendingForm.pending_name.$error">
             <div ng-message="required">This is required!</div>
@@ -21,8 +21,8 @@
         </md-input-container> -->
 
         <md-input-container>
-          <label>Address</label>
-          <input type="text" name="new_address1" ng-model="epc.selectedResource.address_line1">
+          <label>Address<span class="md-caption"> (Required)</span></label>
+          <input type="text" name="new_address1" ng-model="epc.selectedResource.address_line1"required>
           <div ng-messages="editPendingForm.new_address1.$error">
             <div ng-message="required">This is required!</div>
           </div>
@@ -55,7 +55,7 @@
         </md-input-container>
 
         <md-input-container class="md-block" flex-gt-sm>
-          <label>Zip Code</label>
+          <label>Zip Code<span class="md-caption"> (Required)</span></label>
           <input name="new_zip_code" ng-model="epc.selectedResource.zip_code"
                    required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
           <div ng-messages="editPendingForm.new_zip_code.$error" role="alert" multiple>
@@ -70,7 +70,7 @@
         </md-input-container>
 
         <md-input-container>
-          <label for="pending_type">Type</label>
+          <label for="pending_type">Type<span class="md-caption"> (Required)</span></label>
           <md-select name="pending_type" ng-model="epc.selectedResource.resource_type" required>
             <md-option value="Community Garden">Community Garden</md-option>
             <md-option value="Culinary Arts">Culinary Arts</md-option>
@@ -227,6 +227,9 @@
         <md-button ng-disabled="editPendingForm.$invalid" ng-show="!epc.showConfirmRemove" ng-click="epc.saveEditPending()">Save</md-button>
         <md-button ng-show="!epc.showConfirmRemove" ng-click="epc.cancelEditPending()">Cancel</md-button>
         <md-button ng-show="!epc.showConfirmRemove" ng-click="epc.confirmRemoveResource()">Remove</md-button>
+        <p class="requiredFormText" ng-show="editPendingForm.$invalid">
+          Please fill out the required fields.
+        </p>
 
         <!-- <section md-layout="row" class="two"> -->
           <p ng-show="epc.showConfirmRemove">Are you sure you want to remove this resource? This action cannot be undone.</p>
