@@ -25,15 +25,15 @@
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 }
 .infoDrawer .loginMap {
-font-family: 'Playfair Display', 'Georgia', serif;
-background-color: #BBDCCD;
-border-left: 1px solid #A09892;
-border-right: 1px solid #A09892;
-border-radius: none;
-padding: 15px;
-color: #70543e;
-box-shadow: none;
-margin: 0 15vw;
+  font-family: 'Playfair Display', 'Georgia', serif;
+  background-color: #BBDCCD;
+  border-left: 1px solid #A09892;
+  border-right: 1px solid #A09892;
+  border-radius: none;
+  padding: 15px;
+  color: #70543e;
+  box-shadow: none;
+  margin: 0 15vw;
 }
 
 .md-button.md-fab.md-mini{
@@ -43,9 +43,9 @@ margin: 0 15vw;
 
 @media (max-width:600px) {
   .infoDrawer .loginMap {
-  border-radius: 10px;
-  padding: 15px;
-  margin: 5px 1vw;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 5px 1vw;
   }
 }
 
@@ -117,14 +117,14 @@ margin: 0 15vw;
 }
 
 .socialMedia li {
-display: inline-block;
-text-align: center;
-background: #93CEB8;
-width: 40px;
-height: 40px;
-transition: background 0.3s ease;
-border-radius: 50%;
-margin-right: 5px;
+  display: inline-block;
+  text-align: center;
+  background: #93CEB8;
+  width: 40px;
+  height: 40px;
+  transition: background 0.3s ease;
+  border-radius: 50%;
+  margin-right: 5px;
 }
 
 .socialMedia i {
@@ -134,8 +134,8 @@ margin-right: 5px;
 }
 
 .socialMedia li:hover {
-   background-color: #F3CB00;
- }
+  background-color: #F3CB00;
+}
 
 .drawerContent.resourceGreen {
   background-color:#9BB85C;
@@ -161,9 +161,9 @@ md-checkbox.md-checked .md-icon {
 }
 
 
-  .infoDrawerResource.ng-hide{
-    max-height:0;
-  }
+.infoDrawerResource.ng-hide{
+  max-height:0;
+}
 
 .infoDrawer.ng-hide{
   max-height: 0;
@@ -203,13 +203,13 @@ md-checkbox.md-checked .md-icon {
 }
 
 .next{
-/*right: 20px;*/
-right: 440px;
+  /*right: 20px;*/
+  right: 440px;
 }
 
 .prev{
-/*left: 20px;*/
-left: 440px;
+  /*left: 20px;*/
+  left: 440px;
 }
 
 .slide{
@@ -235,31 +235,31 @@ left: 440px;
 #userKeyButton, #homeKeyButton, #addKeyButton{
   background-color:#786d64;
   line-height:56px;
-   padding:5px;
+  padding:5px;
 }
 
 #homeKeyIcon, #userKeyIcon, #addKeyIcon{
-   line-height:0;
-   padding:0;
-  }
+  line-height:0;
+  padding:0;
+}
 
 #playIcon, #pauseIcon, #stopIcon, #muteIcon, #mutedIcon{
-    line-height: 0;
+  line-height: 0;
 }
 
 #playButton, #stopButton, #muteButton {
-   line-height: 56px;
-   padding:5px;
-   background: #93CEB8;
+  line-height: 56px;
+  padding:5px;
+  background: #93CEB8;
 }
 
 #playButton:hover, #stopButton:hover, #muteButton:hover {
   background-color: #F3CB00;
 }
 
-  .fileUploadLabel{
-   padding: 0 5px;
- }
+.fileUploadLabel{
+  padding: 0 5px;
+}
 
 @media (min-width:600px) {
   .home.header-expanded {

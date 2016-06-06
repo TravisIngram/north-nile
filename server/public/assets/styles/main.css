@@ -323,7 +323,10 @@ body {
   }
 .iconCredit {
   text-align: center;
+  color: grey;
+  font-size: 8px;
 }
+
 /* :::::::::: User Page :::::::::: */
 /*.userPage p {
   font-family: 'Soria', 'Verdana', 'Geneva', sans-serif;

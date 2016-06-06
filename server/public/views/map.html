@@ -1,4 +1,6 @@
 <leaflet id="map" center="mc.center"  defaults="mc.defaults" tiles="mc.tiles" height="100vh" width="100vw" markers="mc.markers" ng-style="mc.mapStyle">
+
+
 </leaflet>
 
 <div class="key" layout="row" layout-align="center">
@@ -21,185 +23,177 @@
 </div>
 <div class="infoDrawerResource" ng-class="mc.colorBk" ng-show="mc.showInfoDrawer" md-swipe-down="mc.closeInfoDrawer()">
   <div class="drawerContent {{mc.colorBk}}">
-  <div>
-    <h2 class="drawerTitle">{{mc.lastClicked.name}}</h2>
-    <p class="resourceTitle">
-      <md-icon md-svg-src="{{mc.lastClicked.icon.iconUrl}}"></md-icon>   {{mc.lastClicked.resource_type}} Resource</p>
-    <p class="address" ng-show="mc.lastClicked.address_line1">{{mc.lastClicked.address_line1}}</p>
-    <p class="address" ng-show="mc.newResource.address_line2">{{mc.lastClicked.address_line2}}</p>
-    <p class="address" ng-show="mc.newResource.address_line3">{{mc.lastClicked.address_line3}}</p>
-    <p class="address">{{mc.lastClicked.city_name}}, {{mc.lastClicked.state}} {{mc.lastClicked.zip_code}}</p>
-  </div>
+    <div>
+      <h2 class="drawerTitle">{{mc.lastClicked.name}}</h2>
+      <p class="resourceTitle">
+        <md-icon md-svg-src="{{mc.lastClicked.icon.iconUrl}}"></md-icon>   {{mc.lastClicked.resource_type}} Resource</p>
+        <p class="address" ng-show="mc.lastClicked.address_line1">{{mc.lastClicked.address_line1}}</p>
+        <p class="address" ng-show="mc.newResource.address_line2">{{mc.lastClicked.address_line2}}</p>
+        <p class="address" ng-show="mc.newResource.address_line3">{{mc.lastClicked.address_line3}}</p>
+        <p class="address">{{mc.lastClicked.city_name}}, {{mc.lastClicked.state}} {{mc.lastClicked.zip_code}}</p>
+      </div>
 
-  <div ng-show="mc.lastClicked.description">
-    <p>{{mc.lastClicked.description}}</p>
-  </div>
+      <div ng-show="mc.lastClicked.description">
+        <p>{{mc.lastClicked.description}}</p>
+      </div>
 
-  <div ng-show="mc.webSocialShow()">
-    <p class="resourceTitle">Connect</br>
-      <p class="address">
-        <a ng-href="{{mc.lastClicked.website | urlFilter}}" target="_blank">{{mc.lastClicked.website}}</a>
-    </p>
+      <div ng-show="mc.webSocialShow()">
+        <p class="resourceTitle">Connect</br>
+          <p class="address">
+            <a ng-href="{{mc.lastClicked.website | urlFilter}}" target="_blank">{{mc.lastClicked.website}}</a>
+          </p>
 
-    <ul class="socialMedia">
-				<li ng-show="mc.lastClicked.twitter"><a href="{{mc.lastClicked.twitter}}" target="_blank"><i class="fa fa-twitter"></i></a></li>
-				<li ng-show="mc.lastClicked.facebook"><a href="{{mc.lastClicked.facebook}}" target="_blank"><i class="fa fa-facebook"></i></a></li>
-				<li ng-show="mc.lastClicked.instagram"><a href="{{mc.lastClicked.instagram}}" target="_blank"><i class="fa fa-instagram"></i></a></li>
-        <li ng-show="mc.lastClicked.snapchat"><a href="{{mc.lastClicked.snapchat}}" target="_blank"><i class="fa fa-snapchat"></i></a></li>
-	  </ul>
+          <ul class="socialMedia">
+            <li ng-show="mc.lastClicked.twitter"><a href="{{mc.lastClicked.twitter}}" target="_blank"><i class="fa fa-twitter"></i></a></li>
+            <li ng-show="mc.lastClicked.facebook"><a href="{{mc.lastClicked.facebook}}" target="_blank"><i class="fa fa-facebook"></i></a></li>
+            <li ng-show="mc.lastClicked.instagram"><a href="{{mc.lastClicked.instagram}}" target="_blank"><i class="fa fa-instagram"></i></a></li>
+            <li ng-show="mc.lastClicked.snapchat"><a href="{{mc.lastClicked.snapchat}}" target="_blank"><i class="fa fa-snapchat"></i></a></li>
+          </ul>
 
-  </div>
-
-  <div ng-show="mc.contactShow()">
-    <!-- Need a function for whether or not to show this div -->
-    <p class="resourceTitle">Contact</p>
-    <p class="address" ng-show="mc.lastClicked.leadership">Leadership: {{mc.lastClicked.leadership}}</p>
-    <p class="address" ng-show="mc.lastClicked.public_phone">{{mc.lastClicked.public_phone}}</p>
-    <p class="address">
-      <a ng-show="mc.lastClicked.public_email" href="mailto:{{mc.lastClicked.public_email}}?Subject=Hello%20from%20the%20Nile%20of%20the%20North%20Map" target="_top">{{mc.lastClicked.public_email}}</a>
-    </p>
-    <p class="address" ng-show="mc.lastClicked.hours">Hours:</p>
-    <p class="address">{{mc.lastClicked.hours}}</p>
-  </div>
-
-  <div ng-show="mc.lastClicked.audio_reference">
-    <p class="resourceTitle">Audio</p>
-    <!-- {{mc.lastClicked.audio_id}} -->
-    <md-button id="playButton" aria-label="play-pause_audio" ng-click="mc.play(mc.lastClicked.sound)" class="md-fab md-mini">
-      <md-icon id="playIcon" ng-show="mc.lastClicked.sound.paused" md-font-icon="fa-play" class="fa" aria-hidden="true"></md-icon>
-      <md-icon id="pauseIcon" ng-show="!mc.lastClicked.sound.paused" md-font-icon="fa-pause" class="fa" aria-hidden="true"></md-icon>
-    </md-button>
-    <md-button id="stopButton" aria-label="stop_audio" ng-click="mc.stop(mc.lastClicked.sound)" class="md-fab md-mini"><md-icon id="stopIcon" class="fa fa-stop" aria-hidden="true"></md-icon></md-button>
-    <md-button id="muteButton" aria-label="mute_audio" ng-click="mc.mute()" class="md-fab md-mini">
-      <md-icon id="muteIcon" ng-show="!mc.muted" class="fa fa-volume-off" aria-hidden="true"></md-icon>
-      <md-icon id="mutedIcon" ng-show="mc.muted" class="fa fa-volume-up" aria-hidden="true"></md-icon>
-    </md-button>
-  </div>
-
-  <div ng-show="mc.lastClicked.path1">
-    <p class="resourceTitle">Photos</br>
-      <section layout="row"  layout-align="center end">
-        <div class="container slider" >
-          <img ng-repeat="slide in mc.lastClicked.images" class="slide"
-             ng-hide="!mc.isCurrentSlideIndex($index)" ng-src="{{slide}}">
-             <a ng-show="mc.lastClicked.path1" class="arrow next" href="#" ng-click="mc.nextSlide()"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-             <a ng-show="mc.lastClicked.path1" class="arrow prev" href="#" ng-click="mc.prevSlide()"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
         </div>
-      </section>
-    </p>
-  </div>
 
-  <div ng-show="mc.lastClicked.video">
-  <p class="resourceTitle">Video</p>
-    <p class="address">
-      <a target="_blank" ng-href="{{mc.lastClicked.video}}">Open Video</a>
-    </p>
- </div>
-
-</div> <!-- /.drawerContent -->
-</div>
-
-<div class="infoDrawer" ng-show="mc.showNewResourceDrawer">
-<div class="loginMap">
-  <form ng-show="mc.showNewResourceLogin">
-    <section layout="column">
-      <h3>Please Log In To Submit A New Resource</h3>
-      <md-input-container>
-        <label for="login-username">Username</label>
-        <input type="text" ng-model="mc.loginInfo.username" name="login-username" required/>
-      </md-input-container>
-
-      <md-input-container>
-        <label for="login-password">Password</label>
-        <input type="password" ng-model="mc.loginInfo.password" name="login-password" required/>
-      </md-input-container>
-
-      <md-input-container>
-        <md-button ng-click="mc.loginUser()" value="LogIn" class="md-raised">Log In</md-button>
-      </md-input-container>
-      <h3>Need To Create A New Account?</h3>
-      <md-input-container>
-        <md-button class="md-raised" ng-click="mc.registerShow()">Register</md-button>
-      </md-input-container>
-    </section>
-  </form>
-
-  <form class="home form" name="mc.registerFormInputs" ng-show="mc.showNewResourceRegister">
-    <section layout="column">
-      <h3>Registration</h3>
-
-      <md-input-container>
-        <label for="username">Username<span class="md-caption"> (Required)</span></label>
-        <input type="text" ng-model="mc.registerInfo.username" name="username" required/>
-        <div ng-messages="mc.registerFormInputs.username.$error">
-          <div ng-message="required">This is required!</div>
+        <div ng-show="mc.contactShow()">
+          <!-- Need a function for whether or not to show this div -->
+          <p class="resourceTitle">Contact</p>
+          <p class="address" ng-show="mc.lastClicked.leadership">Leadership: {{mc.lastClicked.leadership}}</p>
+          <p class="address" ng-show="mc.lastClicked.public_phone">{{mc.lastClicked.public_phone}}</p>
+          <p class="address">
+            <a ng-show="mc.lastClicked.public_email" href="mailto:{{mc.lastClicked.public_email}}?Subject=Hello%20from%20the%20Nile%20of%20the%20North%20Map" target="_top">{{mc.lastClicked.public_email}}</a>
+          </p>
+          <p class="address" ng-show="mc.lastClicked.hours">Hours:</p>
+          <p class="address">{{mc.lastClicked.hours}}</p>
         </div>
-      </md-input-container>
 
-      <md-input-container>
-        <label for="password">Password<span class="md-caption"> (Required)</span></label>
-        <input type="password" ng-model="mc.registerInfo.password" name="password" required/>
-        <div ng-messages="mc.registerFormInputs.password.$error">
-          <div ng-message="required">This is required!</div>
+        <div ng-show="mc.lastClicked.audio_reference">
+          <p class="resourceTitle">Audio</p>
+          <!-- {{mc.lastClicked.audio_id}} -->
+          <md-button id="playButton" aria-label="play-pause_audio" ng-click="mc.play(mc.lastClicked.sound)" class="md-fab md-mini">
+            <md-icon id="playIcon" ng-show="mc.lastClicked.sound.paused" md-font-icon="fa-play" class="fa" aria-hidden="true"></md-icon>
+            <md-icon id="pauseIcon" ng-show="!mc.lastClicked.sound.paused" md-font-icon="fa-pause" class="fa" aria-hidden="true"></md-icon>
+          </md-button>
+          <md-button id="stopButton" aria-label="stop_audio" ng-click="mc.stop(mc.lastClicked.sound)" class="md-fab md-mini"><md-icon id="stopIcon" class="fa fa-stop" aria-hidden="true"></md-icon></md-button>
+          <md-button id="muteButton" aria-label="mute_audio" ng-click="mc.mute()" class="md-fab md-mini">
+            <md-icon id="muteIcon" ng-show="!mc.muted" class="fa fa-volume-off" aria-hidden="true"></md-icon>
+            <md-icon id="mutedIcon" ng-show="mc.muted" class="fa fa-volume-up" aria-hidden="true"></md-icon>
+          </md-button>
         </div>
-      </md-input-container>
 
-      <md-input-container md-is-error="mc.passwordMismatch()">
-        <label for="confirm_password">Confirm Password<span class="md-caption"> (Required)</span></label>
-        <input type="password" ng-model="mc.registerInfo.confirm_password" name="confirm_password" required/>
-        <!-- Should add message here to inform user their passwords don't match -->
-        <div class="errorMessage md-caption" ng-show="mc.passwordMismatchError()">Please make sure your passwords match.</div>
-      </md-input-container>
-
-      <md-input-container>
-        <label for="contact_name">Contact Name<span class="md-caption"> (Required)</span></label>
-        <input type="text" ng-model="mc.registerInfo.contact_name" name="contact_name" id="contact_name" required/>
-        <div ng-messages="mc.registerFormInputs.contact_name.$error">
-          <div ng-message="required">This is required!</div>
+        <div ng-show="mc.lastClicked.path1">
+          <p class="resourceTitle">Photos</br>
+            <section layout="row"  layout-align="center end">
+              <div class="container slider" >
+                <img ng-repeat="slide in mc.lastClicked.images" class="slide"
+                ng-hide="!mc.isCurrentSlideIndex($index)" ng-src="{{slide}}">
+                <a ng-show="mc.lastClicked.path1" class="arrow next" href="#" ng-click="mc.nextSlide()"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                <a ng-show="mc.lastClicked.path1" class="arrow prev" href="#" ng-click="mc.prevSlide()"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+              </div>
+            </section>
+          </p>
         </div>
-      </md-input-container>
 
-      <md-input-container>
-        <label for="email_address">Email Address<span class="md-caption"> (Required)</span></label>
-        <input type="email" ng-model="mc.registerInfo.email_address" name="email_address" id="email_address" required/>
-        <div ng-messages="mc.registerFormInputs.email_address.$error">
-          <div ng-message="required">This is required!</div>
-          <div ng-message="email">Please enter a valid email address.</div>
+        <div ng-show="mc.lastClicked.video">
+          <p class="resourceTitle">Video</p>
+          <p class="address">
+            <a target="_blank" ng-href="{{mc.lastClicked.video}}">Open Video</a>
+          </p>
         </div>
-      </md-input-container>
 
-      <md-input-container>
-        <md-button ng-disabled="mc.registerFormInputs.$invalid" ng-click="mc.registerUser()" class="md-raised">Register</md-button>
-      </md-input-container>
-      <p class="requiredFormText" class="md-caption" ng-show="mc.registerFormInputs.$invalid">
-        Please fill out the required fields.
-      </p>
-      <md-input-container>
-        <h3>Already have an account?</h3>
-        <md-button class="md-raised" ng-click="mc.loginShow()">Login</md-button>
-      </md-input-container>
-    </section>
-  </form>
+      </div> <!-- /.drawerContent -->
+    </div>
 
-  <form name="newResourceForm" ng-show="mc.showNewResourceForm">
-    <section layout="column">
-      <span>Press and hold (right-click on desktop) on the map where you like the new resource to be located, or just type the address below. </span>
-      <span ng-show="mc.newResource.latitude">Location added!</span>
-      <md-input-container>
-        <label for="new_name">Food Resource Name<span class="md-caption"> (Required)</span></label>
-        <input type="text" name="new_name" ng-model="mc.newResource.name" required/>
-        <div ng-messages="newResourceForm.new_name.$error">
-          <div ng-message="required">This is required!</div>
-        </div>
-      </md-input-container>
+    <div class="infoDrawer" ng-show="mc.showNewResourceDrawer">
+      <div class="loginMap">
+        <form ng-show="mc.showNewResourceLogin">
+          <section layout="column">
+            <h3>Please Log In To Submit A New Resource</h3>
+            <md-input-container>
+              <label for="login-username">Username</label>
+              <input type="text" ng-model="mc.loginInfo.username" name="login-username" required/>
+            </md-input-container>
 
-      <!-- <md-input-container>
-        <label for="new_location">Location</label>
-        <input type="text" name="new_location" ng-model="mc.newResource.location" required/>
-        <div ng-messages="newResourceForm.new_location.$error">
-          <div ng-message="required">This is required!</div>
-        </div>
-      </md-input-container> -->
+            <md-input-container>
+              <label for="login-password">Password</label>
+              <input type="password" ng-model="mc.loginInfo.password" name="login-password" required/>
+            </md-input-container>
+
+            <md-input-container>
+              <md-button ng-click="mc.loginUser()" value="LogIn" class="md-raised">Log In</md-button>
+            </md-input-container>
+            <h3>Need To Create A New Account?</h3>
+            <md-input-container>
+              <md-button class="md-raised" ng-click="mc.registerShow()">Register</md-button>
+            </md-input-container>
+          </section>
+        </form>
+
+        <form class="home form" name="mc.registerFormInputs" ng-show="mc.showNewResourceRegister">
+          <section layout="column">
+            <h3>Registration</h3>
+
+            <md-input-container>
+              <label for="username">Username<span class="md-caption"> (Required)</span></label>
+              <input type="text" ng-model="mc.registerInfo.username" name="username" required/>
+              <div ng-messages="mc.registerFormInputs.username.$error">
+                <div ng-message="required">This is required!</div>
+              </div>
+            </md-input-container>
+
+            <md-input-container>
+              <label for="password">Password<span class="md-caption"> (Required)</span></label>
+              <input type="password" ng-model="mc.registerInfo.password" name="password" required/>
+              <div ng-messages="mc.registerFormInputs.password.$error">
+                <div ng-message="required">This is required!</div>
+              </div>
+            </md-input-container>
+
+            <md-input-container md-is-error="mc.passwordMismatch()">
+              <label for="confirm_password">Confirm Password<span class="md-caption"> (Required)</span></label>
+              <input type="password" ng-model="mc.registerInfo.confirm_password" name="confirm_password" required/>
+              <!-- Should add message here to inform user their passwords don't match -->
+              <div class="errorMessage md-caption" ng-show="mc.passwordMismatchError()">Please make sure your passwords match.</div>
+            </md-input-container>
+
+            <md-input-container>
+              <label for="contact_name">Contact Name<span class="md-caption"> (Required)</span></label>
+              <input type="text" ng-model="mc.registerInfo.contact_name" name="contact_name" id="contact_name" required/>
+              <div ng-messages="mc.registerFormInputs.contact_name.$error">
+                <div ng-message="required">One or more required fields empty or invalid</div>
+              </div>
+            </md-input-container>
+
+            <md-input-container>
+              <label for="email_address">Email Address<span class="md-caption"> (Required)</span></label>
+              <input type="email" ng-model="mc.registerInfo.email_address" name="email_address" id="email_address" required/>
+              <div ng-messages="mc.registerFormInputs.email_address.$error">
+                <div ng-message="required">This is required!</div>
+                <div ng-message="email">Please enter a valid email address.</div>
+              </div>
+            </md-input-container>
+
+            <md-input-container>
+              <md-button ng-disabled="mc.registerFormInputs.$invalid" ng-click="mc.registerUser()" class="md-raised">Register</md-button>
+            </md-input-container>
+            <p class="requiredFormText" class="md-caption" ng-show="mc.registerFormInputs.$invalid">
+              Please fill out the required fields.
+            </p>
+            <md-input-container>
+              <h3>Already have an account?</h3>
+              <md-button class="md-raised" ng-click="mc.loginShow()">Login</md-button>
+            </md-input-container>
+          </section>
+        </form>
+
+        <form name="newResourceForm" ng-show="mc.showNewResourceForm">
+          <section layout="column">
+            <span>Press and hold (right-click on desktop) on the map where you like the new resource to be located, or just type the address below. </span>
+            <span ng-show="mc.newResource.latitude">Location added!</span>
+            <md-input-container>
+              <label for="new_name">Food Resource Name<span class="md-caption"> (Required)</span></label>
+              <input type="text" name="new_name" ng-model="mc.newResource.name" required/>
+              <div ng-messages="newResourceForm.new_name.$error">
+                <div ng-message="required">This is required!</div>
+              </div>
+            </md-input-container>
 
         <md-input-container>
           <label>Address<span class="md-caption"> (Required)</span></label>
@@ -228,118 +222,118 @@
         </md-input-container>
 
         <md-input-container>
-            <label>State</label>
-            <input type="text" name="new_state" ng-model="mc.newResource.state" required>
-            <div ng-messages="newResourceForm.new_state.$error">
-              <div ng-message="required">This is required!</div>
-            </div>
+          <label>State</label>
+          <input type="text" name="new_state" ng-model="mc.newResource.state" required>
+          <div ng-messages="newResourceForm.new_state.$error">
+            <div ng-message="required">This is required!</div>
+          </div>
         </md-input-container>
 
         <md-input-container class="md-block" flex-gt-sm>
           <label>Zip Code<span class="md-caption"> (Required)</span></label>
           <input name="new_zip_code" ng-model="mc.newResource.zip_code"
-                   required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+          required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
           <div ng-messages="newResourceForm.new_zip_code.$error" role="alert" multiple>
-            <div ng-message="required" class="my-message">Please supply a zip code.</div>
-            <div ng-message="pattern" class="my-message">That doesn't look like a valid zip
-                code.
+            <div ng-message="required" class="my-message">Please supply a zip code</div>
+            <div ng-message="pattern" class="my-message">Invalid zip code
+              code.
             </div>
             <div ng-message="md-maxlength" class="my-message">
-                Only a five digit zip code is required.
+              A five-digit zip code is required
             </div>
           </div>
         </md-input-container>
 
-      <md-input-container>
-        <label for="new_type">Type<span class="md-caption"> (Required)</span></label>
-        <md-select name="new_type" ng-model="mc.newResource.resource_type" required>
-          <md-option value="Community Garden">Community Garden</md-option>
-          <md-option value="Culinary Arts">Culinary Arts</md-option>
-          <md-option value="Food Hub">Food Hub</md-option>
-          <md-option value="Food Distribution">Food Distribution</md-option>
-        </md-select>
-        <div ng-messages="newResourceForm.new_type.$error">
-          <div ng-message="required">This is required!</div>
-        </div>
-      </md-input-container>
+        <md-input-container>
+          <label for="new_type">Type<span class="md-caption"> (Required)</span></label>
+          <md-select name="new_type" ng-model="mc.newResource.resource_type" required>
+            <md-option value="Community Garden">Community Garden</md-option>
+            <md-option value="Culinary Arts">Culinary Arts</md-option>
+            <md-option value="Food Hub">Food Hub</md-option>
+            <md-option value="Food Distribution">Food Distribution</md-option>
+          </md-select>
+          <div ng-messages="newResourceForm.new_type.$error">
+            <div ng-message="required">This is required!</div>
+          </div>
+        </md-input-container>
 
-      <md-input-container>
-        <label for="new_description">Description</label>
-        <input type="text" name="new_description" ng-model="mc.newResource.description"/>
-      </md-input-container>
+        <md-input-container>
+          <label for="new_description">Description</label>
+          <input type="text" name="new_description" ng-model="mc.newResource.description"/>
+        </md-input-container>
 
-      <md-input-container>
-        <label for="new_website">Website</label>
-        <input type="text" name="new_website" ng-model="mc.newResource.website" />
-      </md-input-container>
+        <md-input-container>
+          <label for="new_website">Website</label>
+          <input type="text" name="new_website" ng-model="mc.newResource.website" />
+        </md-input-container>
 
-      <!-- we'll ask for their social media links, then in display will create an icon button linking to them externally by using their information -->
+        <!-- we'll ask for their social media links, then in display will create an icon button linking to them externally by using their information -->
 
-      <md-input-container>
-        <label for="twitter">Twitter</label>
-        <input placeholder="Add link ex. https://twitter.com/projectsweetiep" type="text" name="twitter" ng-model="mc.newResource.twitter"  />
-      </md-input-container>
+        <md-input-container>
+          <label for="twitter">Twitter</label>
+          <input placeholder="Add link ex. https://twitter.com/projectsweetiep" type="text" name="twitter" ng-model="mc.newResource.twitter"  />
+        </md-input-container>
 
-      <md-input-container>
-        <label for="facebook">Facebook</label>
-        <input placeholder="Add link ex. https://www.facebook.com/projectsweetiepie/" type="text" name="facebook" ng-model="mc.newResource.facebook"  />
-      </md-input-container>
+        <md-input-container>
+          <label for="facebook">Facebook</label>
+          <input placeholder="Add link ex. https://www.facebook.com/projectsweetiepie/" type="text" name="facebook" ng-model="mc.newResource.facebook"  />
+        </md-input-container>
 
-      <md-input-container>
-        <label for="instagram">Instagram</label>
-        <input placeholder="Add link ex. https://www.instagram.com/nazmpls/" type="text" name="instagram" ng-model="mc.newResource.instagram"  />
-      </md-input-container>
+        <md-input-container>
+          <label for="instagram">Instagram</label>
+          <input placeholder="Add link ex. https://www.instagram.com/nazmpls/" type="text" name="instagram" ng-model="mc.newResource.instagram"  />
+        </md-input-container>
 
-      <md-input-container>
-        <label for="snapchat">Snapchat</label>
-        <input placeholder="Add link ex. https://www.snapchat.com/add/JXTA_ARTS" type="text" name="snapchat" ng-model="mc.newResource.snapchat"  />
-      </md-input-container>
+        <md-input-container>
+          <label for="snapchat">Snapchat</label>
+          <input placeholder="Add link ex. https://www.snapchat.com/add/JXTA_ARTS" type="text" name="snapchat" ng-model="mc.newResource.snapchat"  />
+        </md-input-container>
 
 
-      <md-input-container>
-        <label for="new_leadership">Leadership</label>
-        <input type="text" name="new_leadership" ng-model="mc.newResource.leadership" />
-      </md-input-container>
+        <md-input-container>
+          <label for="new_leadership">Leadership</label>
+          <input type="text" name="new_leadership" ng-model="mc.newResource.leadership" />
+        </md-input-container>
 
-      <md-input-container>
-        <label for="new_phone">Public Phone</label>
-        <input type="phone" name="new_phone" ng-model="mc.newResource.public_phone" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"/>
-        <div ng-messages="newResourceForm.new_phone.$error">
-          <div ng-message="pattern">Please enter a valid 10-digit phone number.</div>
-        </div>
-      </md-input-container>
+        <md-input-container>
+          <label for="new_phone">Public Phone</label>
+          <input type="phone" name="new_phone" ng-model="mc.newResource.public_phone" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"/>
+          <div ng-messages="newResourceForm.new_phone.$error">
+            <div ng-message="pattern">Please enter a valid 10-digit phone number.</div>
+          </div>
+        </md-input-container>
 
-      <md-input-container>
-        <label for="new_email">Public Email</label>
-        <input type="email" name="new_email" ng-model="mc.newResource.public_email" />
-        <div ng-messages="newResourceForm.new_email.$error">
-          <div ng-message="email">Please enter a valid email address.</div>
-        </div>
-      </md-input-container>
+        <md-input-container>
+          <label for="new_email">Public Email</label>
+          <input type="email" name="new_email" ng-model="mc.newResource.public_email" />
+          <div ng-messages="newResourceForm.new_email.$error">
+            <div ng-message="email">Please enter a valid email address.</div>
+          </div>
+        </md-input-container>
 
-      <md-input-container>
-        <label for="new_hours">Hours</label>
-        <input type="text" name="new_hours" ng-model="mc.newResource.hours" />
-      </md-input-container>
+        <md-input-container>
+          <label for="new_hours">Hours</label>
+          <input type="text" name="new_hours" ng-model="mc.newResource.hours" />
+        </md-input-container>
 
-      <md-input-container>
-        <label for="new_lat">Coordinates - Latitude</label>
-        <input type="text" name="new_lat" ng-model="mc.newResource.latitude" />
-      </md-input-container>
+        <md-input-container>
+          <label for="new_lat">Coordinates - Latitude</label>
+          <input type="text" name="new_lat" ng-model="mc.newResource.latitude" />
+        </md-input-container>
 
-      <md-input-container>
-        <label for="new_lng">Coordinates - Longitude</label>
-        <input type="text" name="new_lng" ng-model="mc.newResource.longitude" />
-      </md-input-container>
+        <md-input-container>
+          <label for="new_lng">Coordinates - Longitude</label>
+          <input type="text" name="new_lng" ng-model="mc.newResource.longitude" />
+        </md-input-container>
 
-      <!-- <md-input-container> -->
+        <!-- <md-input-container> -->
         <!-- <label class="md-button md-raised fileUploadLabel" for="new_audio_map">Choose Audio</label>
         <span ng-show="mc.newAudio.file">
-          <span class="uploadHelperText" ng-show="!mc.uploadAudioSuccess">Click the orange button to upload your audio.</span>
-        </span>
-        <span class="uploadHelperText" ng-show="mc.uploadAudioSuccess">Upload complete! Click save below to add your resource.</span>
-        <md-button ng-show="mc.newAudio.file" ng-click="mc.uploadAudio(mc.newAudio, mc.newResource)" class="md-button uploadButton" aria-label="uploadAudio"><i class="fa fa-cloud-upload" aria-hidden="true"></i></md-button>
-        <input id="new_audio_map" class="fileUpload" type="file" ngf-select ngf-multiple="false" ng-model="mc.newAudio.file" name="new_audio_map" ngf-pattern="'audio/*'" accept="audio/*" ngf-max-size="20MB" aria-label="upload_audio"/> -->
+        <span class="uploadHelperText" ng-show="!mc.uploadAudioSuccess">Click the orange button to upload your audio.</span>
+      </span>
+      <span class="uploadHelperText" ng-show="mc.uploadAudioSuccess">Upload complete! Click save below to add your resource.</span>
+      <md-button ng-show="mc.newAudio.file" ng-click="mc.uploadAudio(mc.newAudio, mc.newResource)" class="md-button uploadButton" aria-label="uploadAudio"><i class="fa fa-cloud-upload" aria-hidden="true"></i></md-button>
+      <input id="new_audio_map" class="fileUpload" type="file" ngf-select ngf-multiple="false" ng-model="mc.newAudio.file" name="new_audio_map" ngf-pattern="'audio/*'" accept="audio/*" ngf-max-size="20MB" aria-label="upload_audio"/> -->
       <!-- </md-input-container> -->
       <div class="uploadContainer">
         <div class="audioContainer">
@@ -354,43 +348,40 @@
       </div>
 
       <!-- <md-input-container> -->
-        <!-- <label class="md-button md-raised fileUploadLabel" for="new_images_map">Select Images</label>
+      <!-- <label class="md-button md-raised fileUploadLabel" for="new_images_map">Select Images</label>
 
-        <span ng-show="mc.newImage.file">
-          <span class="uploadHelperText" ng-show="!mc.uploadImageSuccess">Click the orange button to upload your images.</span>
-        </span>
-        <span class="uploadHelperText" ng-show="mc.uploadImageSuccess">Upload complete!  Click save below to add your resource.</span>
-        <md-button ng-show="mc.newImage.file" ng-click="mc.uploadImage(mc.newImage, mc.newResource)" class="md-button uploadButton" aria-label="uploadImage"><i class="fa fa-cloud-upload" aria-hidden="true"></i></md-button>
-        <input id="new_images_map" class="fileUpload" type="file" ngf-select ngf-multiple="true" ng-model="mc.newImage.file" name="new_images_map" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" ngf-max-files="5" aria-label="upload_images"/> -->
-      <!-- </md-input-container> -->
+      <span ng-show="mc.newImage.file">
+      <span class="uploadHelperText" ng-show="!mc.uploadImageSuccess">Click the orange button to upload your images.</span>
+    </span>
+    <span class="uploadHelperText" ng-show="mc.uploadImageSuccess">Upload complete!  Click save below to add your resource.</span>
+    <md-button ng-show="mc.newImage.file" ng-click="mc.uploadImage(mc.newImage, mc.newResource)" class="md-button uploadButton" aria-label="uploadImage"><i class="fa fa-cloud-upload" aria-hidden="true"></i></md-button>
+    <input id="new_images_map" class="fileUpload" type="file" ngf-select ngf-multiple="true" ng-model="mc.newImage.file" name="new_images_map" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" ngf-max-files="5" aria-label="upload_images"/> -->
+    <!-- </md-input-container> -->
 
-      <div class="newUploadContainer">
-        <label class="md-button md-raised fileUploadLabel" for="new_images">Choose Images (max 5)</label>
-        <!-- <md-button ng-show="nrc.newImage.file" ng-click="nrc.uploadImage(nrc.newImage, nrc.newResource)" class="md-button uploadButton" aria-label="uploadImage"><i class="fa fa-cloud-upload" aria-hidden="true"></i></md-button> -->
-        <input id="new_images" class="fileUpload" type="file" ngf-select="mc.uploadImage(mc.newImage.file)" ngf-multiple="true" ng-model="mc.newImage.file" name="new_images" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" ngf-max-files="5" aria-label="upload_images"/>
-        <br /><img class="thumbnail" ng-src="{{mc.newResource.path1}}" ng-show="mc.newResource.path1" />
-        <br /><img class="thumbnail" ng-src="{{mc.newResource.path2}}" ng-show="mc.newResource.path2" />
-        <br /><img class="thumbnail" ng-src="{{mc.newResource.path3}}" ng-show="mc.newResource.path3" />
-        <br /><img class="thumbnail" ng-src="{{mc.newResource.path4}}" ng-show="mc.newResource.path4"/>
-        <br /><img class="thumbnail" ng-src="{{mc.newResource.path5}}" ng-show="mc.newResource.path5"/>
-      </div>
+    <div class="newUploadContainer">
+      <label class="md-button md-raised fileUploadLabel" for="new_images">Choose Images (max 5)</label>
+      <!-- <md-button ng-show="nrc.newImage.file" ng-click="nrc.uploadImage(nrc.newImage, nrc.newResource)" class="md-button uploadButton" aria-label="uploadImage"><i class="fa fa-cloud-upload" aria-hidden="true"></i></md-button> -->
+      <input id="new_images" class="fileUpload" type="file" ngf-select="mc.uploadImage(mc.newImage.file)" ngf-multiple="true" ng-model="mc.newImage.file" name="new_images" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" ngf-max-files="5" aria-label="upload_images"/>
+      <br /><img class="thumbnail" ng-src="{{mc.newResource.path1}}" ng-show="mc.newResource.path1" />
+      <br /><img class="thumbnail" ng-src="{{mc.newResource.path2}}" ng-show="mc.newResource.path2" />
+      <br /><img class="thumbnail" ng-src="{{mc.newResource.path3}}" ng-show="mc.newResource.path3" />
+      <br /><img class="thumbnail" ng-src="{{mc.newResource.path4}}" ng-show="mc.newResource.path4"/>
+      <br /><img class="thumbnail" ng-src="{{mc.newResource.path5}}" ng-show="mc.newResource.path5"/>
+    </div>
 
-      <md-input-container>
-        <label for="new_video">Video</label>
-        <input type="text" placeholder="Add link ex. https://www.youtube.com/watch?v=HHk47i6EfjM" name="new_video" ng-model="mc.newResource.video" />
-      </md-input-container>
+    <md-input-container>
+      <label for="new_video">Video</label>
+      <input type="text" placeholder="Add link ex. https://www.youtube.com/watch?v=HHk47i6EfjM" name="new_video" ng-model="mc.newResource.video" />
+    </md-input-container>
 
-      <md-checkbox ng-if="mc.user.is_admin == 1" name="new_approval" ng-model="mc.newResource.is_active" aria-label="new_approval">Approved</md-checkbox>
+    <md-checkbox ng-if="mc.user.is_admin == 1" name="new_approval" ng-model="mc.newResource.is_active" aria-label="new_approval">Approved</md-checkbox>
 
-      <md-button ng-disabled="newResourceForm.$invalid" ng-click="mc.saveNewResource(mc.newResource)">Save</md-button>
-      <md-button ng-click="mc.cancelNewResource()">Cancel</md-button>
-      <p class="requiredFormText" class="requiredFormText" ng-show="newResourceForm.$invalid">
-        Please fill out the required fields.
-      </p>
-    </section>
-  </form>
+    <md-button ng-disabled="newResourceForm.$invalid" ng-click="mc.saveNewResource(mc.newResource)">Save</md-button>
+    <md-button ng-click="mc.cancelNewResource()">Cancel</md-button>
+    <p class="requiredFormText" class="requiredFormText" ng-show="newResourceForm.$invalid">
+      Please fill out the required fields.
+    </p>
+  </section>
+</form>
 </div>
 </div>
-<footer class="iconCredit">
-  Icons based on images created by Freepix and Google from www.flaticon.com
-</footer>
