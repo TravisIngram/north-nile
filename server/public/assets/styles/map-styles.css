@@ -12,13 +12,13 @@
 .infoDrawer {
   position: absolute;
   bottom: 10vh;
-  height: 60vh;
+  /*height: 60vh;*/
   max-height: 60vh;
   width: 100vw;
-  background-color:rgba(158,206,184,0.8);
-  color:#000 !important;
-  /*box-shadow: 2px 2px 5px rgba(56,42,31,0.5);*/
-  /*border-radius: 5px;*/
+  background-color:rgba(160,152,146,0.5);
+  border-top: 1px solid #A09892;
+  box-shadow: none;
+  border-radius: none;
   overflow-y: scroll;
   transition-property: all;
   transition-duration: .5s;
@@ -26,12 +26,14 @@
 }
 .infoDrawer .loginMap {
 font-family: 'Playfair Display', 'Georgia', serif;
-background-color:  white;
-border-radius: 10px;
+background-color: #BBDCCD;
+border-left: 1px solid #A09892;
+border-right: 1px solid #A09892;
+border-radius: none;
 padding: 15px;
 color: #70543e;
-box-shadow: 2px 2px 5px rgba(56,42,31,0.5);
-margin: 5px 15vw;
+box-shadow: none;
+margin: 0 15vw;
 }
 
 .md-button.md-fab.md-mini{
@@ -47,20 +49,16 @@ margin: 5px 15vw;
   }
 }
 
-.loginMap label{
-color: #000000;
-}
 /* ::: this is the background for the resource display drawer ::: */
 .infoDrawerResource {
   position: absolute;
   bottom: 10vh;
-  height: 60vh;
   max-height: 60vh;
   width: 100vw;
-  background-color:rgba(158,206,184,0.6);
+  background-color:rgba(160,152,146,0.5);
   color:white !important;
-  /*box-shadow: 2px 2px 5px rgba(56,42,31,0.5);*/
-  /*border-radius: 5px;*/
+  box-shadow: none;
+  border-radius: none;
   overflow-y: scroll;
   transition-property: all;
   transition-duration: .5s;

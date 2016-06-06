@@ -7,7 +7,7 @@ angular.module('northApp').controller('MapController', ['Upload','ngAudio','Reso
   });
 
   mc.routeUser = function() {
-    if (mc.user.is_admin == true) {
+    if (mc.user.is_admin === true) {
       $location.path('/admin');
     } else {
       $location.path('/user');
@@ -161,7 +161,7 @@ var foodHub = {
         mc.lastClicked.snapchat) {
         return true;
       }
-    }
+    };
 
     // open contact info if present
     mc.contactShow = function(){
@@ -171,7 +171,7 @@ var foodHub = {
           mc.lastClicked.hours) {
           return true;
       }
-    }
+    };
 
     // load audio if present
     if(mc.lastClicked.audio_reference){
