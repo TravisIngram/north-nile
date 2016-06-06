@@ -50,15 +50,6 @@ table.md-table td.md-cell {
 
 
 /*edit and add new resource modals on admin*/
-md-dialog{
-  background-color:#BBDCCD;
-  min-width: 80vw;
-}
-
-md-dialog h2{
-  color: #ec4500;
-  font-weight: bold;
-}
 
 /*hide input type=file element*/
 .fileUpload{
