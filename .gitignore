@@ -6,9 +6,13 @@ node_modules
 
 # File System
 .DS_Store
-server/public/assets/scripts
+server/public/assets/scripts/*
 server/public/assets/scripts/homeController.js
 server/public/assets/scripts/mapController.js
 server/public/assets/scripts/northApp.module.js
 
 server/public/vendor/angular-leaflet-directive/dist/angular-leaflet-directive.min.js
+server/public/vendor/angular-route/angular-route.min.js
+server/public/vendor/angular-route/angular-route.min.js.map
+server/public/vendor/angular/angular.min.js
+server/public/vendor/angular/angular.min.js.map
